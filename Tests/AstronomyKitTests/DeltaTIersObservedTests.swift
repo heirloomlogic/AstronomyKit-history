@@ -66,6 +66,51 @@ private enum IERSRecords {
 
 @Suite("Observed Delta T (IERS)", .serialized)
 struct DeltaTIersObservedTests {
+    struct CivilReference: Decodable {
+        struct Site: Decodable {
+            let latitudeDegrees: Double
+            let longitudeDegrees: Double
+            let heightMeters: Double
+        }
+
+        struct Horizons: Decodable {
+            struct Row: Decodable {
+                let utc: String
+                let azimuthDegrees: Double
+                let altitudeDegrees: Double
+                let ut1MinusUTCSeconds: Double
+            }
+
+            struct Event: Decodable {
+                let utc: String
+            }
+
+            let rows: [Row]
+            let sunrise: Event
+            let sunset: Event
+        }
+
+        let model: String
+        let site: Site
+        let horizons: Horizons
+    }
+
+    static func civilReference() throws -> CivilReference {
+        let root = (0..<3).reduce(URL(fileURLWithPath: #filePath)) { url, _ in
+            url.deletingLastPathComponent()
+        }
+        return try JSONDecoder().decode(
+            CivilReference.self,
+            from: Data(contentsOf: root.appendingPathComponent("Scripts/deltat-data/civil-horizon/reference.json"))
+        )
+    }
+
+    static func date(_ text: String) throws -> Date {
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        return try #require(formatter.date(from: text))
+    }
+
     /// Days from the Unix epoch to J2000 noon, as `AstroTime` uses.
     static let j2000UnixDays = 946_728_000.0 / 86_400
 
@@ -338,28 +383,54 @@ struct DeltaTIersObservedTests {
 
     // MARK: - Rise and set through the civil path
 
-    /// JPL Horizons, retrieved 2026-10-17 (DE441, EOP file eop.261016.p270112): the Sun's
-    /// airless apparent elevation and angular diameter from 35.5951° N, 82.5515° W, 0 m, at
-    /// 1 s steps. Query: COMMAND='10', CENTER='coord@399', COORD_TYPE='GEODETIC',
-    /// SITE_COORD='-82.5515,35.5951,0', QUANTITIES='4,13', APPARENT='AIRLESS',
-    /// TIME_TYPE='UT' (UTC), START_TIME 2025-06-21 10:10 and 2025-06-22 00:44, 720 steps over
-    /// 12 minutes. The instants below are where the centre's elevation crosses −(34′ +
-    /// semidiameter), the rise and set definition the engine uses, interpolated linearly
-    /// between the 1 s samples (the Sun's elevation rate there is 0.002935° s⁻¹). The USNO
-    /// Astronomical Applications rise and set times for the same place and day, 10:15 and
-    /// 00:49 UTC, agree to their published minute.
-    static let horizonsSunrise = "2025-06-21T10:15:03.390Z"
-    static let horizonsSunset = "2025-06-22T00:49:09.668Z"
+    @Test("Civil horizon uses the default observed model and matches pinned Horizons rows")
+    func civilHorizonMatchesHorizons() throws {
+        let fixture = try Self.civilReference()
+        #expect(fixture.model == "iersObserved")
+        #expect(fixture.horizons.rows.count == 5)
+        let site = Observer(
+            latitude: fixture.site.latitudeDegrees,
+            longitude: fixture.site.longitudeDegrees,
+            height: fixture.site.heightMeters
+        )
+        for row in fixture.horizons.rows {
+            let date = try Self.date(row.utc)
+            let time = AstroTime(date)
+            #expect(time.deltaTModel == .iersObserved)
+            let horizon = try CelestialBody.sun.horizon(at: time, from: site, refraction: .none)
+            let altitudeResidual = abs(horizon.altitude - row.altitudeDegrees)
+            let azimuthResidual = abs(Engine.longitudeOffset(horizon.azimuth - row.azimuthDegrees))
+            #expect(altitudeResidual <= 1.0 / 60, "\(row.utc): altitude residual \(altitudeResidual * 60)′")
+            #expect(azimuthResidual <= 1.0 / 60, "\(row.utc): azimuth residual \(azimuthResidual * 60)′")
+        }
+
+        let discriminator = fixture.horizons.rows[0]
+        let date = try Self.date(discriminator.utc)
+        func altitudeResidual(_ model: DeltaTModel) throws -> Double {
+            let time = AstroTime(date, deltaTModel: model)
+            let altitude = try CelestialBody.sun.horizon(at: time, from: site, refraction: .none).altitude
+            return abs(altitude - discriminator.altitudeDegrees)
+        }
+        let observed = try altitudeResidual(.iersObserved)
+        let held = try altitudeResidual(.jplHorizons)
+        let polynomial = try altitudeResidual(.espenakMeeus)
+        #expect(held * 3_600 > 5, "Held-model residual \(held * 3_600)″")
+        #expect(polynomial * 3_600 > 50, "Polynomial residual \(polynomial * 3_600)″")
+        #expect(observed < held && held < polynomial)
+    }
 
     @Test("Civil sunrise and sunset match JPL Horizons within 0.25 s")
     func riseSetMatchHorizons() throws {
-        let formatter = ISO8601DateFormatter()
-        formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-        let observer = Observer(latitude: 35.5951, longitude: -82.5515, height: 0)
-        let startDate = try #require(formatter.date(from: "2025-06-21T04:00:00.000Z"))
+        let fixture = try Self.civilReference()
+        let observer = Observer(
+            latitude: fixture.site.latitudeDegrees,
+            longitude: fixture.site.longitudeDegrees,
+            height: fixture.site.heightMeters
+        )
+        let startDate = try Self.date("2025-06-21T04:00:00.000Z")
         let start = AstroTime(startDate)
-        let sunriseReference = try #require(formatter.date(from: Self.horizonsSunrise))
-        let sunsetReference = try #require(formatter.date(from: Self.horizonsSunset))
+        let sunriseReference = try Self.date(fixture.horizons.sunrise.utc)
+        let sunsetReference = try Self.date(fixture.horizons.sunset.utc)
 
         func residuals(from start: AstroTime) throws -> (rise: Double, set: Double) {
             let rise = try #require(try CelestialBody.sun.riseTime(after: start, from: observer))
@@ -374,9 +445,12 @@ struct DeltaTIersObservedTests {
         #expect(abs(observed.rise) < 0.25, "Sunrise off by \(observed.rise) s")
         #expect(abs(observed.set) < 0.25, "Sunset off by \(observed.set) s")
 
-        // The check resolves Delta T: Espenak-Meeus is 5.6 s off observed UT1
-        // here. The start time captures the model, and so does every time the
-        // search derives from it, without touching the process default.
+        let held = try residuals(from: AstroTime(startDate, deltaTModel: .jplHorizons))
+        #expect(held.rise > 0.75 && held.set > 0.75, "Held-model residuals \(held)")
+
+        // Both older choices fail this 0.25 s comparison. The start time captures
+        // the model, and so does every time the search derives from it, without
+        // touching the process default.
         let modeledStart = AstroTime(startDate, deltaTModel: .espenakMeeus)
         #expect(modeledStart.deltaTModel == .espenakMeeus)
         let modeled = try residuals(from: modeledStart)

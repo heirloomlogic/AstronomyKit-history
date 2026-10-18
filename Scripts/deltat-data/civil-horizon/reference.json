@@ -1,0 +1,114 @@
+{
+  "horizons": {
+    "earthOrientationFile": "eop.261016.p270112",
+    "ephemeris": "DE441",
+    "horizon": {
+      "altitudeDegrees": 76.42253703,
+      "angularDiameterArcseconds": 1887.865,
+      "azimuthDegrees": 208.314759243,
+      "jdUTC": 2460848.25,
+      "ut1MinusUTCSeconds": 0.03486,
+      "utc": "2025-06-21T18:00:00.000Z"
+    },
+    "refraction": "airless",
+    "rows": [
+      {
+        "altitudeDegrees": -0.830008682,
+        "angularDiameterArcseconds": 1887.828,
+        "azimuthDegrees": 60.03006368,
+        "jdUTC": 2460847.927118056,
+        "ut1MinusUTCSeconds": 0.03477,
+        "utc": "2025-06-21T10:15:03.000Z"
+      },
+      {
+        "altitudeDegrees": -0.827074047,
+        "angularDiameterArcseconds": 1887.828,
+        "azimuthDegrees": 60.032512931,
+        "jdUTC": 2460847.92712963,
+        "ut1MinusUTCSeconds": 0.03477,
+        "utc": "2025-06-21T10:15:04.000Z"
+      },
+      {
+        "altitudeDegrees": 76.42253703,
+        "angularDiameterArcseconds": 1887.865,
+        "azimuthDegrees": 208.314759243,
+        "jdUTC": 2460848.25,
+        "ut1MinusUTCSeconds": 0.03486,
+        "utc": "2025-06-21T18:00:00.000Z"
+      },
+      {
+        "altitudeDegrees": -0.826893905,
+        "angularDiameterArcseconds": 1887.751,
+        "azimuthDegrees": 299.964044807,
+        "jdUTC": 2460848.534131945,
+        "ut1MinusUTCSeconds": 0.03498,
+        "utc": "2025-06-22T00:49:09.000Z"
+      },
+      {
+        "altitudeDegrees": -0.829828723,
+        "angularDiameterArcseconds": 1887.751,
+        "azimuthDegrees": 299.966493987,
+        "jdUTC": 2460848.534143519,
+        "ut1MinusUTCSeconds": 0.03498,
+        "utc": "2025-06-22T00:49:10.000Z"
+      }
+    ],
+    "sunrise": {
+      "fraction": 0.38971865325671756,
+      "jdUTC": 2460847.9271225664,
+      "ut1MinusUTCSeconds": 0.03477,
+      "utc": "2025-06-21T10:15:03.389Z"
+    },
+    "sunset": {
+      "fraction": 0.6679802821011378,
+      "jdUTC": 2460848.5341396765,
+      "ut1MinusUTCSeconds": 0.03498,
+      "utc": "2025-06-22T00:49:09.668Z"
+    },
+    "timeScale": "UTC with source UT1-UTC"
+  },
+  "model": "iersObserved",
+  "schemaVersion": 1,
+  "site": {
+    "heightMeters": 0,
+    "latitudeDegrees": 35.5951,
+    "longitudeDegrees": -82.5515
+  },
+  "sources": [
+    {
+      "path": "Scripts/deltat-data/civil-horizon/horizons.json",
+      "sha256": "271de253172a3f96e3f3eea9672f7380ba9afda7566c40a2121b54ae19f65b6c"
+    },
+    {
+      "path": "Scripts/deltat-data/civil-horizon/horizons.query.json",
+      "sha256": "1165259845ff93a74e1a62f98f73a8c078845eaa70127fd0039fa1550d647fd5"
+    },
+    {
+      "path": "Scripts/deltat-data/civil-horizon/usno.json",
+      "sha256": "30c9b58bf99cbcc0d7cc8cc7f80cfec848346bde8ead26a26c467eb987b0875f"
+    },
+    {
+      "path": "Scripts/deltat-data/civil-horizon/usno.query.json",
+      "sha256": "3256d3bd38e7cd6f805a5a87dbd7d0105aaa9341b732560c0e24236c338b13b6"
+    }
+  ],
+  "usno": {
+    "date": "2025-06-21",
+    "events": {
+      "rise": {
+        "horizonsDifferenceSeconds": 3.4244921088409424,
+        "jdUT1": 2460847.9270833335,
+        "localDateTime": "2025-06-21T06:15:00",
+        "ut1DateTime": "2025-06-21T10:15:00"
+      },
+      "set": {
+        "horizonsDifferenceSeconds": 9.70304262731552,
+        "jdUT1": 2460848.5340277776,
+        "localDateTime": "2025-06-21T20:49:00",
+        "ut1DateTime": "2025-06-22T00:49:00"
+      }
+    },
+    "timeScale": "UT1",
+    "timeZoneHoursFromUT1": -4.0
+  }
+}
