@@ -27,7 +27,7 @@
   "host": "Version 27.0.1 (Build 26A434)",
   "limitations": [
     "Each latency and resource measurement is one local process run; values describe this host and are not performance gates.",
-    "The fresh Release builds compile the same package and test graph from separate scratch directories, but the terminal filtered tests differ: the baseline ran one test and the candidate ran four after compilation.",
+    "The fresh Release builds compile the same package and test graph from separate scratch directories, but their terminal filtered tests differ: the baseline selected one Moon measurement test that was skipped because its output environment variable was absent, while the candidate ran four contract tests.",
     "The candidate runtime measurements precede the inventory-only binding commit; candidateRuntimeRevision records the measured executable source exactly."
   ],
   "rawArtifacts": {
@@ -196,11 +196,13 @@
         "peakRSSBytes": 1525989376,
         "realSeconds": 9.01
       },
+      "baselineTestsPassed": 5,
       "candidateCommand": {
         "peakRSSBytes": 513900544,
         "realSeconds": 6.67
       },
-      "candidateTestsPassed": 10
+      "candidateTestsPassed": 10,
+      "comparison": "Not directly comparable: the baseline filter ran five EnginePlanetTablesTests table tests, while the candidate filter ran ten EnginePlanetPolynomialTests polynomial tests."
     },
     "pluto": {
       "baseline": {
