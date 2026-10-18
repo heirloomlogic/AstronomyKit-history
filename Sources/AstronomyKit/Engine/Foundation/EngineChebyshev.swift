@@ -23,12 +23,21 @@ extension Engine {
         let recordCount: Int
         /// Coefficients per axis in each record.
         let degreeCount: Int
-        let coefficients: [Double]
+        let coefficients: Engine.Binary64Table
 
         /// Traps when `coefficients` does not hold `recordCount` records of
         /// three axes of `degreeCount` each, which only a damaged generated
         /// table can cause.
         init(start: Double, recordDays: Double, recordCount: Int, degreeCount: Int, coefficients: [Double]) {
+            self.init(
+                start: start, recordDays: recordDays, recordCount: recordCount, degreeCount: degreeCount,
+                coefficients: Engine.Binary64Table(coefficients))
+        }
+
+        init(
+            start: Double, recordDays: Double, recordCount: Int, degreeCount: Int,
+            coefficients: Engine.Binary64Table
+        ) {
             precondition(
                 recordDays > 0 && degreeCount > 0 && coefficients.count == recordCount * 3 * degreeCount,
                 "A Chebyshev table's coefficients do not match its shape")

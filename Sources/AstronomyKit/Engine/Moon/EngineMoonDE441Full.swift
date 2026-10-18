@@ -6,48 +6,20 @@ extension Engine {
 }
 
 extension Engine.MoonDE441Full {
-    /// Decodes one record without allocating or retaining a decoded copy of the complete table.
+    private static let resourceCache = Engine.MappedResourceCache(chunks)
+
+    /// Reads one record without allocating or retaining a decoded copy of the complete table.
     static func coefficients(record: Int) -> [Double]? {
         guard (0..<recordCount).contains(record) else { return nil }
-        return decode(chunks[record / recordsPerChunk], record: record % recordsPerChunk)
-    }
-
-    static func decode(_ text: StaticString, record: Int) -> [Double]? {
-        guard record >= 0, record < text.utf8CodeUnitCount / 417 + 1 else { return nil }
-        return text.withUTF8Buffer { bytes in
-            let base = record * 417
-            guard base + 416 <= bytes.count else { return nil }
-            func sextet(_ byte: UInt8) -> UInt64? {
-                switch byte {
-                case 65...90: return UInt64(byte - 65)
-                case 97...122: return UInt64(byte - 71)
-                case 48...57: return UInt64(byte + 4)
-                case 43: return 62
-                case 47: return 63
-                default: return nil
-                }
-            }
+        let localRecord = record % recordsPerChunk
+        return resourceCache.resource(at: record / recordsPerChunk).withUnsafeBytes { bytes in
+            let base = localRecord * 312
+            guard base + 312 <= bytes.count else { return nil }
             var values = [Double]()
             values.reserveCapacity(39)
             for coefficient in 0..<39 {
-                var bits: UInt64 = 0
-                for j in 0..<8 {
-                    let raw = coefficient * 8 + j
-                    let group = base + (raw / 3) * 4
-                    let slot = raw % 3
-                    guard let a = sextet(bytes[group + slot]), let b = sextet(bytes[group + slot + 1]) else {
-                        return nil
-                    }
-                    let byte: UInt64
-                    if slot == 0 {
-                        byte = (a << 2) | (b >> 4)
-                    } else if slot == 1 {
-                        byte = ((a << 4) | (b >> 2)) & 255
-                    } else {
-                        byte = ((a << 6) | b) & 255
-                    }
-                    bits |= byte << (j * 8)
-                }
+                let bits = UInt64(
+                    littleEndian: bytes.loadUnaligned(fromByteOffset: base + coefficient * 8, as: UInt64.self))
                 let value = Double(bitPattern: bits)
                 guard value.isFinite else { return nil }
                 values.append(value)

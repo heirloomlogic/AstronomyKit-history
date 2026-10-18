@@ -9,8 +9,11 @@ extension Engine {
         let coefficientCount: Int
         let scalarBytes: Int
         let data: Data
+        private let mappedData: Engine.MappedBytes?
         private let recordsPerChunk: Int
         private let chunks: [StaticString]
+
+        var byteCount: Int { mappedData?.count ?? data.count }
 
         init(start: Double, days: Double, recordCount: Int, coefficientCount: Int, scalarBytes: Int, data: Data) {
             precondition(days > 0 && recordCount > 0 && coefficientCount > 0)
@@ -22,6 +25,43 @@ extension Engine {
             self.coefficientCount = coefficientCount
             self.scalarBytes = scalarBytes
             self.data = data
+            self.mappedData = nil
+            self.recordsPerChunk = 0
+            self.chunks = []
+        }
+
+        init(
+            start: Double, days: Double, recordCount: Int, coefficientCount: Int, scalarBytes: Int,
+            resource: Engine.TableResource
+        ) {
+            precondition(days > 0 && recordCount > 0 && coefficientCount > 0)
+            precondition(scalarBytes == 4 || scalarBytes == 8)
+            precondition(resource.byteCount == recordCount * 3 * coefficientCount * scalarBytes)
+            self.start = start
+            self.days = days
+            self.recordCount = recordCount
+            self.coefficientCount = coefficientCount
+            self.scalarBytes = scalarBytes
+            self.data = Data()
+            self.mappedData = Engine.MappedBytes.bundled(resource)
+            self.recordsPerChunk = 0
+            self.chunks = []
+        }
+
+        init(
+            start: Double, days: Double, recordCount: Int, coefficientCount: Int, scalarBytes: Int,
+            data: Engine.MappedBytes
+        ) {
+            precondition(days > 0 && recordCount > 0 && coefficientCount > 0)
+            precondition(scalarBytes == 4 || scalarBytes == 8)
+            precondition(data.count == recordCount * 3 * coefficientCount * scalarBytes)
+            self.start = start
+            self.days = days
+            self.recordCount = recordCount
+            self.coefficientCount = coefficientCount
+            self.scalarBytes = scalarBytes
+            self.data = Data()
+            self.mappedData = data
             self.recordsPerChunk = 0
             self.chunks = []
         }
@@ -38,6 +78,7 @@ extension Engine {
             self.coefficientCount = coefficientCount
             self.scalarBytes = 8
             self.data = Data()
+            self.mappedData = nil
             self.recordsPerChunk = recordsPerChunk
             self.chunks = chunks
         }
@@ -66,7 +107,7 @@ extension Engine {
         func evaluate(record: Int, x: Double) -> (position: SIMD3<Double>, velocity: SIMD3<Double>)? {
             precondition((0..<recordCount).contains(record) && x.isFinite && (-1...1).contains(x))
             if chunks.isEmpty {
-                return data.withUnsafeBytes { raw in
+                return withRawBytes { raw in
                     evaluate(record: record, x: x) { index in
                         let offset = index * scalarBytes
                         if scalarBytes == 4 {
@@ -138,7 +179,7 @@ extension Engine {
             record: Int, x: Double, body: (Int, Double, (Int) -> Double) -> Result
         ) -> Result? {
             if chunks.isEmpty {
-                return data.withUnsafeBytes { raw in
+                return withRawBytes { raw in
                     body(record, x) { index in
                         let offset = index * scalarBytes
                         if scalarBytes == 4 {
@@ -196,6 +237,11 @@ extension Engine {
                     return body(0, x) { coefficients[$0] }
                 }
             }
+        }
+
+        private func withRawBytes<Result>(_ body: (UnsafeRawBufferPointer) -> Result) -> Result {
+            if let mappedData { return mappedData.withUnsafeBytes(body) }
+            return data.withUnsafeBytes(body)
         }
 
         private func evaluate(

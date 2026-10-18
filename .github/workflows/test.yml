@@ -54,7 +54,10 @@ jobs:
         run: python3 Scripts/generate-nutation-table.py --check
 
       - name: Verify generated planet tables
-        run: python3 Scripts/generate-planet-tables.py --check
+        run: |
+          python3 -m unittest Scripts/test_generated_binary_resource.py -v
+          python3 Scripts/verify-model-resource-migration.py --check
+          python3 Scripts/generate-planet-tables.py --check
 
       - name: Verify Saturn source tables and planetary event archives
         run: |
@@ -162,7 +165,9 @@ jobs:
       # Parallel Release run; the wrapper isolates the suites that change
       # the process-wide Delta T model or rely on wall-clock budgets.
       - name: Test (release)
-        run: Scripts/test-with-isolated-timed-suites.sh -c release
+        run: |
+          Scripts/test-with-isolated-timed-suites.sh -c release
+          swift run -c release --package-path Tests/Consumer
 
   test-linux:
     runs-on: ubuntu-latest
@@ -187,7 +192,9 @@ jobs:
       # Parallel Release run; the wrapper isolates the suites that change
       # the process-wide Delta T model or rely on wall-clock budgets.
       - name: Test (release)
-        run: Scripts/test-with-isolated-timed-suites.sh -c release
+        run: |
+          Scripts/test-with-isolated-timed-suites.sh -c release
+          swift run -c release --package-path Tests/Consumer
 
   # The macOS jobs above exercise the shared source, but the iOS/tvOS/watchOS
   # SDKs compile differently (availability, unavailable APIs). Build the library
@@ -238,7 +245,7 @@ jobs:
       - name: Build consumer without repository development tooling
         run: |
           test ! -e .dev-tooling
-          swift build --package-path Tests/Consumer
+          swift run -c release --package-path Tests/Consumer
 
   test-ios-runtime:
     name: Test iOS runtime published value

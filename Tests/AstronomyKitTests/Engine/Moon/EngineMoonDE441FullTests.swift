@@ -7,12 +7,11 @@ import Testing
 struct EngineMoonDE441FullTests {
     typealias Table = Engine.MoonDE441Full
 
-    @Test("Every native decoded coefficient matches the independent Foundation decoder bit for bit")
+    @Test("Every native mapped coefficient matches the bundled bytes bit for bit")
     func everyCoefficient() throws {
         var count = 0
         for (index, chunk) in Table.chunks.enumerated() {
-            let source = chunk.withUTF8Buffer { Data($0) }
-            let raw = try #require(Data(base64Encoded: source, options: .ignoreUnknownCharacters))
+            let raw = Engine.MappedBytes.bundled(chunk)
             let records = raw.count / 312
             var matches = true
             for record in 0..<records {
@@ -70,14 +69,8 @@ struct EngineMoonDE441FullTests {
 
     @Test("Malformed records fail closed")
     func malformed() {
-        #expect(Table.decode("", record: 0) == nil)
-        #expect(Table.decode("abc", record: 0) == nil)
-        #expect(
-            Table.decode(
-                "!AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                record: 0) == nil)
-        #expect(Table.decode("BAD", record: -1) == nil)
-        #expect(Table.decode("BAD", record: Int.max) == nil)
+        #expect(Table.coefficients(record: -1) == nil)
+        #expect(Table.coefficients(record: Int.max) == nil)
         #expect(Table.evaluate(record: 0, x: .nan) == nil)
         #expect(Table.evaluate(record: 0, x: 1.nextUp) == nil)
     }

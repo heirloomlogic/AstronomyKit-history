@@ -19,7 +19,8 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "AstronomyKit"
+            name: "AstronomyKit",
+            resources: [.copy("Resources/ModelTables")]
         ),
         .target(
             name: "CLibAstronomy",

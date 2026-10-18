@@ -13,7 +13,15 @@ extension Engine.PlutoDE441 {
         let start: Double
         let days: Double
         let recordCount: Int
-        let data: Data
+        let data: Engine.MappedBytes
+
+        init(start: Double, days: Double, recordCount: Int, resource: Engine.TableResource) {
+            precondition(resource.byteCount == (recordCount + 1) * 6 * 8)
+            self.start = start
+            self.days = days
+            self.recordCount = recordCount
+            self.data = Engine.MappedBytes.bundled(resource)
+        }
 
         func evaluate(tdb: Double) -> (position: SIMD3<Double>, velocity: SIMD3<Double>)? {
             guard tdb.isFinite, tdb >= start else { return nil }
