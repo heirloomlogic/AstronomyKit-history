@@ -32,6 +32,7 @@ BINDINGS = [
     ENGINE + "Foundation/EngineTime.swift", ENGINE + "Foundation/EngineDeltaT.swift",
     ENGINE + "Foundation/EngineCalendar.swift", ENGINE + "Foundation/EngineConstants.swift",
     ENGINE + "Foundation/EngineSearch.swift", ENGINE + "Foundation/EngineTables.swift",
+    ENGINE + "Foundation/EngineMappedResource.swift",
     ENGINE + "Foundation/EngineCache.swift", ENGINE + "Foundation/EngineChebyshev.swift",
     ENGINE + "Foundation/EngineVector.swift", ENGINE + "Orientation/EngineCoordinates.swift",
     "Sources/AstronomyKit/AstronomyKit.swift", "Package.swift",

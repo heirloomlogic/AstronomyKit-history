@@ -39,7 +39,7 @@ class ExactArithmeticTests(unittest.TestCase):
         self.assertEqual(numerics.derivative_bound(coefficients, Fraction(8)), Fraction(23, 4))
 
     def test_actual_source_and_data_changes_invalidate_binding(self):
-        paths = [numerics.ENGINE + "Orientation/EngineEarthRotation.swift", numerics.EARTH, numerics.EARTH_RESOURCE]
+        paths = [numerics.ENGINE + "Orientation/EngineEarthRotation.swift", numerics.ENGINE + "Foundation/EngineMappedResource.swift", numerics.EARTH, numerics.EARTH_RESOURCE]
         for path in paths:
             with self.subTest(path=path), tempfile.TemporaryDirectory() as folder:
                 root = Path(folder)
@@ -57,8 +57,10 @@ class ExactArithmeticTests(unittest.TestCase):
                     continue
                 if path == numerics.EARTH:
                     text = target.read_text().replace("degree: 12", "degree: 13", 1)
-                else:
+                elif path.endswith("EngineEarthRotation.swift"):
                     text = target.read_text().replace("0.002_737_811_911_354_48", "0.002_737_811_911_354_49", 1)
+                else:
+                    text = target.read_text()+"\n"
                 self.assertNotEqual(text, target.read_text(), "Mutation must change the actual source")
                 target.write_text(text)
                 with self.assertRaisesRegex(ValueError, path):

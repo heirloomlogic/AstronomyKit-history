@@ -1222,6 +1222,7 @@
         "Scripts/generate-moon-tables.py",
         "Scripts/generate-planet-cycle-census.py",
         "Scripts/generate-saturn-tables.py",
+        "Scripts/model_resource.py",
         "Scripts/packed-table-payload.py",
         "Scripts/planet-data/de441-cycle-census.json",
         "Scripts/qualify-moon-de441.py",

@@ -106,7 +106,7 @@ class SaturnEphemerisTests(unittest.TestCase):
         recorder = module('planetary_recorder_integrity', 'record-planetary-event-evidence.py')
         original = json.loads(recorder.OUTPUT.read_bytes())
         recorder.validate_recording(original)
-        for path in [('debug', 'parity', 'maximumElongationParitySeconds'), ('release', 'parity', 'apsisEvents', 0, 'jdtt'), ('debug', 'coefficients', 'maximumPositionKm'), ('resources', 'seconds', 'center'), ('resources', 'checksum'), ('buildSeconds', 'debug'), ('releaseExecutableBytes',), ('decodedPayloadBytes',)]:
+        for path in [('debug', 'parity', 'maximumElongationParitySeconds'), ('release', 'parity', 'apsisEvents', 0, 'jdtt'), ('debug', 'coefficients', 'maximumPositionKm'), ('resources', 'seconds', 'center'), ('resources', 'checksum'), ('buildSeconds', 'debug'), ('releaseExecutableBytes',), ('resourcePayloadBytes',)]:
             changed = copy.deepcopy(original)
             cursor = changed
             for key in path[:-1]:
@@ -114,6 +114,22 @@ class SaturnEphemerisTests(unittest.TestCase):
             cursor[path[-1]] += 0.01
             with self.assertRaises(ValueError, msg=str(path)):
                 recorder.validate_recording(changed)
+
+    def test_saturn_storage_uses_verified_mapped_resources(self):
+        recorder = module('planetary_recorder_storage', 'record-planetary-event-evidence.py')
+        expected = sum(len(recorder.model_resource.payload((recorder.ROOT/path).read_text())) for path in recorder.SATURN_RESOURCE_SOURCES)
+        self.assertEqual(expected, recorder.mapped_resource_bytes())
+        with tempfile.TemporaryDirectory() as directory:
+            resources = Path(directory)
+            names = []
+            for source in recorder.SATURN_RESOURCE_SOURCES:
+                match = recorder.model_resource.DESCRIPTOR.search((recorder.ROOT/source).read_text())
+                names.append(match[1]+'.bin')
+            for name in names:
+                shutil.copyfile(recorder.model_resource.RESOURCE_DIRECTORY/name, resources/name)
+            data = bytearray((resources/names[0]).read_bytes());data[0] ^= 1;(resources/names[0]).write_bytes(data)
+            with self.assertRaisesRegex(ValueError, 'digest differs'):
+                recorder.mapped_resource_bytes(resource_directory=resources)
 
     def test_check_command_rejects_corrupt_parity_and_resource_json(self):
         recorder = module('planetary_recorder_cli', 'record-planetary-event-evidence.py')
