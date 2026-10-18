@@ -14,6 +14,9 @@ DATA = ROOT / 'Scripts/pluto-data'
 SPEC = importlib.util.spec_from_file_location('references', ROOT / 'Scripts/reference-data/build-fixtures.py')
 references = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(references)
+DEPENDENCY_SPEC = importlib.util.spec_from_file_location('pluto_dependencies', ROOT / 'Scripts/evidence_dependencies.py')
+dependencies = importlib.util.module_from_spec(DEPENDENCY_SPEC)
+DEPENDENCY_SPEC.loader.exec_module(dependencies)
 EPOCHS = {
     9: [-1461000., -1460999., -1100000., -766524., -600000., -400000., -200000., 200000., 400000., 600000., 766524., 1100000., 1460999., 1461000.],
     999: [-58400., -36556.5, -36556.25, -36540.5, -36524.5, 0., 47846.5, 47846.75, 47862.5, 47878.5, 47878.75, 58400.],
@@ -98,12 +101,7 @@ def fixture():
 
 
 def source_hashes():
-    # Bind the full native engine, including generated constants and time/frame dependencies.
-    paths = list((ROOT / 'Sources/AstronomyKit/Engine').rglob('*.swift'))
-    paths += [Path(__file__), ROOT / 'Scripts/reference-data/build-fixtures.py',
-              ROOT / 'Scripts/test_capture_pluto_observers.py', DATA / 'observer-fixtures.json',
-              ROOT / 'Tests/AstronomyKitTests/Engine/Positions/EnginePlutoConsumerQualificationTests.swift']
-    return {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(paths)}
+    return dependencies.source_hashes('pluto-observers')
 
 
 def validate_measurement(measurement):
@@ -155,9 +153,10 @@ def main():
     parser.add_argument('--capture', action='store_true', help='explicitly replace the archived publisher responses')
     parser.add_argument('--check', action='store_true')
     parser.add_argument('--record-native', nargs=2, metavar=('DEBUG_JSON', 'RELEASE_JSON'), help='record fresh opt-in Swift test outputs')
+    parser.add_argument('--rebind-native', action='store_true', help='rebind the validated archived native measurements after ownership-only changes')
     args = parser.parse_args()
-    if sum([args.capture, args.check, args.record_native is not None]) > 1:
-        parser.error('--capture, --check, and --record-native are mutually exclusive')
+    if sum([args.capture, args.check, args.record_native is not None, args.rebind_native]) > 1:
+        parser.error('--capture, --check, --record-native, and --rebind-native are mutually exclusive')
     for target in EPOCHS:
         path = DATA / 'observer-sources' / f'horizons-{target}.json'
         if args.capture:
@@ -181,9 +180,17 @@ def main():
         print(f'{sum(map(len, EPOCHS.values())) + len(EXTENDED_EPOCHS)} Pluto observer epochs, archive digests, and native evidence bindings verified')
     else:
         output.write_bytes(encoded)
-    if args.record_native:
-        measurements = [json.loads(Path(p).read_bytes()) for p in args.record_native]
-        (DATA / 'observer-evidence.json').write_text(json.dumps(native_evidence(*measurements), indent=2, sort_keys=True) + '\n')
+    if args.record_native or args.rebind_native:
+        if args.rebind_native:
+            retained = json.loads((DATA / 'observer-evidence.json').read_bytes())
+            measurements = [retained['debug'], retained['release']]
+            dependencies.verify_retained_inputs('pluto-observers', retained['sourceSHA256'])
+        else:
+            measurements = [json.loads(Path(p).read_bytes()) for p in args.record_native]
+        rebound = native_evidence(*measurements)
+        if args.rebind_native:
+            dependencies.verify_rebound_document(retained, rebound, 'sourceSHA256')
+        (DATA / 'observer-evidence.json').write_text(json.dumps(rebound, indent=2, sort_keys=True) + '\n')
 
 
 if __name__ == '__main__':

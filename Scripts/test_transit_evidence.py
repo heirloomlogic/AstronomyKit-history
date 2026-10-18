@@ -64,7 +64,10 @@ class TransitEvidenceTests(unittest.TestCase):
         bindings=recorder.hashes()
         for relative in ['Sources/AstronomyKit/Transit.swift','Sources/AstronomyKit/CelestialBody.swift','Sources/AstronomyKit/CivilTime.swift','Sources/AstronomyKit/UTCOffsetTable.swift','Sources/CLibAstronomy/astronomy.c','Tests/AstronomyKitTests/AuditValidationTests.swift','Tests/AstronomyKitTests/IndependentReferenceFixtures.swift','Scripts/reference-data/build-fixtures.py']:
             self.assertIn(relative,bindings)
-        for p in (ROOT/'Sources/AstronomyKit/Engine').rglob('*.swift'):self.assertIn(str(p.relative_to(ROOT)),bindings)
+        for relative in ['Sources/AstronomyKit/Engine/Eclipses/EngineTransitEvents.swift','Sources/AstronomyKit/Engine/Events/EngineLunarEvents.swift','Sources/AstronomyKit/Engine/Positions/EngineApparentPlace.swift','Sources/AstronomyKit/Engine/Moon/Generated/TDBTerms.swift']:
+            self.assertIn(relative,bindings)
+        for unrelated in ['Sources/AstronomyKit/Engine/Bodies/EngineJupiterMoonsJup365.swift','Sources/AstronomyKit/Engine/Stars/EngineStar.swift','Sources/AstronomyKit/Engine/Gravity/EngineChiron.swift']:
+            self.assertNotIn(unrelated,bindings)
         contacts=recorder.evidence(self.values,bindings)['sequences']['penumbralContacts']
         self.assertEqual(contacts[2]['oh2001Within120Seconds'],{'penumbralBegin':False,'penumbralEnd':False})
 

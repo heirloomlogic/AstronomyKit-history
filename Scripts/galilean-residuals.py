@@ -3,6 +3,7 @@
 import argparse
 import csv
 import hashlib
+import importlib.util
 import json
 import math
 import os
@@ -20,6 +21,9 @@ AU_KM = 149597870.7
 DOMAIN = (2426545.0, 2476545.0)
 EPOCHS = [2415020.5, 2451544.5, 2488069.5]
 DOMAIN_EPOCHS = [DOMAIN[0] - 1] + [DOMAIN[0] + i * 2500 for i in range(21)] + [DOMAIN[1] + 1]
+dependency_spec = importlib.util.spec_from_file_location('galilean_dependencies', ROOT / 'Scripts/evidence_dependencies.py')
+dependencies = importlib.util.module_from_spec(dependency_spec)
+dependency_spec.loader.exec_module(dependencies)
 
 
 def encoded(value):
@@ -39,19 +43,7 @@ REPLAY_OWNERS = {'Scripts/galilean-residuals.py', 'Scripts/test_galilean_residua
 
 
 def source_paths():
-    # Committed ownership retains deletions even after they have left the index.
-    inventory = subprocess.check_output(['git', 'ls-tree', '-rz', '--name-only', 'HEAD'], cwd=ROOT).decode().split('\0')
-    native = sorted(p for p in inventory if p.startswith('Sources/AstronomyKit/') and p.endswith('.swift'))
-    present = sorted(str(p.relative_to(ROOT)) for p in (ROOT / 'Sources/AstronomyKit').rglob('*.swift'))
-    if native != present:
-        raise ValueError('Committed and present native source inventory differs')
-    return sorted(native + archive_paths() + [
-        FIXTURE, 'Package.swift', 'Sources/CLibAstronomy/astronomy.c',
-        'Scripts/reference-data/build-fixtures.py', 'Scripts/generate-jupiter-moon-series.py',
-        DATA + '/manifest.json', 'Scripts/galilean-residuals.py', 'Scripts/test_galilean_residuals.py',
-        'Tests/AstronomyKitTests/IndependentReferenceFixtures.swift',
-        'Tests/AstronomyKitTests/Engine/Planets/PlanetTestSupport.swift',
-        'Tests/AstronomyKitTests/Engine/Bodies/EngineGalileanResidualCaptureTests.swift'])
+    return list(dependencies.paths('galilean-residuals', root=ROOT))
 
 
 def source_hashes():

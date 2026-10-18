@@ -2,7 +2,6 @@
 """Validate transit and remaining published eclipse evidence before publishing source bindings."""
 import argparse
 import datetime
-import hashlib
 import importlib.util
 import json
 import math
@@ -17,15 +16,14 @@ def load(name,file):
     spec=importlib.util.spec_from_file_location(name,ROOT/'Scripts'/file);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
 archive=load('transit_archive','capture-transit-references.py')
 lunar=load('transit_lunar','record-eclipse-event-evidence.py')
+dependencies=load('transit_dependencies','evidence_dependencies.py')
 EPOCH=datetime.datetime(2000,1,1,12)
 SECTIONS={'published','transit-sequence','lunar-sequence','global-sequence'}
 
 
 def hashes(capture_bytes=None):
-    paths=list((ROOT/'Sources/AstronomyKit/Engine').rglob('*.swift'))
-    paths += [ROOT/p for p in ['Sources/AstronomyKit/AstronomyError.swift','Sources/AstronomyKit/AstronomyKit.swift','Sources/AstronomyKit/CelestialBody.swift','Sources/AstronomyKit/Time.swift','Sources/AstronomyKit/Transit.swift','Sources/AstronomyKit/CivilTime.swift','Sources/AstronomyKit/UTCOffsetTable.swift','Sources/CLibAstronomy/astronomy.c','Sources/CLibAstronomy/include/astronomy.h','Tests/AstronomyKitTests/IndependentReferenceFixtures.swift','Tests/AstronomyKitTests/AuditValidationTests.swift','Tests/AstronomyKitTests/Engine/Eclipses/EngineTransitEventTests.swift','Tests/AstronomyKitTests/Engine/Eclipses/EngineGlobalSolarEventTests.swift','Tests/AstronomyKitTests/Fixtures/IndependentReferences/reference-fixtures.json','Scripts/reference-data/build-fixtures.py','Scripts/capture-global-solar.py','Scripts/capture-transit-references.py','Scripts/record-eclipse-event-evidence.py','Scripts/record-transit-evidence.py','Scripts/test_transit_evidence.py','Scripts/eclipse-data/transit-references.json']]
-    paths += [archive.SOURCE/n for n in archive.SOURCES]+list(archive.RADIUS_SOURCE.iterdir())+[CAPTURE]
-    return {str(p.relative_to(ROOT)):hashlib.sha256(capture_bytes if p==CAPTURE and capture_bytes is not None else p.read_bytes()).hexdigest() for p in sorted(paths)}
+    overrides=None if capture_bytes is None else {str(CAPTURE.relative_to(ROOT)):capture_bytes}
+    return dependencies.source_hashes('transits',overrides=overrides)
 
 
 def relation(tt,ut):
@@ -143,6 +141,11 @@ def main():
     data=archive.shared.encoded(values);result=archive.shared.encoded(evidence(values,hashes(data if args.capture else None)))
     if args.check:
         if OUTPUT.read_bytes()!=result:raise SystemExit('transit evidence differs')
-    else:archive.shared.publish({**({CAPTURE:data} if args.capture else {}),OUTPUT:result})
+    else:
+        if not args.capture:
+            previous=json.loads(OUTPUT.read_bytes());candidate=json.loads(result)
+            dependencies.verify_retained_inputs('transits',previous['sourceHashes'])
+            dependencies.verify_rebound_document(previous,candidate,'sourceHashes')
+        archive.shared.publish({**({CAPTURE:data} if args.capture else {}),OUTPUT:result})
     print('transit evidence and all recorded relations match')
 if __name__=='__main__':main()
