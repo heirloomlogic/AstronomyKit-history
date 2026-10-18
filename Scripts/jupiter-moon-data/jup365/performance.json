@@ -1,0 +1,19 @@
+{
+  "configuration": "swiftc -O",
+  "decodedPayloadBytes": 60192342,
+  "host": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "measurement": {
+    "checksum": -121149832.37285504,
+    "firstChecksum": -121149832.37285504,
+    "firstEvaluationMilliseconds": 169.3475,
+    "firstMicrosecondsPerJovicentricState": 0.8467375,
+    "iterations": 200000,
+    "manifestAndPayloadMappingMilliseconds": 1.915708,
+    "warmEvaluationMilliseconds": 168.129791,
+    "warmMicrosecondsPerJovicentricState": 0.840648955
+  },
+  "probeSHA256": "aee61ed93b6ece21d99372cf71b343abb23e2d526e3241a20d8d7559af233abb",
+  "representationSHA256": "e6dea515f82c32cd7bd2f07fc125ba0868e91927b2cb76d539eb0323ca71d017",
+  "schemaVersion": 1,
+  "swiftVersion": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0"
+}

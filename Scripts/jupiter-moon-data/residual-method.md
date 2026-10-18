@@ -1,6 +1,6 @@
 # Galilean-moon residual replay
 
-This harness covers proposal step 1 of [#254](https://github.com/heirloomlogic/AstronomyKit/issues/254). It measures the current truncated L1.2 engine against all 104 existing Horizons rows: 26 each for Io (501), Europa (502), Ganymede (503), and Callisto (504), relative to Jupiter's body center (599). It leaves the production model, archived responses, fixture values, and existing tolerances unchanged. #254's jup365 replacement, transition, size, latency, and km-level acceptance remain outstanding.
+This harness measures the current truncated L1.2 engine against all 104 existing Horizons rows: 26 each for Io (501), Europa (502), Ganymede (503), and Callisto (504), relative to Jupiter's body center (599). It leaves the production model, archived responses, fixture values, and existing tolerances unchanged. The separate [jup365 representation qualification](jup365/README.md) establishes a full-source candidate, continuous coefficient bounds, sampled agreement, size, and lookup latency. Runtime selection, transitions, and final public-model acceptance remain outstanding for #254.
 
 From a committed implementation, run:
 
