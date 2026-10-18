@@ -1,7 +1,7 @@
 {
   "buildSeconds": {
-    "debug": 34.81,
-    "release": 164.62
+    "debug": 62.45,
+    "release": 1.14
   },
   "centralMidpointDifferencesSeconds": {
     "Springfield, ILLINOIS": 0.13159174122847617
@@ -173,19 +173,19 @@
       "source": "rp1301-footnotes.html"
     }
   },
-  "releaseExecutableBytes": 494971984,
+  "releaseExecutableBytes": 576899376,
   "releaseObjectBytes": {
-    "EngineLocalSolarEvents.o": 76976
+    "EngineLocalSolarEvents.o": 76968
   },
   "resources": {
     "checksum": 340147.30894289777,
-    "coldSeconds": 0.11742198467254639,
+    "coldSeconds": 0.11919999122619629,
     "host": "Version 27.0.1 (Build 26A434)",
     "nextCount": 19,
-    "nextSeconds": 6.996026992797852,
-    "peakAfterColdBytes": 104955904,
-    "peakAfterWorkloadBytes": 106971136,
-    "peakBeforeBytes": 48021504
+    "nextSeconds": 5.940268039703369,
+    "peakAfterColdBytes": 124174336,
+    "peakAfterWorkloadBytes": 126320640,
+    "peakBeforeBytes": 48381952
   },
   "rp1301Contacts": [
     {
@@ -237,7 +237,7 @@
       "seconds": -0.9330867149401456
     }
   ],
-  "runtimeBaseRevision": "318d11b4a315a9fd18988ba0fa686464f7ce5652",
+  "runtimeBaseRevision": "8dc39629933b14bd11fd573928dd2c3f13a80b9f",
   "schemaVersion": 1,
   "sequence": [
     {
@@ -262,7 +262,7 @@
   "sourceHashes": {
     "Scripts/capture-global-solar.py": "60e3cd29f2ec6efb8bc98c7df745c792c3d61c34676ae20ea99d3ee10ac91f1b",
     "Scripts/capture-local-solar.py": "c65a5f544352fddd7ef75e8ed3d8da374c94dfce78672fc8d3c2f6b066d3877a",
-    "Scripts/eclipse-data/local-captures.json": "0b5303089fff22a23a4b94a1a5f8a973403acf129eb70a16bacb2778cebc5cd4",
+    "Scripts/eclipse-data/local-captures.json": "e9ac22b106c45cf7b550d69c8be49c536d4363ae0a242e53d642c283ff00bf1d",
     "Scripts/eclipse-data/local-references.json": "7d2301230ee722952c2654f1ae8d067c3d8a615ab3d2061adc606df9fc7bced0",
     "Scripts/local-solar-peak-probe.swift": "d7f46ceb60aa765d0db551f16736d8c77ce8743cb0242432eececf8c91bfe520",
     "Scripts/record-eclipse-event-evidence.py": "3bb05c08c84169ebda915352a959fa4d6949cdabbe69fab639555f5625d0185a",
@@ -301,9 +301,59 @@
     "Sources/AstronomyKit/AstronomyKit.swift": "c6dad36ea132847c27a822f1c50f04eacf5251d3f28e123a436e820a8cd761dd",
     "Sources/AstronomyKit/CelestialBody.swift": "7c94d629be89ce9c7e2d2a4de616e3f526fd2d0034d8750e60e8d400f159aa61",
     "Sources/AstronomyKit/CivilTime.swift": "c858285d2d8e9ce8e60be2f388f71dac4554b15dd3815f5d88d47758475f47ac",
-    "Sources/AstronomyKit/Engine/Bodies/EngineJupiterMoons.swift": "63f246663de2c8d4fbbe976cc737f4881a09b14aae55d5c64e4d997c084b751b",
+    "Sources/AstronomyKit/Engine/Bodies/EngineJupiterMoons.swift": "c450d38bedf50e91869d0d2df81870ce332d5fb8bdab2a846fb9bcce398434fd",
+    "Sources/AstronomyKit/Engine/Bodies/EngineJupiterMoonsJup365.swift": "721df90c823fa464649815cbd39e54dbfc5ca7926a1e984517e99bcb89efeeab",
     "Sources/AstronomyKit/Engine/Bodies/EngineLagrange.swift": "5884b92dc6b643ba6481499527467f7cb367b4e8afe2f318bb9d3a40b0b003f6",
     "Sources/AstronomyKit/Engine/Bodies/EngineRotationAxis.swift": "d9fd0b02d56f3ebaff5283aadf56ca6b41993c42e6e4ac2804ad43c8caebc858",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Callisto000.swift": "d677eff24be929bf3ff0f6a059447e0a40c5c2e440ce2d75ecb5634e32b277f6",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Callisto001.swift": "a599d14e848c4316b53f56e1792479dece412810e911087d139becb7c8e35a37",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Callisto002.swift": "e862a9383b107a93439fa2ecac0bbb9daef7c720aae7fc3f8238069e56ebcc74",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Callisto003.swift": "af05512fecbb5dfa5eaffb06d35b377d6c97afcd34a8a9bf22d9b3769fadef4c",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Callisto004.swift": "c50ff9bea818576b106bde76d7a4596bfcfd61ebe351f59560bf6b41ad666e63",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Callisto005.swift": "4e3953068cda95580fdb07cc4379d862a8e7515f6ba96ff36b3977cac27d2a4e",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Europa000.swift": "4ee2a32bb3b62d2818fc50485e2e11554b84aaed703806f125436299fa0eab22",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Europa001.swift": "09ddead83b1e4df6960b5716c87a8090a78c2f09a442097a922ca09504df6722",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Europa002.swift": "55610046c753c1e18b56ee815fa13b5b4c79ee8f1833f720e599469c6e4ee0da",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Europa003.swift": "755c36105dec564aae5b8c4e2c19f9e2fbeae81c9e6f0ffda214bccc214c8481",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Europa004.swift": "a762a5d50eb7b45b4560ed253d4b4c6156f2d83d1d5397e73f83dc3ed4db01b9",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Europa005.swift": "c2f0b01d5f68431ab99f883c373969104762651a0cec75125a72e9cd5265f379",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Europa006.swift": "61789bfffcbef500d0711064163ab77bd4eeb3ee9857b68463b0dac1cfa9647e",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Europa007.swift": "2bc68281e23f023f7b37fb6f1e2400518357cb1724980e54793fa860d7ce8a70",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Europa008.swift": "53c4a7abe3b84aae77c5d190b38d4f2b8c7bbbe3a77db42505bf21a9836050bd",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Europa009.swift": "67c81fba4b7a7a25cff1a3102f4e77623758de1a6bbe9758f7858d4fa5e18a73",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Europa010.swift": "c0a40d1992dcd3b58ab510dbd575674f987d361829d3c7d20932339ea9b4d082",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Europa011.swift": "43352d7ab88fa2ca84a77fbbedafe7567a25eb376ccfa12cd2ece87b39c2c376",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Ganymede000.swift": "3445edb6a3e33a75ebaa4430ea290c6575bb810adddb750004ad00732f735407",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Ganymede001.swift": "6a15566820ccd75343e7b0e19cd8ccd18cbf6e9151dbda5331c7dd03245fd8c0",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Ganymede002.swift": "eece461dcc28219c5f7a0195124d00b00b131bd4a495d916f9fcbbe1f7820e61",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Ganymede003.swift": "41561807ca09f830173bc8b8a8406689e7013c0362f1acf4a5ecde2fd81a4337",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Ganymede004.swift": "601934988a1b7130a022de4cb39b5c03f1d73e980a646c9da45e689b8cb259f6",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Ganymede005.swift": "97e15aff53d354ef8b12faa796d333a13e439815fb5cd34eb7439e45ee0547aa",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Ganymede006.swift": "91569b851db7945c566d93bf1c70404044d36a1b2aebbfc922bb2d9426da1a7a",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Ganymede007.swift": "519beafde4c5e9df03a3ddc765516c08706d42d0ba612ef183a739e67967fb39",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Ganymede008.swift": "b521410622c3aba3e3fc3b2d1b49b986c6d2e23ceb66386de7163d94b6178b38",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Ganymede009.swift": "b349aeae677f844615cd1296e65d8fb177e45215f661c92a7f30dbe69eb1dc7f",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Ganymede010.swift": "f8e9e21a44411f5cab4335493936c19c2d4e1048b7ddbec3b0f5efddfd9d7f4b",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Ganymede011.swift": "2ef1bee624fb51781453d7e9b04ee5ebd06e2fc7097651d4ad84bdaeb3b19dfc",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Index.swift": "2ad7c4cf34ad8e2c22952c8fde95b3b57268a42f46168f598ceb509c3ac77a01",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Io000.swift": "a0bd3138029f96b138f3c46d51e9d748737e0f133895814a950f96adaeb1ee59",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Io001.swift": "4869c250e5b4755f6b7b5478681e9cd4b18387afb0d45e5525ab7e3934a869ec",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Io002.swift": "e9570225ff30e673b0eb290ccca72358a37cbdc2451bbbf0e63bb125b6e163ed",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Io003.swift": "bc634005ee2051d1b274bdd5d015124e9de72b5514b6ef736f183c9431face96",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Io004.swift": "00e509527dd452a6cf3e413f7f4567fee7cd40440677a96aaf29adbbeadabfe2",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Io005.swift": "de69317aaa089fda6e543d63b88b6176cb7f96ca1fad53b060dd49f8bca1e740",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Io006.swift": "3946c94365a5204d9caef9984d9842d3a59cf9dea4c4932f1ebf94657a5cf3b5",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Io007.swift": "ab2b30f27204db6b43348beb2291ba4a1dddac61958fa2af7e2ba0418b96977d",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Io008.swift": "0f7c0a2416f4033471d01f23d2cd5d2d05d28baa90cd0462febc715fed3dcd2e",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Io009.swift": "e1a5fb53909a9efafd926bfcc09c8eaf0b1e6b1f28dd37c43673f77c22ea0c9e",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Io010.swift": "b15f3a9c0ab2eec797eca5846bc63ee602d94e211da6471981ba9b62b6f970ff",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Io011.swift": "f011b406b90075a50c0b8b00e3b4aaea9efa11aad17e5e6c413895730dce3288",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Jupiter000.swift": "507a2ab38c1040bf77d1b8ea569a9317e7fbea9f017e20fd37921548bce58ab7",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Jupiter001.swift": "988cb517c00ddc0ec224d9e1d45e1a67876f39689534258e8be3dca4b74ba248",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Jupiter002.swift": "fc1780019b6aabec3b866d894275147dddc4bed67f36c62cf839f85db0066522",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Jupiter003.swift": "59260524c62bad2e1799c5ce151fc0ed1723a7170183b92aade63c7bbee322b8",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Jupiter004.swift": "eaa65bd51dde391a5caf77c4af4109f659610170b1afefa3bf096ec689aaaebe",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Jupiter005.swift": "b8540b2ada56a49b2dd7f2e819a4124b23e9bdd9e6feec23cbd1097f819e0278",
     "Sources/AstronomyKit/Engine/Bodies/Generated/JupiterMoonSeries.swift": "6560608bab9aa8f5b067afad1a2a421d0e3b678fdb0753246345d1a8ca4c8e57",
     "Sources/AstronomyKit/Engine/Eclipses/EngineEclipseEvents.swift": "174c20221253b75db8eb50ba2eeb6381461b810731fcb75df93d0054ffcf5b25",
     "Sources/AstronomyKit/Engine/Eclipses/EngineGeoidIntersection.swift": "9f683e17c1565460a0dc2ab5788b6524c0eed2e5137295d28122c4476d9423bb",

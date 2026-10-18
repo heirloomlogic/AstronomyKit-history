@@ -7,8 +7,8 @@
     "sha256": "f6a2b408dcb32a3ad1e8f57dcc16767f055d3f4bd93c675728a4a351bc9c5d6e"
   },
   "buildReceipts": {
-    "debug": "Build complete! (34.81 sec)",
-    "release": "Build complete! (164.62 sec)"
+    "debug": "Build complete! (62.45 sec)",
+    "release": "Build complete! (1.14 sec)"
   },
   "debug": {
     "points": [
@@ -53414,7 +53414,68 @@
       }
     ]
   },
-  "observerObjectBytes": 92648,
+  "debugUSNOProvenance": {
+    "excludedEngineChanges": [
+      "Sources/AstronomyKit/Engine/Bodies/EngineJupiterMoons.swift",
+      "Sources/AstronomyKit/Engine/Bodies/EngineJupiterMoonsJup365.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Callisto000.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Callisto001.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Callisto002.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Callisto003.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Callisto004.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Callisto005.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Europa000.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Europa001.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Europa002.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Europa003.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Europa004.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Europa005.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Europa006.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Europa007.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Europa008.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Europa009.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Europa010.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Europa011.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Ganymede000.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Ganymede001.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Ganymede002.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Ganymede003.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Ganymede004.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Ganymede005.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Ganymede006.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Ganymede007.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Ganymede008.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Ganymede009.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Ganymede010.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Ganymede011.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Index.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Io000.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Io001.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Io002.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Io003.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Io004.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Io005.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Io006.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Io007.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Io008.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Io009.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Io010.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Io011.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Jupiter000.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Jupiter001.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Jupiter002.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Jupiter003.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Jupiter004.swift",
+      "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Jupiter005.swift"
+    ],
+    "kind": "retainedUnchangedInput",
+    "rowsSHA256": "5fad9c1291c0dc8f85757d4c4a9288a28cfdcc7cfbaa5b83467d2338e102eb75",
+    "scope": "Only the historical Debug USNO rows are retained. Their Sun/Moon runtime and reference inputs are unchanged; the listed Galilean-only Engine changes cannot enter these rows. Release USNO rows, other Debug observations, resources, binary sizes, and build receipts are current captures.",
+    "sourceCapturePath": "Scripts/observer-event-data/native-captures.json",
+    "sourceCaptureSHA256": "8b8fca39a8ffc9c81a81bfe18550cbfa96dc59ff31f9e68678464163058559a6",
+    "sourceRevision": "5632b59796ecf34d93cd4e6b490bb0b4c5e63a85"
+  },
+  "observerObjectBytes": 92640,
   "release": {
     "points": [
       {
@@ -106819,20 +106880,20 @@
       }
     ]
   },
-  "releaseExecutableBytes": 494971984,
+  "releaseExecutableBytes": 576899376,
   "resources": {
     "checksum": 3257705.9472739175,
-    "coldSunRiseSeconds": 0.014531970024108887,
+    "coldSunRiseSeconds": 0.013788938522338867,
     "eventsPerWorkload": 100,
     "host": "Version 27.0.1 (Build 26A434)",
-    "peakAfterColdBytes": 83083264,
-    "peakAfterWorkloadsBytes": 105218048,
-    "peakBeforeBytes": 48267264,
+    "peakAfterColdBytes": 82870272,
+    "peakAfterWorkloadsBytes": 105103360,
+    "peakBeforeBytes": 48119808,
     "seconds": {
-      "moonRise": 0.5826610326766968,
-      "publicCSunRise": 0.5896539688110352,
-      "sunHourAngle": 0.14976203441619873,
-      "sunRise": 0.6012349128723145
+      "moonRise": 0.5458890199661255,
+      "publicCSunRise": 0.562203049659729,
+      "sunHourAngle": 0.1452239751815796,
+      "sunRise": 0.5611039400100708
     }
   },
   "toolchain": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0"

@@ -16,6 +16,11 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT/'Scripts/observer-event-data'
 CAPTURES = DATA/'native-captures.json'
 OUTPUT = DATA/'native-evidence.json'
+RETAINED_USNO_TOOL_PATHS = {
+    'Scripts/observer-event-data/native-captures.json',
+    'Scripts/record-observer-event-evidence.py',
+    'Scripts/test_observer_events.py',
+}
 spec = importlib.util.spec_from_file_location('observer_references', ROOT/'Scripts/capture-observer-events.py')
 references = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(references)
@@ -35,7 +40,7 @@ def sources(capture_bytes=None):
     paths += list((DATA/'sources').rglob('*.json'))
     paths += [ROOT/p for p in [
         'Scripts/capture-observer-events.py', 'Scripts/record-observer-event-evidence.py',
-        'Scripts/test_observer_events.py', 'Scripts/observer-event-data/reference-fixtures.json',
+        'Scripts/test_observer_events.py', 'Scripts/observer-event-data/README.md', 'Scripts/observer-event-data/reference-fixtures.json',
         'Scripts/observer-event-data/native-captures.json', 'Sources/CLibAstronomy/astronomy.c',
         'Sources/AstronomyKit/RiseSet.swift', 'Sources/AstronomyKit/Time.swift',
         'Sources/AstronomyKit/Observer.swift', 'Sources/AstronomyKit/CelestialBody.swift',
@@ -45,6 +50,65 @@ def sources(capture_bytes=None):
         'Fuzzing/corpus/fixed-riseset-infinite-limit', 'Fuzzing/corpus/fixed-riseset-stall',
     ]]
     return {str(p.relative_to(ROOT)): hashlib.sha256(capture_bytes if p == CAPTURES and capture_bytes is not None else p.read_bytes()).hexdigest() for p in sorted(paths)}
+
+
+def git_bytes(*arguments):
+    return subprocess.check_output(['git', *arguments], cwd=ROOT)
+
+
+def allowed_retained_usno_engine_change(path):
+    return path in {
+        'Sources/AstronomyKit/Engine/Bodies/EngineJupiterMoons.swift',
+        'Sources/AstronomyKit/Engine/Bodies/EngineJupiterMoonsJup365.swift',
+    } or path.startswith('Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/')
+
+
+def retained_debug_usno(revision):
+    if not re.fullmatch(r'[0-9a-f]{40}', revision):
+        raise ValueError('retained Debug USNO revision must be a full commit SHA')
+    subprocess.run(['git', 'merge-base', '--is-ancestor', revision, 'HEAD'], cwd=ROOT, check=True)
+    capture_path = str(CAPTURES.relative_to(ROOT))
+    evidence_path = str((DATA/'native-evidence.json').relative_to(ROOT))
+    capture_bytes = git_bytes('show', f'{revision}:{capture_path}')
+    prior = json.loads(capture_bytes)
+    prior_hashes = json.loads(git_bytes('show', f'{revision}:{evidence_path}'))['sourceSHA256']
+    prior_engine_paths = {path for path in prior_hashes if path.startswith('Sources/AstronomyKit/Engine/')}
+    current_engine_paths = {str(path.relative_to(ROOT)) for path in (ROOT/'Sources/AstronomyKit/Engine').rglob('*.swift')}
+    changed_engine_paths = sorted(set(git_bytes('diff', '--name-only', revision, '--', 'Sources/AstronomyKit/Engine').decode().splitlines()) | (current_engine_paths-prior_engine_paths))
+    unsupported = [path for path in changed_engine_paths if not allowed_retained_usno_engine_change(path)]
+    if unsupported:
+        raise ValueError('retained Debug USNO runtime inputs changed: ' + ', '.join(unsupported))
+    for path, expected in prior_hashes.items():
+        if path in RETAINED_USNO_TOOL_PATHS or allowed_retained_usno_engine_change(path):
+            continue
+        current = ROOT/path
+        if not current.is_file() or hashlib.sha256(current.read_bytes()).hexdigest() != expected:
+            raise ValueError(f'retained Debug USNO source differs: {path}')
+    rows = prior['debug']['usno']
+    rows_sha256 = hashlib.sha256(json.dumps(rows, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
+    provenance = {
+        'kind': 'retainedUnchangedInput',
+        'sourceRevision': revision,
+        'sourceCapturePath': capture_path,
+        'sourceCaptureSHA256': hashlib.sha256(capture_bytes).hexdigest(),
+        'rowsSHA256': rows_sha256,
+        'excludedEngineChanges': changed_engine_paths,
+        'scope': 'Only the historical Debug USNO rows are retained. Their Sun/Moon runtime and reference inputs are unchanged; the listed Galilean-only Engine changes cannot enter these rows. Release USNO rows, other Debug observations, resources, binary sizes, and build receipts are current captures.',
+    }
+    return rows, provenance
+
+
+def validate_debug_usno_provenance(captures):
+    provenance = captures.get('debugUSNOProvenance')
+    if not isinstance(provenance, dict):
+        raise ValueError('missing Debug USNO provenance')
+    rows_sha256 = hashlib.sha256(json.dumps(captures['debug']['usno'], sort_keys=True, separators=(',', ':')).encode()).hexdigest()
+    if provenance.get('kind') == 'retainedUnchangedInput':
+        rows, expected = retained_debug_usno(provenance.get('sourceRevision', ''))
+        if captures['debug']['usno'] != rows or provenance != expected or provenance['rowsSHA256'] != rows_sha256:
+            raise ValueError('retained Debug USNO provenance differs')
+    elif provenance != {'kind': 'fresh', 'runtimeRevision': provenance.get('runtimeRevision'), 'rowsSHA256': rows_sha256} or not re.fullmatch(r'[0-9a-f]{40}', provenance.get('runtimeRevision', '')):
+        raise ValueError('fresh Debug USNO provenance differs')
 
 
 def usno_references():
@@ -194,6 +258,7 @@ def summary(measured):
 
 
 def evidence(captures, hashes):
+    validate_debug_usno_provenance(captures)
     for configuration in ['debug', 'release']:
         validate_measurements(captures[configuration])
     if not parity(captures['debug'], captures['release']):
@@ -211,7 +276,7 @@ def evidence(captures, hashes):
     if captures['releaseExecutableBytes'] <= 0 or captures['observerObjectBytes'] <= 0 or not captures['toolchain']:
         raise ValueError('invalid build observation')
     build = {c: float(re.search(r'Build complete! \(([^ ]+) sec\)', captures['buildReceipts'][c]).group(1)) for c in ['debug', 'release']}
-    return dict(schemaVersion=1, sourceSHA256=hashes,
+    return dict(schemaVersion=2, sourceSHA256=hashes, debugUSNOProvenance=captures['debugUSNOProvenance'],
                 debug=summary(captures['debug']), release=summary(captures['release']),
                 resources=resources, buildSeconds=build, toolchain=captures['toolchain'],
                 releaseExecutableBytes=captures['releaseExecutableBytes'], observerObjectBytes=captures['observerObjectBytes'], baseline=captures['baseline'],
@@ -219,7 +284,7 @@ def evidence(captures, hashes):
                 limitations='USNO navigation output supports the chosen optical limb; the rise/set service implementation is unavailable. Horizon refraction remains a conventional atmosphere, not a prediction of weather. The public observer APIs run on these searches since the #96 cutover. Existing planetary apsis source gaps remain in #92. Resource values are host observations, not portable ceilings.')
 
 
-def capture(directory):
+def capture(directory, retained_debug_usno_revision=None):
     directory = Path(directory)
     result = {}
     for configuration in ['debug', 'release']:
@@ -227,6 +292,14 @@ def capture(directory):
         rows = sum((json.loads(p.read_bytes()) for p in sorted(path.glob('usno-*.json'))), [])
         result[configuration] = dict(usno=sorted(rows, key=lambda r: r['sourceLine']),
                                     **{name: json.loads((path/f'{name}.json').read_bytes()) for name in ['points', 'semidiameters', 'polar']})
+    if retained_debug_usno_revision:
+        result['debug']['usno'], result['debugUSNOProvenance'] = retained_debug_usno(retained_debug_usno_revision)
+    else:
+        result['debugUSNOProvenance'] = {
+            'kind': 'fresh',
+            'runtimeRevision': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
+            'rowsSHA256': hashlib.sha256(json.dumps(result['debug']['usno'], sort_keys=True, separators=(',', ':')).encode()).hexdigest(),
+        }
     result['resources'] = json.loads((directory/'observer-resources/resources.json').read_bytes())
     result['baseline'] = json.loads((directory/'baseline-binary.json').read_bytes())
     result['buildReceipts'] = {c: re.search(r'Build complete! \([^\n]+', (directory/f'link3-full-{c}.log').read_text()).group(0) for c in ['debug', 'release']}
@@ -240,8 +313,11 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--capture', type=Path)
     parser.add_argument('--check', action='store_true')
+    parser.add_argument('--retain-debug-usno-from', metavar='REVISION')
     args = parser.parse_args()
-    captures = capture(args.capture) if args.capture else json.loads(CAPTURES.read_bytes())
+    if args.retain_debug_usno_from and not args.capture:
+        parser.error('--retain-debug-usno-from requires --capture')
+    captures = capture(args.capture, args.retain_debug_usno_from) if args.capture else json.loads(CAPTURES.read_bytes())
     encoded = (json.dumps(captures, indent=2, sort_keys=True, allow_nan=False)+'\n').encode()
     expected = evidence(captures, sources(encoded if args.capture else None))
     if args.check:
