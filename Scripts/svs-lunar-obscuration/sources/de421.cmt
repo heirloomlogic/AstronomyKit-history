@@ -1,0 +1,40 @@
+; de421.bsp LOG FILE
+;
+; Created 2008-02-12/11:33:34.00.
+;
+; BEGIN NIOSPK COMMANDS
+
+LEAPSECONDS_FILE    = naif0007.tls
+SPK_FILE            = de421.bsp
+  SPK_LOG_FILE      = de421_spk_conversion.log
+  NOTE              = NIOSPK 6.1.0 Conversion
+  SOURCE_NIO_FILE   = de421.nio
+    BEGIN_TIME      = CAL-ET 1899 JUL 29 00:00:00.000
+    END_TIME        = CAL-ET 2053 OCT 09 00:00:00.000
+
+; END NIOSPK COMMANDS
+
+
+DE 421 JPL Planetary Ephemeris SPK
+==================================
+
+Original file name:  de421.bsp
+Creation date:       Feb. 13, 2008
+File created by:     Dr. William Folkner (SSD/JPL)
+Comments added by:   Nat Bachman (NAIF/JPL)
+
+This SPK file was released on February 13, 2008 by the Solar System
+Dynamics Group of JPL's Guidance, Navigation, and Control section.
+
+The DE 421 planetary ephemeris is described in JPL IOM 343R-08-002,
+dated Feb. 13, 2008. The introduction of that memo states, in part,
+that this ephemeris "represents an overall update for all
+planets, and so is suitable for use for any purpose limited
+by the integration time span of approximately 1900-2050."
+The memo also states that this ephemeris "is the successor to
+the best previously released ephemeris DE 418."
+
+One of the release memo's authors has indicated that a more
+comprehensive and "less Phoenix-centric" version of the file release
+memo is forthcoming; the date of the new memo is TDB.
+

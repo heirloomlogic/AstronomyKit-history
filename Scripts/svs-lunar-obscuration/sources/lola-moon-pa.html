@@ -1,0 +1,76 @@
+<!DOCTYPE html><html><head><title>PGDA - LOLA MOON_PA gridded dataset</title><meta name="description" content="LOLA MOON_PA gridded dataset"><meta name="keywords" content="topography,LOLA,Moon"><meta name="author" content="Gregory A Neumann"><meta http-equiv="Content-type" content="text/html; charset=utf-8"><meta http-equiv="Content-Language" content="en-us"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="google-site-verification" content="I-ztB4vbSwp-cGZxueCvt4N7BCsjv_bUkA3HSDwicgU"><meta name="keywords" content="PGDA, planetary, planetary geodynamics, Geology, Geophysics, Geochemistry, Laboratory, NASA, Planetary Geology, Planetary Geophysics, Planetary Geochemistry"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><link rel="icon" type="image/png" href="/images/fav.ico"><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><link rel="stylesheet" href="/utilities/pushy-master/css/pushy.css"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/utilities/font-awesome-4.6.3/css/font-awesome.min.css"><script src="/utilities/jquery/jquery.min.js"></script><script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script><script src="/js/common.js"></script><script language="javascript" id="_fed_an_ua_tag" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=NASA"></script><link rel="stylesheet" href="/css/navbar.css"><link rel="stylesheet" href="/css/slider2.css"></head><body><header class="navbar-wrapper pgda-header"><div class="container"><div class="pgda-header-floater"><a href="http://www.nasa.gov"><image src="/images/nasa-logo.png" alt="NASA Logo" class="header-nasa-logo"></image></a></div><div class="pgda-header-floater"><a href="/"><h1 class="pgda-header-h1"> <span class="nasa-txt">NASA’s </span>Planetary Geology, Geophysics and Geochemistry Laboratory</h1></a><a href="http://www.nasa.gov/goddard"><h2 class="pgda-header-h2">Goddard Space Flight Center</h2></a></div><div class="pull-right"><button class="menu-btn-container menu-btn"><span class="pgda-header-menu-button"> <i class="fa fa-bars">&nbsp;</i><span class="menu-txt">MENU</span></span></button></div></div></header><nav class="pushy pushy-right"><button class="menu-btn close-button"><i class="fa fa-times fa-2x"></i></button><ul><li class="pushy-link"><a href="/">Home</a></li><li class="pushy-link"><a href="/search">Search</a></li><li class="pushy-link"><a href="/products">Products</a></li><li class="pushy-link"><a href="http://science.gsfc.nasa.gov/sed/index.cfm?fuseAction=home.main&amp;navOrgCode=698">The Lab</a></li><li class="pushy-link"><a href="http://science.gsfc.nasa.gov/sed/index.cfm?fuseAction=people.staffList&amp;navOrgCode=698">The People</a></li></ul></nav><div class="site-overlay"></div><div class="carousel carouselsub slide"><div class="carousel-inner"><div class="item active"><div style="background: url('/images/page_thumbnails/052224120549moon_lola_pa_sm.jpg') center center / cover no-repeat; height:100%;"></div><div class="pgda-header-grad"></div></div></div></div><div class="pgda-main-content-area"><div class="container"><div class="row"><div class="col-xs-12 col-md-9"><h2>LOLA MOON_PA gridded dataset</h2><h4></h4><div style="background: url('/images/profile/031517010314greg_in_scotland.jpg') center center / cover no-repeat; height:25px; width:25px; border-radius: 50%; position: absolute; margin-top: -2px;"></div><span style="margin-left: 30px; margin-top: 2px">Gregory A Neumann</span><br><p><br><br>
+
+Lunar shape models are determined by LOLA in the Principal Axes (MOON_PA) body-fixed reference system, using the high-accuracy lunar orientation data provided by the JPL Solar System Dynamics Group. The axes of this system are defined by the principal axes of the solid Moon. Due to the nature of the Moon's orbit and rotation, the Z axis of this system differs somewhat from Moon's mean spin axis, and the X axis is offset from the mean direction to the center of the Earth. The LRO Project adopted a Lunar Mean Earth/Polar Axis (MOON_ME) body-fixed reference system for cartographic registration of datasets in 2008, because of the Earth-centric nature of astronomical work. In practice, the latter is realized by a constant coordinate transformation from MOON_PA to MOON_ME, which results in an offset of approximately 875 m when expressed as a displacement along a great circle on the Moon's surface.
+<br><br>
+Following the GRAIL Mission, lunar gravity is known sufficiently precisely that the offset arising from this transformation is apparent when gravity is combined with topographic datasets. Thus, it is been necessary to transform the LOLA shape models back to the MOON_PA reference system for geophysical studies. A previous dataset consisted of a cylindrical equidistant model "LDEM_PA" at a resolution of 64 pixels per degree (ppd), or approximately 0.5 km at the equator. The non-uniform density of observations necessitated some interpolation to produce this model, and it did not incorporate the later improvements in resolution afforded by the SELENE Terrain Camera merged with LOLA (Barker et al., 2016), nor the increased precision of polar tracks registered to remove slight orbital errors (Barker et al., 2023). Thus the topographic power (e.g., Ermakov, et al., 2018) was biased downwards at spherical harmonic degrees approaching 720, comparable to the resolution of GRAIL models.
+<br><br>
+To improve the shape model, we transformed the SLDEM2015 256 ppd and the LDEM 60&#176;, 75&#176;, 80&#176;, and 83&#176; N/S polar stereographic gridded data to MOON_PA pointwise, and averaged them within global cylindrical arrays at 64 and 128 ppd, with geographic boundary conditions applied at 0&#176; and 360&#176;. The resulting arrays are suitable for expansion in spherical harmonics via Gauss-Legendre quadrature to spherical harmonic degrees up to 11,519 (e.g., with SHTOOLS; Wieczorek and Meschede, 2018). But to resample at this density, interpolation with minimal distortion is required at the highest latitudes. We implemented this piecewise in latitude using the Generic Mapping Tools 6.5 (gmt; Wessel et al., 2019) sphinterpolate routine, a Delauney triangulation on a sphere, for the latitudes in excess of 85&#176;. Computationally this was too time-consuming for lower latitudes. The gmt nearneighbor routine for latitudes from 75 to 85&#176; and the simpler gmt blockmean averaging routine sufficed for latitude to 75&#176; N/S. The resulting pieces were assembled using the gmt grdpaste routine into geographic arrays, in both grid-line registered (boundary pixels at 0&#176;/360&#176; longitude) and pixel-registered versions (boundary pixels centered on 0&#176; plus half the grid spacing). The reference radius used for this elevation dataset is 1737.4 km, the same as used for the typical LOLA PDS gridded products.
+<br><br>
+The spherical harmonic power, or degree variance, of the resulting MOON_PA model is a few percent greater than previous models, with the 128 ppd model having the greatest amplitudes. Interestingly, a steeper power-law exponent (-5/2) than proposed by Vening Meinesz (-2) appears to fit the data better from degree 180 to 1800.
+
+<H3>Notes</H3>
+The conversion from ME to PA coordinates is taken from the NAIF SPICE routines applied to the respective frames:
+<pre>
+  <code>
+call furnsh('moon_080317.tf')
+call furnsh('moon_assoc_me.tf')
+call PXFORM('MOON_ME','MOON_PA', et, tsip_moon)
+call mxv(tsip_moon, vec_me, vec_pa)
+  </code>
+</pre>
+From the text file 'moon_080317.tf' we have:<br>
+"The rotation between the mean Earth frame <i>for a given ephemeris version</i> and the associated principal axes frame is given by a constant matrix."<br>
+"The rotation angle of this matrix is approximately 0.0288473 degrees; this is equivalent to approximately 875 m when expressed as a displacement along a great circle on the Moon's surface."<br>
+For DE421, that rotation matrix is:
+<pre>
+  <code>
+TKFRAME_31007_SPEC            = 'ANGLES'
+TKFRAME_31007_RELATIVE        = 'MOON_PA_DE421'
+TKFRAME_31007_ANGLES          = (   67.92     78.56     0.30    )
+TKFRAME_31007_AXES            = (   3,        2,        1       )
+TKFRAME_31007_UNITS           = 'ARCSECONDS'
+  </code>
+</pre>
+
+<H3>Data</H3>
+
+<h4>Pixel-registered</h4>
+
+LOLA Global Shape Model at 64 pixels per degree, <u>in MOON_PA DE421 frame</u>: <a href="https://pgda.gsfc.nasa.gov/data/LOLA_PA/LDEM64_PA_pixel_202405.grd">netCDF/GMT format</a> (702 MB) , <a href="https://pgda.gsfc.nasa.gov/data/LOLA_PA/LDEM64_PA_pixel_202405.tif">GeoTIFF format</a> (683 MB)
+<br>
+LOLA Global Shape Model at 128 pixels per degree, <u>in MOON_PA DE421 frame</u>: <a href="https://pgda.gsfc.nasa.gov/data/LOLA_PA/LDEM128_PA_pixel_202405.grd">netCDF/GMT format</a> (2.7 GB) , <a href="https://pgda.gsfc.nasa.gov/data/LOLA_PA/LDEM128_PA_pixel_202405.tif">GeoTIFF format</a> (2.6 GB)
+<br>
+<br>
+Similarly to the LOLA PDS gridded products, these maps describe the elevation of the lunar surface from a reference radius of <b>1737.4 km</b>.
+
+<h4>Gridline-registered</h4>
+
+LOLA Global Shape Model at 64 pixels per degree, <u>in MOON_PA DE421 frame</u>: <a href="https://pgda.gsfc.nasa.gov/data/LOLA_PA/LDEM64_PA_gridline_202405.grd">netCDF/GMT format</a> (703 MB)
+<br>
+LOLA Global Shape Model at 128 pixels per degree, <u>in MOON_PA DE421 frame</u>: <a href="https://pgda.gsfc.nasa.gov/data/LOLA_PA/LDEM128_PA_gridline_202405.grd">netCDF/GMT format</a> (2.7 GB)
+<br>
+<br>
+Similarly to the LOLA PDS gridded products, these maps describe the elevation of the lunar surface from a reference radius of <b>1737.4 km</b>.
+
+<h4>Spherical harmonics</h4>
+
+Mark Wieczorek created spherical harmonics expansions of this LOLA topography in the PA frame (using the gridline-registered 128ppd map). These expansions are done up to degrees 719/1439/2879/5759/11519 and they are accessible <a href="https://zenodo.org/records/11533784">here</a>.
+
+<H3>Data Usage Policy</H3>
+
+Please cite the following when using any of the products described above:
+<br><br>
+<b>Dataset:</b> Neumann, G. (2024). LOLA MOON_PA gridded dataset [Data set]. NASA Goddard Space Flight Center Planetary Geodesy Data Archive. doi:<a href="https://doi.org/10.60903/LOLA_PA">10.60903/LOLA_PA</a>.
+
+<H3>References</H3>
+
+Barker <i>et al.</i> (2016), A new lunar digital elevation model from the lunar orbiter laser altimeter and SELENE terrain camera, <i>Icarus</i>, 273, pp. 346-355, doi:<a href="https://dx.doi.org/10.1016/j.icarus.2015.07.039">10.1016/j.icarus.2015.07.039</a>.<br><br>
+
+Barker <i>et al.</i> (2023), A New View of the Lunar South Pole from the Lunar Orbiter Laser Altimeter (LOLA), <i>The Planetary Science Journal</i>, Volume 4, Number 9, doi:<a href="https://dx.doi.org/10.3847/PSJ/acf3e1">10.3847/PSJ/acf3e1</a>.<br><br>
+
+Ermakov <i>et al.</i> (2018), Power laws of topography and gravity spectra of the solar system bodies, <i>Journal of Geophysical Research:Planets</i>, 123, 2038–2064, doi:<a href="https://dx.doi.org/10.1029/2018JE005562">10.1029/2018JE005562</a>.<br><br>
+
+Wessel <i>et al.</i> (2019), The Generic Mapping Tools version 6, <i>Geochemistry, Geophysics, Geosystems</i>, 20, 5556–5564. doi:<a href="https://dx.doi.org/10.1029/2019GC008515">10.1029/2019GC008515</a>.<br><br>
+
+Wieczorek and Meschede (2018), SHTools - Tools for working with spherical harmonics, <i>Geochemistry, Geophysics, Geosystems</i>, 19, 2574-2592, doi:<a href="https://dx.doi.org/10.1029/2018GC007529">10.1029/2018GC007529</a>.
+</p></div><div class="col-xs-12 col-md-3"><h2>Product Keywords</h2></div><div class="col-xs-12 col-md-3"><a href="/search?quicksearchcat=89"><span class="label label-default">topography</span></a><a href="/search?quicksearchcat=141"><span class="label label-default">LOLA</span></a><a href="/search?quicksearchcat=77"><span class="label label-default">Moon</span></a></div><!--.col-xs-12.col-md-3h2 Product Keywords--></div></div></div><footer><div class="container"><div class="pgda-footer"><img src="/images/nasa-logo.png" alt="NASA Logo" class="pgda-footer-floater footer-logo"><img src="/images/nasa-goddard-logo.png" alt="NASA Goddard Logo" class="pgda-footer-floater footer-goddard-logo"><div class="pgda-footer-right"><div class="pgda-footer-group"><p> <a href="http://www.nasa.gov/about/highlights/HP_Privacy.html">Privacy Policy and Important Notices</a></p><p><a href="http://www.nasa.gov/multimedia/guidelines/index.html">Reproduction Guidelines</a></p></div><div class="pgda-footer-group"><p>NASA Official: <a href="http://science.gsfc.nasa.gov/sed/bio/erwan.m.mazarico">Erwan Mazarico</a></p><p>Curator: <a href="http://science.gsfc.nasa.gov/sed/bio/erwan.m.mazarico">Erwan Mazarico</a></p><p>Web Master: <a href="http://science.gsfc.nasa.gov/sed/bio/benjamin.e.pelletier">Benjamin Pelletier</a></p></div></div></div></div></footer><script src="/utilities/pushy-master/js/pushy.min.js"></script></body></html>

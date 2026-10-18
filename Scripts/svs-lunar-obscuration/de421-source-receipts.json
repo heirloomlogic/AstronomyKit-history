@@ -1,0 +1,83 @@
+{
+  "checkedAt": "2026-10-18",
+  "de421Kernel": {
+    "bytes": 16790528,
+    "manifestPath": "Scripts/svs-lunar-obscuration/sources/de421/manifest.json",
+    "manifestSHA256": "b184d6b67491343a6661a19aa57f7d8cac96f05302b8ae6021d05b42dd910bff",
+    "sha256": "08b20db2ae22488650641c5a9033e5bfda4b1c4b440cfeaf20f621cfa18ecdb3",
+    "url": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/a_old_versions/de421.bsp"
+  },
+  "documents": {
+    "catalog": {
+      "path": "Scripts/svs-lunar-obscuration/sources/nasa-lunar-2001-2100.html",
+      "requiredText": [
+        "2026 Aug 28  04:14:04     75",
+        "calculated using Danjon's enlargement method"
+      ],
+      "sha256": "0f640913669a640418f05c173cea0bdeca194fcac6b5b196b6b9ab1b08122792",
+      "url": "https://eclipse.gsfc.nasa.gov/LEcat5/LE2001-2100.html"
+    },
+    "de421Comment": {
+      "path": "Scripts/svs-lunar-obscuration/sources/de421.cmt",
+      "requiredText": [
+        "DE 421 JPL Planetary Ephemeris SPK",
+        "released on February 13, 2008",
+        "1900-2050"
+      ],
+      "sha256": "cf2080949bc644df6b2794fc8766afe400220df33d8eda9cc4f23363220ebb50",
+      "url": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/a_old_versions/de421.cmt"
+    },
+    "lola": {
+      "path": "Scripts/svs-lunar-obscuration/sources/lola-moon-pa.html",
+      "requiredText": [
+        "The reference radius used for this elevation dataset is 1737.4 km",
+        "MOON_PA_DE421",
+        "64 pixels per degree",
+        "128 pixels per degree"
+      ],
+      "sha256": "cc5a118f265145b8825da95913ae168369b9df7c0292a139ceec01d778f8bf12",
+      "url": "https://pgda.gsfc.nasa.gov/products/95"
+    },
+    "shadow": {
+      "path": "Scripts/svs-lunar-obscuration/sources/nasa-shadow.html",
+      "requiredText": [
+        "Ru = 1.01 * Pm - Ss + Ps",
+        "1.01 &cong; 1 + 1/85 - 1/594",
+        "Ru = 1.02 * (0.998340 * Pm - Ss + Ps)"
+      ],
+      "sha256": "95b466d625a292a16f3d6f1a3aa9e7e4fb5224a2e13b4fd9a5252ff5de20841f",
+      "url": "https://eclipse.gsfc.nasa.gov/LEcat5/shadow.html"
+    },
+    "svs": {
+      "path": "Scripts/svs-lunar-obscuration/sources/nasa-svs-5672.html",
+      "requiredText": [
+        "At the moment of greatest eclipse, 4:13 a.m. Universal Time, 96.3% of the Moon's disk is within Earth's umbra",
+        "DE421 (JPL DE421)",
+        "DEM (Digital Elevation Map) [LRO: LOLA]",
+        "5MCLE (Five Millennium Canon of Lunar Eclipses)",
+        "we do not store any further details, nor the data sets themselves on our site"
+      ],
+      "sha256": "58c3f58627ad6846c41391280f8fbb90e5c7cff2623f229cfa465d5bc620af4e",
+      "url": "https://svs.gsfc.nasa.gov/5672/"
+    }
+  },
+  "horizons": {
+    "de441MoonGeometric": {
+      "command": "'301'",
+      "path": "Scripts/svs-lunar-obscuration/sources/de441-moon-geometric.json",
+      "queryPath": "Scripts/svs-lunar-obscuration/sources/de441-moon-geometric.query.json",
+      "querySHA256": "f82db5ea13c8851f3d61c7eec5c857ae43f905e117b60b6305d613964981f80c",
+      "sha256": "62ecbaad1ff749c3f67ee9b066db266fc20a3ec0fbdaa40db577e5ee62aaa0db",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api"
+    },
+    "de441SunGeometric": {
+      "command": "'10'",
+      "path": "Scripts/svs-lunar-obscuration/sources/de441-sun-geometric.json",
+      "queryPath": "Scripts/svs-lunar-obscuration/sources/de441-sun-geometric.query.json",
+      "querySHA256": "4160c88866f84389c5669bba3cceb5ed0af3be59acbfd48b45713b87c63481d2",
+      "sha256": "d7573da18a2c16d2eb36edbe7f9033ee69bf127fed4807a8352042e906e9b2ef",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api"
+    }
+  },
+  "schemaVersion": 1
+}

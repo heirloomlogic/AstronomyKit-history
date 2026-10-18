@@ -123,6 +123,9 @@ jobs:
           python3 Scripts/reference-data/build-fixtures.py --check
           python3 -m unittest Scripts/test_eclipse_event_evidence.py -v
           python3 Scripts/record-eclipse-event-evidence.py --check
+          python3 Scripts/svs-lunar-obscuration/replay.py --check
+          python3 Scripts/svs-lunar-obscuration/de421_replay.py --check
+          python3 -m unittest Scripts/svs-lunar-obscuration/test_replay.py Scripts/svs-lunar-obscuration/test_de421_replay.py -v
           python3 -m unittest Scripts/test_global_solar.py -v
           python3 Scripts/capture-global-solar.py --check
           python3 Scripts/assess-global-solar-radii.py --check
