@@ -13,53 +13,53 @@
         "day": 18, 
         "month": 6, 
         "phase": "Last Quarter", 
-        "time": "19:19", 
+        "time": "15:19", 
         "year": 2025
       }, 
       "curphase": "Waning Crescent", 
       "day": 21, 
       "day_of_week": "Saturday", 
-      "fracillum": "21%", 
+      "fracillum": "19%", 
       "isdst": false, 
       "label": null, 
       "month": 6, 
       "moondata": [
         {
           "phen": "Rise", 
-          "time": "06:44"
+          "time": "02:44"
         }, 
         {
           "phen": "Upper Transit", 
-          "time": "13:45"
+          "time": "09:45"
         }, 
         {
           "phen": "Set", 
-          "time": "20:57"
+          "time": "16:57"
         }
       ], 
       "sundata": [
         {
-          "phen": "Set", 
-          "time": "00:49"
-        }, 
-        {
-          "phen": "End Civil Twilight", 
-          "time": "01:19"
-        }, 
-        {
           "phen": "Begin Civil Twilight", 
-          "time": "09:45"
+          "time": "05:45"
         }, 
         {
           "phen": "Rise", 
-          "time": "10:15"
+          "time": "06:15"
         }, 
         {
           "phen": "Upper Transit", 
-          "time": "17:32"
+          "time": "13:32"
+        }, 
+        {
+          "phen": "Set", 
+          "time": "20:49"
+        }, 
+        {
+          "phen": "End Civil Twilight", 
+          "time": "21:19"
         }
       ], 
-      "tz": 0.0, 
+      "tz": -4.0, 
       "year": 2025
     }
   }, 

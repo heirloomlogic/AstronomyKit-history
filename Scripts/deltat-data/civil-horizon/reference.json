@@ -55,10 +55,14 @@
     ],
     "sunrise": {
       "fraction": 0.38971865325671756,
+      "jdUTC": 2460847.9271225664,
+      "ut1MinusUTCSeconds": 0.03477,
       "utc": "2025-06-21T10:15:03.389Z"
     },
     "sunset": {
       "fraction": 0.6679802821011378,
+      "jdUTC": 2460848.5341396765,
+      "ut1MinusUTCSeconds": 0.03498,
       "utc": "2025-06-22T00:49:09.668Z"
     },
     "timeScale": "UTC with source UT1-UTC"
@@ -81,19 +85,30 @@
     },
     {
       "path": "Scripts/deltat-data/civil-horizon/usno.json",
-      "sha256": "db7c51e9ccf86c0a2202c471df28a5745459fc3d735d8db4e00151784f4de949"
+      "sha256": "30c9b58bf99cbcc0d7cc8cc7f80cfec848346bde8ead26a26c467eb987b0875f"
     },
     {
       "path": "Scripts/deltat-data/civil-horizon/usno.query.json",
-      "sha256": "2d8d33a06356e518e5ce81643ad834cd11d49b9feb103cb312ddf160cdadc95b"
+      "sha256": "3256d3bd38e7cd6f805a5a87dbd7d0105aaa9341b732560c0e24236c338b13b6"
     }
   ],
   "usno": {
     "date": "2025-06-21",
     "events": {
-      "rise": "10:15",
-      "set": "00:49"
+      "rise": {
+        "horizonsDifferenceSeconds": 3.4244921088409424,
+        "jdUT1": 2460847.9270833335,
+        "localDateTime": "2025-06-21T06:15:00",
+        "ut1DateTime": "2025-06-21T10:15:00"
+      },
+      "set": {
+        "horizonsDifferenceSeconds": 9.70304262731552,
+        "jdUT1": 2460848.5340277776,
+        "localDateTime": "2025-06-21T20:49:00",
+        "ut1DateTime": "2025-06-22T00:49:00"
+      }
     },
-    "timeZoneHours": 0
+    "timeScale": "UT1",
+    "timeZoneHoursFromUT1": -4.0
   }
 }

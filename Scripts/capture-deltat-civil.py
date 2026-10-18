@@ -131,26 +131,44 @@ def parse_horizons(document, query):
 def parse_usno(document, query):
     url = urllib.parse.urlparse(query.get("url", ""))
     parameters = urllib.parse.parse_qs(url.query)
-    if (url.scheme, url.netloc, url.path) != ("https", "aa.usno.navy.mil", "/api/rstt/oneday") or parameters != {"date": ["2025-06-21"], "coords": ["35.5951,-82.5515"], "tz": ["0"]}:
+    if (url.scheme, url.netloc, url.path) != ("https", "aa.usno.navy.mil", "/api/rstt/oneday") or parameters != {"date": ["2025-06-21"], "coords": ["35.5951,-82.5515"], "tz": ["-4"]}:
         raise ValueError("changed USNO query")
     if document.get("apiversion") != "4.0.1" or document.get("type") != "Feature" or document.get("geometry", {}).get("type") != "Point":
         raise ValueError("changed USNO response schema")
     if document.get("geometry", {}).get("coordinates") != [-82.5515, 35.5951]:
         raise ValueError("changed USNO site")
     data = document.get("properties", {}).get("data", {})
-    if [data.get(key) for key in ("year", "month", "day")] != [2025, 6, 21] or data.get("tz") != 0:
+    if [data.get(key) for key in ("year", "month", "day")] != [2025, 6, 21] or data.get("tz") != -4:
         raise ValueError("changed USNO date or time zone")
     rows = data.get("sundata", [])
     expected = [
-        {"phen": "Set", "time": "00:49"},
-        {"phen": "End Civil Twilight", "time": "01:19"},
-        {"phen": "Begin Civil Twilight", "time": "09:45"},
-        {"phen": "Rise", "time": "10:15"},
-        {"phen": "Upper Transit", "time": "17:32"},
+        {"phen": "Begin Civil Twilight", "time": "05:45"},
+        {"phen": "Rise", "time": "06:15"},
+        {"phen": "Upper Transit", "time": "13:32"},
+        {"phen": "Set", "time": "20:49"},
+        {"phen": "End Civil Twilight", "time": "21:19"},
     ]
     if rows != expected:
         raise ValueError("changed USNO solar events")
-    return {"rise": rows[3]["time"], "set": rows[0]["time"]}
+
+    source_date = datetime.date(data["year"], data["month"], data["day"])
+    events = {}
+    for name, row in (("rise", rows[1]), ("set", rows[3])):
+        local_time = datetime.time.fromisoformat(row["time"])
+        local = datetime.datetime.combine(source_date, local_time)
+        ut1 = local - datetime.timedelta(hours=data["tz"])
+        jd_ut1 = 2_440_587.5 + ut1.replace(tzinfo=datetime.UTC).timestamp() / 86_400
+        events[name] = {
+            "localDateTime": local.isoformat(timespec="seconds"),
+            "ut1DateTime": ut1.isoformat(timespec="seconds"),
+            "jdUT1": jd_ut1,
+        }
+    return {
+        "date": source_date.isoformat(),
+        "timeZoneHoursFromUT1": data["tz"],
+        "timeScale": "UT1",
+        "events": events,
+    }
 
 
 def crossing(before, after):
@@ -162,7 +180,17 @@ def crossing(before, after):
         raise ValueError("Horizons rows do not bracket the limb crossing")
     fraction = -residual_before / (residual_after - residual_before)
     event_jd = before["jdUTC"] + fraction * (after["jdUTC"] - before["jdUTC"])
-    return {"utc": iso(event_jd), "fraction": fraction}
+    dut1 = before["ut1MinusUTCSeconds"] + fraction * (after["ut1MinusUTCSeconds"] - before["ut1MinusUTCSeconds"])
+    return {"utc": iso(event_jd), "jdUTC": event_jd, "ut1MinusUTCSeconds": dut1, "fraction": fraction}
+
+
+def compare_usno_event(usno, horizons):
+    horizons_jd_ut1 = horizons["jdUTC"] + horizons["ut1MinusUTCSeconds"] / 86_400
+    difference = (horizons["jdUTC"] - usno["jdUT1"]) * 86_400 + horizons["ut1MinusUTCSeconds"]
+    horizons_minute = iso(horizons_jd_ut1).removesuffix("Z")[:16]
+    if horizons_minute != usno["ut1DateTime"][:16]:
+        raise ValueError("USNO and Horizons events differ at published minute resolution")
+    return {**usno, "horizonsDifferenceSeconds": difference}
 
 
 def fixture(data=None):
@@ -170,12 +198,16 @@ def fixture(data=None):
     horizons_document, horizons_query = read_source(data / "horizons.json")
     usno_document, usno_query = read_source(data / "usno.json")
     rows, eop = parse_horizons(horizons_document, horizons_query)
-    events = parse_usno(usno_document, usno_query)
+    usno = parse_usno(usno_document, usno_query)
     sources = []
     for name in SOURCE_NAMES:
         for suffix in (".json", ".query.json"):
             path = data / f"{name}{suffix}"
             sources.append({"path": f"Scripts/deltat-data/civil-horizon/{path.name}", "sha256": sha256(path)})
+    sunrise = crossing(rows[0], rows[1])
+    sunset = crossing(rows[3], rows[4])
+    usno["events"]["rise"] = compare_usno_event(usno["events"]["rise"], sunrise)
+    usno["events"]["set"] = compare_usno_event(usno["events"]["set"], sunset)
     return {
         "schemaVersion": 1,
         "model": "iersObserved",
@@ -187,10 +219,10 @@ def fixture(data=None):
             "refraction": "airless",
             "rows": rows,
             "horizon": rows[2],
-            "sunrise": crossing(rows[0], rows[1]),
-            "sunset": crossing(rows[3], rows[4]),
+            "sunrise": sunrise,
+            "sunset": sunset,
         },
-        "usno": {"date": "2025-06-21", "timeZoneHours": 0, "events": events},
+        "usno": usno,
         "sources": sources,
     }
 

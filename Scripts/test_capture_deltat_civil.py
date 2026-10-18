@@ -24,6 +24,31 @@ class DeltaTCivilSourceTests(unittest.TestCase):
         self.assertEqual(["rise", "set"], sorted(fixture["usno"]["events"]))
         self.assertEqual("iersObserved", fixture["model"])
 
+    def test_usno_events_keep_their_dates_and_ut1_clock(self):
+        fixture = capture.fixture()
+        self.assertEqual("UT1", fixture["usno"]["timeScale"])
+        self.assertEqual(-4, fixture["usno"]["timeZoneHoursFromUT1"])
+        rise = fixture["usno"]["events"]["rise"]
+        sunset = fixture["usno"]["events"]["set"]
+        self.assertEqual("2025-06-21T06:15:00", rise["localDateTime"])
+        self.assertEqual("2025-06-21T10:15:00", rise["ut1DateTime"])
+        self.assertEqual("2025-06-21T20:49:00", sunset["localDateTime"])
+        self.assertEqual("2025-06-22T00:49:00", sunset["ut1DateTime"])
+        self.assertLess(abs(rise["horizonsDifferenceSeconds"]), 60)
+        self.assertLess(abs(sunset["horizonsDifferenceSeconds"]), 60)
+
+        for name, horizon_name in (("rise", "sunrise"), ("set", "sunset")):
+            event = fixture["usno"]["events"][name]
+            horizon = fixture["horizons"][horizon_name]
+            utc_difference = (horizon["jdUTC"] - event["jdUT1"]) * 86_400
+            self.assertAlmostEqual(horizon["ut1MinusUTCSeconds"], event["horizonsDifferenceSeconds"] - utc_difference, places=5)
+
+        wrong_day = copy.deepcopy(rise)
+        wrong_day["jdUT1"] += 1
+        wrong_day["ut1DateTime"] = "2025-06-22T10:15:00"
+        with self.assertRaisesRegex(ValueError, "published minute"):
+            capture.compare_usno_event(wrong_day, fixture["horizons"]["sunrise"])
+
     def test_rejects_changed_horizons_semantics_and_inventory(self):
         original = capture.read_source(capture.DATA / "horizons.json")
         document, query = original
@@ -78,8 +103,10 @@ class DeltaTCivilSourceTests(unittest.TestCase):
             ("schema", lambda d, q: d.__setitem__("apiversion", "5.0")),
             ("site", lambda d, q: d["geometry"]["coordinates"].__setitem__(0, 0)),
             ("date", lambda d, q: d["properties"]["data"].__setitem__("day", 22)),
-            ("query", lambda d, q: q.__setitem__("url", q["url"].replace("tz=0", "tz=1"))),
-            ("rise", lambda d, q: d["properties"]["data"]["sundata"][3].__setitem__("time", "10:16")),
+            ("query-date", lambda d, q: q.__setitem__("url", q["url"].replace("date=2025-06-21", "date=2025-06-22"))),
+            ("query-timezone", lambda d, q: q.__setitem__("url", q["url"].replace("tz=-4", "tz=0"))),
+            ("response-timezone", lambda d, q: d["properties"]["data"].__setitem__("tz", 0)),
+            ("rise", lambda d, q: d["properties"]["data"]["sundata"][1].__setitem__("time", "06:16")),
             ("missing", lambda d, q: d["properties"]["data"]["sundata"].pop()),
         ]:
             changed_document = copy.deepcopy(document)

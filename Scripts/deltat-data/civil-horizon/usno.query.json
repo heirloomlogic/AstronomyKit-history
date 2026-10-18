@@ -1,5 +1,5 @@
 {
-  "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=2025-06-21&coords=35.5951%2C-82.5515&tz=0",
-  "_responseSHA256": "db7c51e9ccf86c0a2202c471df28a5745459fc3d735d8db4e00151784f4de949",
+  "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=2025-06-21&coords=35.5951%2C-82.5515&tz=-4",
+  "_responseSHA256": "30c9b58bf99cbcc0d7cc8cc7f80cfec848346bde8ead26a26c467eb987b0875f",
   "_retrieved": "2026-10-18"
 }
