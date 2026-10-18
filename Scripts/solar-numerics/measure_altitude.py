@@ -53,7 +53,7 @@ def grid():
     observed_rows, first_predicted = observed_data[0], observed_data[4]
     for label, center in [
         ('historical-observed', observed_rows[0]),
-        ('observed-predicted', observed_rows[first_predicted]),
+        ('observed-predicted', observed_rows[first_predicted - 1]),
         ('table-extrapolated', observed_rows[-1]),
     ]:
         center = float(center)

@@ -323,16 +323,17 @@ struct SolarAltitudeObservationTests {
     func observedModelRegimesAndJoins() throws {
         let rows = Engine.DeltaT.Observed.rows
         let first = rows.ut[0]
-        let prediction = rows.ut[Engine.DeltaT.Observed.firstPredictedRow]
+        let predictionBoundary = rows.ut[Engine.DeltaT.Observed.firstPredictedRow - 1]
         let last = try #require(rows.ut.last)
         let samples = [
             first.nextDown, first, first.nextUp,
-            prediction.nextDown, prediction, prediction.nextUp,
+            predictionBoundary.nextDown, predictionBoundary, predictionBoundary.nextUp,
             last.nextDown, last, last.nextUp,
         ]
         #expect(Engine.DeltaT.Observed.regime(ut: first.nextDown) == .historical)
         #expect(Engine.DeltaT.Observed.regime(ut: first) == .observed)
-        #expect(Engine.DeltaT.Observed.regime(ut: prediction) == .predicted)
+        #expect(Engine.DeltaT.Observed.regime(ut: predictionBoundary) == .observed)
+        #expect(Engine.DeltaT.Observed.regime(ut: predictionBoundary.nextUp) == .predicted)
         #expect(Engine.DeltaT.Observed.regime(ut: last.nextUp) == .extrapolatedFuture)
         let pastJoin = (Engine.DeltaT.Observed.spline[0].start - 2_000) * 365.25
         #expect(Engine.DeltaT.Observed.regime(ut: pastJoin.nextDown) == .extrapolatedPast)

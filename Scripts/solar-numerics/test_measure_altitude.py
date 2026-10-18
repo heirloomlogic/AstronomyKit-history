@@ -2,6 +2,7 @@ import copy
 import contextlib
 import io
 import json
+import math
 import tempfile
 from pathlib import Path
 from unittest.mock import patch
@@ -19,6 +20,12 @@ class AltitudeMeasurementProvenanceTests(unittest.TestCase):
         for join in ['historical-observed', 'observed-predicted', 'table-extrapolated']:
             for offset in ['below', 'at', 'above']:
                 self.assertTrue(any(f'observed-{join}-{offset}-observer-' in identifier for identifier in ids))
+        observed_rows, _, _, _, first_predicted = measure.solar.ref.observed_delta_t_data()
+        prediction_boundary = float(observed_rows[first_predicted - 1])
+        values = [next(row['value'] for row in rows if row['id'] == f'observed-observed-predicted-{offset}-observer-0')
+                  for offset in ['below', 'at', 'above']]
+        self.assertEqual(values, [math.nextafter(prediction_boundary, -math.inf), prediction_boundary,
+                                  math.nextafter(prediction_boundary, math.inf)])
 
     def test_cli_recheck_rejects_altered_public_outcomes(self):
         pristine = json.loads(Path(__file__).with_name('evidence').joinpath('altitude-macos-arm64-debug.json').read_text())
