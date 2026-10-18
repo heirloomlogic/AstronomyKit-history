@@ -147,9 +147,11 @@ struct EngineJupiterMoonsTests {
     @Test("States match all archived Horizons rows within the qualified km limits", arguments: vectors)
     func horizons(reference: IndependentReferenceArchive.Vector) throws {
         let moon = try #require(Self.moons[reference.body], "unexpected Galilean moon \(reference.body)")
-        let state = try Moons.state(of: moon, at: Self.time(tt: Horizons.tt(reference)))
+        let tt = Horizons.tt(reference)
+        let state = try Moons.state(of: moon, at: Self.time(tt: tt))
         let positionError = EngineGravityTests.length(States.position(state) - States.eqj(reference.positionAU))
-        let velocityError = EngineGravityTests.length(States.velocity(state) - States.eqj(reference.velocityAUPerDay))
+        let referenceVelocity = States.eqj(reference.velocityAUPerDay) * Engine.TDB.rate(tt: tt)
+        let velocityError = EngineGravityTests.length(States.velocity(state) - referenceVelocity)
         #expect(positionError * Engine.kilometersPerAU <= 0.25, "\(reference.body) \(reference.julianDateTDB)")
         #expect(velocityError * Engine.kilometersPerAU <= 35, "\(reference.body) \(reference.julianDateTDB)")
     }

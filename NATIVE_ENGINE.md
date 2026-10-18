@@ -803,6 +803,8 @@ The committed [residual harness](Scripts/jupiter-moon-data/residual-method.md) s
 
 The [jup365 representation qualification](Scripts/jupiter-moon-data/jup365/README.md) extracts every source record over the kernel's actual JD TDB `[2305456.5, 2524602.5)` domain. Its mixed Float32 and scaled Int16 payload totals 60,192,342 bytes and has continuous coefficient-representation bounds below 0.229 km in jovicentric position and 33.74 km per TDB day in its analytic derivative. The report separately records 104 sampled Horizons residuals, source provenance, representation-probe timing, and actual compiled-package size and public-call timing. The certified representation bounds apply only to coefficient packing relative to jup365 inside the source domain; they exclude binary64 evaluation rounding, upstream physical accuracy, finite Horizons residuals, and the exterior L1.2 bridges.
 
+The compiled representation adds 81,067,832 bytes of generated Swift and 81,111,832 bytes to the recorded arm64 Release static library and AstronomyKit object. On the recorded Swift 6.4 host, the public four-moon call took 7.719 µs at one repeated epoch and 15.294 µs over 4,096 spanning epochs; a first in-process call took 1.443 ms. These host observations are not API guarantees.
+
 ### Differences from the C engine
 
 - The rotation is built from Ψ and I. The C engine's `Rotation_JUP_EQJ`, printed to 15 digits, agrees within 4.5e-16.
