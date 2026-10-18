@@ -32,9 +32,22 @@ struct WeatherRefractionTests {
         }
     }
 
-    @Test("Normal refraction preserves the pre-weather below-horizon rounding")
+    @Test("Normal refraction preserves the pre-weather below-horizon operation order")
     func legacyBelowHorizonRounding() {
+        var distinguishesReassociatedForm = false
+        for altitude in [-89.0, -73, -45, -17, -2] {
+            let arcminutes = 1.02 / tan((-1 + 10.3 / (-1 + 5.11)) * Engine.radiansPerDegree)
+            let degrees = arcminutes / 60
+            let legacy = degrees * (altitude + 90) / 89
+            let reassociated = degrees * ((altitude + 90) / 89)
+            #expect(Refraction.normal.refractionAngle(at: altitude) == legacy)
+            distinguishesReassociatedForm = distinguishesReassociatedForm || legacy != reassociated
+        }
+        #expect(distinguishesReassociatedForm)
+
+        #if os(macOS) && arch(arm64)
         #expect(Refraction.normal.refractionAngle(at: -89).bitPattern == 4_575_025_940_156_781_600)
+        #endif
     }
 
     @Test("Pressure and temperature scale the published Sæmundsson correction")
