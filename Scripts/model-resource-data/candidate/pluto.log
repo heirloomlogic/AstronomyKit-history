@@ -1,0 +1,32 @@
+Building for production...
+[Constructing description]
+[Planning deferred tasks]
+[1 / 3]
+[4 / 7] AstronomyKitTests-product
+Build complete! (0.86 sec)
+􀟈  Test run started.
+􀄵  Testing Library Version: 2084
+􀄵  Target Platform: arm64e-apple-macos14.0
+􀟈  Suite "Native Pluto measurements" started.
+􀟈  Test measure() started.
+􁁛  Test measure() passed after 0.326 seconds.
+􁁛  Suite "Native Pluto measurements" passed after 0.326 seconds.
+􁁛  Test run with 1 test in 1 suite passed after 0.326 seconds.
+        9.56 real        11.94 user         5.39 sys
+           165445632  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              697455  page reclaims
+               14321  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                 537  voluntary context switches
+               18876  involuntary context switches
+         13480710335  instructions retired
+          4831068594  cycles elapsed
+            76891144  peak memory footprint

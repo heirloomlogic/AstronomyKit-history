@@ -1,0 +1,15 @@
+{
+  "checksum" : 44287.767239218549,
+  "coldSeconds" : 0.021895051002502441,
+  "coldTT" : -766524.75,
+  "evaluationsPerWorkload" : 2000,
+  "host" : "Version 27.0.1 (Build 26A434)",
+  "peakBytesAfterCold" : 78954496,
+  "peakBytesAfterLoops" : 151945216,
+  "peakBytesBefore" : 47841280,
+  "seconds" : {
+    "central" : 0.050286054611206055,
+    "engineRange" : 0.048874020576477051,
+    "outer" : 0.11535704135894775
+  }
+}

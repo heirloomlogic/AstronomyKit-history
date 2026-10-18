@@ -1,0 +1,32 @@
+Building for production...
+[Constructing description]
+[Planning deferred tasks]
+[3 / 6] AstronomyKit
+[6 / 6] AstronomyKitTests-product
+Build complete! (0.98 sec)
+􀟈  Test run started.
+􀄵  Testing Library Version: 2084
+􀄵  Target Platform: arm64e-apple-macos14.0
+􀟈  Suite "Saturn resource measurements" started.
+􀟈  Test measure() started.
+􁁛  Test measure() passed after 0.194 seconds.
+􁁛  Suite "Saturn resource measurements" passed after 0.195 seconds.
+􁁛  Test run with 1 test in 1 suite passed after 0.195 seconds.
+        8.61 real        10.87 user         5.06 sys
+           517488640  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              719973  page reclaims
+               14253  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                 529  voluntary context switches
+               20453  involuntary context switches
+         14103556694  instructions retired
+          4965055680  cycles elapsed
+           452297952  peak memory footprint

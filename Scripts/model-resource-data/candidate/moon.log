@@ -1,0 +1,34 @@
+Building for production...
+[Provisioning 4 / 8]
+[Planning 1 / 183]
+[Planning deferred tasks]
+[1 / 3]
+[3 / 6] AstronomyKit
+[5 / 5] AstronomyKitTests-product
+Build complete! (1.71 sec)
+􀟈  Test run started.
+􀄵  Testing Library Version: 2084
+􀄵  Target Platform: arm64e-apple-macos14.0
+􀟈  Suite "Native Moon measurements" started.
+􀟈  Test measure() started.
+􁁛  Test measure() passed after 2.311 seconds.
+􁁛  Suite "Native Moon measurements" passed after 2.311 seconds.
+􁁛  Test run with 1 test in 1 suite passed after 2.311 seconds.
+       14.98 real        13.50 user         5.77 sys
+           517455872  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              728515  page reclaims
+               18482  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                1797  voluntary context switches
+               26819  involuntary context switches
+         16296179359  instructions retired
+          6072196694  cycles elapsed
+           452396352  peak memory footprint
