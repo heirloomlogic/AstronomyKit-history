@@ -1049,7 +1049,7 @@
   ],
   "generatorBindingsSHA256": {
     "Scripts/assess-moon-de441.py": "5da238cbd372de58899fc7de9ca49dbe5e02a33b0886a8ce8bf69854783c26a4",
-    "Scripts/galilean-residuals.py": "5894921a3b7108ba3721f11537f01206d772a183312a71d91059face59e6ff33",
+    "Scripts/galilean-residuals.py": "3246cdbb9bb20fdc754a5459551a1013d55ad460b9f768facf22cf99d2773cde",
     "Scripts/generate-galilean-jup365.py": "daae85a38ce70941850e97632dae0f6883d4eeb934acf9af48f39685b08afbe5",
     "Scripts/generate-planet-de441.py": "652d00c5aa3ed6556d26364a2bb89d95eed92c2def21d0af82834c932ab841c9",
     "Scripts/jupiter-moon-data/jup365-probe.swift": "aee61ed93b6ece21d99372cf71b343abb23e2d526e3241a20d8d7559af233abb",
@@ -1069,7 +1069,7 @@
     "Scripts/reference-data/sources/horizons/io-domain-vector.query.json": "17982b2777787b3254a3073458c7463d33dbbdd561d8b22281178d915b8c907b",
     "Scripts/reference-data/sources/horizons/io-vector.json": "4c09f6807a15f45ecd936d38ab1c5ca71dfe759bc063c0a3ac1685b1f1aaa981",
     "Scripts/reference-data/sources/horizons/io-vector.query.json": "f20330c61f533ee38a5235929338c4ff17a7bbfd1a59e75e8053536d32da19e6",
-    "Scripts/test_galilean_residuals.py": "791f5decb42016fe8ab861c16884704fb59b0de67464c86284b936c72853f10e",
+    "Scripts/test_galilean_residuals.py": "f6907f9585a8cad9a93097dfd372037ffbf01e6d89cd675d305f2cc152667fcb",
     "Scripts/test_generate_galilean_jup365.py": "8ecca9907dbbb41df666a042b0596beab269dd91bedfcfeb005b3a14c28739d7",
     "Tests/AstronomyKitTests/Fixtures/IndependentReferences/reference-fixtures.json": "a9fe5925fc0c556d088147d78fc5f6b053f32a839e13250f7589e47dfc9a12ab"
   },

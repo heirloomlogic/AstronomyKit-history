@@ -174,30 +174,32 @@ def norm(value):
 
 def analyze(capture):
     refs = references()
-    if set(capture) != {'schemaVersion', 'rows'} or capture['schemaVersion'] != 1 or len(capture['rows']) != len(refs):
+    if set(capture) != {'schemaVersion', 'rows', 'transitions'} or capture['schemaVersion'] != 3 or len(capture['rows']) != len(refs):
         raise ValueError('Native capture inventory differs')
     rows = []
     for raw, ref in zip(capture['rows'], refs):
         tt, offset, rate = clock(ref['julianDateTDB'])
         identity = dict(body=ref['body'], target=MOONS[ref['body']], center=599, frame='EQJ', epochScale='TDB', julianDateTDB=ref['julianDateTDB'])
-        expected_keys = set(identity) | {'ttDays', 'tdbMinusTTSeconds', 'tdbPerTTRate', 'positionAU', 'keplerianVelocityAUPerTTDay'}
+        expected_keys = set(identity) | {'ttDays', 'tdbMinusTTSeconds', 'tdbPerTTRate', 'positionAU', 'velocityAUPerTTDay'}
         if set(raw) != expected_keys or any(raw[k] != v for k, v in identity.items()):
             raise ValueError('Native row identity, frame, or clock differs')
         for key, expected, allowance in [('ttDays', tt, 2e-11), ('tdbMinusTTSeconds', offset, 2e-15), ('tdbPerTTRate', rate, 3e-16)]:
             if type(raw[key]) not in (int, float) or not math.isfinite(raw[key]) or abs(raw[key] - expected) > allowance:
                 raise ValueError('Native clock replay differs: ' + key)
         position = vector(raw['positionAU'])
-        velocity = vector(raw['keplerianVelocityAUPerTTDay'])
+        velocity = vector(raw['velocityAUPerTTDay'])
         reference_position = eqj(ref['positionAU'])
         reference_velocity = [v * rate for v in eqj(ref['velocityAUPerDay'])]
         position_error = norm([a - b for a, b in zip(position, reference_position)])
         velocity_error = norm([a - b for a, b in zip(velocity, reference_velocity)])
         tolerance = ref['relativeTolerance']
+        if position_error * AU_KM > .25 or velocity_error * AU_KM > 35:
+            raise ValueError('Qualified jup365 sampled-residual limit exceeded')
         if tolerance is not None and (position_error / norm(reference_position) > tolerance or velocity_error / norm(reference_velocity) > tolerance):
             raise ValueError('Existing bounded-row tolerance exceeded')
         rows.append(dict(body=ref['body'], julianDateTDB=ref['julianDateTDB'], ttDays=raw['ttDays'],
                          relativeTolerance=tolerance, positionErrorKm=position_error * AU_KM,
-                         keplerianVelocityErrorKmPerTTDay=velocity_error * AU_KM,
+                         velocityErrorKmPerTTDay=velocity_error * AU_KM,
                          unscaledVelocityErrorKmPerDay=norm([a - b for a, b in zip(velocity, eqj(ref['velocityAUPerDay']))]) * AU_KM))
     moons = {}
     for body in MOONS:
@@ -205,20 +207,33 @@ def analyze(capture):
         for subset in ('all', 'bounded'):
             eligible = [r for r in rows if r['body'] == body and (subset == 'all' or r['relativeTolerance'] is not None)]
             maxima = dict(count=len(eligible))
-            for field in ('positionErrorKm', 'keplerianVelocityErrorKmPerTTDay'):
+            for field in ('positionErrorKm', 'velocityErrorKmPerTTDay'):
                 worst = max(eligible, key=lambda row: row[field])
                 maxima[field] = dict(value=worst[field], julianDateTDB=worst['julianDateTDB'])
             moons[body][subset] = maxima
-    return dict(rows=rows, moons=moons)
+    identities = [(side, body) for side in ('beforeStart', 'afterEnd') for body in MOONS]
+    transitions = []
+    if len(capture['transitions']) != len(identities):
+        raise ValueError('Native transition inventory differs')
+    for raw, (side, body) in zip(capture['transitions'], identities):
+        if set(raw) != {'body', 'side', 'sampleCount', 'maximumPositionCorrectionKm', 'maximumVelocityCorrectionKmPerTTDay'}:
+            raise ValueError('Native transition row shape differs')
+        if raw['body'] != body or raw['side'] != side or raw['sampleCount'] != 4097:
+            raise ValueError('Native transition identity differs')
+        for key in ('maximumPositionCorrectionKm', 'maximumVelocityCorrectionKmPerTTDay'):
+            if type(raw[key]) not in (int, float) or not math.isfinite(raw[key]) or raw[key] < 0:
+                raise ValueError('Native transition metric differs')
+        transitions.append(raw)
+    return dict(rows=rows, moons=moons, transitions=transitions)
 
 
 def record(capture, toolchain, sources):
-    return dict(schemaVersion=3, toolchain=toolchain, sourceSHA256=sources,
+    return dict(schemaVersion=4, toolchain=toolchain, sourceSHA256=sources,
                 captureSHA256=digest(encoded(capture)), capture=capture, analysis=analyze(capture))
 
 
 def validate_record(data):
-    if set(data) != {'schemaVersion', 'toolchain', 'sourceSHA256', 'captureSHA256', 'capture', 'analysis'} or data['schemaVersion'] != 3:
+    if set(data) != {'schemaVersion', 'toolchain', 'sourceSHA256', 'captureSHA256', 'capture', 'analysis'} or data['schemaVersion'] != 4:
         raise ValueError('Evidence schema differs')
     if not data['toolchain']:
         raise ValueError('Capture toolchain missing')
@@ -254,7 +269,7 @@ def main():
     else:
         data = json.loads(OUTPUT.read_bytes())
         validate_record(data)
-    print('Replayed 104 Galilean rows: separate position km and Keplerian velocity km/TT-day')
+    print('Replayed 104 Galilean rows: separate position km and returned velocity km/TT-day')
     for body, maxima in data['analysis']['moons'].items():
         print(body, json.dumps(maxima, sort_keys=True))
 

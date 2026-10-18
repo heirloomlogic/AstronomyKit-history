@@ -1,6 +1,6 @@
 # jup365 representation qualification
 
-This directory holds a reproducible mixed-precision representation of JPL's jup365 Galilean-satellite kernel. It is qualification input for issue #254, not a runtime table: `Engine.JupiterMoons` still uses the truncated L1.2 series. The later runtime change must select this representation only inside its documented domain, preserve L1.2 outside it, and supply derivative-consistent endpoint transitions.
+This directory holds the reproducible mixed-precision representation of JPL's jup365 Galilean-satellite kernel used by `Engine.JupiterMoons`. `Scripts/generate-galilean-jup365-swift.py` compiles the five qualified payloads into record-addressable Swift strings; runtime evaluation selects them only inside the source domain and retains the truncated L1.2 series outside finite endpoint bridges.
 
 ## Source and coordinates
 
@@ -47,6 +47,10 @@ The unchanged base at `b6f0cc0c4027ef626e2ba8686914cd472f99de80` contained 461,2
 
 `performance.json` binds a standalone Swift probe to this representation. On the recorded arm64 macOS host with Swift 6.4 and `swiftc -O`, mapping the manifest and five payloads took 1.858 ms. A first pass over 200,000 jovicentric states spanning the full domain took 0.849 µs per state; a second pass took 0.834 µs per state. The checksum was identical across passes. This measures the candidate lookup and polynomial evaluation from memory-mapped binary payloads on that host. It does not predict the final package, compile, launch, or cache cost of link 2's compiled representation.
 
+`runtime-performance.json` records the final compiled path on its named arm64 macOS host, including a clean Release package build, source/library/object/executable sizes, a first in-process public call, repeated same-epoch public calls, calls spanning 4,096 epochs, and seven separate process-launch-plus-first-call observations. These host measurements describe the checked-in compiled representation; they are performance observations rather than portable limits.
+
+The complete half-open source domain remains unblended. Immediately outside it, a 32-day cubic Hermite correction joins the endpoint jup365 state to raw L1.2, matching both returned position and velocity at the source boundary and reaching exact raw L1.2 position and velocity at the outer join. The residual evidence samples each bridge on a 4,097-point grid per moon and side. Those correction maxima characterize the returned transition and do not extend the jup365 representation certificate or establish physical accuracy. L1.2's returned Keplerian velocity is not the time derivative of its changing-element position, so the bridge matches the returned state velocity at both endpoints rather than certifying a derivative of the fallback position.
+
 ## Reproduction
 
 Run the local controls from the repository root:
@@ -55,6 +59,9 @@ Run the local controls from the repository root:
 python3 -m unittest Scripts/test_generate_galilean_jup365.py -v
 python3 Scripts/generate-galilean-jup365.py --check
 python3 Scripts/generate-galilean-jup365.py --measure --iterations 200000
+python3 -m unittest Scripts/test_generate_galilean_jup365_swift.py Scripts/test_measure_galilean_jup365_runtime.py -v
+python3 Scripts/generate-galilean-jup365-swift.py --check
+python3 Scripts/measure-galilean-jup365-runtime.py --check
 ```
 
 `--check` is offline. It checks generator and reference bindings, payload shapes and digests, coverage and coordinate semantics, all direct fixtures, all 104 archived Horizons rows, the continuous bound limits, and the performance-record bindings. `--measure` recompiles the checked-in Swift probe and replaces `performance.json` with a host-specific measurement.
