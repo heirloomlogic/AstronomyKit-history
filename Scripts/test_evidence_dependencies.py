@@ -26,6 +26,19 @@ class EvidenceDependencyTests(unittest.TestCase):
             self.assertIn('Scripts/evidence-dependencies.json', expanded[owner])
             self.assertIn('Scripts/evidence_dependencies.py', expanded[owner])
 
+    def test_migrated_capture_owners_bind_compiled_public_test_and_fixture_snapshots(self):
+        inventory = dependencies.load_inventory()
+        public_sources = {str(path.relative_to(ROOT)) for path in (ROOT / 'Sources/AstronomyKit').glob('*.swift')}
+        test_sources = {str(path.relative_to(ROOT)) for path in (ROOT / 'Tests/AstronomyKitTests').rglob('*.swift')}
+        fixtures = {str(path.relative_to(ROOT)) for path in (ROOT / 'Tests/AstronomyKitTests/Fixtures').rglob('*') if path.is_file()}
+        for owner in ['eclipse-native', 'moon-events', 'moon-full-integration', 'pluto-native']:
+            owned = set(inventory[owner])
+            with self.subTest(owner=owner):
+                self.assertIn('Package.swift', owned)
+                self.assertTrue(public_sources <= owned)
+                self.assertTrue(test_sources <= owned)
+                self.assertTrue(fixtures <= owned)
+
     def test_direct_and_transitive_edits_invalidate_but_unrelated_engine_addition_does_not(self):
         owner = 'global-solar'
         all_owned = {path for paths in dependencies.load_inventory().values() for path in paths}
@@ -52,8 +65,9 @@ class EvidenceDependencyTests(unittest.TestCase):
             after_direct = dependencies.source_hashes(owner, root=shadow)
             self.assertNotEqual(after_direct[direct], before[direct])
 
-    def test_every_migrated_broad_owner_ignores_an_unrelated_addition_and_binds_shared_runtime(self):
+    def test_migrated_scientific_owners_ignore_an_unrelated_addition_and_all_bind_shared_runtime(self):
         owners = ['eclipse-native', 'galilean-runtime', 'moon-events', 'moon-full-integration', 'pluto-native']
+        addition_stable = ['eclipse-native', 'moon-events', 'moon-full-integration', 'pluto-native']
         all_owned = {path for paths in dependencies.load_inventory().values() for path in paths}
         relevant = 'Sources/AstronomyKit/Engine/Foundation/EngineConstants.swift'
         with tempfile.TemporaryDirectory() as directory:
@@ -65,7 +79,7 @@ class EvidenceDependencyTests(unittest.TestCase):
             before = {owner: dependencies.source_hashes(owner, root=shadow) for owner in owners}
             unrelated = shadow / 'Sources/AstronomyKit/Engine/NewUnrelatedEngineFile.swift'
             unrelated.write_text('enum NewUnrelatedEngineFile {}\n')
-            for owner in owners:
+            for owner in addition_stable:
                 with self.subTest(owner=owner, mutation='unrelated'):
                     self.assertEqual(dependencies.source_hashes(owner, root=shadow), before[owner])
             (shadow / relevant).unlink()
@@ -188,6 +202,14 @@ class EvidenceDependencyTests(unittest.TestCase):
                 apparent_evaluator,
                 moon_blend,
                 'Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Index.swift',
+            ]:
+                with self.subTest(owner=owner, dependency=dependency):
+                    self.assertIn(dependency, inventory[owner])
+        for owner in ['eclipse-native', 'moon-events', 'moon-full-integration', 'pluto-native']:
+            for dependency in [
+                'Tests/AstronomyKitTests/Engine/Planets/PlanetTestSupport.swift',
+                'Tests/AstronomyKitTests/JPLValidationTests.swift',
+                'Tests/AstronomyKitTests/Fixtures/IndependentReferences/distance-fixtures.json',
             ]:
                 with self.subTest(owner=owner, dependency=dependency):
                     self.assertIn(dependency, inventory[owner])

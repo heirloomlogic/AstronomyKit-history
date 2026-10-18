@@ -252,6 +252,13 @@ def capture(directory):
     }
 
 
+def rebind(captures, previous):
+    hashes = dependencies.verify_retained_inputs("eclipse-native", previous["sourceSHA256"])
+    result = evidence(captures, hashes)
+    dependencies.verify_rebound_document(previous, result, "sourceSHA256")
+    return result
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--capture", type=Path)
@@ -259,7 +266,10 @@ def main():
     arguments = parser.parse_args()
     captures = capture(arguments.capture) if arguments.capture else json.loads(CAPTURES.read_bytes())
     capture_bytes = (json.dumps(captures, indent=2, sort_keys=True, allow_nan=False) + "\n").encode()
-    result = evidence(captures, source_hashes(capture_bytes if arguments.capture else None))
+    if arguments.capture or arguments.check:
+        result = evidence(captures, source_hashes(capture_bytes if arguments.capture else None))
+    else:
+        result = rebind(captures, json.loads(OUTPUT.read_bytes()))
     if arguments.check:
         if json.loads(OUTPUT.read_bytes()) != result:
             raise SystemExit("recorded lunar eclipse evidence differs from source-bound captures")
