@@ -1193,10 +1193,10 @@
     "semantics": "observed zenith distance to vacuum-minus-observed zenith distance"
   },
   "sourceSHA256": {
-    "Scripts/capture-pal-refraction.py": "b39e513aea1afdac40a85e00340d072720a17b57183b2cf9a4f2cf9a966886b3",
-    "Scripts/test_capture_pal_refraction.py": "4da41134e70c8d5ae21228af53b3a1bce7e69c108363b19ee254b7d3dd7a6db0",
+    "Scripts/capture-pal-refraction.py": "ed8dbe93548b53eebeb307933e04e4dcbcc09b4ffc95d44d418472d77eb23b28",
+    "Scripts/test_capture_pal_refraction.py": "e7e9b817d29b36810cdaa2adc87afb46885d06833939ea4579bb30fbad7f3ef2",
     "Sources/AstronomyKit/Coordinates.swift": "9b1ae70052f416252af118b50cc61bf2c900918cd76ccea021017c28f793d60a",
-    "Sources/AstronomyKit/Engine/Orientation/EngineRefraction.swift": "efc71b4ccbd7b7d16aa686d2242beda0176a9c765fbe698181452cdf17d3aa43",
-    "Tests/AstronomyKitTests/WeatherRefractionTests.swift": "4ffa01b166a517dd04da737b983b9cd20119ecbc2b71c115b806b20d6f73c889"
+    "Sources/AstronomyKit/Engine/Orientation/EngineRefraction.swift": "1b48e0292d81588953bdec2332c2cf132807a94bf4d661e209c77e95ae81bc4d",
+    "Tests/AstronomyKitTests/WeatherRefractionTests.swift": "20e2f8023d1779fa76d5a2ab089d319690f195c8feda9c3bb3768dcf7e301fbe"
   }
 }
