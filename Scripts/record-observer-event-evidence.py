@@ -310,10 +310,7 @@ def main():
     else:
         if not args.capture:
             previous = json.loads(OUTPUT.read_bytes())
-            provenance = captures['debugUSNOProvenance']
-            if provenance.get('kind') != 'fresh':
-                raise ValueError('retained observer rebinding requires a fresh capture revision')
-            dependencies.verify_retained_inputs('observer-events', previous['sourceSHA256'], capture_revision=provenance['runtimeRevision'])
+            dependencies.verify_retained_inputs('observer-events', previous['sourceSHA256'])
             dependencies.verify_rebound_document(previous, expected, 'sourceSHA256')
         if args.capture:
             CAPTURES.write_bytes(encoded)

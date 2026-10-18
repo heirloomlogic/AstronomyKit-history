@@ -156,7 +156,7 @@ def main():
     else:
         if not args.capture:
             previous=json.loads(OUTPUT.read_bytes());candidate=json.loads(result)
-            dependencies.verify_retained_inputs('global-solar',previous['sourceHashes'],capture_revision=values['runtimeBaseRevision'])
+            dependencies.verify_retained_inputs('global-solar',previous['sourceHashes'])
             dependencies.verify_rebound_document(previous,candidate,'sourceHashes')
         archive.publish({**({CAPTURE: data} if args.capture else {}), OUTPUT: result})
     print('global solar evidence and recorded relations match')

@@ -144,7 +144,7 @@ def main():
     else:
         if not args.capture:
             previous=json.loads(OUTPUT.read_bytes());candidate=json.loads(result)
-            dependencies.verify_retained_inputs('transits',previous['sourceHashes'],capture_revision=values['runtimeBaseRevision'])
+            dependencies.verify_retained_inputs('transits',previous['sourceHashes'])
             dependencies.verify_rebound_document(previous,candidate,'sourceHashes')
         archive.shared.publish({**({CAPTURE:data} if args.capture else {}),OUTPUT:result})
     print('transit evidence and all recorded relations match')

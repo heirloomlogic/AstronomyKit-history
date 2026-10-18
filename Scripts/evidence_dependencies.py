@@ -5,7 +5,6 @@ import hashlib
 import json
 import re
 from pathlib import Path, PurePosixPath
-import subprocess
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -129,29 +128,12 @@ def source_hashes(owner, root=ROOT, overrides=None):
     }
 
 
-def _captured_digest(path, revision, root):
-    """Hash one dependency at the exact revision recorded by its retained capture."""
-    if re.fullmatch(r'[0-9a-f]{40}', revision or '') is None:
-        raise ValueError('retained capture revision is invalid')
-    available = subprocess.run(
-        ['git', 'cat-file', '-e', f'{revision}^{{commit}}'], cwd=root,
-        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
-    )
-    if available.returncode != 0:
-        raise ValueError('retained capture revision is unavailable')
-    try:
-        data = subprocess.check_output(['git', 'show', f'{revision}:{path}'], cwd=root, stderr=subprocess.DEVNULL)
-    except subprocess.CalledProcessError as error:
-        raise ValueError(f'retained capture dependency is unavailable: {path}') from error
-    return hashlib.sha256(data).hexdigest()
-
-
 def _validate_hashes(hashes, context):
     if not isinstance(hashes, dict) or any(not isinstance(path, str) or _path(path, context) != path or not isinstance(digest, str) or re.fullmatch(r'[0-9a-f]{64}', digest) is None for path, digest in hashes.items()):
         raise ValueError(f'{context} are malformed')
 
 
-def verify_retained_inputs(owner, previous_hashes, root=ROOT, capture_revision=None):
+def verify_retained_inputs(owner, previous_hashes, root=ROOT):
     """Require unchanged result inputs before replay tools rebind archived measurements."""
     _validate_hashes(previous_hashes, 'previous dependency bindings')
     current = source_hashes(owner, root=root)
@@ -159,8 +141,6 @@ def verify_retained_inputs(owner, previous_hashes, root=ROOT, capture_revision=N
     replay_tools = BINDING_FILES | {OWNER_FILES[owner]} | {path for path in all_paths if path.startswith('Scripts/test_') and path.endswith('.py')}
     changed = []
     for path in sorted(all_paths - replay_tools):
-        if path not in previous_hashes and capture_revision and _captured_digest(path, capture_revision, root) == current.get(path):
-            continue
         if previous_hashes.get(path) != current.get(path):
             changed.append(path)
     if changed:

@@ -6,7 +6,6 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
-from unittest import mock
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -102,19 +101,12 @@ class EvidenceDependencyTests(unittest.TestCase):
         replay_change[dependencies.OWNER_FILES[owner]] = '0' * 64
         self.assertEqual(dependencies.verify_retained_inputs(owner, replay_change), previous)
 
-    def test_retained_rebind_accepts_newly_declared_input_only_at_the_capture_revision(self):
+    def test_retained_rebind_rejects_new_input_even_if_unlinked_history_has_the_same_bytes(self):
         owner = 'global-solar'
         current = dependencies.source_hashes(owner)
         relevant = 'Sources/AstronomyKit/Engine/Gravity/Generated/DE441/PlutoDE441SunData.swift'
         previous = dict(current)
         del previous[relevant]
-        capture_revision = '1' * 40
-        with mock.patch.object(dependencies, '_captured_digest', return_value=current[relevant]) as captured:
-            self.assertEqual(dependencies.verify_retained_inputs(owner, previous, capture_revision=capture_revision), current)
-            captured.assert_called_once_with(relevant, capture_revision, ROOT)
-        with mock.patch.object(dependencies, '_captured_digest', return_value='0' * 64):
-            with self.assertRaisesRegex(ValueError, 'result dependencies differ'):
-                dependencies.verify_retained_inputs(owner, previous, capture_revision=capture_revision)
         with self.assertRaisesRegex(ValueError, 'result dependencies differ'):
             dependencies.verify_retained_inputs(owner, previous)
 
