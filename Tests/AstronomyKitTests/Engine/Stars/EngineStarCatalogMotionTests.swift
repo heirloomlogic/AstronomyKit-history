@@ -15,18 +15,22 @@ struct EngineStarCatalogMotionTests {
     typealias Motion = Engine.Star.CatalogMotion
     typealias Star = Engine.Star
 
-    private let sofaInput = Star(
-        rightAscension: 0.016_867_56 * 12 / .pi,
-        declination: -1.093_989_828 * 180 / .pi,
-        distance: 206_264.806_247_096_36 / 0.747_23 / Star.astronomicalUnitsPerLightYear,
-        catalogMotion: try! Motion(
-            epochJulianYear: 2_000 + (2_400_000.5 + 50_083 - 2_451_545) / 365.25,
-            rightAscensionCosDeclinationMilliarcsecondsPerJulianYear: -1.783_235_16e-5 * cos(-1.093_989_828) * 180 / .pi
-                * 3_600_000,
-            declinationMilliarcsecondsPerJulianYear: 2.336_024_047e-6 * 180 / .pi * 3_600_000,
-            radialVelocityKilometersPerSecond: -21.6
-        )
-    )
+    private var sofaInput: Star {
+        get throws {
+            Star(
+                rightAscension: 0.016_867_56 * 12 / .pi,
+                declination: -1.093_989_828 * 180 / .pi,
+                distance: 206_264.806_247_096_36 / 0.747_23 / Star.astronomicalUnitsPerLightYear,
+                catalogMotion: try Motion(
+                    epochJulianYear: 2_000 + (2_400_000.5 + 50_083 - 2_451_545) / 365.25,
+                    rightAscensionCosDeclinationMilliarcsecondsPerJulianYear: -1.783_235_16e-5
+                        * cos(-1.093_989_828) * 180 / .pi * 3_600_000,
+                    declinationMilliarcsecondsPerJulianYear: 2.336_024_047e-6 * 180 / .pi * 3_600_000,
+                    radialVelocityKilometersPerSecond: -21.6
+                )
+            )
+        }
+    }
 
     private struct Archive: Decodable {
         struct Catalog: Decodable {
@@ -56,11 +60,21 @@ struct EngineStarCatalogMotionTests {
             let targetTDBJulianYear: Double
             let rightAscensionRadians: Double
             let declinationRadians: Double
+            let rightAscensionRateRadiansPerJulianYear: Double
+            let declinationRateRadiansPerJulianYear: Double
             let parallaxArcseconds: Double
+            let radialVelocityKilometersPerSecond: Double
+        }
+
+        struct ObserverReference: Decodable {
+            let observerBarycentricICRSAstronomicalUnits: [Double]
+            let oneAstronomicalUnitLightTimeSeconds: Double
+            let directionICRS: [Double]
         }
 
         let catalog: Catalog
         let rows: [Reference]
+        let observerReference: ObserverReference
     }
 
     private var archive: Archive {
@@ -76,11 +90,12 @@ struct EngineStarCatalogMotionTests {
     func officialStarpmExample() throws {
         let targetJD = 2_400_000.5 + 53_736
         let time = Engine.Time(ut: targetJD - 2_451_545, tt: targetJD - 2_451_545, deltaTModel: .espenakMeeus)
-        let motion = try #require(sofaInput.catalogMotion)
+        let input = try sofaInput
+        let motion = try #require(input.catalogMotion)
         let position = try Engine.StarCatalogPropagation.position(
-            rightAscensionHours: sofaInput.rightAscension,
-            declinationDegrees: sofaInput.declination,
-            distanceLightYears: sofaInput.distance,
+            rightAscensionHours: input.rightAscension,
+            declinationDegrees: input.declination,
+            distanceLightYears: input.distance,
             motion: motion,
             at: time,
             targetTCBDaysFromJ2000: targetJD - 2_451_545
@@ -89,6 +104,43 @@ struct EngineStarCatalogMotionTests {
 
         #expect(abs(result.longitude * .pi / 180 - 0.016_689_190_694_142_561_49) < 2e-15)
         #expect(abs(result.latitude * .pi / 180 - -1.093_966_454_217_127_897) < 2e-15)
+    }
+
+    @Test("Catalog ICRS axes receive the SOFA J2000 frame bias exactly once")
+    func catalogFrameBias() throws {
+        let motion = try Motion(
+            epochJulianYear: 2_000, rightAscensionCosDeclinationMilliarcsecondsPerJulianYear: 0,
+            declinationMilliarcsecondsPerJulianYear: 0, radialVelocityKilometersPerSecond: 0)
+        let star = Star(rightAscension: 0, declination: 0, distance: 10, catalogMotion: motion)
+        let position = try star.barycentricCatalogPosition(at: Engine.Time(ut: 0, tt: 0, deltaTModel: .espenakMeeus))
+        let direction = SIMD3(position.x, position.y, position.z) / position.length
+
+        #expect(abs(direction.x - 0.999_999_999_999_994_1) < 3e-16)
+        #expect(abs(direction.y - 7.078_368_694_637_678e-8) < 2e-16)
+        #expect(abs(direction.z - -8.056_214_211_620_057e-8) < 2e-16)
+    }
+
+    @Test("Observer displacement applies SOFA's proper-motion Roemer term")
+    func observerRoemerTerm() throws {
+        let reference = try archive.observerReference
+        try #require(reference.observerBarycentricICRSAstronomicalUnits.count == 3)
+        try #require(reference.directionICRS.count == 3)
+        let observer = reference.observerBarycentricICRSAstronomicalUnits
+        let expected = reference.directionICRS
+        let motion = try Motion(
+            epochJulianYear: 2_000, rightAscensionCosDeclinationMilliarcsecondsPerJulianYear: 1_000,
+            declinationMilliarcsecondsPerJulianYear: 0, radialVelocityKilometersPerSecond: 0)
+        let time = Engine.Time(ut: 0, tt: 0, deltaTModel: .espenakMeeus)
+        let position = try Engine.StarCatalogPropagation.position(
+            rightAscensionHours: 0, declinationDegrees: 0, distanceLightYears: 10, motion: motion, at: time,
+            targetTCBDaysFromJ2000: 0, observerBarycentricICRS: SIMD3(observer[0], observer[1], observer[2]))
+        let relative = SIMD3(position.x - observer[0], position.y - observer[1], position.z - observer[2])
+        let direction = relative / (relative * relative).sum().squareRoot()
+
+        #expect(abs(reference.oneAstronomicalUnitLightTimeSeconds - 499.004_783_836) < 1e-9)
+        #expect(abs(direction.x - expected[0]) < 2e-15)
+        #expect(abs(direction.y - expected[1]) < 2e-15)
+        #expect(abs(direction.z - expected[2]) < 2e-15)
     }
 
     @Test("Every archived Gaia row matches independent SOFA propagation")
@@ -116,7 +168,15 @@ struct EngineStarCatalogMotionTests {
             var tt = targetTDB
             for _ in 0..<3 { tt = targetTDB - Engine.TDB.offsetSeconds(tt: tt) / Engine.secondsPerDay }
             let time = Engine.Time(ut: tt, tt: tt, deltaTModel: .espenakMeeus)
-            let result = try Engine.Spherical(star.barycentricCatalogPosition(at: time))
+            let result = try Engine.Spherical(
+                Engine.StarCatalogPropagation.position(
+                    rightAscensionHours: star.rightAscension,
+                    declinationDegrees: star.declination,
+                    distanceLightYears: star.distance,
+                    motion: motion,
+                    at: time
+                )
+            )
             #expect(abs(result.longitude * .pi / 180 - reference.rightAscensionRadians) < 3e-15)
             #expect(abs(result.latitude * .pi / 180 - reference.declinationRadians) < 3e-15)
             let actualParallax = 206_264.806_247_096_36 / result.distance
@@ -174,10 +234,21 @@ struct EngineStarCatalogMotionTests {
         let time = Engine.Time(ut: 18_262.499, tt: 18_262.5, deltaTModel: .espenakMeeus)
         let catalog = try star.barycentricCatalogPosition(at: time)
         let earth = try Engine.ApparentPlace.earthBarycentricKinematics(tt: time.tt).motion.value
+        let earthICRS = Engine.FrameBias.icrsToEqj.inverse.apply(to: earth)
+        let observedICRS = try Engine.StarCatalogPropagation.position(
+            rightAscensionHours: star.rightAscension,
+            declinationDegrees: star.declination,
+            distanceLightYears: star.distance,
+            motion: motion,
+            at: time,
+            observerBarycentricICRS: earthICRS
+        )
+        let observed = Engine.FrameBias.icrsToEqj.apply(to: observedICRS)
         let uncorrected = try star.geocentricPosition(at: time, aberration: .none)
-        #expect(uncorrected.x == catalog.x - earth.x)
-        #expect(uncorrected.y == catalog.y - earth.y)
-        #expect(uncorrected.z == catalog.z - earth.z)
+        #expect(uncorrected.x == observed.x - earth.x)
+        #expect(uncorrected.y == observed.y - earth.y)
+        #expect(uncorrected.z == observed.z - earth.z)
+        #expect(uncorrected.y.bitPattern != (catalog.y - earth.y).bitPattern)
 
         let corrected = try star.geocentricPosition(at: time, aberration: .corrected)
         #expect(corrected.x.bitPattern != uncorrected.x.bitPattern)
@@ -230,7 +301,7 @@ struct EngineStarCatalogMotionTests {
         let legacy = try fixed.heliocentricPosition(at: time)
         let barycentric = try zero.barycentricCatalogPosition(at: time)
         let heliocentric = try zero.heliocentricPosition(at: time)
-        let catalog = try Engine.Spherical(barycentric)
+        let catalog = try Engine.Spherical(Engine.FrameBias.icrsToEqj.inverse.apply(to: barycentric))
         #expect(abs(catalog.longitude / 15 - fixed.rightAscension) < 1e-14)
         #expect(abs(catalog.latitude - fixed.declination) < 1e-14)
         #expect(heliocentric.x.bitPattern != legacy.x.bitPattern)
@@ -284,8 +355,8 @@ struct EngineStarCatalogMotionTests {
     }
 
     @Test("Nonzero right-ascension motion at a pole is rejected")
-    func poleDegeneracy() {
-        let motion = try! Motion(
+    func poleDegeneracy() throws {
+        let motion = try Motion(
             epochJulianYear: 2_016,
             rightAscensionCosDeclinationMilliarcsecondsPerJulianYear: 1,
             declinationMilliarcsecondsPerJulianYear: 0,

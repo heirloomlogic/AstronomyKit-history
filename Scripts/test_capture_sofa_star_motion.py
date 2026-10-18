@@ -46,6 +46,29 @@ class CaptureSofaStarMotionTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "nonfinite"):
             self.capture.validate_archive(changed)
 
+    def test_every_scientific_result_field_is_required(self):
+        if self.archive is None:
+            self.skipTest("capture artifact has not been generated")
+        for field in self.capture.RESULT_FIELDS - {"sourceID", "targetTDBJulianYear"}:
+            changed = json.loads(json.dumps(self.archive))
+            for row in changed["rows"]:
+                del row[field]
+            with self.subTest(field=field):
+                with self.assertRaisesRegex(ValueError, "field inventory"):
+                    self.capture.validate_archive(changed)
+
+    def test_observer_reference_requires_canonical_finite_vectors(self):
+        if self.archive is None:
+            self.skipTest("capture artifact has not been generated")
+        changed = json.loads(json.dumps(self.archive))
+        del changed["observerReference"]["directionICRS"]
+        with self.assertRaisesRegex(ValueError, "observer reference field inventory"):
+            self.capture.validate_archive(changed)
+        changed = json.loads(json.dumps(self.archive))
+        changed["observerReference"]["directionICRS"][1] = math.inf
+        with self.assertRaisesRegex(ValueError, "observer reference vector"):
+            self.capture.validate_archive(changed)
+
     def test_missing_catalog_value_is_rejected(self):
         source = self.capture.CATALOG.read_text().replace(",546.975939730948,", ",,").encode()
         with tempfile.TemporaryDirectory() as temporary:

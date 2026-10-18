@@ -16,7 +16,7 @@ static double parse(const char *text) {
 }
 
 int main(int argc, char **argv) {
-    if (argc != 10) return 64;
+    if (argc != 10 && argc != 14) return 64;
     const double ra = parse(argv[1]) * DD2R;
     const double dec = parse(argv[2]) * DD2R;
     const double parallax = parse(argv[3]) / 1000.0;
@@ -33,6 +33,15 @@ int main(int argc, char **argv) {
         targetTCB2 = (target - 2000.0) * DJY;
     } else {
         return 67;
+    }
+    if (argc == 14) {
+        if (strcmp(argv[10], "observer")) return 68;
+        double observer[3] = {parse(argv[11]), parse(argv[12]), parse(argv[13])};
+        double direction[3];
+        const double interval = ((targetTCB1 - DJ00) + targetTCB2 - (epoch - 2000.0) * DJY) / DJY;
+        iauPmpx(ra, dec, pmr, pmd, parallax, rv, interval, observer, direction);
+        printf("%.17g %.17g %.17g\n", direction[0], direction[1], direction[2]);
+        return 0;
     }
     double resultRA, resultDec, resultPMRA, resultPMDec, resultParallax, resultRV;
     const int status = iauPmsafe(

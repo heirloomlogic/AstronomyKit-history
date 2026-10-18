@@ -25,8 +25,13 @@ SOFA_ARCHIVE = ROOT / "Scripts/reference-data/sources/sofa/sofa_c-20231011.tar.g
 SOFA_SHA256 = "d9c10833cae8b4d9361a0ffda31ec361fd1262362025bec4d4e51a880150ace2"
 TARGET_YEARS = [1991.25, 2016.0, 2050.0, 2100.0]
 EXPECTED_SOURCE_IDS = ["4472832130942575872", "5853498713190525696"]
+RESULT_FIELDS = {
+    "sourceID", "targetTDBJulianYear", "rightAscensionRadians", "declinationRadians",
+    "rightAscensionRateRadiansPerJulianYear", "declinationRateRadiansPerJulianYear",
+    "parallaxArcseconds", "radialVelocityKilometersPerSecond",
+}
 SOFA_SOURCES = [
-    "anp.c", "cp.c", "pdp.c", "pm.c", "pmp.c", "pmsafe.c", "pn.c", "ppp.c", "ppsp.c", "pv2s.c", "pvstar.c", "pvu.c", "pxp.c", "s2c.c", "s2pv.c", "sepp.c", "seps.c", "starpm.c", "starpv.c", "sxp.c", "tdbtcb.c", "zp.c",
+    "anp.c", "cp.c", "pdp.c", "pm.c", "pmp.c", "pmpx.c", "pmsafe.c", "pn.c", "ppp.c", "ppsp.c", "pv2s.c", "pvstar.c", "pvu.c", "pxp.c", "s2c.c", "s2pv.c", "sepp.c", "seps.c", "starpm.c", "starpv.c", "sxp.c", "tdbtcb.c", "zp.c",
 ]
 OWNERS = [
     ".github/workflows/test.yml",
@@ -128,6 +133,29 @@ def evaluate(executable: Path, row: dict[str, str], target: float, clock: str = 
     return dict(zip(["rightAscensionRadians", "declinationRadians", "rightAscensionRateRadiansPerJulianYear", "declinationRateRadiansPerJulianYear", "parallaxArcseconds", "radialVelocityKilometersPerSecond"], values))
 
 
+def evaluate_observer(executable: Path) -> dict:
+    distance_au = 10 * 63_241.077_088_075_46
+    parallax_milliarcseconds = 206_264.806_247_096_36 / distance_au * 1_000
+    arguments = ["0", "0", format(parallax_milliarcseconds, ".17g"), "1000", "0", "0", "2000", "2000", "naive", "observer", "1", "0", "0"]
+    completed = subprocess.run([str(executable), *arguments], check=True, capture_output=True, text=True)
+    values = [float(value) for value in completed.stdout.split()]
+    if len(values) != 3 or any(not math.isfinite(value) for value in values):
+        raise ValueError("SOFA observer reference is invalid")
+    return {
+        "rightAscensionHours": 0,
+        "declinationDegrees": 0,
+        "distanceLightYears": 10,
+        "epochTCBJulianYear": 2_000,
+        "targetTCBJulianYear": 2_000,
+        "rightAscensionCosDeclinationMilliarcsecondsPerJulianYear": 1_000,
+        "declinationMilliarcsecondsPerJulianYear": 0,
+        "radialVelocityKilometersPerSecond": 0,
+        "observerBarycentricICRSAstronomicalUnits": [1, 0, 0],
+        "oneAstronomicalUnitLightTimeSeconds": 86_400 / 173.144_632_674_240_33,
+        "directionICRS": values,
+    }
+
+
 def angular_separation(left: dict[str, float], right: dict[str, float]) -> float:
     ra1, dec1 = left["rightAscensionRadians"], left["declinationRadians"]
     ra2, dec2 = right["rightAscensionRadians"], right["declinationRadians"]
@@ -149,6 +177,7 @@ def capture_archive() -> dict:
             full = evaluate(executable, catalog, 2050.0)
             naive = evaluate(executable, catalog, 2050.0, "naive")
             comparisons.append({"sourceID": catalog["source_id"], "targetTDBJulianYear": 2050.0, "fullMinusNaiveMicroarcseconds": angular_separation(full, naive) * 180 / math.pi * 3_600_000_000})
+        observer_reference = evaluate_observer(executable)
     archive = {
         "schemaVersion": 1,
         "catalog": {
@@ -171,6 +200,7 @@ def capture_archive() -> dict:
             "targetTDBJulianYears": TARGET_YEARS,
         },
         "rows": rows,
+        "observerReference": observer_reference,
         "clockComparisons": comparisons,
         "sourceSHA256": source_hashes(),
     }
@@ -195,9 +225,25 @@ def validate_archive(archive: dict) -> None:
     identities = {(str(row.get("sourceID")), row.get("targetTDBJulianYear")) for row in rows}
     if len(rows) != len(expected) or identities != expected:
         raise ValueError("SOFA result inventory mismatch")
-    numeric = [name for name in rows[0] if name not in {"sourceID"}]
+    if any(set(row) != RESULT_FIELDS for row in rows):
+        raise ValueError("SOFA result field inventory mismatch")
+    numeric = RESULT_FIELDS - {"sourceID"}
     if any(not isinstance(row.get(name), (int, float)) or isinstance(row.get(name), bool) or not math.isfinite(row[name]) for row in rows for name in numeric):
         raise ValueError("SOFA result contains a missing or nonfinite value")
+    observer = archive.get("observerReference", {})
+    observer_fields = {
+        "rightAscensionHours", "declinationDegrees", "distanceLightYears", "epochTCBJulianYear",
+        "targetTCBJulianYear", "rightAscensionCosDeclinationMilliarcsecondsPerJulianYear",
+        "declinationMilliarcsecondsPerJulianYear", "radialVelocityKilometersPerSecond",
+        "observerBarycentricICRSAstronomicalUnits", "oneAstronomicalUnitLightTimeSeconds", "directionICRS",
+    }
+    if set(observer) != observer_fields:
+        raise ValueError("SOFA observer reference field inventory mismatch")
+    if any(not isinstance(observer.get(name), (int, float)) or isinstance(observer.get(name), bool) or not math.isfinite(observer[name]) for name in observer_fields - {"observerBarycentricICRSAstronomicalUnits", "directionICRS"}):
+        raise ValueError("SOFA observer reference contains a missing or nonfinite value")
+    for name in ["observerBarycentricICRSAstronomicalUnits", "directionICRS"]:
+        if not isinstance(observer.get(name), list) or len(observer[name]) != 3 or any(not isinstance(value, (int, float)) or isinstance(value, bool) or not math.isfinite(value) for value in observer[name]):
+            raise ValueError("SOFA observer reference vector is invalid")
     comparisons = archive.get("clockComparisons", [])
     if [str(row.get("sourceID")) for row in comparisons] != EXPECTED_SOURCE_IDS or any(not math.isfinite(row.get("fullMinusNaiveMicroarcseconds", math.nan)) or row["fullMinusNaiveMicroarcseconds"] <= 0 for row in comparisons):
         raise ValueError("clock comparison inventory mismatch")

@@ -61,18 +61,19 @@ extension Engine {
             return try Engine.Positions.checked(Engine.Vector(sphere, time: time))
         }
 
-        /// The propagated catalog position in its barycentric ICRS-aligned frame.
+        /// The propagated barycentric catalog position, rotated from ICRS to the engine's EQJ axes.
         func barycentricCatalogPosition(at time: Engine.Time) throws -> Engine.Vector<Engine.EQJ> {
             try validate()
             try Engine.checkAcceptedTime(time)
             guard let catalogMotion, hasCatalogMotion else { return try fixedPosition(at: time) }
-            return try Engine.StarCatalogPropagation.position(
+            let icrs = try Engine.StarCatalogPropagation.position(
                 rightAscensionHours: rightAscension,
                 declinationDegrees: declination,
                 distanceLightYears: distance,
                 motion: catalogMotion,
                 at: time
             )
+            return Engine.FrameBias.icrsToEqj.apply(to: icrs)
         }
 
         /// The star's position relative to Earth on J2000 axes.
@@ -128,10 +129,11 @@ extension Engine {
         }
 
         /// Catalog light time is implicit in a fixed-star definition (Kaplan 1998, section 2).
-        /// The catalog vector remains heliocentric; angular corrections use barycentric observer velocity.
         private func apparentPosition(
             at time: Engine.Time, site: Observer?, aberration: Aberration
         ) throws -> Engine.Vector<Engine.EQJ> {
+            try validate()
+            try Engine.checkAcceptedTime(time)
             let earth = try Engine.ApparentPlace.earthBarycentricKinematics(tt: time.tt)
             let sun = try Engine.ApparentPlace.sunBarycentricKinematics(tt: time.tt)
             let offset =
@@ -141,8 +143,17 @@ extension Engine {
                 motion: earth.motion + offset.motion, acceleration: earth.acceleration + offset.acceleration)
             let solarOffset = observer.motion - sun.motion
             let displacement: Engine.ApparentPlace.VectorRate
-            if hasCatalogMotion {
-                let star = try barycentricCatalogPosition(at: time)
+            if let catalogMotion {
+                let observerICRS = Engine.FrameBias.icrsToEqj.inverse.apply(to: observer.motion.value)
+                let icrs = try Engine.StarCatalogPropagation.position(
+                    rightAscensionHours: rightAscension,
+                    declinationDegrees: declination,
+                    distanceLightYears: distance,
+                    motion: catalogMotion,
+                    at: time,
+                    observerBarycentricICRS: observerICRS
+                )
+                let star = Engine.FrameBias.icrsToEqj.apply(to: icrs)
                 displacement = Engine.ApparentPlace.VectorRate(SIMD3(star.x, star.y, star.z)) - observer.motion
             } else {
                 let star = try fixedPosition(at: time)

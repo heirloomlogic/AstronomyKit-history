@@ -237,7 +237,7 @@ let future = try barnardsStar.equatorial(at: AstroTime(year: 2050, month: 1, day
 
 The right-ascension rate is the catalog quantity `mu_alpha*cos(declination)`, in milliarcseconds per Julian year; do not divide it by cosine before constructing the value. Declination motion uses the same unit. Radial velocity is barycentric kilometers per second, positive when receding. Distance remains the geometric-parallax input, so do not apply catalog parallax a second time.
 
-The epoch is a TCB Julian year. AstronomyKit converts each observation's TDB coordinate to TCB with the IAU 2006 linear relation before applying the rates. A nonzero right-ascension motion at either exact pole is undefined and throws ``AstronomyError/invalidParameter`` during calculation. The calculation also rejects a definition for which SOFA `pmsafe` would replace the supplied distance, a speed above half the speed of light, or a failed relativistic iteration.
+The epoch is a TCB Julian year. AstronomyKit converts each observation's TDB coordinate to TCB with the IAU 2006 linear relation before applying the rates. Apparent observer routes adjust that interval for the observer-dependent reception time, rotate the propagated barycentric ICRS direction to EQJ, and then apply the existing geometric-parallax and apparent-place corrections. A nonzero right-ascension motion at either exact pole is undefined and throws ``AstronomyError/invalidParameter`` during calculation. The calculation also rejects a definition for which SOFA `pmsafe` would replace the supplied distance, a speed above half the speed of light, or a failed relativistic iteration.
 
 
 ## Chiron

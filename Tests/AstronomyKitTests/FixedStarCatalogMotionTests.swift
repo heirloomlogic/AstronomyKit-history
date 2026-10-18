@@ -11,15 +11,20 @@ import Testing
 
 @Suite("Fixed-star catalog motion")
 struct FixedStarCatalogMotionTests {
-    private let motion = try! StarCatalogMotion(
-        epochJulianYear: 2_016,
-        rightAscensionCosDeclinationMilliarcsecondsPerJulianYear: -801.550_978_368_470_9,
-        declinationMilliarcsecondsPerJulianYear: 10_362.394_206_546_573,
-        radialVelocityKilometersPerSecond: -110.468_22
-    )
+    private var motion: StarCatalogMotion {
+        get throws {
+            try StarCatalogMotion(
+                epochJulianYear: 2_016,
+                rightAscensionCosDeclinationMilliarcsecondsPerJulianYear: -801.550_978_368_470_9,
+                declinationMilliarcsecondsPerJulianYear: 10_362.394_206_546_573,
+                radialVelocityKilometersPerSecond: -110.468_22
+            )
+        }
+    }
 
     @Test("Catalog motion is an explicit opt-in value")
-    func valueSemantics() {
+    func valueSemantics() throws {
+        let motion = try motion
         let star = FixedStar(
             name: "Barnard's Star", rightAscension: 269.448_502_525_438_36 / 15, declination: 4.739_420_051_112_412,
             distance: 5.963, catalogMotion: motion)
@@ -29,6 +34,7 @@ struct FixedStarCatalogMotionTests {
 
     @Test("Motion participates in every public position path")
     func publicPaths() throws {
+        let motion = try motion
         let star = FixedStar(
             name: "Barnard's Star", rightAscension: 269.448_502_525_438_36 / 15, declination: 4.739_420_051_112_412,
             distance: 5.963, catalogMotion: motion)
@@ -43,6 +49,14 @@ struct FixedStarCatalogMotionTests {
         #expect(ecliptic.longitude.isFinite)
         #expect(horizon.altitude.isFinite)
         #expect(!constellation.name.isEmpty)
+    }
+
+    @Test("Legacy apparent paths reject invalid catalog coordinates")
+    func legacyApparentValidation() {
+        let star = FixedStar(name: "Invalid", rightAscension: 24, declination: 0, distance: 10)
+        let time = AstroTime(year: 2_025, month: 1, day: 1)
+        #expect(throws: AstronomyError.invalidParameter) { _ = try star.ecliptic(at: time) }
+        #expect(throws: AstronomyError.invalidParameter) { _ = try star.eclipticLongitude(at: time) }
     }
 
     @Test("Invalid public motion values are rejected")

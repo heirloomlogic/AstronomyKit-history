@@ -8,7 +8,7 @@
 import Foundation
 
 extension Engine {
-    /// This implementation uses routines and computations derived from the IAU SOFA `iauPmsafe`, `iauStarpm`, and `iauStarpv` algorithms under the license reproduced in `THIRD_PARTY_NOTICES`. It is a Swift adaptation specialized to return the propagated position vector, rejects every SOFA warning instead of returning a status, and does not itself constitute software provided by or endorsed by SOFA.
+    /// This implementation uses routines and computations derived from the IAU SOFA `iauPmsafe`, `iauStarpm`, `iauStarpv`, and `iauPmpx` algorithms under the license reproduced in `THIRD_PARTY_NOTICES`. It is a Swift adaptation specialized to return the propagated position vector, rejects every SOFA warning instead of returning a status, and does not itself constitute software provided by or endorsed by SOFA.
     enum StarCatalogPropagation {
         private struct State {
             var position: SIMD3<Double>
@@ -26,8 +26,9 @@ extension Engine {
             distanceLightYears: Double,
             motion: StarCatalogMotion,
             at time: Engine.Time,
-            targetTCBDaysFromJ2000 override: Double? = nil
-        ) throws -> Engine.Vector<Engine.EQJ> {
+            targetTCBDaysFromJ2000 override: Double? = nil,
+            observerBarycentricICRS: SIMD3<Double> = .zero
+        ) throws -> Engine.Vector<Engine.ICRS> {
             let ra = rightAscensionHours * 15 * Engine.radiansPerDegree
             let dec = declinationDegrees * Engine.radiansPerDegree
             let cosine = cos(dec)
@@ -39,6 +40,9 @@ extension Engine {
             guard alphaRate.isFinite, deltaRate.isFinite, parallax.isFinite else {
                 throw AstronomyError.invalidParameter
             }
+            guard observerBarycentricICRS.x.isFinite, observerBarycentricICRS.y.isFinite,
+                observerBarycentricICRS.z.isFinite
+            else { throw AstronomyError.invalidParameter }
 
             // `iauPmsafe` raises too-small parallaxes to these limits. Reject that warning so the caller's distance is never replaced silently.
             let oneYearMotion = angularSeparation(ra, dec, ra + alphaRate, dec + deltaRate)
@@ -57,7 +61,11 @@ extension Engine {
             let initialLightTime = norm(initial.position) / Engine.speedOfLightAUPerDay
             let epochTCB = (motion.epochJulianYear - 2_000) * daysPerJulianYear
             let targetTCB = override ?? tcbDaysFromJ2000(at: time)
-            let interval = targetTCB - epochTCB
+            // SOFA `iauPmpx`: the catalog interval is measured at the SSB. Adjust it by the observer's reception light time along the catalog-epoch direction before applying parallax.
+            let receptionOffset =
+                dot(unit(longitude: ra, latitude: dec), observerBarycentricICRS)
+                / Engine.speedOfLightAUPerDay
+            let interval = targetTCB + receptionOffset - epochTCB
             let geometric = advance(initial, days: interval + initialLightTime)
             let radiusSquared = dot(geometric.position, geometric.position)
             let radialDotVelocity = dot(geometric.position, geometric.velocity)

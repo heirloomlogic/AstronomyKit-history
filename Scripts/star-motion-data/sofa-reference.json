@@ -44,10 +44,31 @@
       "targetTDBJulianYear": 2050.0
     }
   ],
+  "observerReference": {
+    "declinationDegrees": 0,
+    "declinationMilliarcsecondsPerJulianYear": 0,
+    "directionICRS": [
+      1.0,
+      7.666132047003947e-11,
+      0.0
+    ],
+    "distanceLightYears": 10,
+    "epochTCBJulianYear": 2000,
+    "observerBarycentricICRSAstronomicalUnits": [
+      1,
+      0,
+      0
+    ],
+    "oneAstronomicalUnitLightTimeSeconds": 499.0047838361564,
+    "radialVelocityKilometersPerSecond": 0,
+    "rightAscensionCosDeclinationMilliarcsecondsPerJulianYear": 1000,
+    "rightAscensionHours": 0,
+    "targetTCBJulianYear": 2000
+  },
   "oracle": {
     "archiveSHA256": "d9c10833cae8b4d9361a0ffda31ec361fd1262362025bec4d4e51a880150ace2",
     "name": "IAU SOFA pmsafe, starpm, and tdbtcb",
-    "recipeSHA256": "d86e7d6b6c28f31ddb54a050fe3c426a7fdb178f324510068c3b60383b64a389",
+    "recipeSHA256": "5b12121aca28cf195ed32bf3ba60cc9dbcb0dc6b1046da4533e09a6313ac35a4",
     "release": "2023-10-11",
     "targetTDBJulianYears": [
       1991.25,
@@ -141,21 +162,21 @@
   "schemaVersion": 1,
   "sourceSHA256": {
     ".github/workflows/test.yml": "8a45f6138f92d27100064c37bc82429b9841926ff6775ba75b0d4214aeb4473b",
-    "NATIVE_ENGINE.md": "10fbc4ce9b336daf56633685d1b96f09af41b65071029ccaad7040b0080ff62a",
-    "Scripts/capture-sofa-star-motion.py": "fc73725da51a743dd89051d9e2f474acaa465b70bb362cf9fb4013c113bae9fd",
-    "Scripts/sofa-star-motion-reference.c": "d86e7d6b6c28f31ddb54a050fe3c426a7fdb178f324510068c3b60383b64a389",
-    "Scripts/star-motion-data/README.md": "f27590a584cadef9a08147cb79af555f75a632b38270bd676937a24d8b34bd0a",
+    "NATIVE_ENGINE.md": "339728a15b4683f5abeea4de05a3cea4a44da2620324bb0acc71a963e96967f2",
+    "Scripts/capture-sofa-star-motion.py": "a25d09afa27d6f50145c9d07cfc9e74660ab645e5cff2a2a4117ab4477a0585c",
+    "Scripts/sofa-star-motion-reference.c": "5b12121aca28cf195ed32bf3ba60cc9dbcb0dc6b1046da4533e09a6313ac35a4",
+    "Scripts/star-motion-data/README.md": "61ce1dcf8e301de479a3af80ba78a5958e3f238f729e046d8276f242ed2d3cbf",
     "Scripts/star-motion-data/gaia-dr3.csv": "10503dbc81c59ca8870dc9b6c29d77c6b7f3d828e2b296e1d4f7aa6ecaa5676e",
     "Scripts/star-motion-data/gaia-dr3.query.json": "5b17a771364de74d1674ec93d65f262de3605856f1b8927cb7f334fb7e253a40",
-    "Scripts/test_capture_sofa_star_motion.py": "b4dd421831148caf0d8151e13bddbbcf9bea53f6da7e49b800d92c2100cc9e94",
-    "Sources/AstronomyKit/Documentation.docc/AdvancedFeatures.md": "932c1fb5852cd0c5e9c9ad6de736b66a1560ad4ae2a7b3fb2e81e15bd32bc630",
+    "Scripts/test_capture_sofa_star_motion.py": "6ed73dbcb23d2e7fee1f0e7a95eac676bc27eff7033c4a1242c6d16c1ba1f2b2",
+    "Sources/AstronomyKit/Documentation.docc/AdvancedFeatures.md": "274366423ec0e2cfbdbd2fb604201092e9eb9c13f066d53c52dfc9515b1eb014",
     "Sources/AstronomyKit/Documentation.docc/CelestialPositions.md": "daf4b7e892663003209580a8d07be441d0fbc741eb6e04a55eae1e5d71cc8c5a",
-    "Sources/AstronomyKit/Engine/Stars/EngineStar.swift": "e662b251f9a052a9bb7764cde3c084ea7932afb3151329046bbf2ae12c15386f",
-    "Sources/AstronomyKit/Engine/Stars/EngineStarCatalogPropagation.swift": "3d5e42a2ea7756293bd577c458620967b5b0517033d8cd9b82002f70377ceb24",
+    "Sources/AstronomyKit/Engine/Stars/EngineStar.swift": "75e2ad31b3ce7c9461b16d204f39a50bbd26121c85791fd482543727244ebafb",
+    "Sources/AstronomyKit/Engine/Stars/EngineStarCatalogPropagation.swift": "314a7c8aa4b08a93a8d6977232fde2c6a446e805fb239588e537a68050dda561",
     "Sources/AstronomyKit/FixedStar.swift": "9895956f26b49655cc8bf87f70c336a3b4f612625b87cb1d34c04c58184cc366",
     "Sources/AstronomyKit/StarCatalogMotion.swift": "589ad988057b1ad633721d3779962dd642923771eb5a9ccf65afed9a10b15bf7",
-    "THIRD_PARTY_NOTICES": "1a0ffb18d65af2f89c4771d5622c690d64ac0c059b6fb45dd1d09f0d2d13f752",
-    "Tests/AstronomyKitTests/Engine/Stars/EngineStarCatalogMotionTests.swift": "068f13cb6a12a9cbea6453ad5b2a6b4683499acecf82afe45f3cb1c1531b65a4",
-    "Tests/AstronomyKitTests/FixedStarCatalogMotionTests.swift": "4c01cadaf6eba386f42723030a63c5cc8da42a4156229961528b38f9e33cc249"
+    "THIRD_PARTY_NOTICES": "76f7a3b62abf93dcbd5d74d0b3cfc77515905d628e4440ef68ad649ca995e813",
+    "Tests/AstronomyKitTests/Engine/Stars/EngineStarCatalogMotionTests.swift": "84e7860e53eb5ec4fd8182535d3f96e2fce94bbcf89aa97e53e5e7b5b21f3255",
+    "Tests/AstronomyKitTests/FixedStarCatalogMotionTests.swift": "35aa5c87719670bc7c8a4712e3d60a1d8da0cc49e3082936c8bc9c7b64bf2caa"
   }
 }
