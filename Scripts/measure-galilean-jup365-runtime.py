@@ -24,6 +24,8 @@ BOUND_PATHS = [
     Path("Scripts/generate-galilean-jup365-swift.py"),
     Path("Scripts/jupiter-moon-data/jup365-runtime-probe.swift"),
     Path("Scripts/jupiter-moon-data/jup365/representation.json"),
+    Path("Scripts/measure-galilean-jup365-runtime.py"),
+    Path("Scripts/test_measure_galilean_jup365_runtime.py"),
     Path("Sources/AstronomyKit/Engine/Bodies/EngineJupiterMoons.swift"),
     Path("Sources/AstronomyKit/Engine/Bodies/EngineJupiterMoonsJup365.swift"),
 ]
@@ -72,7 +74,7 @@ def compile_probe(build_root, destination):
     library = exactly_one(build_root, "libAstronomyKit.a")
     module = library.parent / "AstronomyKit.swiftmodule"
     object_file = library.parent / "AstronomyKit.o"
-    if not module.is_file() or not object_file.is_file():
+    if not module.is_dir() or not object_file.is_file():
         raise ValueError("SwiftPM product directory is incomplete")
     subprocess.run(
         ["swiftc", "-O", str(PROBE), "-I", str(module.parent), "-L", str(library.parent), "-lAstronomyKit", "-o", str(destination)],
