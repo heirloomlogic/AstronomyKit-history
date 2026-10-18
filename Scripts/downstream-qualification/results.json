@@ -29,6 +29,47 @@
       "declaredAstrologyKit": "branch main"
     }
   ],
+  "resolvedGraphs": {
+    "astrology": {
+      "astronomykit": {
+        "location": "https://github.com/heirloomlogic/AstronomyKit",
+        "state": {
+          "revision": "68d80a16b150a2c22d972cdf7db0bbe75e0ff3d3",
+          "version": "3.2.0+upstream-2.1.19"
+        }
+      }
+    },
+    "electional": {
+      "astronomykit": {
+        "location": "https://github.com/heirloomlogic/AstronomyKit",
+        "state": {
+          "revision": "68d80a16b150a2c22d972cdf7db0bbe75e0ff3d3",
+          "version": "3.2.0+upstream-2.1.19"
+        }
+      },
+      "astrologykit": {
+        "location": "https://github.com/heirloomlogic/AstrologyKit",
+        "state": {
+          "branch": "main",
+          "revision": "347eddf5bc69837fff9f986a074d577032d7aae3"
+        }
+      },
+      "swift-asn1": {
+        "location": "https://github.com/apple/swift-asn1.git",
+        "state": {
+          "revision": "3b6410f7dee09eb33cdd26260c5fd47fda19b0e2",
+          "version": "1.7.3"
+        }
+      },
+      "swift-crypto": {
+        "location": "https://github.com/apple/swift-crypto",
+        "state": {
+          "revision": "1c80d3aff53fedc445b60692980cb4f19a618657",
+          "version": "5.0.1"
+        }
+      }
+    }
+  },
   "hostedCandidateChecks": {
     "run": "https://github.com/heirloomlogic/AstronomyKit/actions/runs/39125287365",
     "event": "schedule",
