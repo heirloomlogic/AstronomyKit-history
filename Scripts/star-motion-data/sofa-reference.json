@@ -140,8 +140,9 @@
   ],
   "schemaVersion": 1,
   "sourceSHA256": {
+    ".github/workflows/test.yml": "8a45f6138f92d27100064c37bc82429b9841926ff6775ba75b0d4214aeb4473b",
     "NATIVE_ENGINE.md": "10fbc4ce9b336daf56633685d1b96f09af41b65071029ccaad7040b0080ff62a",
-    "Scripts/capture-sofa-star-motion.py": "19bd0b1fe73a9ce2a8899e4b3141f36e385273c0741c6a37bbb45c63fd6b2c13",
+    "Scripts/capture-sofa-star-motion.py": "fc73725da51a743dd89051d9e2f474acaa465b70bb362cf9fb4013c113bae9fd",
     "Scripts/sofa-star-motion-reference.c": "d86e7d6b6c28f31ddb54a050fe3c426a7fdb178f324510068c3b60383b64a389",
     "Scripts/star-motion-data/README.md": "f27590a584cadef9a08147cb79af555f75a632b38270bd676937a24d8b34bd0a",
     "Scripts/star-motion-data/gaia-dr3.csv": "10503dbc81c59ca8870dc9b6c29d77c6b7f3d828e2b296e1d4f7aa6ecaa5676e",

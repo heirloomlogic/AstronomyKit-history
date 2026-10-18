@@ -29,6 +29,7 @@ SOFA_SOURCES = [
     "anp.c", "cp.c", "pdp.c", "pm.c", "pmp.c", "pmsafe.c", "pn.c", "ppp.c", "ppsp.c", "pv2s.c", "pvstar.c", "pvu.c", "pxp.c", "s2c.c", "s2pv.c", "sepp.c", "seps.c", "starpm.c", "starpv.c", "sxp.c", "tdbtcb.c", "zp.c",
 ]
 OWNERS = [
+    ".github/workflows/test.yml",
     "Sources/AstronomyKit/StarCatalogMotion.swift",
     "Sources/AstronomyKit/FixedStar.swift",
     "Sources/AstronomyKit/Engine/Stars/EngineStar.swift",
