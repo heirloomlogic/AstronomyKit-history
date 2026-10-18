@@ -210,7 +210,10 @@ def validate_archive(archive: dict) -> None:
     for expected, actual in zip(OFFICIAL_REGRESSIONS, regressions):
         if actual.get("arguments") != expected["arguments"] or actual.get("expectedRadians") != expected["expectedRadians"]:
             raise ValueError("official regression identity mismatch")
-        if abs(actual.get("actualRadians", math.inf) - expected["expectedRadians"]) > 1e-12:
+        value = actual.get("actualRadians")
+        if not isinstance(value, (int, float)) or isinstance(value, bool) or not math.isfinite(value):
+            raise ValueError("official regression value mismatch")
+        if abs(value - expected["expectedRadians"]) > 1e-12:
             raise ValueError("official regression value mismatch")
 
     expected_identities = set(itertools.product(PRESSURES, TEMPERATURES, ALTITUDES))

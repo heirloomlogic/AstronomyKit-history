@@ -1,6 +1,7 @@
 import copy
 import importlib.util
 import json
+import math
 from pathlib import Path
 import sys
 import tempfile
@@ -29,6 +30,18 @@ class CapturePALRefractionTests(unittest.TestCase):
         archive["rows"][-1] = copy.deepcopy(archive["rows"][0])
         with self.assertRaisesRegex(ValueError, "row inventory"):
             capture.validate_archive(archive)
+
+    def test_official_regressions_reject_missing_or_nonfinite_results(self):
+        for index in range(2):
+            for value in (None, math.nan, math.inf, -math.inf):
+                with self.subTest(index=index, value=value):
+                    archive = self.archive()
+                    if value is None:
+                        del archive["officialRegressions"][index]["actualRadians"]
+                    else:
+                        archive["officialRegressions"][index]["actualRadians"] = value
+                    with self.assertRaisesRegex(ValueError, "official regression value"):
+                        capture.validate_archive(archive)
 
     def test_changed_bound_source_is_rejected(self):
         archive = self.archive()

@@ -32,6 +32,11 @@ struct WeatherRefractionTests {
         }
     }
 
+    @Test("Normal refraction preserves the pre-weather below-horizon rounding")
+    func legacyBelowHorizonRounding() {
+        #expect(Refraction.normal.refractionAngle(at: -89).bitPattern == 4_575_025_940_156_781_600)
+    }
+
     @Test("Pressure and temperature scale the published Sæmundsson correction")
     func publishedScaling() throws {
         let conditions = try RefractionConditions(pressureMillibars: 800, temperatureCelsius: -20)

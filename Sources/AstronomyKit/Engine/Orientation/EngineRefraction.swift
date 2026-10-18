@@ -36,14 +36,14 @@ extension Engine.AtmosphericRefraction {
         case .none:
             return 0
         case .normal:
-            if altitude < -1 { degrees *= (altitude + 90) / 89 }
+            if altitude < -1 { degrees = degrees * (altitude + 90) / 89 }
         case .jplHorizons:
             break
         case .weather(let conditions):
             degrees *=
                 (conditions.pressureMillibars / 1_010)
                 * (283 / (273 + conditions.temperatureCelsius))
-            if altitude < -1 { degrees *= (altitude + 90) / 89 }
+            if altitude < -1 { degrees = degrees * (altitude + 90) / 89 }
         }
         return degrees
     }
