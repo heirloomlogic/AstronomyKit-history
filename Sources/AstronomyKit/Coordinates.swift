@@ -381,8 +381,62 @@ extension Horizon: CustomStringConvertible {
 
 // MARK: - Refraction
 
+/// Pressure and temperature for weather-dependent atmospheric refraction.
+///
+/// The accepted ranges are the safe numerical limits used by the PAL
+/// Hohenkerk–Sinclair reference implementation. They are a computational
+/// domain, not a claim that the pressure/temperature scaling is physically
+/// accurate throughout the range. A combination is rejected when Meeus's
+/// pressure/temperature factor exceeds 2, which keeps the forward altitude
+/// mapping strictly increasing throughout its accepted altitude domain.
+public struct RefractionConditions: Sendable, Equatable, Hashable {
+    /// Atmospheric pressure in millibars (hPa), from 0 through 10,000.
+    public let pressureMillibars: Double
+
+    /// Ambient temperature in degrees Celsius, from -173.15 through 226.85.
+    public let temperatureCelsius: Double
+
+    /// Conditions that leave the existing Sæmundsson correction unchanged.
+    public static let standard = RefractionConditions(
+        validatedPressureMillibars: 1_010,
+        temperatureCelsius: 10
+    )
+
+    /// Creates validated weather conditions for atmospheric refraction.
+    ///
+    /// - Parameters:
+    ///   - pressureMillibars: Atmospheric pressure in millibars (hPa), from
+    ///     0 through 10,000.
+    ///   - temperatureCelsius: Ambient temperature in degrees Celsius, from
+    ///     -173.15 through 226.85.
+    /// - Throws: ``AstronomyError/invalidParameter`` when either value is not
+    ///   finite, is outside its accepted range, or would make the
+    ///   pressure/temperature factor exceed 2.
+    public init(pressureMillibars: Double, temperatureCelsius: Double) throws {
+        let scale =
+            (pressureMillibars / 1_010)
+            * (283 / (273 + temperatureCelsius))
+        guard
+            (0...10_000).contains(pressureMillibars),
+            (-173.15...226.85).contains(temperatureCelsius),
+            scale <= 2
+        else {
+            throw AstronomyError.invalidParameter
+        }
+        self.init(
+            validatedPressureMillibars: pressureMillibars,
+            temperatureCelsius: temperatureCelsius
+        )
+    }
+
+    private init(validatedPressureMillibars: Double, temperatureCelsius: Double) {
+        self.pressureMillibars = validatedPressureMillibars
+        self.temperatureCelsius = temperatureCelsius
+    }
+}
+
 /// Atmospheric refraction correction modes.
-public enum Refraction: Sendable {
+public enum Refraction: Sendable, Equatable, Hashable {
     /// No atmospheric refraction correction (airless).
     case none
 
@@ -391,6 +445,13 @@ public enum Refraction: Sendable {
 
     /// JPL Horizons compatibility mode.
     case jplHorizons
+
+    /// Sæmundsson refraction scaled for measured pressure and temperature.
+    ///
+    /// At ``RefractionConditions/standard`` this is identical to ``normal``.
+    /// Below -1° geometric altitude it uses the same compatibility taper as
+    /// ``normal``; that below-horizon extension is not ray-trace-qualified.
+    case weather(RefractionConditions)
 
     /// Calculates the atmospheric refraction offset for a given altitude.
     ///

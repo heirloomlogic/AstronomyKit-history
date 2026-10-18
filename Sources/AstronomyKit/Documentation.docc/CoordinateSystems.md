@@ -184,7 +184,15 @@ let geometric = try body.horizon(at: .now, from: observer, refraction: .none)
 
 // JPL Horizons refraction model
 let jpl = try body.horizon(at: .now, from: observer, refraction: .jplHorizons)
+
+// Measured weather: pressure in millibars (hPa), temperature in Celsius
+let conditions = try RefractionConditions(pressureMillibars: 780, temperatureCelsius: -5)
+let local = try body.horizon(at: .now, from: observer, refraction: .weather(conditions))
 ```
+
+`Refraction.weather(_:)` multiplies the normal Sæmundsson correction by Meeus's `(P/1010) × (283/(273+T))` factor. `RefractionConditions.standard` is 1010 mbar and 10°C, so `.weather(.standard)` reproduces `.normal` exactly. Construction rejects nonfinite values, pressure outside 0...10,000 mbar, temperature outside -173.15...226.85°C, and pressure/temperature combinations whose factor exceeds 2. The last condition keeps geometric altitude plus refraction strictly increasing and makes the inverse single-valued.
+
+The accepted input limits are computational limits. The independent comparison covers apparent altitudes from 0° through 80°, pressures from 300 through 1,100 mbar, and temperatures from -40 through 40°C against Starlink PAL's Hohenkerk–Sinclair ray trace at sea level, 50% relative humidity, 0.55 µm wavelength, 45° latitude, and a 0.0065 K/m lapse rate. Across those 180 samples, the inverse correction differs by at most 220 arcseconds at the apparent horizon, 140 arcseconds from 0.5° through 2°, and 16 arcseconds at 5° and above. These are sampled residual limits, not certified model accuracy. Below -1° geometric altitude, the weather model uses the legacy `.normal` taper to zero at the nadir; the PAL comparison does not cover that compatibility extension.
 
 ### Computing Refraction Directly
 
