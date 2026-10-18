@@ -70,6 +70,54 @@ def digest(data):
     return hashlib.sha256(data).hexdigest()
 
 
+def upward(value):
+    if value < 0 or math.isnan(value):
+        raise ValueError("outward bound input is negative or NaN")
+    if math.isinf(value):
+        return value
+    return math.nextafter(value, math.inf)
+
+
+def upper_absolute_difference(left, right):
+    if left == right:
+        return 0.0
+    return upward(abs(left - right))
+
+
+def upper_add(left, right):
+    if left == 0:
+        return right
+    if right == 0:
+        return left
+    return upward(left + right)
+
+
+def upper_multiply(left, right):
+    if left == 0 or right == 0:
+        return 0.0
+    return upward(left * right)
+
+
+def upper_divide(left, right):
+    if left == 0:
+        return 0.0
+    return upward(left / right)
+
+
+def upper_sum(values):
+    result = 0.0
+    for value in values:
+        result = upper_add(result, value)
+    return result
+
+
+def upper_vector_norm(values):
+    squared = upper_sum(upper_multiply(value, value) for value in values)
+    if squared == 0:
+        return 0.0
+    return upward(math.sqrt(squared))
+
+
 def payload_path(name):
     return DATA / f"{name}.bin"
 
@@ -158,11 +206,17 @@ def pack_records(records, spec):
         for axis, scale in zip(axes, scales):
             packed, decoded = packed_axis(axis, spec, scale)
             payload.extend(packed)
-            errors = [abs(left - right) for left, right in zip(axis, decoded)]
-            position_axes.append(math.fsum(errors))
-            velocity_axes.append(math.fsum(error * degree * degree * 2 / days for degree, error in enumerate(errors)))
-        position = math.hypot(*position_axes)
-        velocity = math.hypot(*velocity_axes)
+            errors = [upper_absolute_difference(left, right) for left, right in zip(axis, decoded)]
+            position_axes.append(upper_sum(errors))
+            weighted = []
+            for degree, error in enumerate(errors):
+                term = upper_multiply(error, degree)
+                term = upper_multiply(term, degree)
+                term = upper_multiply(term, 2.0)
+                weighted.append(upper_divide(term, days))
+            velocity_axes.append(upper_sum(weighted))
+        position = upper_vector_norm(position_axes)
+        velocity = upper_vector_norm(velocity_axes)
         if position > maximum_position:
             maximum_position = position
             worst_position = {"record": index, "startJDTDB": start, "axisBoundsKm": position_axes}
@@ -387,14 +441,14 @@ def combined_bounds(reports):
     center = reports["jupiter"]["coefficientRepresentationBound"]
     return {
         name: {
-            "positionKm": reports[name]["coefficientRepresentationBound"]["positionKm"] + center["positionKm"],
-            "velocityKmPerTDBDay": reports[name]["coefficientRepresentationBound"]["velocityKmPerTDBDay"] + center["velocityKmPerTDBDay"],
+            "positionKm": upper_add(reports[name]["coefficientRepresentationBound"]["positionKm"], center["positionKm"]),
+            "velocityKmPerTDBDay": upper_add(reports[name]["coefficientRepresentationBound"]["velocityKmPerTDBDay"], center["velocityKmPerTDBDay"]),
         }
         for name in MOONS
     }
 
 
-def verify_manifest(manifest, payloads):
+def verify_manifest(manifest, payloads, comment=None):
     if manifest.get("schemaVersion") != 1 or manifest.get("generatorBindingsSHA256") != binding_hashes():
         raise ValueError("jup365 schema or generator binding differs")
     if manifest.get("coverageJDTDB") != list(COVERAGE) or manifest.get("sourceSeamJDTDB") != SOURCE_SEAM:
@@ -403,7 +457,7 @@ def verify_manifest(manifest, payloads):
         raise ValueError("jup365 component inventory differs")
     if manifest.get("source", {}).get("url") != SOURCE_URL or manifest["source"].get("identity") != list(SOURCE_IDENTITY):
         raise ValueError("jup365 source identity differs")
-    comment = COMMENT.read_bytes()
+    comment = COMMENT.read_bytes() if comment is None else comment
     if manifest["source"].get("comment") != {"url": COMMENT_URL, "sha256": digest(comment)}:
         raise ValueError("jup365 source comment differs")
     for token in (b"Satellite Ephemeris: JUP365.26", b"Chebyshev interpolation error: 16.00 meters"):
@@ -440,8 +494,10 @@ def verify_manifest(manifest, payloads):
     if any(row["positionKm"] > POSITION_LIMIT_KM or row["velocityKmPerTDBDay"] > VELOCITY_LIMIT_KM_PER_TDB_DAY for row in bounds.values()):
         raise ValueError("jup365 combined coefficient bound exceeds qualification limit")
     fixtures = manifest.get("directFixtures", [])
-    if len(fixtures) != len(SPECS) * 9:
-        raise ValueError("jup365 direct fixture inventory differs")
+    expected_fixture_identities = [(name, julian_date) for name in SPECS for julian_date in fixture_epochs(manifest["components"][name]["recordDays"])]
+    actual_fixture_identities = [(row.get("component"), row.get("julianDateTDB")) for row in fixtures]
+    if actual_fixture_identities != expected_fixture_identities:
+        raise ValueError("jup365 direct fixture identity inventory differs")
     for row in fixtures:
         name = row["component"]
         report = manifest["components"][name]
@@ -564,6 +620,15 @@ def atomic_write(path, data):
         temporary.unlink(missing_ok=True)
 
 
+def publish(payloads, manifest, comment):
+    verify_manifest(manifest, payloads, comment)
+    DATA.mkdir(parents=True, exist_ok=True)
+    for name, payload in payloads.items():
+        atomic_write(payload_path(name), payload)
+    atomic_write(COMMENT, comment)
+    atomic_write(MANIFEST, encoded(manifest))
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--check", action="store_true")
@@ -604,12 +669,7 @@ def main():
         verify_manifest(manifest, committed)
         print("Verified official jup365 replay")
         return
-    DATA.mkdir(parents=True, exist_ok=True)
-    for name, payload in payloads.items():
-        atomic_write(payload_path(name), payload)
-    atomic_write(COMMENT, comment)
-    atomic_write(MANIFEST, encoded(manifest))
-    verify_manifest(manifest, payloads)
+    publish(payloads, manifest, comment)
     print("Wrote Galilean jup365 representation")
 
 

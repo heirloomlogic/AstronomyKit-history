@@ -2,20 +2,20 @@
   "base64PayloadBytes": 80256456,
   "combinedJovicentricRepresentationBound": {
     "callisto": {
-      "positionKm": 0.19732811199541697,
-      "velocityKmPerTDBDay": 5.479945075830603
+      "positionKm": 0.19732811199541736,
+      "velocityKmPerTDBDay": 5.479945075830614
     },
     "europa": {
-      "positionKm": 0.22824665791046314,
-      "velocityKmPerTDBDay": 21.89847166632277
+      "positionKm": 0.22824665791046364,
+      "velocityKmPerTDBDay": 21.898471666322823
     },
     "ganymede": {
-      "positionKm": 0.22343723885979638,
-      "velocityKmPerTDBDay": 7.527487382038103
+      "positionKm": 0.2234372388597968,
+      "velocityKmPerTDBDay": 7.52748738203812
     },
     "io": {
-      "positionKm": 0.20616142975892443,
-      "velocityKmPerTDBDay": 33.735438704701274
+      "positionKm": 0.20616142975892485,
+      "velocityKmPerTDBDay": 33.735438704701345
     }
   },
   "components": {
@@ -23,22 +23,22 @@
       "center": 5,
       "clock": "TDB",
       "coefficientRepresentationBound": {
-        "positionKm": 0.17746995095031273,
-        "velocityKmPerTDBDay": 3.6445080221462285,
+        "positionKm": 0.17746995095031307,
+        "velocityKmPerTDBDay": 3.6445080221462347,
         "worstPosition": {
           "axisBoundsKm": [
-            0.111626955816924,
-            0.13217012666392658,
-            0.0395735245207513
+            0.11162695581692415,
+            0.1321701266639268,
+            0.03957352452075136
           ],
           "record": 57723,
           "startJDTDB": 2435333.25
         },
         "worstVelocity": {
           "axisBoundsKmPerTDBDay": [
-            2.5110110070851337,
-            2.386889683662017,
-            1.1313797257390437
+            2.5110110070851372,
+            2.38688968366202,
+            1.1313797257390452
           ],
           "record": 13497,
           "startJDTDB": 2335824.75
@@ -77,22 +77,22 @@
       "center": 5,
       "clock": "TDB",
       "coefficientRepresentationBound": {
-        "positionKm": 0.2083884968653589,
-        "velocityKmPerTDBDay": 20.063034612638397,
+        "positionKm": 0.20838849686535935,
+        "velocityKmPerTDBDay": 20.063034612638443,
         "worstPosition": {
           "axisBoundsKm": [
-            0.15162751256983625,
-            0.13067203552736503,
-            0.05796276553808395
+            0.15162751256983653,
+            0.13067203552736528,
+            0.05796276553808403
           ],
           "record": 7159,
           "startJDTDB": 2313510.375
         },
         "worstVelocity": {
           "axisBoundsKmPerTDBDay": [
-            14.802716905517546,
-            12.154595486820588,
-            5.97249852530681
+            14.80271690551757,
+            12.154595486820613,
+            5.972498525306822
           ],
           "record": 149196,
           "startJDTDB": 2473302.0
@@ -137,22 +137,22 @@
       "center": 5,
       "clock": "TDB",
       "coefficientRepresentationBound": {
-        "positionKm": 0.20357907781469214,
-        "velocityKmPerTDBDay": 5.692050328353729,
+        "positionKm": 0.2035790778146925,
+        "velocityKmPerTDBDay": 5.692050328353741,
         "worstPosition": {
           "axisBoundsKm": [
-            0.14815330500676294,
-            0.1329517061595199,
-            0.04264836419754253
+            0.14815330500676316,
+            0.13295170615952007,
+            0.04264836419754259
           ],
           "record": 145809,
           "startJDTDB": 2469491.625
         },
         "worstVelocity": {
           "axisBoundsKmPerTDBDay": [
-            3.321076420646599,
-            4.183073922145689,
-            1.9676841490954937
+            3.321076420646604,
+            4.183073922145696,
+            1.9676841490954966
           ],
           "record": 89816,
           "startJDTDB": 2406499.5
@@ -194,22 +194,22 @@
       "center": 5,
       "clock": "TDB",
       "coefficientRepresentationBound": {
-        "positionKm": 0.1863032687138202,
-        "velocityKmPerTDBDay": 31.900001651016897,
+        "positionKm": 0.18630326871382055,
+        "velocityKmPerTDBDay": 31.900001651016957,
         "worstPosition": {
           "axisBoundsKm": [
-            0.12557477331072464,
-            0.1272558298072412,
-            0.05240074447452514
+            0.1255747733107248,
+            0.1272558298072414,
+            0.052400744474525196
           ],
           "record": 13251,
           "startJDTDB": 2320363.875
         },
         "worstVelocity": {
           "axisBoundsKmPerTDBDay": [
-            20.617866781518515,
-            22.220544141710796,
-            9.937861578866855
+            20.61786678151855,
+            22.220544141710832,
+            9.93786157886687
           ],
           "record": 147181,
           "startJDTDB": 2471035.125
@@ -254,22 +254,22 @@
       "center": 5,
       "clock": "TDB",
       "coefficientRepresentationBound": {
-        "positionKm": 0.01985816104510425,
-        "velocityKmPerTDBDay": 1.8354370536843745,
+        "positionKm": 0.019858161045104277,
+        "velocityKmPerTDBDay": 1.8354370536843783,
         "worstPosition": {
           "axisBoundsKm": [
-            0.014254374623892313,
-            0.012600993030917426,
-            0.005689845236014884
+            0.014254374623892327,
+            0.01260099303091744,
+            0.00568984523601489
           ],
           "record": 52866,
           "startJDTDB": 2424405.0
         },
         "worstVelocity": {
           "axisBoundsKmPerTDBDay": [
-            1.3167357753465392,
-            1.1586556580179384,
-            0.5408818189800285
+            1.3167357753465412,
+            1.1586556580179406,
+            0.5408818189800295
           ],
           "record": 47237,
           "startJDTDB": 2411739.75
@@ -1050,7 +1050,7 @@
   "generatorBindingsSHA256": {
     "Scripts/assess-moon-de441.py": "5da238cbd372de58899fc7de9ca49dbe5e02a33b0886a8ce8bf69854783c26a4",
     "Scripts/galilean-residuals.py": "5894921a3b7108ba3721f11537f01206d772a183312a71d91059face59e6ff33",
-    "Scripts/generate-galilean-jup365.py": "98305601620bbc83edc00af629054f0d84655a0e62541608c6cb8ebdf06175cb",
+    "Scripts/generate-galilean-jup365.py": "daae85a38ce70941850e97632dae0f6883d4eeb934acf9af48f39685b08afbe5",
     "Scripts/generate-planet-de441.py": "652d00c5aa3ed6556d26364a2bb89d95eed92c2def21d0af82834c932ab841c9",
     "Scripts/jupiter-moon-data/jup365-probe.swift": "aee61ed93b6ece21d99372cf71b343abb23e2d526e3241a20d8d7559af233abb",
     "Scripts/reference-data/sources/horizons/callisto-domain-vector.json": "9a92f36fec0e06fd64bbd817bbe382f28e69e9b219d55f17c7cb71b93c509a8c",
@@ -1070,7 +1070,7 @@
     "Scripts/reference-data/sources/horizons/io-vector.json": "4c09f6807a15f45ecd936d38ab1c5ca71dfe759bc063c0a3ac1685b1f1aaa981",
     "Scripts/reference-data/sources/horizons/io-vector.query.json": "f20330c61f533ee38a5235929338c4ff17a7bbfd1a59e75e8053536d32da19e6",
     "Scripts/test_galilean_residuals.py": "791f5decb42016fe8ab861c16884704fb59b0de67464c86284b936c72853f10e",
-    "Scripts/test_generate_galilean_jup365.py": "b2d785d4f16a2622a55349d4a5432a4202361e98fe7ca0b21380331c13c04ab9",
+    "Scripts/test_generate_galilean_jup365.py": "8ecca9907dbbb41df666a042b0596beab269dd91bedfcfeb005b3a14c28739d7",
     "Tests/AstronomyKitTests/Fixtures/IndependentReferences/reference-fixtures.json": "a9fe5925fc0c556d088147d78fc5f6b053f32a839e13250f7589e47dfc9a12ab"
   },
   "sampledHorizonsResiduals": {

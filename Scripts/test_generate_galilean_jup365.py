@@ -1,9 +1,13 @@
 """Controls for the Galilean jup365 representation generator."""
 
+import copy
+from decimal import Decimal, localcontext
 import importlib.util
+import json
 import math
 from pathlib import Path
 import struct
+import tempfile
 from types import SimpleNamespace
 import unittest
 from unittest import mock
@@ -40,6 +44,21 @@ class GalileanJUP365GeneratorTests(unittest.TestCase):
                 velocity_error = math.dist(exact[1], candidate[1])
                 self.assertLessEqual(position_error, bounds["positionKm"])
                 self.assertLessEqual(velocity_error, bounds["velocityKmPerTDBDay"])
+
+    def test_coefficient_bound_rounds_outward_for_float32_tie(self):
+        spec = jup365.CandidateSpec(target=501, source_coefficients=1, kept_coefficients=1, float32_coefficients=1)
+        coefficient = 1.0 + 2.0 ** -24
+        records = [(0.0, 1.0, (((coefficient,),) * 3))]
+        _, _, bounds = jup365.pack_records(records, spec)
+        with localcontext() as context:
+            context.prec = 80
+            exact = Decimal(3).sqrt() * (Decimal(2) ** -24)
+        self.assertGreaterEqual(Decimal.from_float(bounds["positionKm"]), exact)
+
+    def test_outward_helpers_enclose_positive_underflow(self):
+        minimum = math.ulp(0.0)
+        self.assertEqual(jup365.upper_multiply(minimum, 0.5), minimum)
+        self.assertEqual(jup365.upper_divide(minimum, 2.0), minimum)
 
     def test_payload_validation_rejects_wrong_length_and_nonpositive_scale(self):
         spec = jup365.CandidateSpec(target=501, source_coefficients=4, kept_coefficients=4, float32_coefficients=2)
@@ -83,6 +102,33 @@ class GalileanJUP365GeneratorTests(unittest.TestCase):
             result = jup365.source_layout(object(), spec)
         self.assertEqual([segment for segment, _ in result], [first, second])
         self.assertGreater(second_metadata.start_jd_tdb + second_metadata.record_days * second_metadata.record_count, jup365.COVERAGE[1])
+
+    def test_manifest_rejects_duplicate_direct_fixture_identities(self):
+        manifest = json.loads(jup365.MANIFEST.read_bytes())
+        manifest["generatorBindingsSHA256"] = jup365.binding_hashes()
+        manifest["combinedJovicentricRepresentationBound"] = jup365.combined_bounds(manifest["components"])
+        manifest["directFixtures"] = [copy.deepcopy(manifest["directFixtures"][0]) for _ in manifest["directFixtures"]]
+        payloads = {name: jup365.payload_path(name).read_bytes() for name in jup365.SPECS}
+        with self.assertRaisesRegex(ValueError, "fixture identity"):
+            jup365.verify_manifest(manifest, payloads)
+
+    def test_failed_capture_validation_leaves_accepted_artifacts_intact(self):
+        manifest = json.loads(jup365.MANIFEST.read_bytes())
+        manifest["generatorBindingsSHA256"] = jup365.binding_hashes()
+        manifest["components"]["io"]["coefficientRepresentationBound"]["positionKm"] = 1.0
+        manifest["combinedJovicentricRepresentationBound"] = jup365.combined_bounds(manifest["components"])
+        payloads = {name: jup365.payload_path(name).read_bytes() for name in jup365.SPECS}
+        comment = jup365.COMMENT.read_bytes()
+        with tempfile.TemporaryDirectory() as directory:
+            data = Path(directory)
+            accepted = {f"{name}.bin": f"accepted-{name}".encode() for name in jup365.SPECS}
+            accepted.update({"jup365.cmt": b"accepted-comment", "representation.json": b"accepted-manifest"})
+            for name, contents in accepted.items():
+                (data / name).write_bytes(contents)
+            with mock.patch.object(jup365, "DATA", data), mock.patch.object(jup365, "COMMENT", data / "jup365.cmt"), mock.patch.object(jup365, "MANIFEST", data / "representation.json"):
+                with self.assertRaisesRegex(ValueError, "qualification limit"):
+                    jup365.publish(payloads, manifest, comment)
+            self.assertEqual({path.name: path.read_bytes() for path in data.iterdir()}, accepted)
 
 
 if __name__ == "__main__":
