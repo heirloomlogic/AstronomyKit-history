@@ -1,4 +1,5 @@
 import copy
+import contextlib
 import hashlib
 import importlib.util
 import json
@@ -178,10 +179,24 @@ class ObserverRecordingTests(unittest.TestCase):
     def test_complete_recording(self):
         self.assertEqual(record.evidence(self.captures, record.sources()), self.evidence)
 
-    def current_engine_changes_are_eligible(self):
+    @contextlib.contextmanager
+    def current_source_changes_are_eligible(self):
         changed = set(record.git_bytes('diff', '--name-only', self.retained_revision, '--', 'Sources/AstronomyKit/Engine').decode().splitlines())
-        original = record.allowed_retained_usno_engine_change
-        return mock.patch.object(record, 'allowed_retained_usno_engine_change', side_effect=lambda path: path in changed or original(path))
+        original_allowed = record.allowed_retained_usno_engine_change
+        original_git_bytes = record.git_bytes
+        evidence_spec = f'{self.retained_revision}:{record.OUTPUT.relative_to(record.ROOT)}'
+        current_hashes = record.sources()
+
+        def current_sources(*arguments):
+            data = original_git_bytes(*arguments)
+            if arguments == ('show', evidence_spec):
+                value = json.loads(data)
+                value['sourceSHA256'] = current_hashes
+                return json.dumps(value).encode()
+            return data
+
+        with mock.patch.object(record, 'allowed_retained_usno_engine_change', side_effect=lambda path: path in changed or original_allowed(path)), mock.patch.object(record, 'git_bytes', side_effect=current_sources):
+            yield
 
     def test_fresh_debug_usno_provenance_is_minimal_and_binds_rows(self):
         provenance = self.captures['debugUSNOProvenance']
@@ -195,7 +210,7 @@ class ObserverRecordingTests(unittest.TestCase):
 
     def test_retained_debug_usno_names_its_revision_and_exact_rows(self):
         # Eligibility has separate negative controls; isolate the provenance path from the live branch diff.
-        with self.current_engine_changes_are_eligible():
+        with self.current_source_changes_are_eligible():
             rows, provenance = record.retained_debug_usno(self.retained_revision)
         prior = json.loads(record.git_bytes('show', f'{self.retained_revision}:{record.CAPTURES.relative_to(record.ROOT)}'))
         self.assertEqual(rows, prior['debug']['usno'])
@@ -204,7 +219,7 @@ class ObserverRecordingTests(unittest.TestCase):
         changed = copy.deepcopy(self.captures)
         changed['debugUSNOProvenance'] = provenance
         changed['debugUSNOProvenance']['rowsSHA256'] = '0' * 64
-        with self.current_engine_changes_are_eligible(), self.assertRaisesRegex(ValueError, 'provenance differs'):
+        with self.current_source_changes_are_eligible(), self.assertRaisesRegex(ValueError, 'provenance differs'):
             record.validate_debug_usno_provenance(changed)
 
     def test_retained_debug_usno_rejects_unrelated_engine_changes(self):
@@ -231,7 +246,7 @@ class ObserverRecordingTests(unittest.TestCase):
                 value['sourceSHA256']['Sources/AstronomyKit/Observer.swift'] = '0' * 64
                 return json.dumps(value).encode()
             return data
-        with self.current_engine_changes_are_eligible(), mock.patch.object(record, 'git_bytes', side_effect=changed_source):
+        with self.current_source_changes_are_eligible(), mock.patch.object(record, 'git_bytes', side_effect=changed_source):
             with self.assertRaisesRegex(ValueError, 'source differs'):
                 record.retained_debug_usno(self.retained_revision)
 

@@ -3941,7 +3941,7 @@
       "VEC_CORR": "'NONE'",
       "VEC_TABLE": "'2'"
     },
-    "sha256": "5bf5296e22d246b3fd0fc246c5b54d81f6e187a5dae90e31e912849cff2a42c9",
+    "sha256": "8832e4150139766cedbcfe0e2f8973bf5d9580db769ec894b95d0a052a36691c",
     "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27999%27&OBJ_DATA=%27NO%27&MAKE_EPHEM=%27YES%27&EPHEM_TYPE=%27VECTORS%27&CENTER=%27500%4010%27&TLIST=%272378498.5%2C2378505.5%2C2378513.5%2C2378521.5%2C2378529.5%2C2379545.0%2C2393145.0%2C2451545.0%2C2456293.499%2C2456293.5%2C2456293.501%2C2509945.0%2C2523545.0%2C2524559.5%2C2524567.5%2C2524575.5%2C2524583.5%2C2524589.5%2C2524590.499%27&REF_SYSTEM=%27ICRF%27&REF_PLANE=%27FRAME%27&OUT_UNITS=%27AU-D%27&VEC_TABLE=%272%27&VEC_CORR=%27NONE%27&CSV_FORMAT=%27YES%27&TIME_TYPE=%27TDB%27&TLIST_TYPE=%27JD%27"
   },
   "horizonsRows": [
@@ -4210,7 +4210,7 @@
     "Scripts/pluto-data/plu060-evidence.json": "a4a28fffac897770297061056037ebfd5ca4b2d68269d81912a08a522e1b9252",
     "Scripts/qualify-moon-de441.py": "69521b985aa7d5f577ca8b1d89712d11b5e3453d042059f498bfaaebd24667be",
     "Scripts/qualify-pluto-center.py": "4478cb59a138dbb9e574adcd3cb70c3f476dc09f12bd341e873c11405ce1ccb9",
-    "Scripts/reference-data/build-fixtures.py": "624f89695e2f0afffe8f53f73bfb7de24a69c06386a1eb80d49b911da6b17d50",
+    "Scripts/reference-data/build-fixtures.py": "62758d1a4f34f461f86fdc352e9005b7cafaaa598abdbddcdd09470e90cf6b9a",
     "Scripts/test_qualify_pluto_center.py": "620a5c0d8bca43ae77e5189cb41c9ca9d6e615ee0d82ccb4dc39458604ace9b9"
   },
   "sourceStartTDB": -73047.5
