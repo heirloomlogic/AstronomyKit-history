@@ -99,7 +99,7 @@ def check_storage_sources():
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--check',action='store_true');parser.add_argument('--verify-source',action='store_true');parser.add_argument('--cache',type=Path,default=ROOT/'.context/issue-251/ranges');args=parser.parse_args()
     manifest=json.loads(full.MANIFEST.read_text())
-    bindings={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in ['Scripts/qualify-moon-de441-full.py','Scripts/generate-moon-de441-full.py','Scripts/moon-data/de441-full-evidence.json','Scripts/solar-numerics/apparent_bounds.py','Sources/AstronomyKit/Engine/Moon/EngineTDB.swift','Sources/AstronomyKit/Engine/Moon/Generated/TDBTerms.swift']}
+    bindings={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in ['Scripts/qualify-moon-de441-full.py','Scripts/generate-moon-de441-full.py','Scripts/moon-data/de441-full-evidence.json','Scripts/solar-numerics/apparent_bounds.py','Scripts/model_resource.py','Sources/AstronomyKit/Engine/Gravity/Generated/DE441/PlutoDE441SunData.swift','Sources/AstronomyKit/Resources/ModelTables/pluto-de441-sun.bin','Sources/AstronomyKit/Engine/Moon/EngineTDB.swift','Sources/AstronomyKit/Engine/Moon/Generated/TDBTerms.swift']}
     if args.check or args.verify_source:
         check_storage_sources()
         result=json.loads(OUTPUT.read_text())

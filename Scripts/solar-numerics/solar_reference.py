@@ -1,11 +1,10 @@
 """Extended-precision geometric Sun model, composed from published definitions."""
-import base64
 import re
 import importlib.util
 import struct
 from functools import lru_cache
 import reference as ref
-from numerics import ROOT, ENGINE
+from numerics import ROOT, ENGINE, table_payload
 
 mp = ref.mp
 
@@ -129,7 +128,7 @@ def direct_table(path):
     text = (ROOT / path).read_text()
     start, days, count, coefficients = re.search(
         r'start: ([^,]+), days: ([^,]+),\s*recordCount: ([^,]+),\s*coefficientCount: ([^,]+),', text).groups()
-    payload = base64.b64decode(''.join(text.split('"""')[1].split()), validate=True)
+    payload = table_payload(path, text)
     count = int(count.replace('_', ''))
     coefficients = int(coefficients.replace('_', ''))
     if len(payload) != count * 3 * coefficients * 8:

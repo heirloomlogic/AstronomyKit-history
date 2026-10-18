@@ -8,6 +8,13 @@ import unittest
 SPEC = importlib.util.spec_from_file_location('center_qualification', Path(__file__).with_name('qualify-pluto-center.py'))
 q = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(q)
+RESOURCE_SPEC = importlib.util.spec_from_file_location('model_resource', Path(__file__).with_name('model_resource.py'))
+resource = importlib.util.module_from_spec(RESOURCE_SPEC)
+RESOURCE_SPEC.loader.exec_module(resource)
+
+
+def generated_payload(path):
+    return resource.payload(path.read_text(), q.g.binary.RESOURCE_DIRECTORY)
 
 
 class PlutoCenterQualificationTests(unittest.TestCase):
@@ -36,7 +43,7 @@ class PlutoCenterQualificationTests(unittest.TestCase):
         evidence = json.loads(q.g.KERNEL_MANIFEST.read_bytes())
         record = evidence['tables']['barycenter']
         source = (q.g.OUTPUT/record['output']).read_text()
-        raw = q.g.base64.b64decode(source.split('"""')[1])
+        raw = generated_payload(q.g.OUTPUT/record['output'])
         q.g.render_kernel_table('barycenter',record,raw)
         with self.assertRaises(ValueError): q.g.render_kernel_table('barycenter',record,raw[:-8])
         changed = bytearray(raw); changed[0] ^= 1
@@ -54,7 +61,7 @@ class PlutoCenterQualificationTests(unittest.TestCase):
             self.assertEqual((days, degrees), (expanded['recordDays'], expanded['degreeCount']))
             offset = (start - expanded['startTDB']) / days
             self.assertEqual(offset, int(offset))
-            raw = q.g.base64.b64decode((q.g.OUTPUT/table.swift_file).read_text().split('"""')[1])
+            raw = generated_payload(q.g.OUTPUT/table.swift_file)
             first = int(offset) * 3 * degrees * 8
             expected = q.g.struct.pack(f'<{len(values)}d', *values)
             self.assertEqual(raw[first:first+len(expected)], expected)

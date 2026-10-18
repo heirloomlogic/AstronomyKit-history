@@ -11,13 +11,14 @@ import subprocess
 import time
 
 import reference as ref
+import apparent_reference
 import solar_reference as solar
 from numerics import ROOT, BINDINGS, source_hashes, check_hashes
 
 TOOLS = ["Scripts/solar-numerics/reference.py", "Scripts/solar-numerics/measure.py",
          "Scripts/solar-numerics/solar_reference.py", "Scripts/solar-numerics/apparent_reference.py",
          "Scripts/apparent-place-data/dtdb.c",
-         "Tests/AstronomyKitTests/Engine/Numerics/NativeNumericalProbe.swift"]
+         "Tests/AstronomyKitTests/Engine/Numerics/NativeNumericalProbe.swift", *apparent_reference.PATHS]
 
 
 def grid():

@@ -1,16 +1,16 @@
 """Rational coefficient enclosures for the selected barycentric apparent Sun model."""
-import base64
 from fractions import Fraction as Q
 import re
 import struct
-from numerics import ROOT, ENGINE, sqrt_interval, earth_model
+from numerics import ROOT, ENGINE, sqrt_interval, earth_model, table_payload
 
 SUN_PATH = ENGINE+'Gravity/Generated/DE441/PlutoDE441SunData.swift'
 TDB_PATH = ENGINE+'Moon/Generated/TDBTerms.swift'
 PATHS = [SUN_PATH,TDB_PATH,ENGINE+'Moon/EngineTDB.swift',ENGINE+'Moon/EngineFrameBias.swift',
          ENGINE+'Gravity/EnginePlutoDE441.swift',ENGINE+'Positions/EngineApparentPlace.swift',
          ENGINE+'Positions/EngineApparentKinematics.swift',ENGINE+'Positions/EngineApparentComposition.swift',
-         ENGINE+'Positions/EngineApparentObserver.swift','Scripts/solar-numerics/apparent_bounds.py']
+         ENGINE+'Positions/EngineApparentObserver.swift','Scripts/solar-numerics/apparent_bounds.py',
+         'Sources/AstronomyKit/Resources/ModelTables/pluto-de441-sun.bin','Scripts/model_resource.py']
 
 
 def clock_bounds(limit=Q(37002)):
@@ -44,7 +44,7 @@ def solar_bounds(lower=Q(-37002), upper=Q(37002)):
     text = (ROOT/SUN_PATH).read_text()
     start,width,count = re.search(r'start: ([^,]+), days: ([^,]+), recordCount: ([^,]+),',text).groups()
     start,width,count=Q(start),Q(width),int(count)
-    data=base64.b64decode(''.join(text.split('"""')[1].split()),validate=True)
+    data=table_payload(SUN_PATH,text)
     if len(data)!=48*(count+1):
         raise ValueError('Solar data size changed')
     clocks=clock_bounds(max(abs(lower),abs(upper)))

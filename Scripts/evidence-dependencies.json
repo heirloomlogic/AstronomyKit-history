@@ -1305,6 +1305,7 @@
       "paths": [
         "Scripts/generate-pluto-de441.py",
         "Scripts/generate-pluto-tables.py",
+        "Scripts/model_resource.py",
         "Scripts/packed-table-payload.py",
         "Scripts/pluto-data/de441-evidence.json",
         "Scripts/pluto-data/de441-native-fixtures.json",
@@ -1313,6 +1314,8 @@
         "Scripts/qualify-pluto-center.py",
         "Scripts/record-pluto-de441-evidence.py",
         "Scripts/test_generate_pluto_de441.py",
+        "Scripts/test_model_resource.py",
+        "Scripts/test_qualify_pluto_center.py",
         "Scripts/test_record_pluto_de441_evidence.py"
       ]
     },

@@ -3,6 +3,7 @@ import unittest
 from unittest.mock import patch
 from pathlib import Path
 import base64
+import hashlib
 import struct
 import re
 import selected_earth_bounds as bounds
@@ -43,10 +44,24 @@ class SelectedEarthBoundsTests(unittest.TestCase):
         for source in bounds.PATHS:
             with self.subTest(source=source):
                 baseline = bounds.table(source, Q(0), Q(1))
+                source_text = (bounds.ROOT/source).read_text()
+                mapped = 'Engine.TableResource(' in source_text
+                changed_resource = None
+                resource_path = None
+                if mapped:
+                    resource_name = re.search(r'Engine\.TableResource\(name: "([^"]+)"', source_text)[1]
+                    resource_path = bounds.ROOT/'Sources/AstronomyKit/Resources/ModelTables'/f'{resource_name}.bin'
+                    changed_resource = bytearray(resource_path.read_bytes())
+                    size = int(re.search(r'coefficientCount: ([0-9]+)', source_text)[1])
+                    offset = int(baseline['firstRecord'])*3*size*8
+                    struct.pack_into('<d', changed_resource, offset, 10**12)
                 def changed(path, *args, **kwargs):
                     text = original(path, *args, **kwargs)
                     if str(path) != str(bounds.ROOT/source):
                         return text
+                    if mapped:
+                        digest = hashlib.sha256(changed_resource).hexdigest()
+                        return re.sub(r'sha256: "[0-9a-f]{64}"', f'sha256: "{digest}"', text)
                     parts = text.split('"""')
                     payload = bytearray(base64.b64decode(''.join(parts[1].split())))
                     size = int(re.search(r'coefficientCount: ([0-9]+)', text)[1])
@@ -54,7 +69,10 @@ class SelectedEarthBoundsTests(unittest.TestCase):
                     struct.pack_into('<d', payload, offset, 10**12)
                     parts[1] = base64.b64encode(payload).decode()
                     return '"""'.join(parts)
-                with patch.object(Path, 'read_text', changed):
+                original_bytes = Path.read_bytes
+                def changed_bytes(path, *args, **kwargs):
+                    return bytes(changed_resource) if mapped and path == resource_path else original_bytes(path, *args, **kwargs)
+                with patch.object(Path, 'read_text', changed), patch.object(Path, 'read_bytes', changed_bytes):
                     mutated = bounds.table(source, Q(0), Q(1))
                 self.assertGreater(mutated['radiusUpper'], baseline['radiusUpper'])
 
