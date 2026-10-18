@@ -27,6 +27,7 @@ class Jup365RuntimeMeasurementTests(unittest.TestCase):
     def test_time_log_parser_requires_all_build_measurements(self):
         log = "Build complete! (1.25 sec)\n 2.50 real 1.0 user 0.2 sys\n 300 maximum resident set size\n 400 peak memory footprint\n"
         self.assertEqual(self.tool.parse_time_log(log), {"wallSeconds": 2.5, "swiftPMSeconds": 1.25, "maximumResidentSetBytes": 300, "peakMemoryFootprintBytes": 400})
+        self.assertEqual(self.tool.parse_time_log(log.replace(" 2.50 real 1.0 user 0.2 sys", "real 2.50"))["wallSeconds"], 2.5)
         for line in log.splitlines():
             with self.subTest(line=line), self.assertRaises(ValueError):
                 self.tool.parse_time_log(log.replace(line + "\n", ""))

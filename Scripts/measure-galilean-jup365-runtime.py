@@ -46,16 +46,18 @@ def source_hashes():
 
 def parse_time_log(log):
     patterns = {
-        "wallSeconds": r"^\s*([0-9.]+) real\s+",
         "maximumResidentSetBytes": r"^\s*(\d+)\s+maximum resident set size$",
         "peakMemoryFootprintBytes": r"^\s*(\d+)\s+peak memory footprint$",
     }
-    values = {}
+    wall = re.search(r"^\s*(?:real\s+([0-9.]+)|([0-9.]+)\s+real)(?:\s+.*)?$", log, re.MULTILINE)
+    if not wall:
+        raise ValueError("timed build did not report wallSeconds")
+    values = {"wallSeconds": float(wall.group(1) or wall.group(2))}
     for key, pattern in patterns.items():
         match = re.search(pattern, log, re.MULTILINE)
         if not match:
             raise ValueError(f"timed build did not report {key}")
-        values[key] = float(match.group(1)) if key == "wallSeconds" else int(match.group(1))
+        values[key] = int(match.group(1))
     match = re.search(r"Build complete! \(([0-9.]+) sec\)", log)
     if not match:
         raise ValueError("SwiftPM did not report a build duration")
