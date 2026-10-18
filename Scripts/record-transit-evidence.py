@@ -135,8 +135,9 @@ def capture(directory):
     return {**{c:{n:json.loads((directory/c/(n+'.json')).read_bytes()) for n in sorted(SECTIONS)} for c in ['debug','release']},'resources':json.loads((directory/'resources/resources.json').read_bytes()),'buildReceipts':{c:re.search(r'Build complete! \([^\n]+',(directory/f'full-{c}.log').read_text()).group(0) for c in ['debug','release']},'runtimeBaseRevision':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'toolchain':subprocess.check_output(['swift','--version'],text=True).strip(),'releaseExecutableBytes':executable.stat().st_size,'releaseObjectBytes':{'EngineTransitEvents.o':(objects/'EngineTransitEvents.o').stat().st_size}}
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--capture',type=Path);p.add_argument('--check',action='store_true');args=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--capture',type=Path);p.add_argument('--check',action='store_true');p.add_argument('--historical-revision',metavar='REVISION');args=p.parse_args()
     if args.capture and args.check:p.error('capture and check are exclusive')
+    if args.historical_revision and (args.capture or args.check):p.error('--historical-revision is only valid for retained rebinding')
     values=capture(args.capture) if args.capture else json.loads(CAPTURE.read_bytes())
     data=archive.shared.encoded(values);result=archive.shared.encoded(evidence(values,hashes(data if args.capture else None)))
     if args.check:
@@ -144,7 +145,8 @@ def main():
     else:
         if not args.capture:
             previous=json.loads(OUTPUT.read_bytes());candidate=json.loads(result)
-            dependencies.verify_retained_inputs('transits',previous['sourceHashes'])
+            history=dependencies.historical_source_hashes('transits',args.historical_revision) if args.historical_revision else None
+            dependencies.verify_retained_inputs('transits',previous['sourceHashes'],historical_hashes=history)
             dependencies.verify_rebound_document(previous,candidate,'sourceHashes')
         archive.shared.publish({**({CAPTURE:data} if args.capture else {}),OUTPUT:result})
     print('transit evidence and all recorded relations match')

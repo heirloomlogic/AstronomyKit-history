@@ -5,6 +5,7 @@ import hashlib
 import json
 import re
 from pathlib import Path, PurePosixPath
+import subprocess
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -21,6 +22,15 @@ BINDING_FILES = {
     'Scripts/evidence-dependencies.json',
     'Scripts/evidence_dependencies.py',
     'Scripts/test_evidence_dependencies.py',
+}
+HISTORICAL_ARTIFACTS = {
+    'galilean-residuals': ('Scripts/jupiter-moon-data/residual-evidence.json', 'sourceSHA256'),
+    'global-solar': ('Scripts/eclipse-data/global-evidence.json', 'sourceHashes'),
+    'local-solar': ('Scripts/eclipse-data/local-evidence.json', 'sourceHashes'),
+    'observer-events': ('Scripts/observer-event-data/native-evidence.json', 'sourceSHA256'),
+    'planetary-events': ('Scripts/saturn-data/native-evidence.json', 'sourceSHA256'),
+    'pluto-observers': ('Scripts/pluto-data/observer-evidence.json', 'sourceSHA256'),
+    'transits': ('Scripts/eclipse-data/transit-evidence.json', 'sourceHashes'),
 }
 
 
@@ -130,13 +140,46 @@ def source_hashes(owner, root=ROOT, overrides=None):
     }
 
 
-def verify_retained_inputs(owner, previous_hashes, root=ROOT):
+def historical_source_hashes(owner, revision, root=ROOT):
+    """Read one owner's source bindings from an exact ancestor revision."""
+    if owner not in HISTORICAL_ARTIFACTS or re.fullmatch(r'[0-9a-f]{40}', revision or '') is None:
+        raise ValueError('historical dependency revision is invalid')
+    ancestor = subprocess.run(
+        ['git', 'merge-base', '--is-ancestor', revision, 'HEAD'], cwd=root,
+        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+    )
+    if ancestor.returncode != 0:
+        raise ValueError('historical dependency revision is not an ancestor')
+    artifact, binding_key = HISTORICAL_ARTIFACTS[owner]
+    try:
+        encoded = subprocess.check_output(['git', 'show', f'{revision}:{artifact}'], cwd=root)
+        document = json.loads(encoded, object_pairs_hook=_reject_duplicates)
+        bindings = document[binding_key]
+    except (subprocess.CalledProcessError, UnicodeDecodeError, json.JSONDecodeError, KeyError) as error:
+        raise ValueError('historical dependency bindings are unavailable') from error
+    _validate_hashes(bindings, 'historical dependency bindings')
+    return bindings
+
+
+def _validate_hashes(hashes, context):
+    if not isinstance(hashes, dict) or any(not isinstance(path, str) or _path(path, context) != path or not isinstance(digest, str) or re.fullmatch(r'[0-9a-f]{64}', digest) is None for path, digest in hashes.items()):
+        raise ValueError(f'{context} are malformed')
+
+
+def verify_retained_inputs(owner, previous_hashes, root=ROOT, historical_hashes=None):
     """Require unchanged result inputs before replay tools rebind archived measurements."""
-    if not isinstance(previous_hashes, dict) or any(not isinstance(path, str) or not isinstance(digest, str) or re.fullmatch(r'[0-9a-f]{64}', digest) is None for path, digest in previous_hashes.items()):
-        raise ValueError('previous dependency bindings are malformed')
+    _validate_hashes(previous_hashes, 'previous dependency bindings')
+    history = {} if historical_hashes is None else historical_hashes
+    _validate_hashes(history, 'historical dependency bindings')
     current = source_hashes(owner, root=root)
-    replay_tools = BINDING_FILES | {OWNER_FILES[owner]} | {path for path in current if path.startswith('Scripts/test_') and path.endswith('.py')}
-    changed = [path for path, digest in current.items() if path not in replay_tools and previous_hashes.get(path) != digest]
+    all_paths = set(previous_hashes) | set(current)
+    replay_tools = BINDING_FILES | {OWNER_FILES[owner]} | {path for path in all_paths if path.startswith('Scripts/test_') and path.endswith('.py')}
+    changed = []
+    for path in sorted(all_paths - replay_tools):
+        if path not in previous_hashes and history.get(path) == current.get(path):
+            continue
+        if previous_hashes.get(path) != current.get(path):
+            changed.append(path)
     if changed:
         raise ValueError(f'retained result dependencies differ for {owner}: {changed!r}')
     return current

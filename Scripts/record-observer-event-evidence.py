@@ -298,9 +298,12 @@ def main():
     parser.add_argument('--capture', type=Path)
     parser.add_argument('--check', action='store_true')
     parser.add_argument('--retain-debug-usno-from', metavar='REVISION')
+    parser.add_argument('--historical-revision', metavar='REVISION')
     args = parser.parse_args()
     if args.retain_debug_usno_from and not args.capture:
         parser.error('--retain-debug-usno-from requires --capture')
+    if args.historical_revision and (args.capture or args.check):
+        parser.error('--historical-revision is only valid for retained rebinding')
     captures = capture(args.capture, args.retain_debug_usno_from) if args.capture else json.loads(CAPTURES.read_bytes())
     encoded = (json.dumps(captures, indent=2, sort_keys=True, allow_nan=False)+'\n').encode()
     expected = evidence(captures, sources(encoded if args.capture else None))
@@ -310,7 +313,8 @@ def main():
     else:
         if not args.capture:
             previous = json.loads(OUTPUT.read_bytes())
-            dependencies.verify_retained_inputs('observer-events', previous['sourceSHA256'])
+            history = dependencies.historical_source_hashes('observer-events', args.historical_revision) if args.historical_revision else None
+            dependencies.verify_retained_inputs('observer-events', previous['sourceSHA256'], historical_hashes=history)
             dependencies.verify_rebound_document(previous, expected, 'sourceSHA256')
         if args.capture:
             CAPTURES.write_bytes(encoded)

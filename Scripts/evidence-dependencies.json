@@ -16,6 +16,19 @@
         "Scripts/test_evidence_dependencies.py"
       ]
     },
+    "engine-apparent-sun-data": {
+      "owners": [
+        "global-solar",
+        "local-solar",
+        "observer-events",
+        "planetary-events",
+        "pluto-observers",
+        "transits"
+      ],
+      "paths": [
+        "Sources/AstronomyKit/Engine/Gravity/Generated/DE441/PlutoDE441SunData.swift"
+      ]
+    },
     "engine-eclipses": {
       "owners": [
         "global-solar",
@@ -157,7 +170,6 @@
         "Sources/AstronomyKit/Engine/Gravity/EnginePlutoEphemeris.swift",
         "Sources/AstronomyKit/Engine/Gravity/EnginePlutoLightTime.swift",
         "Sources/AstronomyKit/Engine/Gravity/Generated/DE441/PlutoDE441PlutoData.swift",
-        "Sources/AstronomyKit/Engine/Gravity/Generated/DE441/PlutoDE441SunData.swift",
         "Sources/AstronomyKit/Engine/Gravity/Generated/PlutoBarycenterCoefficients.swift",
         "Sources/AstronomyKit/Engine/Gravity/Generated/PlutoCenterCoefficients.swift",
         "Sources/AstronomyKit/Engine/Gravity/Generated/PlutoStateTable.swift",
@@ -192,7 +204,6 @@
         "Sources/AstronomyKit/Engine/Moon/EngineLibration.swift",
         "Sources/AstronomyKit/Engine/Moon/EngineMoon.swift",
         "Sources/AstronomyKit/Engine/Moon/EngineMoonDE441Full.swift",
-        "Sources/AstronomyKit/Engine/Moon/EngineMoonEphemeris.swift",
         "Sources/AstronomyKit/Engine/Moon/EngineMoonStates.swift",
         "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full000.swift",
         "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full001.swift",
@@ -314,6 +325,19 @@
         "Sources/AstronomyKit/Engine/Orientation/Generated/Vondrak2011Terms.swift"
       ]
     },
+    "engine-planet-blend": {
+      "owners": [
+        "global-solar",
+        "local-solar",
+        "observer-events",
+        "planetary-events",
+        "pluto-observers",
+        "transits"
+      ],
+      "paths": [
+        "Sources/AstronomyKit/Engine/Moon/EngineMoonEphemeris.swift"
+      ]
+    },
     "engine-planets": {
       "owners": [
         "global-solar",
@@ -396,9 +420,9 @@
       "groups": [
         "binding",
         "engine-foundation",
+        "engine-galilean",
         "engine-moon-clock-frame",
-        "engine-position-checking",
-        "engine-galilean"
+        "engine-position-checking"
       ],
       "paths": [
         "Package.swift",
@@ -467,15 +491,17 @@
     "global-solar": {
       "groups": [
         "binding",
+        "engine-apparent-sun-data",
+        "engine-eclipses",
+        "engine-event-angular-lunar",
         "engine-foundation",
         "engine-moon-clock-frame",
         "engine-moon-model",
-        "engine-planets",
         "engine-orientation",
+        "engine-planet-blend",
+        "engine-planets",
         "engine-position-checking",
-        "engine-positions",
-        "engine-eclipses",
-        "engine-event-angular-lunar"
+        "engine-positions"
       ],
       "paths": [
         "Scripts/assess-global-solar-radii.py",
@@ -517,15 +543,17 @@
     "local-solar": {
       "groups": [
         "binding",
+        "engine-apparent-sun-data",
+        "engine-eclipses",
+        "engine-event-angular-lunar",
         "engine-foundation",
         "engine-moon-clock-frame",
         "engine-moon-model",
-        "engine-planets",
         "engine-orientation",
+        "engine-planet-blend",
+        "engine-planets",
         "engine-position-checking",
-        "engine-positions",
-        "engine-eclipses",
-        "engine-event-angular-lunar"
+        "engine-positions"
       ],
       "paths": [
         "Scripts/capture-global-solar.py",
@@ -584,14 +612,16 @@
     "observer-events": {
       "groups": [
         "binding",
+        "engine-apparent-sun-data",
+        "engine-event-observer",
         "engine-foundation",
         "engine-moon-clock-frame",
         "engine-moon-model",
-        "engine-planets",
         "engine-orientation",
+        "engine-planet-blend",
+        "engine-planets",
         "engine-position-checking",
-        "engine-positions",
-        "engine-event-observer"
+        "engine-positions"
       ],
       "paths": [
         "Fuzzing/corpus/fixed-riseset-infinite-limit",
@@ -646,15 +676,17 @@
     "planetary-events": {
       "groups": [
         "binding",
+        "engine-apparent-sun-data",
+        "engine-event-planetary",
         "engine-foundation",
+        "engine-gravity-pluto",
         "engine-moon-clock-frame",
         "engine-moon-model",
-        "engine-planets",
         "engine-orientation",
+        "engine-planet-blend",
+        "engine-planets",
         "engine-position-checking",
-        "engine-positions",
-        "engine-event-planetary",
-        "engine-gravity-pluto"
+        "engine-positions"
       ],
       "paths": [
         "Scripts/assess-moon-de441.py",
@@ -713,6 +745,8 @@
         "Tests/AstronomyKitTests/Engine/Gravity/EngineGravityTests.swift",
         "Tests/AstronomyKitTests/Engine/Planets/EngineSaturnEphemerisTests.swift",
         "Tests/AstronomyKitTests/Engine/Planets/EngineSaturnMeasurementTests.swift",
+        "Tests/AstronomyKitTests/Engine/Planets/PlanetTestSupport.swift",
+        "Tests/AstronomyKitTests/Engine/Positions/EngineIlluminationTests.swift",
         "Tests/AstronomyKitTests/Fixtures/IndependentReferences/reference-fixtures.json",
         "Tests/AstronomyKitTests/IndependentReferenceFixtures.swift"
       ]
@@ -720,34 +754,46 @@
     "pluto-observers": {
       "groups": [
         "binding",
+        "engine-apparent-sun-data",
         "engine-foundation",
+        "engine-gravity-pluto",
         "engine-moon-clock-frame",
-        "engine-planets",
         "engine-orientation",
+        "engine-planet-blend",
+        "engine-planets",
         "engine-position-checking",
-        "engine-positions",
-        "engine-gravity-pluto"
+        "engine-positions"
       ],
       "paths": [
         "Scripts/capture-pluto-observers.py",
         "Scripts/pluto-data/observer-fixtures.json",
         "Scripts/reference-data/build-fixtures.py",
         "Scripts/test_capture_pluto_observers.py",
-        "Tests/AstronomyKitTests/Engine/Positions/EnginePlutoConsumerQualificationTests.swift"
+        "Sources/AstronomyKit/AstronomyError.swift",
+        "Sources/AstronomyKit/CelestialBody.swift",
+        "Sources/AstronomyKit/Coordinates.swift",
+        "Sources/AstronomyKit/NativeCoordinateValues.swift",
+        "Sources/AstronomyKit/Observer.swift",
+        "Sources/AstronomyKit/Position.swift",
+        "Sources/AstronomyKit/Time.swift",
+        "Tests/AstronomyKitTests/Engine/Positions/EnginePlutoConsumerQualificationTests.swift",
+        "Tests/AstronomyKitTests/JPLValidationTests.swift"
       ]
     },
     "transits": {
       "groups": [
         "binding",
+        "engine-apparent-sun-data",
+        "engine-eclipses",
+        "engine-event-angular-lunar",
         "engine-foundation",
         "engine-moon-clock-frame",
         "engine-moon-model",
-        "engine-planets",
         "engine-orientation",
+        "engine-planet-blend",
+        "engine-planets",
         "engine-position-checking",
-        "engine-positions",
-        "engine-eclipses",
-        "engine-event-angular-lunar"
+        "engine-positions"
       ],
       "paths": [
         "Scripts/capture-global-solar.py",
