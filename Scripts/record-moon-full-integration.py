@@ -9,6 +9,9 @@ from pathlib import Path
 import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
+DEPENDENCY_SPEC = importlib.util.spec_from_file_location('moon_full_dependencies', ROOT / 'Scripts/evidence_dependencies.py')
+dependencies = importlib.util.module_from_spec(DEPENDENCY_SPEC)
+DEPENDENCY_SPEC.loader.exec_module(dependencies)
 OUTPUT = ROOT / 'Scripts/moon-data/de441-full-integration-evidence.json'
 SPEC = importlib.util.spec_from_file_location('moon_events', ROOT / 'Scripts/generate-moon-events.py')
 events = importlib.util.module_from_spec(SPEC)
@@ -16,16 +19,7 @@ SPEC.loader.exec_module(events)
 
 
 def source_paths():
-    paths = events.event_source_paths() + [
-        'Scripts/record-moon-full-integration.py', 'Scripts/test_record_moon_full_integration.py',
-        'Scripts/generate-moon-source-fixtures.py', 'Scripts/test_generate_moon_source_fixtures.py',
-        'Scripts/moon-data/de441-full-evidence.json', 'Scripts/moon-data/de441-native-fixtures.json',
-        'Sources/AstronomyKit/MoonPhase.swift', 'Sources/AstronomyKit/Position.swift',
-        'Sources/AstronomyKit/Coordinates.swift', 'Sources/AstronomyKit/Libration.swift',
-        'Tests/AstronomyKitTests/MoonStateIdentityTests.swift',
-    ]
-    paths += [str(p.relative_to(ROOT)) for p in (ROOT / 'Tests/AstronomyKitTests/Engine/Moon').glob('*.swift')]
-    return sorted(set(paths))
+    return list(dependencies.paths('moon-full-integration'))
 
 
 def finite(value):
@@ -73,7 +67,7 @@ def record(directory):
     captures = {name: json.loads(data) for name, data in raw.items()}
     validate(captures)
     return {'schemaVersion': 1, 'runtimeBaseRevision': subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
-            'sourceSHA256': {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in source_paths()},
+            'sourceSHA256': dependencies.source_hashes('moon-full-integration'),
             'rawSHA256': {name: hashlib.sha256(data).hexdigest() for name, data in raw.items()}, 'captures': captures,
             'scope': 'Complete derived binary64 coefficients; sampled independent state and Horizons checks; exhaustive source-seam jumps. Numerical source agreement is distinct from physical accuracy. Resource observations are single-host measurements.'}
 

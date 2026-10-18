@@ -49,21 +49,18 @@ class Jup365RuntimeMeasurementTests(unittest.TestCase):
             with self.subTest(mutation=mutation), self.assertRaises(ValueError):
                 self.tool.validate(candidate)
 
-    def test_source_inventory_covers_the_compiled_target_and_measurement_owners(self):
-        compiled = {
-            path.relative_to(self.tool.ROOT)
-            for path in (self.tool.ROOT / "Sources/AstronomyKit").rglob("*.swift")
-        }
+    def test_source_inventory_is_explicit_and_covers_measurement_owners(self):
         inventory = set(self.tool.source_paths())
-        self.assertTrue(compiled)
-        self.assertTrue(compiled.issubset(inventory))
         for path in (
             Path("Package.swift"),
             Path("Scripts/jupiter-moon-data/jup365-runtime-probe.swift"),
             Path("Scripts/measure-galilean-jup365-runtime.py"),
             Path("Scripts/test_measure_galilean_jup365_runtime.py"),
+            Path("Sources/AstronomyKit/Engine/Bodies/EngineJupiterMoonsJup365.swift"),
+            Path("Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Index.swift"),
         ):
             self.assertIn(path, inventory)
+        self.assertNotIn(Path("Sources/AstronomyKit/Engine/NewUnrelatedEngineFile.swift"), inventory)
 
     def test_inventory_changes_invalidate_recorded_measurements(self):
         candidate = self.candidate()

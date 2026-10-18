@@ -9,11 +9,16 @@ from pathlib import Path, PurePosixPath
 
 ROOT = Path(__file__).resolve().parents[1]
 OWNER_FILES = {
+    'eclipse-native': 'Scripts/record-eclipse-event-evidence.py',
     'galilean-residuals': 'Scripts/galilean-residuals.py',
+    'galilean-runtime': 'Scripts/measure-galilean-jup365-runtime.py',
     'global-solar': 'Scripts/record-global-solar-evidence.py',
     'local-solar': 'Scripts/record-local-solar-evidence.py',
+    'moon-events': 'Scripts/generate-moon-events.py',
+    'moon-full-integration': 'Scripts/record-moon-full-integration.py',
     'observer-events': 'Scripts/record-observer-event-evidence.py',
     'planetary-events': 'Scripts/record-planetary-event-evidence.py',
+    'pluto-native': 'Scripts/record-pluto-de441-evidence.py',
     'pluto-observers': 'Scripts/capture-pluto-observers.py',
     'transits': 'Scripts/record-transit-evidence.py',
 }

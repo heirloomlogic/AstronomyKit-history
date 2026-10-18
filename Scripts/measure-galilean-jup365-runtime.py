@@ -3,6 +3,7 @@
 
 import argparse
 import hashlib
+import importlib.util
 import json
 import os
 from pathlib import Path
@@ -16,19 +17,12 @@ import time
 
 
 ROOT = Path(__file__).resolve().parents[1]
+DEPENDENCY_SPEC = importlib.util.spec_from_file_location("galilean_runtime_dependencies", ROOT / "Scripts/evidence_dependencies.py")
+dependencies = importlib.util.module_from_spec(DEPENDENCY_SPEC)
+DEPENDENCY_SPEC.loader.exec_module(dependencies)
 REPORT = ROOT / "Scripts/jupiter-moon-data/jup365/runtime-performance.json"
 PROBE = ROOT / "Scripts/jupiter-moon-data/jup365-runtime-probe.swift"
 GENERATED = ROOT / "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365"
-BOUND_PATHS = [
-    Path("Package.swift"),
-    Path("Scripts/generate-galilean-jup365-swift.py"),
-    Path("Scripts/jupiter-moon-data/jup365-runtime-probe.swift"),
-    Path("Scripts/jupiter-moon-data/jup365/representation.json"),
-    Path("Scripts/measure-galilean-jup365-runtime.py"),
-    Path("Scripts/test_measure_galilean_jup365_runtime.py"),
-    Path("Sources/AstronomyKit/Engine/Bodies/EngineJupiterMoons.swift"),
-    Path("Sources/AstronomyKit/Engine/Bodies/EngineJupiterMoonsJup365.swift"),
-]
 
 
 def digest(data):
@@ -40,8 +34,7 @@ def encoded(value):
 
 
 def source_paths():
-    compiled = (path.relative_to(ROOT) for path in (ROOT / "Sources/AstronomyKit").rglob("*.swift"))
-    return sorted(set(BOUND_PATHS).union(compiled), key=str)
+    return [Path(path) for path in dependencies.paths("galilean-runtime")]
 
 
 def source_hashes():

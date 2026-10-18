@@ -52,6 +52,28 @@ class EvidenceDependencyTests(unittest.TestCase):
             after_direct = dependencies.source_hashes(owner, root=shadow)
             self.assertNotEqual(after_direct[direct], before[direct])
 
+    def test_every_migrated_broad_owner_ignores_an_unrelated_addition_and_binds_shared_runtime(self):
+        owners = ['eclipse-native', 'galilean-runtime', 'moon-events', 'moon-full-integration', 'pluto-native']
+        all_owned = {path for paths in dependencies.load_inventory().values() for path in paths}
+        relevant = 'Sources/AstronomyKit/Engine/Foundation/EngineConstants.swift'
+        with tempfile.TemporaryDirectory() as directory:
+            shadow = Path(directory)
+            for relative in all_owned:
+                destination = shadow / relative
+                destination.parent.mkdir(parents=True, exist_ok=True)
+                destination.symlink_to(ROOT / relative)
+            before = {owner: dependencies.source_hashes(owner, root=shadow) for owner in owners}
+            unrelated = shadow / 'Sources/AstronomyKit/Engine/NewUnrelatedEngineFile.swift'
+            unrelated.write_text('enum NewUnrelatedEngineFile {}\n')
+            for owner in owners:
+                with self.subTest(owner=owner, mutation='unrelated'):
+                    self.assertEqual(dependencies.source_hashes(owner, root=shadow), before[owner])
+            (shadow / relevant).unlink()
+            (shadow / relevant).write_bytes((ROOT / relevant).read_bytes() + b'\n')
+            for owner in owners:
+                with self.subTest(owner=owner, mutation='relevant'):
+                    self.assertNotEqual(dependencies.source_hashes(owner, root=shadow)[relevant], before[owner][relevant])
+
     def test_inventory_addition_invalidates_retained_bindings(self):
         owner = 'global-solar'
         all_owned = {path for paths in dependencies.load_inventory().values() for path in paths}
@@ -160,6 +182,15 @@ class EvidenceDependencyTests(unittest.TestCase):
                 with self.subTest(owner=owner, dependency=dependency):
                     self.assertIn(dependency, inventory[owner])
         self.assertIn(moon_blend, inventory['pluto-observers'])
+        for owner in ['eclipse-native', 'galilean-runtime', 'moon-events', 'moon-full-integration', 'pluto-native']:
+            for dependency in [
+                apparent_sun,
+                apparent_evaluator,
+                moon_blend,
+                'Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Index.swift',
+            ]:
+                with self.subTest(owner=owner, dependency=dependency):
+                    self.assertIn(dependency, inventory[owner])
         for dependency in [
             'Sources/AstronomyKit/AstronomyError.swift',
             'Sources/AstronomyKit/CelestialBody.swift',
