@@ -1,10 +1,10 @@
 {
   "build": {
-    "command": "/usr/bin/time -lp swift build -c release -j 2 --scratch-path .context/issue-315/jup365-runtime",
-    "maximumResidentSetBytes": 9148940288,
-    "peakMemoryFootprintBytes": 828229864,
-    "swiftPMSeconds": 43.9,
-    "wallSeconds": 60.09
+    "command": "/usr/bin/time -lp swift build -c release -j 2 --scratch-path .context/issue-315/final-captures-v2/jup365-runtime",
+    "maximumResidentSetBytes": 9154265088,
+    "peakMemoryFootprintBytes": 837880040,
+    "swiftPMSeconds": 41.67,
+    "wallSeconds": 53.41
   },
   "host": {
     "machine": "arm64",
@@ -13,38 +13,41 @@
   },
   "publicAPI": {
     "firstChecksum": 0.0029811362274096984,
-    "firstPublicCallMilliseconds": 1.740083,
+    "firstPublicCallMilliseconds": 1.945417,
     "iterations": 100000,
-    "processLaunchAndFirstCallMedianMilliseconds": 284.738916,
+    "processLaunchAndFirstCallMedianMilliseconds": 282.482958,
     "processLaunchAndFirstCallMilliseconds": [
-      284.977833,
-      296.739416,
-      286.897417,
-      277.652083,
-      284.738916,
-      29.388875,
-      25.523708
+      287.536458,
+      286.76525,
+      282.482958,
+      282.019458,
+      286.207083,
+      24.372584,
+      24.094583
     ],
     "sameEpochChecksum": 298.11362274099224,
-    "sameEpochMicrosecondsPerCall": 8.380915000000002,
+    "sameEpochMicrosecondsPerCall": 7.8399879199999996,
     "spanningChecksum": -0.596481031312171,
-    "spanningMicrosecondsPerCall": 16.253458339999998
+    "spanningMicrosecondsPerCall": 15.41999792
   },
   "schemaVersion": 1,
   "sizes": {
-    "astronomyKitObjectBytes": 552916472,
+    "astronomyKitObjectBytes": 552921384,
     "astronomyKitSourcesBytes": 552810874,
     "generatedSwiftBytes": 81067832,
-    "probeExecutableBytes": 556942792,
-    "staticLibraryBytes": 552986160
+    "probeExecutableBytes": 556947720,
+    "staticLibraryBytes": 552991072
   },
   "sourceSHA256": {
     "Package.swift": "f09138b379aebee7f80817802440177a09c754b962ad1d212f265a708ef5714d",
+    "Scripts/evidence-dependencies.json": "a637388f2246551b64f6217eca42dec444e4df883d5766404140dbf4907d9295",
+    "Scripts/evidence_dependencies.py": "d14591ce83fc604a3a853102647cdd7089924fd1048ac68c4ddeb8cb99411ca9",
     "Scripts/generate-galilean-jup365-swift.py": "6ecac9460fc584902978e1c6d902ddc6e33808ca7e9845ca319992e924b40d00",
     "Scripts/jupiter-moon-data/jup365-runtime-probe.swift": "5ea70920c8f5dc7266415ed38b15e0a0bec209f31675f31f5fc95fa7e7654899",
     "Scripts/jupiter-moon-data/jup365/representation.json": "61c10d5d146956766216ee78a80a9ffb2303e9e97eec9b65aec1c278144f37be",
-    "Scripts/measure-galilean-jup365-runtime.py": "4824c40548fbe5b3ba225b54ee9aa6f68231c685bdef9b2ed15981caef92a65d",
-    "Scripts/test_measure_galilean_jup365_runtime.py": "c49ead6c5f438d26963c2b3b12033802f66f0c8ab8e18773bbddca8a8e96c438",
+    "Scripts/measure-galilean-jup365-runtime.py": "944442c6332a4a0620c682fef237495019c053d2b53960ca8a4d41643275b216",
+    "Scripts/test_evidence_dependencies.py": "14ee9f02622ca70af42e241f4ca01b27942755ccafb4808e1e824a990cea56e9",
+    "Scripts/test_measure_galilean_jup365_runtime.py": "04698b968162c18db2e9297b270f220fb4a205c73e4a209289e6bb120907a546",
     "Sources/AstronomyKit/Apsis.swift": "846e96c10636302634649bb827e843e3b6debf9b1d3f948f0b412f8e26dcece6",
     "Sources/AstronomyKit/AstronomyError.swift": "7122525f8f8796baaef9e6a3baff8c2332d0a0f817927af6c98d83b4a81c7746",
     "Sources/AstronomyKit/AstronomyKit.swift": "c6dad36ea132847c27a822f1c50f04eacf5251d3f28e123a436e820a8cd761dd",
@@ -54,6 +57,19 @@
     "Sources/AstronomyKit/CivilTime.swift": "c858285d2d8e9ce8e60be2f388f71dac4554b15dd3815f5d88d47758475f47ac",
     "Sources/AstronomyKit/Constellation.swift": "6b076da1e7790cdc215d25bacce44f31012248f2272b565e9723a43023e30cf3",
     "Sources/AstronomyKit/Coordinates.swift": "9b1ae70052f416252af118b50cc61bf2c900918cd76ccea021017c28f793d60a",
+    "Sources/AstronomyKit/Documentation.docc/AdvancedFeatures.md": "274366423ec0e2cfbdbd2fb604201092e9eb9c13f066d53c52dfc9515b1eb014",
+    "Sources/AstronomyKit/Documentation.docc/CelestialPositions.md": "daf4b7e892663003209580a8d07be441d0fbc741eb6e04a55eae1e5d71cc8c5a",
+    "Sources/AstronomyKit/Documentation.docc/CoordinateSystems.md": "83ae86038d390a249f486c7373091038c9492c3b810ee4cedd26cd8bd9809dbc",
+    "Sources/AstronomyKit/Documentation.docc/Documentation.md": "d6f0a319a7c907205d340bab2427df985cd5b02c15ea536ccdb725374b191477",
+    "Sources/AstronomyKit/Documentation.docc/Eclipses.md": "3ddc2f09d369a23292748aaa2da039a0ee5890a405f4f5c79f947f9e4fc7d788",
+    "Sources/AstronomyKit/Documentation.docc/GettingStarted.md": "283dfb8111366e261e8fdf6f58f59ef062baff81363c46f4fc61d5716e52dfb1",
+    "Sources/AstronomyKit/Documentation.docc/MoonPhases.md": "48ce2c59e3423c9811783c7c2d29423fe26bd6054dd3a224d4f813cce8383eca",
+    "Sources/AstronomyKit/Documentation.docc/Resources/AstronomyKit-logo.png": "3f129286485db39dbad4714fe12048455f401ec259d3ecbfbf0c14b2b645dde3",
+    "Sources/AstronomyKit/Documentation.docc/Resources/AstronomyKit-logo@2x.png": "97ec6ae3704b3b587b97d6e5113b7db8153ab13f52aaa5101e210dbf26fc86ad",
+    "Sources/AstronomyKit/Documentation.docc/RiseSetTimes.md": "42fc0199f7e6d45c90cbee7f96b9c3952729f7a07f6bd0bef6adf06d49e53bb4",
+    "Sources/AstronomyKit/Documentation.docc/SeasonsAndEvents.md": "acde330283afd1c12333c13e34143c8e3eeb4179bb30aed5daa7d37678e76c4a",
+    "Sources/AstronomyKit/Documentation.docc/SolarAltitudeNumerics.md": "8005170fbf3166db0df0c005abe9021046658996c42339b41206d4c465919ff8",
+    "Sources/AstronomyKit/Documentation.docc/TimeAndObservers.md": "25d1165e07e0a079dc35d91933a18f196f0ae6e1040a9f23ab1a3b5c3f6c61b5",
     "Sources/AstronomyKit/Eclipse.swift": "fd2f24307e73c6a4c72d46a855e439cffbf744bd1dc1a56d778191f32ab52f0f",
     "Sources/AstronomyKit/Elongation.swift": "6231ae73f3faceb7344ca5e37ccf547a82b85ce9fbe5e061259ad52479f3d6d7",
     "Sources/AstronomyKit/Engine/Bodies/EngineJupiterMoons.swift": "c450d38bedf50e91869d0d2df81870ce332d5fb8bdab2a846fb9bcce398434fd",

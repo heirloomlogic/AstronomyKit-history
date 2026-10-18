@@ -1,7 +1,7 @@
 {
   "buildSeconds": {
-    "debug": 33.41,
-    "release": 147.44
+    "debug": 1.91,
+    "release": 165.59
   },
   "centralMidpointDifferencesSeconds": {
     "Springfield, ILLINOIS": 0.13159174122847617
@@ -179,13 +179,13 @@
   },
   "resources": {
     "checksum": 340147.30894289777,
-    "coldSeconds": 0.09523200988769531,
+    "coldSeconds": 0.11158192157745361,
     "host": "Version 27.0.1 (Build 26A434)",
     "nextCount": 19,
-    "nextSeconds": 6.107656002044678,
-    "peakAfterColdBytes": 109887488,
-    "peakAfterWorkloadBytes": 111935488,
-    "peakBeforeBytes": 109789184
+    "nextSeconds": 6.037137985229492,
+    "peakAfterColdBytes": 104710144,
+    "peakAfterWorkloadBytes": 106708992,
+    "peakBeforeBytes": 47906816
   },
   "rp1301Contacts": [
     {
@@ -237,7 +237,7 @@
       "seconds": -0.9330867149401456
     }
   ],
-  "runtimeBaseRevision": "956c0be5d277b8d7a00f235a8a0131b1cbcf86c2",
+  "runtimeBaseRevision": "3c46ccd2b1a81c4ffca5f99528439ef6514e0561",
   "schemaVersion": 1,
   "sequence": [
     {
@@ -262,12 +262,12 @@
   "sourceHashes": {
     "Scripts/capture-global-solar.py": "60e3cd29f2ec6efb8bc98c7df745c792c3d61c34676ae20ea99d3ee10ac91f1b",
     "Scripts/capture-local-solar.py": "c65a5f544352fddd7ef75e8ed3d8da374c94dfce78672fc8d3c2f6b066d3877a",
-    "Scripts/eclipse-data/local-captures.json": "f036aef39773034b9cbcedded8e22d680e63443821cd17e80966999c25e74f73",
+    "Scripts/eclipse-data/local-captures.json": "1007ecde562d7b27f24dba98dd5425f075d44dc36f222c7eda06a656fd69e975",
     "Scripts/eclipse-data/local-references.json": "7d2301230ee722952c2654f1ae8d067c3d8a615ab3d2061adc606df9fc7bced0",
-    "Scripts/evidence-dependencies.json": "32fda9a7efd5972ab55f7cf30eb3b1861969eb2eadaf7ef266a4d176cfe3d25c",
-    "Scripts/evidence_dependencies.py": "c34600670139aa58672ff755ed4c6edb52db405db2f73d2805beb6ca5cfbb76d",
+    "Scripts/evidence-dependencies.json": "a637388f2246551b64f6217eca42dec444e4df883d5766404140dbf4907d9295",
+    "Scripts/evidence_dependencies.py": "d14591ce83fc604a3a853102647cdd7089924fd1048ac68c4ddeb8cb99411ca9",
     "Scripts/local-solar-peak-probe.swift": "d7f46ceb60aa765d0db551f16736d8c77ce8743cb0242432eececf8c91bfe520",
-    "Scripts/record-eclipse-event-evidence.py": "3bb05c08c84169ebda915352a959fa4d6949cdabbe69fab639555f5625d0185a",
+    "Scripts/record-eclipse-event-evidence.py": "524577d002912822426407e68023a9443bb83b978279a5a31f04cb619bc72de9",
     "Scripts/record-local-solar-evidence.py": "80f40e296d72e7d1a9e7c316a68ce22ccb16670eed3fc032041bf3cea1c94f95",
     "Scripts/reference-data/build-fixtures.py": "624f89695e2f0afffe8f53f73bfb7de24a69c06386a1eb80d49b911da6b17d50",
     "Scripts/reference-data/sources/global-solar/COPYING.GPL-2.0": "edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6",
@@ -298,7 +298,7 @@
     "Scripts/reference-data/sources/local-solar/rp1301-table8.html.query.json": "8dd60754d9ce5f60461d346b42c0a3730cb8d3e30b0dd8893585cd4c17e3e381",
     "Scripts/reference-data/sources/local_solar_eclipse.txt": "1273c79b53122d6e5efc264b3c64e571e9a47d777103eaffbcdf5fb44c7743f0",
     "Scripts/reference-data/sources/solar_2001.html": "820b7a9e4a04881ff212ee59603f03fb3ebdcb72e340414494b1fb84271efc9d",
-    "Scripts/test_evidence_dependencies.py": "bce85f416426b4f3ce52b50c5baa80a8f401236c095d56d0192acaeef6cc3406",
+    "Scripts/test_evidence_dependencies.py": "14ee9f02622ca70af42e241f4ca01b27942755ccafb4808e1e824a990cea56e9",
     "Scripts/test_local_solar.py": "bb3fc67cf148916781859dbee0b863f3efdd1e30c1748cba320f80e43d01ab77",
     "Sources/AstronomyKit/AstronomyError.swift": "7122525f8f8796baaef9e6a3baff8c2332d0a0f817927af6c98d83b4a81c7746",
     "Sources/AstronomyKit/AstronomyKit.swift": "c6dad36ea132847c27a822f1c50f04eacf5251d3f28e123a436e820a8cd761dd",

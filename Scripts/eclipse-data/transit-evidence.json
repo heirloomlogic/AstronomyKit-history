@@ -1,7 +1,7 @@
 {
   "buildSeconds": {
-    "debug": 33.41,
-    "release": 147.44
+    "debug": 1.91,
+    "release": 165.59
   },
   "limitations": "Sampled independent UT contacts/angular minima and published next identities, not full-domain accuracy. Physical spheres use NASA fact-sheet mean radii; these are not attributed to the Meeus catalog. Apparent vectors retain engine light-time/aberration conventions. OH2001 December penumbral contacts remain outside 120 s; matching Danjon diagrams are separately qualified. Global G0/1986 and local peak limitations remain in their evidence owners. The public facade runs on these searches since the #96 cutover; host costs are not portable gates.",
   "published": [
@@ -104,15 +104,15 @@
   },
   "resources": {
     "checksum": 537515.4329263234,
-    "coldSeconds": 0.033174991607666016,
+    "coldSeconds": 0.04328799247741699,
     "host": "Version 27.0.1 (Build 26A434)",
     "nextCount": 19,
-    "nextSeconds": 1.162442922592163,
-    "peakAfterColdBytes": 112263168,
-    "peakAfterWorkloadBytes": 119177216,
-    "peakBeforeBytes": 111968256
+    "nextSeconds": 1.1214419603347778,
+    "peakAfterColdBytes": 82870272,
+    "peakAfterWorkloadBytes": 92160000,
+    "peakBeforeBytes": 47939584
   },
-  "runtimeBaseRevision": "956c0be5d277b8d7a00f235a8a0131b1cbcf86c2",
+  "runtimeBaseRevision": "3c46ccd2b1a81c4ffca5f99528439ef6514e0561",
   "schemaVersion": 1,
   "sequences": {
     "global": [
@@ -238,11 +238,11 @@
   "sourceHashes": {
     "Scripts/capture-global-solar.py": "60e3cd29f2ec6efb8bc98c7df745c792c3d61c34676ae20ea99d3ee10ac91f1b",
     "Scripts/capture-transit-references.py": "353dbde0ada3434cb96205cffc0aeda8fff46142b876c99015246c805daee224",
-    "Scripts/eclipse-data/transit-captures.json": "c30270aafd45cd3f79de4b9e2cb555a9174c38c880f0e1faa6d85ec9c07351ea",
+    "Scripts/eclipse-data/transit-captures.json": "aa171be27f0f829718a81aa8a8f380c9dffd4bd17698141b19121251c78b6941",
     "Scripts/eclipse-data/transit-references.json": "cc822496e688ba73e8d9e83d1aaab071d436bebf24c964bb4ca4537218d543bb",
-    "Scripts/evidence-dependencies.json": "32fda9a7efd5972ab55f7cf30eb3b1861969eb2eadaf7ef266a4d176cfe3d25c",
-    "Scripts/evidence_dependencies.py": "c34600670139aa58672ff755ed4c6edb52db405db2f73d2805beb6ca5cfbb76d",
-    "Scripts/record-eclipse-event-evidence.py": "3bb05c08c84169ebda915352a959fa4d6949cdabbe69fab639555f5625d0185a",
+    "Scripts/evidence-dependencies.json": "a637388f2246551b64f6217eca42dec444e4df883d5766404140dbf4907d9295",
+    "Scripts/evidence_dependencies.py": "d14591ce83fc604a3a853102647cdd7089924fd1048ac68c4ddeb8cb99411ca9",
+    "Scripts/record-eclipse-event-evidence.py": "524577d002912822426407e68023a9443bb83b978279a5a31f04cb619bc72de9",
     "Scripts/record-transit-evidence.py": "b265d18aeba84276304c80c131b95b61085f37ee6ed4ad973977869ed35413e1",
     "Scripts/reference-data/build-fixtures.py": "624f89695e2f0afffe8f53f73bfb7de24a69c06386a1eb80d49b911da6b17d50",
     "Scripts/reference-data/sources/mercury.html": "e29ff3e1ada11eaee343032f0c5b927ccf9a9b2cacad8e006a2bd6b4fc71ba40",
@@ -262,7 +262,7 @@
     "Scripts/reference-data/sources/transit/venusfact.html": "473c61da0bf7188764ec8ae5b12c0fdc9f922bccd9e3f6b47c885fef0723541c",
     "Scripts/reference-data/sources/transit/venusfact.html.query.json": "7da22e95fade9ab13a649655a650aafecd7a8bceaa762f56b38a47999322ea30",
     "Scripts/reference-data/sources/venus.html": "c06f2f10efc8554328bb51ed1725d13f1ec53a5a82a0c25089dcf1104994ca7f",
-    "Scripts/test_evidence_dependencies.py": "bce85f416426b4f3ce52b50c5baa80a8f401236c095d56d0192acaeef6cc3406",
+    "Scripts/test_evidence_dependencies.py": "14ee9f02622ca70af42e241f4ca01b27942755ccafb4808e1e824a990cea56e9",
     "Scripts/test_transit_evidence.py": "7e652ebcd6600d3160da9514185e08acfd472261314ce401f9c45ea533390fd5",
     "Sources/AstronomyKit/AstronomyError.swift": "7122525f8f8796baaef9e6a3baff8c2332d0a0f817927af6c98d83b4a81c7746",
     "Sources/AstronomyKit/AstronomyKit.swift": "c6dad36ea132847c27a822f1c50f04eacf5251d3f28e123a436e820a8cd761dd",
