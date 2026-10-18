@@ -13417,6 +13417,10 @@
   "fixedStars": [
     {
       "azimuthDegrees": 91.39535951360347,
+      "barnardHipparcosEpochDeclinationDegrees": 4.668287419535214,
+      "barnardHipparcosEpochRightAscensionHours": 17.963601538745586,
+      "barnardJ2000DeclinationDegrees": 4.693410466142889,
+      "barnardJ2000RightAscensionHours": 17.963471561835654,
       "declinationDegrees": -12.519554583333335,
       "distanceLightYears": 19.768251269598043,
       "eclipticLatitudeDegrees": 2.4757703160725675,
@@ -13431,6 +13435,8 @@
       "rightAscensionHours": 14.571336619444445,
       "sampledMaximumResidualArcseconds": 0.24646243356162456,
       "sampledToleranceArcseconds": 0.5,
+      "sofaStarpmDeclinationRadians": -1.093966454217128,
+      "sofaStarpmRightAscensionRadians": 0.01668919069414256,
       "topocentricDeclinationDegrees": -12.578950118025515,
       "topocentricRightAscensionHours": 14.583919166877292,
       "ttJulianDate": 2456385.4700316433,
@@ -117243,17 +117249,17 @@
       "version": "865d3da7d8112bbc7911238052c6af4aaf877181"
     },
     "sofaFixedStar": {
-      "aberration": "SOFA iauAtci13 relativistic annual aberration and light deflection; AstronomyKit retains its linear annual-aberration approximation",
-      "domain": "one star and instant from the official SOFA astrometry example; proper motion is archived but set to zero by the recipe because FixedStar stores no proper-motion terms",
+      "aberration": "SOFA iauStarpm catalog propagation and iauAtci13 relativistic annual aberration and light deflection",
+      "domain": "SOFA's published iauStarpm validation row, Gaia DR3 Barnard's star propagated to J2000 and Hipparcos J1991.25, and one static star and instant from SOFA's official astrometry example",
       "frame": "ICRS/J2000, IAU 2006/2000A true equator and ecliptic of date, and topocentric horizon",
-      "license": "IAU SOFA software and data terms; attribution retained and no endorsement implied",
-      "origin": "Sun center for the catalog definition, Earth center for geocentric coordinates, and the published geodetic site for topocentric coordinates",
-      "recipe": "The official sofa_ast_example.c is pinned unchanged; sofa-fixed-star-reference.c generates fixed-star-reference.json against SOFA release 2023-10-11. The 0.5 arcsec limit is twice the 0.246 arcsec sampled maximum rounded up, a regression margin rather than a published accuracy.",
+      "license": "IAU SOFA software and data terms and ESA Gaia Archive factual output; attribution retained and no endorsement implied",
+      "origin": "Solar-system barycenter for propagated catalog motion, Sun center for the legacy catalog definition, Earth center for geocentric coordinates, and the published geodetic site for topocentric coordinates",
+      "recipe": "The pinned Gaia TAP row supplies Barnard's star catalog data. The official sofa_ast_example.c is pinned unchanged; sofa-fixed-star-reference.c generates fixed-star-reference.json against SOFA release 2023-10-11, including starpm propagation. The 0.5 arcsec static-row limit is twice the 0.246 arcsec sampled maximum rounded up, a regression margin rather than a published accuracy.",
       "refraction": "none",
-      "timeScale": "UTC, TT, and UT1 with UT1-UTC set to zero for the archived row",
-      "units": "sidereal hours, degrees, metres, Julian dates, parallax-derived light-years, and arcseconds",
+      "timeScale": "Gaia catalog epoch J2016.0 TCB, target Julian epochs represented as TT, and UTC, TT, and UT1 with UT1-UTC set to zero for the static row",
+      "units": "sidereal hours, degrees, radians, milliarcseconds, kilometres per second, metres, Julian dates, parallax-derived light-years, and arcseconds",
       "url": "https://www.iausofa.org/2023_1011_C.html",
-      "version": "2023-10-11"
+      "version": "SOFA 2023-10-11; Gaia DR3"
     },
     "usnoRiseSet": {
       "aberration": "included in the USNO apparent-position service",

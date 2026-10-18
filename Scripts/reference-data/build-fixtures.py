@@ -82,6 +82,7 @@ PUBLISHER_SOURCES = {
     "naif/pck00011.tpc": ("https://naif.jpl.nasa.gov/pub/naif/generic_kernels/pck/pck00011.tpc", "3dff7b1dbeceaa01f25467767d3fa25816051c85d162d1edf04acb310ee28bb1"),
     "sofa/sofa_ast_example.c": ("https://www.iausofa.org/s/sofa_ast_example.c", "9903dca63bd87e573db6a57c04945bb712f3c958a23c245db0c03a37bf31d4e9"),
     "sofa/sofa_c-20231011.tar.gz": ("https://www.iausofa.org/s/sofa_c-20231011tar.gz", "d9c10833cae8b4d9361a0ffda31ec361fd1262362025bec4d4e51a880150ace2"),
+    "gaia/barnard-dr3.csv": ("https://gea.esac.esa.int/tap-server/tap/sync?REQUEST=doQuery&LANG=ADQL&FORMAT=csv&QUERY=SELECT+source_id%2Cra%2Cdec%2Cparallax%2Cpmra%2Cpmdec%2Cradial_velocity%2Cref_epoch+FROM+gaiadr3.gaia_source+WHERE+source_id%3D4472832130942575872", "d88558b5a525b77fcc5137974e323f711658af3dfb68a90156beead122fcf80e"),
 }
 
 SOFA_RELEASE_SHA256 = "d9c10833cae8b4d9361a0ffda31ec361fd1262362025bec4d4e51a880150ace2"
@@ -93,7 +94,7 @@ SOFA_RECIPE_SOURCES = (
     "gd2gc.c", "gd2gce.c", "ir.c", "jd2cal.c", "ld.c", "ldsun.c", "nut00a.c", "nut06a.c", "obl06.c", "pdp.c",
     "pfw06.c", "pm.c", "pmpx.c", "pn.c", "pnm06a.c", "pom00.c", "pvtob.c", "pxp.c", "refco.c", "rx.c",
     "rxp.c", "ry.c", "rz.c", "s06.c", "s2c.c", "sp00.c", "sxp.c", "taitt.c", "taiut1.c", "tf2a.c",
-    "tr.c", "trxp.c", "utctai.c", "utcut1.c", "xys06a.c", "zp.c",
+    "pmp.c", "ppp.c", "ppsp.c", "pv2s.c", "pvu.c", "pvstar.c", "s2pv.c", "starpm.c", "starpv.c", "tr.c", "trxp.c", "utctai.c", "utcut1.c", "xys06a.c", "zp.c",
 )
 
 SOFA_ANGULAR_EVENT_SOURCES = (
@@ -1343,28 +1344,36 @@ def sofa_fixed_star_recipe_output() -> dict[str, float]:
     return output
 
 
+SOFA_FIXED_STAR_RECIPE_KEYS = {
+    "utcJD": "utJulianDate",
+    "ttJD": "ttJulianDate",
+    "rightAscensionHours": "rightAscensionHours",
+    "declinationDegrees": "declinationDegrees",
+    "distanceLightYears": "distanceLightYears",
+    "j2000RAHours": "j2000RightAscensionHours",
+    "j2000DecDegrees": "j2000DeclinationDegrees",
+    "ofDateRAHours": "ofDateRightAscensionHours",
+    "ofDateDecDegrees": "ofDateDeclinationDegrees",
+    "eclipticLongitudeDegrees": "eclipticLongitudeDegrees",
+    "eclipticLatitudeDegrees": "eclipticLatitudeDegrees",
+    "azimuthDegrees": "azimuthDegrees",
+    "altitudeDegrees": "unrefractedAltitudeDegrees",
+    "topocentricRAHours": "topocentricRightAscensionHours",
+    "topocentricDecDegrees": "topocentricDeclinationDegrees",
+    "sofaStarpmRARadians": "sofaStarpmRightAscensionRadians",
+    "sofaStarpmDecRadians": "sofaStarpmDeclinationRadians",
+    "barnardJ2000RAHours": "barnardJ2000RightAscensionHours",
+    "barnardJ2000DecDegrees": "barnardJ2000DeclinationDegrees",
+    "barnardHipparcosEpochRAHours": "barnardHipparcosEpochRightAscensionHours",
+    "barnardHipparcosEpochDecDegrees": "barnardHipparcosEpochDeclinationDegrees",
+}
+
+
 def verify_sofa_fixed_star_recipe_output(reference: dict[str, object]) -> None:
-    recipe_keys = {
-        "utcJD": "utJulianDate",
-        "ttJD": "ttJulianDate",
-        "rightAscensionHours": "rightAscensionHours",
-        "declinationDegrees": "declinationDegrees",
-        "distanceLightYears": "distanceLightYears",
-        "j2000RAHours": "j2000RightAscensionHours",
-        "j2000DecDegrees": "j2000DeclinationDegrees",
-        "ofDateRAHours": "ofDateRightAscensionHours",
-        "ofDateDecDegrees": "ofDateDeclinationDegrees",
-        "eclipticLongitudeDegrees": "eclipticLongitudeDegrees",
-        "eclipticLatitudeDegrees": "eclipticLatitudeDegrees",
-        "azimuthDegrees": "azimuthDegrees",
-        "altitudeDegrees": "unrefractedAltitudeDegrees",
-        "topocentricRAHours": "topocentricRightAscensionHours",
-        "topocentricDecDegrees": "topocentricDeclinationDegrees",
-    }
     output = sofa_fixed_star_recipe_output()
-    if output.keys() != recipe_keys.keys():
+    if output.keys() != SOFA_FIXED_STAR_RECIPE_KEYS.keys():
         raise RuntimeError("SOFA fixed-star recipe output fields mismatch")
-    for output_name, reference_name in recipe_keys.items():
+    for output_name, reference_name in SOFA_FIXED_STAR_RECIPE_KEYS.items():
         actual = output[output_name]
         expected = float(reference[reference_name])
         if not math.isfinite(actual) or not math.isfinite(expected):
@@ -1385,6 +1394,16 @@ def parse_sofa_fixed_stars() -> list[dict[str, object]]:
     if reference["sampledToleranceArcseconds"] < 2 * reference["sampledMaximumResidualArcseconds"]:
         raise RuntimeError("SOFA fixed-star tolerance must be at least twice the sampled maximum residual")
     return [reference]
+
+
+def capture_sofa_fixed_star_reference() -> None:
+    path = SOURCE_DIR / "sofa/fixed-star-reference.json"
+    reference = json.loads(path.read_text())
+    output = sofa_fixed_star_recipe_output()
+    for output_name, reference_name in SOFA_FIXED_STAR_RECIPE_KEYS.items():
+        reference[reference_name] = output[output_name]
+    reference["_recipeSHA256"] = sha256((ROOT / "Scripts/reference-data/sofa-fixed-star-reference.c").read_bytes())
+    path.write_bytes(encoded(reference))
 
 
 def build_archive(constellations: dict[str, list[dict[str, object]]] | None = None) -> dict[str, object]:
@@ -1418,7 +1437,7 @@ def source_catalog() -> dict[str, dict[str, str]]:
     nasa_license = "NASA factual data may be reproduced with acknowledgment and without implied endorsement; transformed files also retain the archived Astronomy Engine MIT license"
     return {
         "cdsConstellations": {"version": "VI/42, corrected 1999-12-30; archived IAU name table", "frame": "mean equator and equinox of B1875", "origin": "celestial sphere", "units": "sidereal hours and degrees", "timeScale": "not applicable; positions are precessed between named equinoxes", "aberration": "none", "refraction": "none", "domain": "all 88 IAU constellations, all 357 VI/42 southern boundary segments and their exact right-ascension and declination ties", "license": "Published catalog data and program by Nancy Grace Roman through CDS/VizieR, with official names and abbreviations from the IAU; source and service attribution retained", "url": "https://cdsarc.cds.unistra.fr/viz-bin/ReadMe/VI/42", "recipe": "Pinned VI/42 ReadMe, boundary table and C program plus the archived IAU constellation name table. build-fixtures.py compiles and runs the published program on all eight ReadMe examples, parses every row, reproduces the published Herget precession for J2000 samples, and generates the native Swift table."},
-        "sofaFixedStar": {"version": "2023-10-11", "frame": "ICRS/J2000, IAU 2006/2000A true equator and ecliptic of date, and topocentric horizon", "origin": "Sun center for the catalog definition, Earth center for geocentric coordinates, and the published geodetic site for topocentric coordinates", "units": "sidereal hours, degrees, metres, Julian dates, parallax-derived light-years, and arcseconds", "timeScale": "UTC, TT, and UT1 with UT1-UTC set to zero for the archived row", "aberration": "SOFA iauAtci13 relativistic annual aberration and light deflection; AstronomyKit retains its linear annual-aberration approximation", "refraction": "none", "domain": "one star and instant from the official SOFA astrometry example; proper motion is archived but set to zero by the recipe because FixedStar stores no proper-motion terms", "license": "IAU SOFA software and data terms; attribution retained and no endorsement implied", "url": "https://www.iausofa.org/2023_1011_C.html", "recipe": "The official sofa_ast_example.c is pinned unchanged; sofa-fixed-star-reference.c generates fixed-star-reference.json against SOFA release 2023-10-11. The 0.5 arcsec limit is twice the 0.246 arcsec sampled maximum rounded up, a regression margin rather than a published accuracy."},
+        "sofaFixedStar": {"version": "SOFA 2023-10-11; Gaia DR3", "frame": "ICRS/J2000, IAU 2006/2000A true equator and ecliptic of date, and topocentric horizon", "origin": "Solar-system barycenter for propagated catalog motion, Sun center for the legacy catalog definition, Earth center for geocentric coordinates, and the published geodetic site for topocentric coordinates", "units": "sidereal hours, degrees, radians, milliarcseconds, kilometres per second, metres, Julian dates, parallax-derived light-years, and arcseconds", "timeScale": "Gaia catalog epoch J2016.0 TCB, target Julian epochs represented as TT, and UTC, TT, and UT1 with UT1-UTC set to zero for the static row", "aberration": "SOFA iauStarpm catalog propagation and iauAtci13 relativistic annual aberration and light deflection", "refraction": "none", "domain": "SOFA's published iauStarpm validation row, Gaia DR3 Barnard's star propagated to J2000 and Hipparcos J1991.25, and one static star and instant from SOFA's official astrometry example", "license": "IAU SOFA software and data terms and ESA Gaia Archive factual output; attribution retained and no endorsement implied", "url": "https://www.iausofa.org/2023_1011_C.html", "recipe": "The pinned Gaia TAP row supplies Barnard's star catalog data. The official sofa_ast_example.c is pinned unchanged; sofa-fixed-star-reference.c generates fixed-star-reference.json against SOFA release 2023-10-11, including starpm propagation. The 0.5 arcsec static-row limit is twice the 0.246 arcsec sampled maximum rounded up, a regression margin rather than a published accuracy."},
         "jplObserver": {"serviceVersion": "recorded in every archived response", "frame": "ICRF/J2000 equatorial and IAU76/80 true ecliptic and equinox of date", "origin": "Earth center 500@399", "units": "degrees, arcseconds/hour, AU, and km/s", "timeScale": "UT/UTC calendar output", "aberration": "apparent AIRLESS observer solution with down-leg light time and response-listed corrections", "refraction": "none (AIRLESS)", "domain": "1900, 2000, and 2100 samples, plus a three-day 2025 Mercury station bracket and 2060 Chiron at 1900-01-01 03:00 UT, 1950, 2000, 2026-01-02, 2050 and 2100", "license": "NASA/JPL factual output; acknowledge NASA and do not imply endorsement", "url": "https://ssd.jpl.nasa.gov/horizons/manual.html", "recipe": "Adjacent *.query.json files contain every Horizons API parameter and the response SHA-256"},
         "jplHorizontal": {"serviceVersion": "recorded in every archived response", "frame": "topocentric apparent horizon: azimuth east of north and elevation", "origin": "geodetic site 35.595 N, 82.5572 W, height 0 (coord@399)", "units": "degrees", "timeScale": "UTC calendar output", "aberration": "apparent position with light time, gravitational deflection and stellar aberration", "refraction": "none (AIRLESS) and Horizons' yellow-light refraction model (REFRACTED)", "domain": "the Sun, the Moon and Mars every three hours on 2026-01-02 and 2026-07-02 UT, above and below the horizon", "license": "NASA/JPL factual output; acknowledge NASA and do not imply endorsement", "url": "https://ssd.jpl.nasa.gov/horizons/manual.html", "recipe": "Adjacent *.query.json files contain every Horizons API parameter and the response SHA-256"},
         "jplApparentLunarPhases": {"serviceVersion": "recorded in every archived response", "frame": "Earth-centered IAU76/80 apparent ecliptic and equinox of date", "origin": "Earth center 500@399", "units": "Julian dates TT, degrees, and seconds", "timeScale": "TT (TIME_TYPE=TT); roots are TT Julian dates and need no Delta T", "aberration": "Horizons quantity 31: light time, gravitational deflection, and stellar aberration", "refraction": "none (AIRLESS)", "domain": "the four January 2100 lunar quarters whose USNO labels are in lunarPhases, one 60-second TT bracket each", "license": "NASA/JPL factual output; acknowledge NASA and do not imply endorsement", "url": "https://ssd.jpl.nasa.gov/horizons/manual.html", "recipe": "Adjacent *.query.json files contain every Horizons API parameter and the response SHA-256. build-fixtures.py takes the Moon's apparent longitude less the Sun's at each sample and linearly interpolates the target crossing; the 2-second allowance is an owner decision for these four rows on #247, against native residuals of 0.66 to 0.82 seconds"},
@@ -1457,7 +1476,10 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--refresh", action="store_true", help="download pinned source snapshots and fresh JPL responses")
     parser.add_argument("--check", action="store_true", help="verify sources and generated files without writing")
+    parser.add_argument("--capture-sofa-fixed-star", action="store_true", help="capture the pinned SOFA fixed-star recipe output")
     args = parser.parse_args()
+    if args.capture_sofa_fixed_star:
+        capture_sofa_fixed_star_reference()
     if args.refresh:
         refresh_sources()
     sources = verify_sources()

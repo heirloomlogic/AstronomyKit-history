@@ -71,6 +71,12 @@ struct IndependentReferenceArchive: Decodable {
         let unrefractedAltitudeDegrees: Double
         let sampledMaximumResidualArcseconds: Double
         let sampledToleranceArcseconds: Double
+        let sofaStarpmRightAscensionRadians: Double
+        let sofaStarpmDeclinationRadians: Double
+        let barnardJ2000RightAscensionHours: Double
+        let barnardJ2000DeclinationDegrees: Double
+        let barnardHipparcosEpochRightAscensionHours: Double
+        let barnardHipparcosEpochDeclinationDegrees: Double
     }
 
     struct ConstellationName: Decodable {

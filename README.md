@@ -18,7 +18,7 @@ Built on Don Cross' [Astronomy Engine](https://github.com/cosinekitty/astronomy)
 - Positions for the Sun, Moon, planets, and Jupiter's moons
 - Ecliptic position and velocity in one call: longitude, latitude, distance, and their rates
 - Moon phase angles, quarters, illumination, and libration
-- User-defined fixed stars from J2000 catalog coordinates
+- User-defined fixed stars from static J2000 coordinates or ICRS catalog motion
 - Position for 2060 Chiron from a table fitted to JPL Horizons
 - Rise, set, and culmination times
 - Lunar and solar eclipse predictions
@@ -186,6 +186,20 @@ let algol = FixedStar(
     distance: 92.95    // Distance in light-years
 )
 
+// Or opt in to ICRS catalog-epoch propagation with Gaia/Hipparcos-style values.
+let barnardsStar = FixedStar(
+    name: "Barnard's star",
+    rightAscension: 269.44850252543836 / 15,
+    declination: 4.739420051112412,
+    catalogMotion: .init(
+        parallax: 546.975939730948,
+        properMotionRightAscension: -801.5509783684709,
+        properMotionDeclination: 10362.394206546573,
+        radialVelocity: -110.46822,
+        epoch: 2016.0
+    )
+)
+
 // Ecliptic longitude (true ecliptic and equinox of date, same frame as the planets)
 let longitude = try algol.eclipticLongitude(at: .now)
 print("Algol is at \(longitude)°")
@@ -282,7 +296,7 @@ print("Venus-Mars separation: \(angle)°")
 | `EclipticState` | Ecliptic position plus longitude, latitude, and distance rates |
 | `Elongation` | Angular separation from the Sun |
 | `Equatorial` | Right ascension and declination coordinates |
-| `FixedStar` | User-defined star from J2000 coordinates |
+| `FixedStar` | User-defined star from static J2000 coordinates or ICRS catalog motion |
 | `GlobalSolarEclipse` | Solar eclipse with peak location |
 | `GravitySimulation` | N-body gravity simulation |
 | `Horizon` | Altitude and azimuth for local sky position |
@@ -308,7 +322,7 @@ AstronomyKit includes features not present in the upstream C library:
 | Feature | Description |
 |---------|-------------|
 | `Chiron` | Positions for 2060 Chiron from 1900 to 2150, read from a Chebyshev table fitted to JPL Horizons and within 10 km of every archived Horizons vector. Astronomy Engine has no built-in Chiron support. |
-| `FixedStar` | Thread-safe value type for user-defined stars from J2000 catalog coordinates. Wraps Astronomy Engine's `Astronomy_DefineStar()` with mutex-protected calculation slots and a Swift-idiomatic API. |
+| `FixedStar` | Thread-safe immutable value for static J2000 stars or opt-in ICRS catalog-epoch propagation with proper motion, parallax-derived distance and radial velocity. |
 
 All other AstronomyKit types wrap Astronomy Engine C functions directly.
 
