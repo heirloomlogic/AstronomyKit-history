@@ -76,6 +76,42 @@ struct StellarMotionTests {
         #expect(abs(hipparcos.latitude - reference.barnardHipparcosEpochDeclinationDegrees) < 1e-13)
     }
 
+    @Test("Observer-relative light time matches SOFA's Roemer motion")
+    func observerRelativeLightTime() throws {
+        let reference = try #require(IndependentReferenceArchive.shared.fixedStars.first)
+        let engine = Engine.Star(
+            rightAscension: Self.barnard.rightAscension,
+            declination: Self.barnard.declination,
+            motion: .init(
+                parallax: Self.barnardMotion.parallax,
+                properMotionRightAscension: Self.barnardMotion.properMotionRightAscension,
+                properMotionDeclination: Self.barnardMotion.properMotionDeclination,
+                radialVelocity: Self.barnardMotion.radialVelocity,
+                epoch: Self.barnardMotion.epoch
+            )
+        )
+        let time = Engine.Time(ut: 18_262.5, tt: 18_262.5, deltaTModel: .espenakMeeus)
+        let observer = SIMD3(
+            reference.barnardCatalogDirectionX,
+            reference.barnardCatalogDirectionY,
+            reference.barnardCatalogDirectionZ
+        )
+        let ssbPosition = try engine.catalogPosition(at: time)
+        let observerPosition = try engine.catalogPosition(at: time, observer: observer)
+        let ssbDirection = normalized(SIMD3(ssbPosition.x, ssbPosition.y, ssbPosition.z))
+        let observerDirection = normalized(
+            SIMD3(observerPosition.x, observerPosition.y, observerPosition.z) - observer)
+        let expectedDelta = SIMD3(
+            reference.barnardPmpxObserverDirectionX - reference.barnardPmpxSSBDirectionX,
+            reference.barnardPmpxObserverDirectionY - reference.barnardPmpxSSBDirectionY,
+            reference.barnardPmpxObserverDirectionZ - reference.barnardPmpxSSBDirectionZ
+        )
+
+        #expect(abs(observerDirection.x - ssbDirection.x - expectedDelta.x) < 2e-12)
+        #expect(abs(observerDirection.y - ssbDirection.y - expectedDelta.y) < 2e-12)
+        #expect(abs(observerDirection.z - ssbDirection.z - expectedDelta.z) < 2e-12)
+    }
+
     @Test("Motion feeds every public fixed-star coordinate path")
     func publicCoordinatePaths() throws {
         let time = AstroTime(tt: (2_050.0 - 2_000) * 365.25, deltaTModel: .espenakMeeus)
@@ -175,5 +211,9 @@ struct StellarMotionTests {
             }
             try await group.waitForAll()
         }
+    }
+
+    private func normalized(_ vector: SIMD3<Double>) -> SIMD3<Double> {
+        vector / sqrt(vector.x * vector.x + vector.y * vector.y + vector.z * vector.z)
     }
 }

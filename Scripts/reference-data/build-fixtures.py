@@ -1366,6 +1366,15 @@ SOFA_FIXED_STAR_RECIPE_KEYS = {
     "barnardJ2000DecDegrees": "barnardJ2000DeclinationDegrees",
     "barnardHipparcosEpochRAHours": "barnardHipparcosEpochRightAscensionHours",
     "barnardHipparcosEpochDecDegrees": "barnardHipparcosEpochDeclinationDegrees",
+    "barnardCatalogDirectionX": "barnardCatalogDirectionX",
+    "barnardCatalogDirectionY": "barnardCatalogDirectionY",
+    "barnardCatalogDirectionZ": "barnardCatalogDirectionZ",
+    "barnardPmpxSSBDirectionX": "barnardPmpxSSBDirectionX",
+    "barnardPmpxSSBDirectionY": "barnardPmpxSSBDirectionY",
+    "barnardPmpxSSBDirectionZ": "barnardPmpxSSBDirectionZ",
+    "barnardPmpxObserverDirectionX": "barnardPmpxObserverDirectionX",
+    "barnardPmpxObserverDirectionY": "barnardPmpxObserverDirectionY",
+    "barnardPmpxObserverDirectionZ": "barnardPmpxObserverDirectionZ",
 }
 
 

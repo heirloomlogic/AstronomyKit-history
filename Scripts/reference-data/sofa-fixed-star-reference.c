@@ -20,7 +20,8 @@ int main(void) {
     const double parallax = 0.16499;
     const double au_per_light_year = 63241.07708807546;
     double propagated_ra, propagated_dec, propagated_pmr, propagated_pmd, propagated_px, propagated_rv;
-    double barnard_ra, barnard_dec, barnard_pmr, barnard_pmd;
+    double barnard_ra, barnard_dec, barnard_catalog_pmr, barnard_catalog_pmd, barnard_pmr, barnard_pmd;
+    double barnard_unit[3], barycentric_observer[3], ssb_direction[3], observer_direction[3];
 
     iauTf2a(' ', 14, 34, 16.81183, &rc);
     iauAf2a('-', 12, 31, 10.3965, &dc);
@@ -70,13 +71,29 @@ int main(void) {
 
     barnard_ra = 269.44850252543836 * acos(-1.0) / 180.0;
     barnard_dec = 4.739420051112412 * acos(-1.0) / 180.0;
-    barnard_pmr = -801.5509783684709e-3 * acos(-1.0) / (180.0 * 3600.0) / cos(barnard_dec);
-    barnard_pmd = 10362.394206546573e-3 * acos(-1.0) / (180.0 * 3600.0);
-    iauStarpm(barnard_ra, barnard_dec, barnard_pmr, barnard_pmd, 0.546975939730948, -110.46822, 2451545.0, 5844.0, 2451545.0, 0.0, &propagated_ra, &propagated_dec, &propagated_pmr, &propagated_pmd, &propagated_px, &propagated_rv);
+    barnard_catalog_pmr = -801.5509783684709e-3 * acos(-1.0) / (180.0 * 3600.0) / cos(barnard_dec);
+    barnard_catalog_pmd = 10362.394206546573e-3 * acos(-1.0) / (180.0 * 3600.0);
+    iauStarpm(barnard_ra, barnard_dec, barnard_catalog_pmr, barnard_catalog_pmd, 0.546975939730948, -110.46822, 2451545.0, 5844.0, 2451545.0, 0.0, &propagated_ra, &propagated_dec, &propagated_pmr, &propagated_pmd, &propagated_px, &propagated_rv);
     printf("barnardJ2000RAHours %.17g\n", hours(propagated_ra));
     printf("barnardJ2000DecDegrees %.17g\n", degrees(propagated_dec));
-    iauStarpm(barnard_ra, barnard_dec, barnard_pmr, barnard_pmd, 0.546975939730948, -110.46822, 2451545.0, 5844.0, 2451545.0, -3195.9375, &propagated_ra, &propagated_dec, &propagated_pmr, &propagated_pmd, &propagated_px, &propagated_rv);
+    iauStarpm(barnard_ra, barnard_dec, barnard_catalog_pmr, barnard_catalog_pmd, 0.546975939730948, -110.46822, 2451545.0, 5844.0, 2451545.0, -3195.9375, &propagated_ra, &propagated_dec, &propagated_pmr, &propagated_pmd, &propagated_px, &propagated_rv);
     printf("barnardHipparcosEpochRAHours %.17g\n", hours(propagated_ra));
     printf("barnardHipparcosEpochDecDegrees %.17g\n", degrees(propagated_dec));
+
+    iauS2c(barnard_ra, barnard_dec, barnard_unit);
+    barycentric_observer[0] = barnard_unit[0];
+    barycentric_observer[1] = barnard_unit[1];
+    barycentric_observer[2] = barnard_unit[2];
+    iauPmpx(barnard_ra, barnard_dec, barnard_catalog_pmr, barnard_catalog_pmd, 0.546975939730948, -110.46822, 34.0, (double[3]){0.0, 0.0, 0.0}, ssb_direction);
+    iauPmpx(barnard_ra, barnard_dec, barnard_catalog_pmr, barnard_catalog_pmd, 0.546975939730948, -110.46822, 34.0, barycentric_observer, observer_direction);
+    printf("barnardCatalogDirectionX %.17g\n", barnard_unit[0]);
+    printf("barnardCatalogDirectionY %.17g\n", barnard_unit[1]);
+    printf("barnardCatalogDirectionZ %.17g\n", barnard_unit[2]);
+    printf("barnardPmpxSSBDirectionX %.17g\n", ssb_direction[0]);
+    printf("barnardPmpxSSBDirectionY %.17g\n", ssb_direction[1]);
+    printf("barnardPmpxSSBDirectionZ %.17g\n", ssb_direction[2]);
+    printf("barnardPmpxObserverDirectionX %.17g\n", observer_direction[0]);
+    printf("barnardPmpxObserverDirectionY %.17g\n", observer_direction[1]);
+    printf("barnardPmpxObserverDirectionZ %.17g\n", observer_direction[2]);
     return 0;
 }

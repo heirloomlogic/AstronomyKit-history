@@ -77,6 +77,15 @@ struct IndependentReferenceArchive: Decodable {
         let barnardJ2000DeclinationDegrees: Double
         let barnardHipparcosEpochRightAscensionHours: Double
         let barnardHipparcosEpochDeclinationDegrees: Double
+        let barnardCatalogDirectionX: Double
+        let barnardCatalogDirectionY: Double
+        let barnardCatalogDirectionZ: Double
+        let barnardPmpxSSBDirectionX: Double
+        let barnardPmpxSSBDirectionY: Double
+        let barnardPmpxSSBDirectionZ: Double
+        let barnardPmpxObserverDirectionX: Double
+        let barnardPmpxObserverDirectionY: Double
+        let barnardPmpxObserverDirectionZ: Double
     }
 
     struct ConstellationName: Decodable {

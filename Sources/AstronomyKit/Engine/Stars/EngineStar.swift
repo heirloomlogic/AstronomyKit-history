@@ -62,10 +62,14 @@ extension Engine {
         }
 
         /// Propagates ICRS catalog data with the light-time and special-relativity steps from SOFA `iauStarpm` 2023-10-11. This is an independent Swift adaptation and is not SOFA software or endorsed by the SOFA Board. Unlike SOFA, invalid parallaxes and excessive speeds are rejected instead of replaced by fallback values.
-        func catalogPosition(at time: Engine.Time) throws -> Engine.Vector<Engine.ICRS> {
+        func catalogPosition(
+            at time: Engine.Time, observer: SIMD3<Double> = .zero
+        ) throws -> Engine.Vector<Engine.ICRS> {
             try validate()
             try Engine.checkAcceptedTime(time)
-            guard let motion else { throw AstronomyError.invalidParameter }
+            guard let motion, observer.x.isFinite, observer.y.isFinite, observer.z.isFinite else {
+                throw AstronomyError.invalidParameter
+            }
 
             let alpha = rightAscension / Engine.hoursPerRadian
             let delta = declination / Engine.degreesPerRadian
@@ -129,8 +133,9 @@ extension Engine {
             let sourceLightTime = radius / Engine.speedOfLightAUPerDay
             let interval = time.tt - (motion.epoch - 2_000) * 365.25
             let geometricPosition = position + (interval + sourceLightTime) * inertialVelocity
-            let distanceSquared = Self.dot(geometricPosition, geometricPosition)
-            let radialProduct = Self.dot(geometricPosition, inertialVelocity)
+            let geometricDisplacement = geometricPosition - observer
+            let distanceSquared = Self.dot(geometricDisplacement, geometricDisplacement)
+            let radialProduct = Self.dot(geometricDisplacement, inertialVelocity)
             let speedSquared = Self.dot(inertialVelocity, inertialVelocity)
             let lightDenominator = Engine.speedOfLightAUPerDay * Engine.speedOfLightAUPerDay - speedSquared
             guard distanceSquared.isFinite, radialProduct.isFinite, lightDenominator > 0 else {
@@ -212,7 +217,18 @@ extension Engine {
                 let star = try heliocentricPosition(at: time)
                 displacement = Engine.ApparentPlace.VectorRate(SIMD3(star.x, star.y, star.z)) - solarOffset
             } else {
-                let star = Engine.FrameBias.icrsToEqj.apply(to: try catalogPosition(at: time))
+                let icrsObserver = Engine.FrameBias.icrsToEqj.inverse.apply(
+                    to: Engine.Vector<Engine.EQJ>(
+                        x: observer.motion.value.x,
+                        y: observer.motion.value.y,
+                        z: observer.motion.value.z,
+                        time: time
+                    ))
+                let star = Engine.FrameBias.icrsToEqj.apply(
+                    to: try catalogPosition(
+                        at: time,
+                        observer: SIMD3(icrsObserver.x, icrsObserver.y, icrsObserver.z)
+                    ))
                 displacement = Engine.ApparentPlace.VectorRate(SIMD3(star.x, star.y, star.z)) - observer.motion
             }
             let result: Engine.ApparentPlace.VectorRate

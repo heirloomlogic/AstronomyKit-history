@@ -1071,7 +1071,7 @@
     "Scripts/reference-data/sources/horizons/io-vector.query.json": "f20330c61f533ee38a5235929338c4ff17a7bbfd1a59e75e8053536d32da19e6",
     "Scripts/test_galilean_residuals.py": "f6907f9585a8cad9a93097dfd372037ffbf01e6d89cd675d305f2cc152667fcb",
     "Scripts/test_generate_galilean_jup365.py": "8ecca9907dbbb41df666a042b0596beab269dd91bedfcfeb005b3a14c28739d7",
-    "Tests/AstronomyKitTests/Fixtures/IndependentReferences/reference-fixtures.json": "a9fe5925fc0c556d088147d78fc5f6b053f32a839e13250f7589e47dfc9a12ab"
+    "Tests/AstronomyKitTests/Fixtures/IndependentReferences/reference-fixtures.json": "4337a9a85b9434b1ffa561f1708402ec2cc26b3e9ce4774256bf91bafed4756e"
   },
   "sampledHorizonsResiduals": {
     "rows": [
