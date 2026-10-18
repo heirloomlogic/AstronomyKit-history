@@ -17,20 +17,33 @@ extension Engine.AtmosphericRefraction {
     /// The refraction in degrees that raises a body at geometric `altitude`
     /// degrees (`Astronomy_Refraction`).
     ///
-    /// Both `.normal` and `.jplHorizons` use Sæmundsson's formula as Meeus
-    /// gives it (Astronomical Algorithms, 2nd ed., eq. 16.4):
+    /// `.normal`, `.jplHorizons`, and `.weather` use Sæmundsson's formula as
+    /// Meeus gives it (Astronomical Algorithms, 2nd ed., eq. 16.4):
     /// R = 1.02′ / tan(h + 10.3°/(h + 5.11)), with h held at −1° below that
-    /// altitude, as JPL Horizons does. `.normal` then scales the refraction
-    /// below −1° down linearly to zero at −90°. `.none` gives 0 for any
-    /// altitude; the other models give 0 outside −90 to 90, including ±∞,
-    /// and NaN for a NaN altitude.
+    /// altitude, as JPL Horizons does. `.weather` applies Meeus's
+    /// (P/1010)·(283/(273+T)) pressure and temperature factor, with pressure
+    /// in millibars and temperature in Celsius. `.normal` and `.weather` then
+    /// scale the refraction below −1° down linearly to zero at −90°. `.none`
+    /// gives 0 for any altitude; the other models give 0 outside −90 to 90,
+    /// including ±∞, and NaN for a NaN altitude.
     static func angle(_ refraction: Refraction, altitude: Double) -> Double {
-        guard refraction != .none, !(altitude < -90 || altitude > 90) else { return 0 }
+        if case .none = refraction { return 0 }
+        guard !(altitude < -90 || altitude > 90) else { return 0 }
         let h = altitude < -1 ? -1 : altitude
         let arcminutes = 1.02 / tan((h + 10.3 / (h + 5.11)) * Engine.radiansPerDegree)
-        let degrees = arcminutes / 60
-        if refraction == .normal && altitude < -1 {
-            return degrees * (altitude + 90) / 89
+        var degrees = arcminutes / 60
+        switch refraction {
+        case .none:
+            return 0
+        case .normal:
+            if altitude < -1 { degrees = degrees * (altitude + 90) / 89 }
+        case .jplHorizons:
+            break
+        case .weather(let conditions):
+            degrees *=
+                (conditions.pressureMillibars / 1_010)
+                * (283 / (273 + conditions.temperatureCelsius))
+            if altitude < -1 { degrees = degrees * (altitude + 90) / 89 }
         }
         return degrees
     }

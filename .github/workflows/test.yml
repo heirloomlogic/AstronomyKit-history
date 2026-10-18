@@ -92,6 +92,11 @@ jobs:
           python3 -m unittest Scripts/test_generate_chiron_table.py -v
           python3 Scripts/generate-chiron-table.py --check
 
+      - name: Verify PAL refraction references
+        run: |
+          python3 -m unittest Scripts/test_capture_pal_refraction.py -v
+          python3 Scripts/capture-pal-refraction.py --check
+
       - name: Verify generated Jupiter moon series and jup365 runtime
         run: |
           python3 Scripts/generate-jupiter-moon-series.py --check

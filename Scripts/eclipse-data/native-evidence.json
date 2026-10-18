@@ -1,8 +1,8 @@
 {
-  "baselineRevision": "8dc39629933b14bd11fd573928dd2c3f13a80b9f",
+  "baselineRevision": "2d80b1216046edf12269205b212997adfe7dec12",
   "buildSeconds": {
-    "debug": 62.45,
-    "release": 1.14
+    "debug": 55.99,
+    "release": 195.25
   },
   "criteria": "All six archived NASA eclipse types and peaks retain the existing 120-second allowance. Partial and total semidurations retain the existing two-minute allowance. Three Danjon-based NASA Five Millennium Catalog penumbral semidurations use the same two-minute allowance. The original NASA SVS Moon-disc print intervals remain visible: 2021 passes, while 2026 is an explicitly expected failure under #275 after apparent-place integration. Neither interval is a NASA uncertainty bound. Strict analytic geometry tests cover no eclipse, penumbral, partial and total boundaries.",
   "limitations": "NASA lunar magnitude is a diameter fraction, not the native disc-area obscuration result. Both obscuration references come from one NASA SVS publisher and DE421/LOLA model family. The pages do not publish their exact rounding rule, lunar and shadow radii, or full-precision area algorithm, so interval agreement does not establish algorithm replication. The public eclipse facades run on this search since the #96 cutover. Runtime, memory, object and executable sizes are host observations, not portable ceilings.",
@@ -32,25 +32,25 @@
     "obscurationRows": 2,
     "rows": 6
   },
-  "releaseExecutableBytes": 576899376,
+  "releaseExecutableBytes": 577024752,
   "releaseObjectBytes": {
     "EngineEclipseEvents.o": 116488,
     "EngineShadowGeometry.o": 30648
   },
   "resources": {
     "checksum": -2855994.8849313958,
-    "coldSeconds": 0.08784902095794678,
+    "coldSeconds": 0.13155293464660645,
     "host": "Version 27.0.1 (Build 26A434)",
     "nextEclipseCount": 99,
-    "nextEclipsesSeconds": 5.725134015083313,
-    "peakAfterColdBytes": 122322944,
-    "peakAfterWorkloadBytes": 125599744,
-    "peakBeforeBytes": 65388544,
+    "nextEclipsesSeconds": 5.5917500257492065,
+    "peakAfterColdBytes": 107200512,
+    "peakAfterWorkloadBytes": 109019136,
+    "peakBeforeBytes": 50216960,
     "totalEclipseCount": 100
   },
   "schemaVersion": 1,
   "sourceSHA256": {
-    "Scripts/eclipse-data/native-captures.json": "e2e3636054f4010ad6c8fff4c40f97671acec420338d5ec9aea94e56a7272cb8",
+    "Scripts/eclipse-data/native-captures.json": "bfda0dca91a9d94b6698413e34f2f6c754d3fecec3686f6578cfb96444155111",
     "Scripts/record-eclipse-event-evidence.py": "3bb05c08c84169ebda915352a959fa4d6949cdabbe69fab639555f5625d0185a",
     "Scripts/reference-data/build-fixtures.py": "624f89695e2f0afffe8f53f73bfb7de24a69c06386a1eb80d49b911da6b17d50",
     "Scripts/reference-data/sources/lunar_1701.html": "15ed1e6e6b1153f6c85e724258aa91e23655fecb08ac7623fd6e2b4b1d8199f7",
@@ -266,7 +266,7 @@
     "Sources/AstronomyKit/Engine/Orientation/EngineNutation.swift": "9af68143f6b73976a6324f074b8058dd3fabffc9b4e4245c7a4b99ebac5e3af2",
     "Sources/AstronomyKit/Engine/Orientation/EngineObserver.swift": "7e81d70a64fe3ee4709e72350017c233a458d30ce56b2c17038219ac90cbd0d5",
     "Sources/AstronomyKit/Engine/Orientation/EnginePrecession.swift": "a2f809b985707e6c5baac20f6ed59e0a751490b2acce383849f764ed7bda3f64",
-    "Sources/AstronomyKit/Engine/Orientation/EngineRefraction.swift": "3f87c416dfd82c881f8fc922ba1fb021ec55c09ec256abcdf16820a97b2d0fa2",
+    "Sources/AstronomyKit/Engine/Orientation/EngineRefraction.swift": "1b48e0292d81588953bdec2332c2cf132807a94bf4d661e209c77e95ae81bc4d",
     "Sources/AstronomyKit/Engine/Orientation/EngineRotations.swift": "a4bd8212ebbbb13354545f55b065cb321a91c20558eb4be61aa8b569f633bf7c",
     "Sources/AstronomyKit/Engine/Orientation/Generated/EquinoxComplementaryTerms.swift": "b29f74663243f82267dc2e3f11d7851d5a0fb9d12cdb35c6eafba67f6e3ed509",
     "Sources/AstronomyKit/Engine/Orientation/Generated/IAU2000ATerms.swift": "dac21ba0daa90636de35bcfd533873ad3525ec3a9664a393152b8d4c3c76daad",

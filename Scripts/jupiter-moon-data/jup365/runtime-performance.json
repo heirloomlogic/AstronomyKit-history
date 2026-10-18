@@ -1,10 +1,10 @@
 {
   "build": {
-    "command": "/usr/bin/time -lp swift build -c release -j 2 --scratch-path .context/issue-254/runtime-release-fix307",
-    "maximumResidentSetBytes": 9121136640,
-    "peakMemoryFootprintBytes": 830146792,
-    "swiftPMSeconds": 40.6,
-    "wallSeconds": 54.11
+    "command": "/usr/bin/time -lp swift build -c release -j 2 --scratch-path .context/issue-258/jup-runtime-2d80-quiet",
+    "maximumResidentSetBytes": 9225764864,
+    "peakMemoryFootprintBytes": 836258048,
+    "swiftPMSeconds": 38.07,
+    "wallSeconds": 47.53
   },
   "host": {
     "machine": "arm64",
@@ -13,30 +13,30 @@
   },
   "publicAPI": {
     "firstChecksum": 0.0029811362274096984,
-    "firstPublicCallMilliseconds": 1.469042,
+    "firstPublicCallMilliseconds": 1.553333,
     "iterations": 100000,
-    "processLaunchAndFirstCallMedianMilliseconds": 281.204584,
+    "processLaunchAndFirstCallMedianMilliseconds": 282.420625,
     "processLaunchAndFirstCallMilliseconds": [
-      283.9575,
-      281.963833,
-      281.204584,
-      275.651959,
-      284.452125,
-      24.477,
-      24.179041
+      282.420625,
+      283.757833,
+      281.969042,
+      286.015625,
+      285.658,
+      21.816291,
+      24.117125
     ],
     "sameEpochChecksum": 298.11362274099224,
-    "sameEpochMicrosecondsPerCall": 7.81313458,
+    "sameEpochMicrosecondsPerCall": 7.82509375,
     "spanningChecksum": -0.596481031312171,
-    "spanningMicrosecondsPerCall": 15.39658375
+    "spanningMicrosecondsPerCall": 15.26959125
   },
   "schemaVersion": 1,
   "sizes": {
-    "astronomyKitObjectBytes": 552893224,
-    "astronomyKitSourcesBytes": 552784259,
+    "astronomyKitObjectBytes": 552902816,
+    "astronomyKitSourcesBytes": 552789082,
     "generatedSwiftBytes": 81067832,
-    "probeExecutableBytes": 556933240,
-    "staticLibraryBytes": 552960032
+    "probeExecutableBytes": 556937592,
+    "staticLibraryBytes": 552970824
   },
   "sourceSHA256": {
     "Package.swift": "f09138b379aebee7f80817802440177a09c754b962ad1d212f265a708ef5714d",
@@ -53,7 +53,7 @@
     "Sources/AstronomyKit/Chiron.swift": "c91aa08f66573609c469bb0dca8be38cee3d7ca6e758b8c429f06050e4743c92",
     "Sources/AstronomyKit/CivilTime.swift": "c858285d2d8e9ce8e60be2f388f71dac4554b15dd3815f5d88d47758475f47ac",
     "Sources/AstronomyKit/Constellation.swift": "6b076da1e7790cdc215d25bacce44f31012248f2272b565e9723a43023e30cf3",
-    "Sources/AstronomyKit/Coordinates.swift": "f09e2f8820bc0c2e13a7b2e0ea746c08a4a48b7ee168a628ec06ac905bfb273d",
+    "Sources/AstronomyKit/Coordinates.swift": "9b1ae70052f416252af118b50cc61bf2c900918cd76ccea021017c28f793d60a",
     "Sources/AstronomyKit/Eclipse.swift": "fd2f24307e73c6a4c72d46a855e439cffbf744bd1dc1a56d778191f32ab52f0f",
     "Sources/AstronomyKit/Elongation.swift": "6231ae73f3faceb7344ca5e37ccf547a82b85ce9fbe5e061259ad52479f3d6d7",
     "Sources/AstronomyKit/Engine/Bodies/EngineJupiterMoons.swift": "c450d38bedf50e91869d0d2df81870ce332d5fb8bdab2a846fb9bcce398434fd",
@@ -258,7 +258,7 @@
     "Sources/AstronomyKit/Engine/Orientation/EngineNutation.swift": "9af68143f6b73976a6324f074b8058dd3fabffc9b4e4245c7a4b99ebac5e3af2",
     "Sources/AstronomyKit/Engine/Orientation/EngineObserver.swift": "7e81d70a64fe3ee4709e72350017c233a458d30ce56b2c17038219ac90cbd0d5",
     "Sources/AstronomyKit/Engine/Orientation/EnginePrecession.swift": "a2f809b985707e6c5baac20f6ed59e0a751490b2acce383849f764ed7bda3f64",
-    "Sources/AstronomyKit/Engine/Orientation/EngineRefraction.swift": "3f87c416dfd82c881f8fc922ba1fb021ec55c09ec256abcdf16820a97b2d0fa2",
+    "Sources/AstronomyKit/Engine/Orientation/EngineRefraction.swift": "1b48e0292d81588953bdec2332c2cf132807a94bf4d661e209c77e95ae81bc4d",
     "Sources/AstronomyKit/Engine/Orientation/EngineRotations.swift": "a4bd8212ebbbb13354545f55b065cb321a91c20558eb4be61aa8b569f633bf7c",
     "Sources/AstronomyKit/Engine/Orientation/Generated/EquinoxComplementaryTerms.swift": "b29f74663243f82267dc2e3f11d7851d5a0fb9d12cdb35c6eafba67f6e3ed509",
     "Sources/AstronomyKit/Engine/Orientation/Generated/IAU2000ATerms.swift": "dac21ba0daa90636de35bcfd533873ad3525ec3a9664a393152b8d4c3c76daad",

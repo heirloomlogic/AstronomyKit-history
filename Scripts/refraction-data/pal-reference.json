@@ -1,0 +1,1202 @@
+{
+  "configuration": {
+    "integrationToleranceRadians": 1e-12,
+    "latitudeDegrees": 45.0,
+    "observerHeightMeters": 0.0,
+    "relativeHumidity": 0.5,
+    "troposphericLapseRateKelvinPerMeter": 0.0065,
+    "wavelengthMicrometers": 0.55
+  },
+  "grid": {
+    "apparentAltitudeDegrees": [
+      0.0,
+      0.5,
+      1.0,
+      2.0,
+      5.0,
+      10.0,
+      20.0,
+      45.0,
+      80.0
+    ],
+    "pressureMillibars": [
+      300.0,
+      600.0,
+      800.0,
+      1010.0,
+      1100.0
+    ],
+    "temperatureCelsius": [
+      -40.0,
+      0.0,
+      10.0,
+      40.0
+    ]
+  },
+  "officialRegressions": [
+    {
+      "actualRadians": 0.0010671576301856725,
+      "arguments": [
+        1.4,
+        3456.7,
+        280.0,
+        678.9,
+        0.9,
+        0.55,
+        -0.3,
+        0.006,
+        1e-09
+      ],
+      "expectedRadians": 0.00106715763018568
+    },
+    {
+      "actualRadians": 0.001296416185295383,
+      "arguments": [
+        1.4,
+        3456.7,
+        280.0,
+        678.9,
+        0.9,
+        1000.0,
+        -0.3,
+        0.006,
+        1e-09
+      ],
+      "expectedRadians": 0.001296416185295403
+    }
+  ],
+  "rows": [
+    {
+      "apparentAltitudeDegrees": 0.0,
+      "pressureMillibars": 300.0,
+      "refractionDegrees": 0.21377900613600892,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.5,
+      "pressureMillibars": 300.0,
+      "refractionDegrees": 0.1776308989165764,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 1.0,
+      "pressureMillibars": 300.0,
+      "refractionDegrees": 0.1501178720008167,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 2.0,
+      "pressureMillibars": 300.0,
+      "refractionDegrees": 0.11204001303813167,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 5.0,
+      "pressureMillibars": 300.0,
+      "refractionDegrees": 0.05974900207657743,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 10.0,
+      "pressureMillibars": 300.0,
+      "refractionDegrees": 0.03200591012609599,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 20.0,
+      "pressureMillibars": 300.0,
+      "refractionDegrees": 0.015868836127552487,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 45.0,
+      "pressureMillibars": 300.0,
+      "refractionDegrees": 0.005813734377964625,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 80.0,
+      "pressureMillibars": 300.0,
+      "refractionDegrees": 0.0010261278048795495,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.0,
+      "pressureMillibars": 300.0,
+      "refractionDegrees": 0.16629957440567356,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.5,
+      "pressureMillibars": 300.0,
+      "refractionDegrees": 0.1404711442922861,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 1.0,
+      "pressureMillibars": 300.0,
+      "refractionDegrees": 0.12029334909986593,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 2.0,
+      "pressureMillibars": 300.0,
+      "refractionDegrees": 0.09151608503785029,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 5.0,
+      "pressureMillibars": 300.0,
+      "refractionDegrees": 0.05008984517496923,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 10.0,
+      "pressureMillibars": 300.0,
+      "refractionDegrees": 0.02712775552069758,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 20.0,
+      "pressureMillibars": 300.0,
+      "refractionDegrees": 0.013504197276266157,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 45.0,
+      "pressureMillibars": 300.0,
+      "refractionDegrees": 0.004953425266245131,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 80.0,
+      "pressureMillibars": 300.0,
+      "refractionDegrees": 0.0008744451146863676,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.0,
+      "pressureMillibars": 300.0,
+      "refractionDegrees": 0.156561243127976,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.5,
+      "pressureMillibars": 300.0,
+      "refractionDegrees": 0.13280518937758135,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 1.0,
+      "pressureMillibars": 300.0,
+      "refractionDegrees": 0.11410601174535458,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 2.0,
+      "pressureMillibars": 300.0,
+      "refractionDegrees": 0.08721989340761377,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 5.0,
+      "pressureMillibars": 300.0,
+      "refractionDegrees": 0.04804518738946057,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 10.0,
+      "pressureMillibars": 300.0,
+      "refractionDegrees": 0.02609235329395132,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 20.0,
+      "pressureMillibars": 300.0,
+      "refractionDegrees": 0.013002145722949379,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 45.0,
+      "pressureMillibars": 300.0,
+      "refractionDegrees": 0.004770770192550154,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 80.0,
+      "pressureMillibars": 300.0,
+      "refractionDegrees": 0.0008422410918726847,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.0,
+      "pressureMillibars": 300.0,
+      "refractionDegrees": 0.12691600104431264,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.5,
+      "pressureMillibars": 300.0,
+      "refractionDegrees": 0.10978528407316808,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 1.0,
+      "pressureMillibars": 300.0,
+      "refractionDegrees": 0.09568695843446587,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 2.0,
+      "pressureMillibars": 300.0,
+      "refractionDegrees": 0.07454835633437391,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 5.0,
+      "pressureMillibars": 300.0,
+      "refractionDegrees": 0.042060402180352056,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 10.0,
+      "pressureMillibars": 300.0,
+      "refractionDegrees": 0.023069252407818548,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 20.0,
+      "pressureMillibars": 300.0,
+      "refractionDegrees": 0.011537834782319211,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 45.0,
+      "pressureMillibars": 300.0,
+      "refractionDegrees": 0.004238219627222574,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 80.0,
+      "pressureMillibars": 300.0,
+      "refractionDegrees": 0.0007483521532369387,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.0,
+      "pressureMillibars": 600.0,
+      "refractionDegrees": 0.4435890560788914,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.5,
+      "pressureMillibars": 600.0,
+      "refractionDegrees": 0.3654604729476627,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 1.0,
+      "pressureMillibars": 600.0,
+      "refractionDegrees": 0.30694235570664924,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 2.0,
+      "pressureMillibars": 600.0,
+      "refractionDegrees": 0.22724740907284094,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 5.0,
+      "pressureMillibars": 600.0,
+      "refractionDegrees": 0.12007229963022917,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 10.0,
+      "pressureMillibars": 600.0,
+      "refractionDegrees": 0.06410784769078794,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 20.0,
+      "pressureMillibars": 600.0,
+      "refractionDegrees": 0.03175022572176546,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 45.0,
+      "pressureMillibars": 600.0,
+      "refractionDegrees": 0.01162831645698382,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 80.0,
+      "pressureMillibars": 600.0,
+      "refractionDegrees": 0.0020523048480806656,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.0,
+      "pressureMillibars": 600.0,
+      "refractionDegrees": 0.34210142252784836,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.5,
+      "pressureMillibars": 600.0,
+      "refractionDegrees": 0.28726407046249325,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 1.0,
+      "pressureMillibars": 600.0,
+      "refractionDegrees": 0.2449157342900764,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 2.0,
+      "pressureMillibars": 600.0,
+      "refractionDegrees": 0.1852281676786104,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 5.0,
+      "pressureMillibars": 600.0,
+      "refractionDegrees": 0.10065688947233058,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 10.0,
+      "pressureMillibars": 600.0,
+      "refractionDegrees": 0.054365017017548124,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 20.0,
+      "pressureMillibars": 600.0,
+      "refractionDegrees": 0.027037190688478343,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 45.0,
+      "pressureMillibars": 600.0,
+      "refractionDegrees": 0.009914615556516418,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 80.0,
+      "pressureMillibars": 600.0,
+      "refractionDegrees": 0.0017501858171229887,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.0,
+      "pressureMillibars": 600.0,
+      "refractionDegrees": 0.32219345829704116,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.5,
+      "pressureMillibars": 600.0,
+      "refractionDegrees": 0.2717088687639882,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 1.0,
+      "pressureMillibars": 600.0,
+      "refractionDegrees": 0.23243783501668155,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 2.0,
+      "pressureMillibars": 600.0,
+      "refractionDegrees": 0.17664202226771594,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 5.0,
+      "pressureMillibars": 600.0,
+      "refractionDegrees": 0.0966194891044532,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 10.0,
+      "pressureMillibars": 600.0,
+      "refractionDegrees": 0.052330115496969636,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 20.0,
+      "pressureMillibars": 600.0,
+      "refractionDegrees": 0.026052073660357243,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 45.0,
+      "pressureMillibars": 600.0,
+      "refractionDegrees": 0.00955637993037335,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 80.0,
+      "pressureMillibars": 600.0,
+      "refractionDegrees": 0.0016870295406077357,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.0,
+      "pressureMillibars": 600.0,
+      "refractionDegrees": 0.2676527994694962,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.5,
+      "pressureMillibars": 600.0,
+      "refractionDegrees": 0.2291445934082715,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 1.0,
+      "pressureMillibars": 600.0,
+      "refractionDegrees": 0.19828535316401563,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 2.0,
+      "pressureMillibars": 600.0,
+      "refractionDegrees": 0.15309653903611484,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 5.0,
+      "pressureMillibars": 600.0,
+      "refractionDegrees": 0.08550522652315058,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 10.0,
+      "pressureMillibars": 600.0,
+      "refractionDegrees": 0.04672344035724722,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 20.0,
+      "pressureMillibars": 600.0,
+      "refractionDegrees": 0.023338064938455614,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 45.0,
+      "pressureMillibars": 600.0,
+      "refractionDegrees": 0.008569534026867312,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 80.0,
+      "pressureMillibars": 600.0,
+      "refractionDegrees": 0.0015130536903901,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.0,
+      "pressureMillibars": 800.0,
+      "refractionDegrees": 0.6071496402491846,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.5,
+      "pressureMillibars": 800.0,
+      "refractionDegrees": 0.49705873088413705,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 1.0,
+      "pressureMillibars": 800.0,
+      "refractionDegrees": 0.4155866173899962,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 2.0,
+      "pressureMillibars": 800.0,
+      "refractionDegrees": 0.3059238532839607,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 5.0,
+      "pressureMillibars": 800.0,
+      "refractionDegrees": 0.16061279466130765,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 10.0,
+      "pressureMillibars": 800.0,
+      "refractionDegrees": 0.08556206136953022,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 20.0,
+      "pressureMillibars": 800.0,
+      "refractionDegrees": 0.04234440584917374,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 45.0,
+      "pressureMillibars": 800.0,
+      "refractionDegrees": 0.015505030200365357,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 80.0,
+      "pressureMillibars": 800.0,
+      "refractionDegrees": 0.002736424613548349,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.0,
+      "pressureMillibars": 800.0,
+      "refractionDegrees": 0.46473035685437863,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.5,
+      "pressureMillibars": 800.0,
+      "refractionDegrees": 0.38865717678311357,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 1.0,
+      "pressureMillibars": 800.0,
+      "refractionDegrees": 0.3303662547163762,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 2.0,
+      "pressureMillibars": 800.0,
+      "refractionDegrees": 0.24885873910241704,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 5.0,
+      "pressureMillibars": 800.0,
+      "refractionDegrees": 0.13458891765194275,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 10.0,
+      "pressureMillibars": 800.0,
+      "refractionDegrees": 0.07256071094089597,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 20.0,
+      "pressureMillibars": 800.0,
+      "refractionDegrees": 0.03606390704319225,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 45.0,
+      "pressureMillibars": 800.0,
+      "refractionDegrees": 0.013222296937302511,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 80.0,
+      "pressureMillibars": 800.0,
+      "refractionDegrees": 0.0023340114536334576,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.0,
+      "pressureMillibars": 800.0,
+      "refractionDegrees": 0.4373152930139382,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.5,
+      "pressureMillibars": 800.0,
+      "refractionDegrees": 0.36740297951874834,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 1.0,
+      "pressureMillibars": 800.0,
+      "refractionDegrees": 0.3134185044570664,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 2.0,
+      "pressureMillibars": 800.0,
+      "refractionDegrees": 0.23729174486351667,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 5.0,
+      "pressureMillibars": 800.0,
+      "refractionDegrees": 0.1292038140643595,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 10.0,
+      "pressureMillibars": 800.0,
+      "refractionDegrees": 0.0698563898177949,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 20.0,
+      "pressureMillibars": 800.0,
+      "refractionDegrees": 0.0347562798763932,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 45.0,
+      "pressureMillibars": 800.0,
+      "refractionDegrees": 0.01274694469150111,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 80.0,
+      "pressureMillibars": 800.0,
+      "refractionDegrees": 0.0022502120827607914,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.0,
+      "pressureMillibars": 800.0,
+      "refractionDegrees": 0.3644085997095215,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.5,
+      "pressureMillibars": 800.0,
+      "refractionDegrees": 0.31069984485520635,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 1.0,
+      "pressureMillibars": 800.0,
+      "refractionDegrees": 0.26805309419934475,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 2.0,
+      "pressureMillibars": 800.0,
+      "refractionDegrees": 0.20615325474323637,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 5.0,
+      "pressureMillibars": 800.0,
+      "refractionDegrees": 0.11459639357632728,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 10.0,
+      "pressureMillibars": 800.0,
+      "refractionDegrees": 0.06250644585295463,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 20.0,
+      "pressureMillibars": 800.0,
+      "refractionDegrees": 0.03120159536433927,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 45.0,
+      "pressureMillibars": 800.0,
+      "refractionDegrees": 0.011454759937154597,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 80.0,
+      "pressureMillibars": 800.0,
+      "refractionDegrees": 0.0020224156873102747,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.0,
+      "pressureMillibars": 1010.0,
+      "refractionDegrees": 0.789203534719516,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.5,
+      "pressureMillibars": 1010.0,
+      "refractionDegrees": 0.6413885438850625,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 1.0,
+      "pressureMillibars": 1010.0,
+      "refractionDegrees": 0.5335198243142272,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 2.0,
+      "pressureMillibars": 1010.0,
+      "refractionDegrees": 0.39024312446849496,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 5.0,
+      "pressureMillibars": 1010.0,
+      "refractionDegrees": 0.20346615697609075,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 10.0,
+      "pressureMillibars": 1010.0,
+      "refractionDegrees": 0.10813486774974831,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 20.0,
+      "pressureMillibars": 1010.0,
+      "refractionDegrees": 0.053473976879846785,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 45.0,
+      "pressureMillibars": 1010.0,
+      "refractionDegrees": 0.019575860152462838,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 80.0,
+      "pressureMillibars": 1010.0,
+      "refractionDegrees": 0.003454751863741504,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.0,
+      "pressureMillibars": 1010.0,
+      "refractionDegrees": 0.5986587485244669,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.5,
+      "pressureMillibars": 1010.0,
+      "refractionDegrees": 0.49841571106393684,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 1.0,
+      "pressureMillibars": 1010.0,
+      "refractionDegrees": 0.4222671086654343,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 2.0,
+      "pressureMillibars": 1010.0,
+      "refractionDegrees": 0.31671157172370046,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 5.0,
+      "pressureMillibars": 1010.0,
+      "refractionDegrees": 0.1704109571666265,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 10.0,
+      "pressureMillibars": 1010.0,
+      "refractionDegrees": 0.09169873590668436,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 20.0,
+      "pressureMillibars": 1010.0,
+      "refractionDegrees": 0.04554605630977691,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 45.0,
+      "pressureMillibars": 1010.0,
+      "refractionDegrees": 0.01669556237142825,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 80.0,
+      "pressureMillibars": 1010.0,
+      "refractionDegrees": 0.002947028759046991,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.0,
+      "pressureMillibars": 1010.0,
+      "refractionDegrees": 0.5626364662361644,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.5,
+      "pressureMillibars": 1010.0,
+      "refractionDegrees": 0.4707524847034018,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 1.0,
+      "pressureMillibars": 1010.0,
+      "refractionDegrees": 0.40036505080556395,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 2.0,
+      "pressureMillibars": 1010.0,
+      "refractionDegrees": 0.30190420913488436,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 5.0,
+      "pressureMillibars": 1010.0,
+      "refractionDegrees": 0.16359413668113043,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 10.0,
+      "pressureMillibars": 1010.0,
+      "refractionDegrees": 0.08828900822922417,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 20.0,
+      "pressureMillibars": 1010.0,
+      "refractionDegrees": 0.04389946914249341,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 45.0,
+      "pressureMillibars": 1010.0,
+      "refractionDegrees": 0.016097211765713774,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 80.0,
+      "pressureMillibars": 1010.0,
+      "refractionDegrees": 0.0028415520037465706,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.0,
+      "pressureMillibars": 1010.0,
+      "refractionDegrees": 0.4688780260261754,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.5,
+      "pressureMillibars": 1010.0,
+      "refractionDegrees": 0.39825485662086757,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 1.0,
+      "pressureMillibars": 1010.0,
+      "refractionDegrees": 0.34262709484652903,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 2.0,
+      "pressureMillibars": 1010.0,
+      "refractionDegrees": 0.26252661789131576,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 5.0,
+      "pressureMillibars": 1010.0,
+      "refractionDegrees": 0.14527291743099757,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 10.0,
+      "pressureMillibars": 1010.0,
+      "refractionDegrees": 0.07909942868757949,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 20.0,
+      "pressureMillibars": 1010.0,
+      "refractionDegrees": 0.039459801426740895,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 45.0,
+      "pressureMillibars": 1010.0,
+      "refractionDegrees": 0.014483820848642864,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 80.0,
+      "pressureMillibars": 1010.0,
+      "refractionDegrees": 0.0025571441976889606,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.0,
+      "pressureMillibars": 1100.0,
+      "refractionDegrees": 0.8708351524057026,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.5,
+      "pressureMillibars": 1100.0,
+      "refractionDegrees": 0.7053421026746668,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 1.0,
+      "pressureMillibars": 1100.0,
+      "refractionDegrees": 0.5853543103395925,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 2.0,
+      "pressureMillibars": 1100.0,
+      "refractionDegrees": 0.42693918057870717,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 5.0,
+      "pressureMillibars": 1100.0,
+      "refractionDegrees": 0.22192289597413306,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 10.0,
+      "pressureMillibars": 1100.0,
+      "refractionDegrees": 0.11782338620823965,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 20.0,
+      "pressureMillibars": 1100.0,
+      "refractionDegrees": 0.05824557712006341,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 45.0,
+      "pressureMillibars": 1100.0,
+      "refractionDegrees": 0.021320589548844263,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 80.0,
+      "pressureMillibars": 1100.0,
+      "refractionDegrees": 0.0037626068689967838,
+      "temperatureCelsius": -40.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.0,
+      "pressureMillibars": 1100.0,
+      "refractionDegrees": 0.6578014620053928,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.5,
+      "pressureMillibars": 1100.0,
+      "refractionDegrees": 0.5465510876987132,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 1.0,
+      "pressureMillibars": 1100.0,
+      "refractionDegrees": 0.46236925682571356,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 2.0,
+      "pressureMillibars": 1100.0,
+      "refractionDegrees": 0.346128335215181,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 5.0,
+      "pressureMillibars": 1100.0,
+      "refractionDegrees": 0.18582466472106093,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 10.0,
+      "pressureMillibars": 1100.0,
+      "refractionDegrees": 0.09991099775267202,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 20.0,
+      "pressureMillibars": 1100.0,
+      "refractionDegrees": 0.049611122345868126,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 45.0,
+      "pressureMillibars": 1100.0,
+      "refractionDegrees": 0.018184167992501964,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 80.0,
+      "pressureMillibars": 1100.0,
+      "refractionDegrees": 0.0032097506799799694,
+      "temperatureCelsius": 0.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.0,
+      "pressureMillibars": 1100.0,
+      "refractionDegrees": 0.6178367847861475,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.5,
+      "pressureMillibars": 1100.0,
+      "refractionDegrees": 0.5159956567466221,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 1.0,
+      "pressureMillibars": 1100.0,
+      "refractionDegrees": 0.4382561040999669,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 2.0,
+      "pressureMillibars": 1100.0,
+      "refractionDegrees": 0.3298959247274845,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 5.0,
+      "pressureMillibars": 1100.0,
+      "refractionDegrees": 0.17838895952447123,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 10.0,
+      "pressureMillibars": 1100.0,
+      "refractionDegrees": 0.09619816892615315,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 20.0,
+      "pressureMillibars": 1100.0,
+      "refractionDegrees": 0.04781916935557173,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 45.0,
+      "pressureMillibars": 1100.0,
+      "refractionDegrees": 0.017533097349965457,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 80.0,
+      "pressureMillibars": 1100.0,
+      "refractionDegrees": 0.0030949832459818884,
+      "temperatureCelsius": 10.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.0,
+      "pressureMillibars": 1100.0,
+      "refractionDegrees": 0.5146107451609222,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 0.5,
+      "pressureMillibars": 1100.0,
+      "refractionDegrees": 0.4364139869212478,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 1.0,
+      "pressureMillibars": 1100.0,
+      "refractionDegrees": 0.3750200952908067,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 2.0,
+      "pressureMillibars": 1100.0,
+      "refractionDegrees": 0.28690267345972087,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 5.0,
+      "pressureMillibars": 1100.0,
+      "refractionDegrees": 0.15846247590364604,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 10.0,
+      "pressureMillibars": 1100.0,
+      "refractionDegrees": 0.0862177588119985,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 20.0,
+      "pressureMillibars": 1100.0,
+      "refractionDegrees": 0.042999740087275036,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 45.0,
+      "pressureMillibars": 1100.0,
+      "refractionDegrees": 0.015781941852838773,
+      "temperatureCelsius": 40.0
+    },
+    {
+      "apparentAltitudeDegrees": 80.0,
+      "pressureMillibars": 1100.0,
+      "refractionDegrees": 0.0027862968054280525,
+      "temperatureCelsius": 40.0
+    }
+  ],
+  "schemaVersion": 1,
+  "source": {
+    "files": {
+      "COPYING": {
+        "license": "GPL-3.0-or-later",
+        "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903"
+      },
+      "COPYING.LESSER": {
+        "license": "LGPL-3.0-or-later",
+        "sha256": "da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768"
+      },
+      "pal.h": {
+        "license": "LGPL-3.0-or-later",
+        "sha256": "3647545712aab504259413ea064dfef722cbff7f39eec0eb2c7bc9f0424e5d4d"
+      },
+      "pal1.h": {
+        "license": "GPL-3.0-or-later",
+        "sha256": "06cc38c6a5d9513564029ad11158d6f681e856c639b0ac11d051d9eadd6fc5c4"
+      },
+      "pal1Atms.c": {
+        "license": "GPL-3.0-or-later",
+        "sha256": "639f921b87cbc05b2e770d2ead45343560fef7dbe98608d1a3bec16141ef5ec4"
+      },
+      "pal1Atmt.c": {
+        "license": "GPL-3.0-or-later",
+        "sha256": "63918188d423bbf3bb38db0f00fb9baa442496596122c7c23a5c5dfc6e1c40a9"
+      },
+      "palDrange.c": {
+        "license": "LGPL-3.0-or-later",
+        "sha256": "48388bc5af02f3c4184f1f3be0c69e80bde75a844b2f32eb8b79962361140180"
+      },
+      "palRefro.c": {
+        "license": "GPL-3.0-or-later",
+        "sha256": "f401e72dd8e32d0f2185fff215f8e5ebede4d679f75ce34d3a7580369988b294"
+      },
+      "palmac.h": {
+        "license": "LGPL-3.0-or-later",
+        "sha256": "2722df19f737134681650a5cc761447affd8fb8f0a82ae75b820302c0de7e7d0"
+      }
+    },
+    "name": "Starlink PAL palRefro",
+    "repository": "https://github.com/Starlink/pal",
+    "revision": "75017db16bb3efe9031e0f01921caa1b9554e922",
+    "semantics": "observed zenith distance to vacuum-minus-observed zenith distance"
+  },
+  "sourceSHA256": {
+    "Scripts/capture-pal-refraction.py": "ed8dbe93548b53eebeb307933e04e4dcbcc09b4ffc95d44d418472d77eb23b28",
+    "Scripts/test_capture_pal_refraction.py": "e7e9b817d29b36810cdaa2adc87afb46885d06833939ea4579bb30fbad7f3ef2",
+    "Sources/AstronomyKit/Coordinates.swift": "9b1ae70052f416252af118b50cc61bf2c900918cd76ccea021017c28f793d60a",
+    "Sources/AstronomyKit/Engine/Orientation/EngineRefraction.swift": "1b48e0292d81588953bdec2332c2cf132807a94bf4d661e209c77e95ae81bc4d",
+    "Tests/AstronomyKitTests/WeatherRefractionTests.swift": "a5164090381d73ade7501e177ac0a95b314aaf050e7206ebe75ce7aa0c842f57"
+  }
+}
