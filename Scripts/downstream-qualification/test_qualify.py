@@ -72,6 +72,17 @@ class QualificationTests(unittest.TestCase):
             self.assertEqual(result["status"], "failed")
             self.assertEqual(result["evidenceError"], "test summary reported failure")
 
+    def test_failed_summary_before_timeout_preserves_incomplete_status(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            executable = root / "swift"
+            executable.write_text("#!/bin/sh\nprintf 'Test run with 1 test in 1 suite failed after 0.001 seconds.\\n'\nsleep 60\n")
+            executable.chmod(0o755)
+            result = QUALIFY.run_command("mixed", ["swift", "test"], root, root, 0.2, {"PATH": f"{root}:{os.environ['PATH']}"})
+            self.assertEqual(result["status"], "incomplete")
+            self.assertEqual(result["reportedSummary"]["status"], "failed")
+            self.assertEqual(result["evidenceError"], "test summary reported failure before timeout")
+
     def test_timeout_terminates_detached_descendant_before_parent(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)

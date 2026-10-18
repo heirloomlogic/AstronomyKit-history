@@ -155,7 +155,11 @@ def run_command(name: str, command: list[str], cwd: Path, logs: Path, timeout: f
     status = "incomplete" if timed_out else "passed" if returncode == 0 else "failed"
     is_swift_test = (Path(command[0]).name == "swift" and len(command) > 1 and command[1] == "test") or Path(command[0]).name == "swift-test"
     evidence_error = None
-    if reported is not None and reported["status"] == "failed":
+    if timed_out and reported is not None and reported["status"] == "failed":
+        evidence_error = "test summary reported failure before timeout"
+    elif timed_out and reported is not None and reported["tests"] == 0:
+        evidence_error = "zero tests executed before timeout"
+    elif reported is not None and reported["status"] == "failed":
         status = "failed"
         evidence_error = "test summary reported failure"
     elif not timed_out and returncode == 0 and is_swift_test and reported is None:
