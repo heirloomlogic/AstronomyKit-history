@@ -1197,6 +1197,6 @@
     "Scripts/test_capture_pal_refraction.py": "e7e9b817d29b36810cdaa2adc87afb46885d06833939ea4579bb30fbad7f3ef2",
     "Sources/AstronomyKit/Coordinates.swift": "9b1ae70052f416252af118b50cc61bf2c900918cd76ccea021017c28f793d60a",
     "Sources/AstronomyKit/Engine/Orientation/EngineRefraction.swift": "1b48e0292d81588953bdec2332c2cf132807a94bf4d661e209c77e95ae81bc4d",
-    "Tests/AstronomyKitTests/WeatherRefractionTests.swift": "20e2f8023d1779fa76d5a2ab089d319690f195c8feda9c3bb3768dcf7e301fbe"
+    "Tests/AstronomyKitTests/WeatherRefractionTests.swift": "a5164090381d73ade7501e177ac0a95b314aaf050e7206ebe75ce7aa0c842f57"
   }
 }
