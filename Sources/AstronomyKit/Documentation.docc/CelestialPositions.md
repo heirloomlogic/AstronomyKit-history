@@ -183,7 +183,7 @@ let observer = Observer(latitude: 40.7, longitude: -74.0)
 let horizon = try algol.horizon(at: .now, from: observer)
 ```
 
-J2000 coordinates can be found from star catalogs like SIMBAD, Hipparcos, or the Yale Bright Star Catalog.
+J2000 coordinates can be found from star catalogs like SIMBAD, Hipparcos, or the Yale Bright Star Catalog. Entries with an epoch, proper motion, and radial velocity can opt into propagation with ``StarCatalogMotion``; see <doc:AdvancedFeatures> for units, frame, time-scale, and validation details. The legacy initializer remains a fixed J2000 value.
 
 ## Aberration Correction
 

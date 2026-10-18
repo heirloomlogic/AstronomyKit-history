@@ -1,0 +1,160 @@
+{
+  "catalog": {
+    "credit": "ESA/Gaia/DPAC; Gaia DR3 documentation credit and citation instructions",
+    "endpoint": "https://gea.esac.esa.int/tap-server/tap/sync",
+    "epochTimeScale": "TCB",
+    "frame": "barycentric ICRS",
+    "name": "Gaia Data Release 3 gaia_source",
+    "properMotionConvention": "pmra = dRA/dt*cos(dec), pmdec = dDec/dt, milliarcseconds per Julian year",
+    "querySHA256": "5b17a771364de74d1674ec93d65f262de3605856f1b8927cb7f334fb7e253a40",
+    "radialVelocityConvention": "published barycentric spectroscopic radial_velocity in kilometers per second, positive receding",
+    "responseSHA256": "10503dbc81c59ca8870dc9b6c29d77c6b7f3d828e2b296e1d4f7aa6ecaa5676e",
+    "rows": [
+      {
+        "dec": "4.739420051112412",
+        "parallax": "546.975939730948",
+        "pmdec": "10362.394206546573",
+        "pmra": "-801.5509783684709",
+        "ra": "269.44850252543836",
+        "radial_velocity": "-110.46822",
+        "ref_epoch": "2016.0",
+        "source_id": "4472832130942575872"
+      },
+      {
+        "dec": "-62.67607511676666",
+        "parallax": "768.0665391873573",
+        "pmdec": "769.4650146478623",
+        "pmra": "-3781.741008265163",
+        "ra": "217.39232147200883",
+        "radial_velocity": "-21.942726",
+        "ref_epoch": "2016.0",
+        "source_id": "5853498713190525696"
+      }
+    ]
+  },
+  "clockComparisons": [
+    {
+      "fullMinusNaiveMicroarcseconds": 11.813485357527732,
+      "sourceID": "4472832130942575872",
+      "targetTDBJulianYear": 2050.0
+    },
+    {
+      "fullMinusNaiveMicroarcseconds": 4.373265791809821,
+      "sourceID": "5853498713190525696",
+      "targetTDBJulianYear": 2050.0
+    }
+  ],
+  "oracle": {
+    "archiveSHA256": "d9c10833cae8b4d9361a0ffda31ec361fd1262362025bec4d4e51a880150ace2",
+    "name": "IAU SOFA pmsafe, starpm, and tdbtcb",
+    "recipeSHA256": "d86e7d6b6c28f31ddb54a050fe3c426a7fdb178f324510068c3b60383b64a389",
+    "release": "2023-10-11",
+    "targetTDBJulianYears": [
+      1991.25,
+      2016.0,
+      2050.0,
+      2100.0
+    ]
+  },
+  "rows": [
+    {
+      "declinationRadians": 0.08147698591138511,
+      "declinationRateRadiansPerJulianYear": 5.0084907796778535e-05,
+      "parallaxArcseconds": 0.546139967613945,
+      "radialVelocityKilometersPerSecond": -110.58033879756458,
+      "rightAscensionRadians": 4.702859885510596,
+      "rightAscensionRateRadiansPerJulianYear": -3.886658800338849e-06,
+      "sourceID": "4472832130942575872",
+      "targetTDBJulianYear": 1991.25
+    },
+    {
+      "declinationRadians": 0.08271848455732833,
+      "declinationRateRadiansPerJulianYear": 5.023830480759422e-05,
+      "parallaxArcseconds": 0.5469759397513934,
+      "radialVelocityKilometersPerSecond": -110.46821999725437,
+      "rightAscensionRadians": 4.702763533634798,
+      "rightAscensionRateRadiansPerJulianYear": -3.8993615934890965e-06,
+      "sourceID": "4472832130942575872",
+      "targetTDBJulianYear": 2016.0
+    },
+    {
+      "declinationRadians": 0.08443018157423643,
+      "declinationRateRadiansPerJulianYear": 5.0449926197574024e-05,
+      "parallaxArcseconds": 0.548127133209929,
+      "radialVelocityKilometersPerSecond": -110.3133569318296,
+      "rightAscensionRadians": 4.702630657289892,
+      "rightAscensionRateRadiansPerJulianYear": -3.91691354994505e-06,
+      "sourceID": "4472832130942575872",
+      "targetTDBJulianYear": 2050.0
+    },
+    {
+      "declinationRadians": 0.08696049592320435,
+      "declinationRateRadiansPerJulianYear": 5.0763021423190047e-05,
+      "parallaxArcseconds": 0.5498259252940088,
+      "radialVelocityKilometersPerSecond": -110.08383496900505,
+      "rightAscensionRadians": 4.702434161997919,
+      "rightAscensionRateRadiansPerJulianYear": -3.9429410463336615e-06,
+      "sourceID": "4472832130942575872",
+      "targetTDBJulianYear": 2100.0
+    },
+    {
+      "declinationRadians": -1.0939959636699992,
+      "declinationRateRadiansPerJulianYear": 3.7112032210629763e-06,
+      "parallaxArcseconds": 0.7677389154846084,
+      "radialVelocityKilometersPerSecond": -21.953749702081993,
+      "rightAscensionRadians": 3.795200108071879,
+      "rightAscensionRateRadiansPerJulianYear": -3.992259552054878e-05,
+      "sourceID": "5853498713190525696",
+      "targetTDBJulianYear": 1991.25
+    },
+    {
+      "declinationRadians": -1.0939038730126118,
+      "declinationRateRadiansPerJulianYear": 3.7304716628355192e-06,
+      "parallaxArcseconds": 0.7680665391953632,
+      "radialVelocityKilometersPerSecond": -21.9427259997305,
+      "rightAscensionRadians": 3.7942117782163667,
+      "rightAscensionRateRadiansPerJulianYear": -3.994243153144171e-05,
+      "sourceID": "5853498713190525696",
+      "targetTDBJulianYear": 2016.0
+    },
+    {
+      "declinationRadians": -1.093776586220769,
+      "declinationRateRadiansPerJulianYear": 3.756997348880313e-06,
+      "parallaxArcseconds": 0.7685167953868883,
+      "radialVelocityKilometersPerSecond": -21.927559307387064,
+      "rightAscensionRadians": 3.792853273699219,
+      "rightAscensionRateRadiansPerJulianYear": -3.996957768007627e-05,
+      "sourceID": "5853498713190525696",
+      "targetTDBJulianYear": 2050.0
+    },
+    {
+      "declinationRadians": -1.0935877587860734,
+      "declinationRateRadiansPerJulianYear": 3.7961232378187406e-06,
+      "parallaxArcseconds": 0.7691793291892913,
+      "radialVelocityKilometersPerSecond": -21.90520685931396,
+      "rightAscensionRadians": 3.7908538011365054,
+      "rightAscensionRateRadiansPerJulianYear": -4.0009280150344786e-05,
+      "sourceID": "5853498713190525696",
+      "targetTDBJulianYear": 2100.0
+    }
+  ],
+  "schemaVersion": 1,
+  "sourceSHA256": {
+    "NATIVE_ENGINE.md": "10fbc4ce9b336daf56633685d1b96f09af41b65071029ccaad7040b0080ff62a",
+    "Scripts/capture-sofa-star-motion.py": "19bd0b1fe73a9ce2a8899e4b3141f36e385273c0741c6a37bbb45c63fd6b2c13",
+    "Scripts/sofa-star-motion-reference.c": "d86e7d6b6c28f31ddb54a050fe3c426a7fdb178f324510068c3b60383b64a389",
+    "Scripts/star-motion-data/README.md": "f27590a584cadef9a08147cb79af555f75a632b38270bd676937a24d8b34bd0a",
+    "Scripts/star-motion-data/gaia-dr3.csv": "10503dbc81c59ca8870dc9b6c29d77c6b7f3d828e2b296e1d4f7aa6ecaa5676e",
+    "Scripts/star-motion-data/gaia-dr3.query.json": "5b17a771364de74d1674ec93d65f262de3605856f1b8927cb7f334fb7e253a40",
+    "Scripts/test_capture_sofa_star_motion.py": "b4dd421831148caf0d8151e13bddbbcf9bea53f6da7e49b800d92c2100cc9e94",
+    "Sources/AstronomyKit/Documentation.docc/AdvancedFeatures.md": "932c1fb5852cd0c5e9c9ad6de736b66a1560ad4ae2a7b3fb2e81e15bd32bc630",
+    "Sources/AstronomyKit/Documentation.docc/CelestialPositions.md": "daf4b7e892663003209580a8d07be441d0fbc741eb6e04a55eae1e5d71cc8c5a",
+    "Sources/AstronomyKit/Engine/Stars/EngineStar.swift": "e662b251f9a052a9bb7764cde3c084ea7932afb3151329046bbf2ae12c15386f",
+    "Sources/AstronomyKit/Engine/Stars/EngineStarCatalogPropagation.swift": "3d5e42a2ea7756293bd577c458620967b5b0517033d8cd9b82002f70377ceb24",
+    "Sources/AstronomyKit/FixedStar.swift": "9895956f26b49655cc8bf87f70c336a3b4f612625b87cb1d34c04c58184cc366",
+    "Sources/AstronomyKit/StarCatalogMotion.swift": "589ad988057b1ad633721d3779962dd642923771eb5a9ccf65afed9a10b15bf7",
+    "THIRD_PARTY_NOTICES": "1a0ffb18d65af2f89c4771d5622c690d64ac0c059b6fb45dd1d09f0d2d13f752",
+    "Tests/AstronomyKitTests/Engine/Stars/EngineStarCatalogMotionTests.swift": "068f13cb6a12a9cbea6453ad5b2a6b4683499acecf82afe45f3cb1c1531b65a4",
+    "Tests/AstronomyKitTests/FixedStarCatalogMotionTests.swift": "4c01cadaf6eba386f42723030a63c5cc8da42a4156229961528b38f9e33cc249"
+  }
+}

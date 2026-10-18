@@ -22,16 +22,57 @@ extension Engine {
         /// Distance from the Sun in light-years.
         let distance: Double
 
+        /// Optional catalog epoch and space motion.
+        let catalogMotion: StarCatalogMotion?
+
+        typealias CatalogMotion = StarCatalogMotion
+
+        init(
+            rightAscension: Double,
+            declination: Double,
+            distance: Double,
+            catalogMotion: StarCatalogMotion? = nil
+        ) {
+            self.rightAscension = rightAscension
+            self.declination = declination
+            self.distance = distance
+            self.catalogMotion = catalogMotion
+        }
+
         /// The star's fixed heliocentric position on J2000 axes.
         func heliocentricPosition(at time: Engine.Time) throws -> Engine.Vector<Engine.EQJ> {
             try validate()
             try Engine.checkAcceptedTime(time)
+            guard hasCatalogMotion else { return try fixedPosition(at: time) }
+            let catalog = try barycentricCatalogPosition(at: time)
+            let sun = try Engine.ApparentPlace.sunBarycentricKinematics(tt: time.tt).motion.value
+            return try Engine.Positions.checked(
+                Engine.Vector(x: catalog.x - sun.x, y: catalog.y - sun.y, z: catalog.z - sun.z, time: time)
+            )
+        }
+
+        /// The fixed-position path retained for legacy values without catalog motion.
+        private func fixedPosition(at time: Engine.Time) throws -> Engine.Vector<Engine.EQJ> {
             let sphere = Engine.Spherical(
                 latitude: declination,
                 longitude: 15 * rightAscension,
                 distance: distance * Self.astronomicalUnitsPerLightYear
             )
             return try Engine.Positions.checked(Engine.Vector(sphere, time: time))
+        }
+
+        /// The propagated catalog position in its barycentric ICRS-aligned frame.
+        func barycentricCatalogPosition(at time: Engine.Time) throws -> Engine.Vector<Engine.EQJ> {
+            try validate()
+            try Engine.checkAcceptedTime(time)
+            guard let catalogMotion, hasCatalogMotion else { return try fixedPosition(at: time) }
+            return try Engine.StarCatalogPropagation.position(
+                rightAscensionHours: rightAscension,
+                declinationDegrees: declination,
+                distanceLightYears: distance,
+                motion: catalogMotion,
+                at: time
+            )
         }
 
         /// The star's position relative to Earth on J2000 axes.
@@ -91,7 +132,6 @@ extension Engine {
         private func apparentPosition(
             at time: Engine.Time, site: Observer?, aberration: Aberration
         ) throws -> Engine.Vector<Engine.EQJ> {
-            let star = try heliocentricPosition(at: time)
             let earth = try Engine.ApparentPlace.earthBarycentricKinematics(tt: time.tt)
             let sun = try Engine.ApparentPlace.sunBarycentricKinematics(tt: time.tt)
             let offset =
@@ -100,7 +140,14 @@ extension Engine {
             let observer = Engine.ApparentPlace.Kinematics(
                 motion: earth.motion + offset.motion, acceleration: earth.acceleration + offset.acceleration)
             let solarOffset = observer.motion - sun.motion
-            let displacement = Engine.ApparentPlace.VectorRate(SIMD3(star.x, star.y, star.z)) - solarOffset
+            let displacement: Engine.ApparentPlace.VectorRate
+            if hasCatalogMotion {
+                let star = try barycentricCatalogPosition(at: time)
+                displacement = Engine.ApparentPlace.VectorRate(SIMD3(star.x, star.y, star.z)) - observer.motion
+            } else {
+                let star = try fixedPosition(at: time)
+                displacement = Engine.ApparentPlace.VectorRate(SIMD3(star.x, star.y, star.z)) - solarOffset
+            }
             let result: Engine.ApparentPlace.VectorRate
             if aberration == .none {
                 result = displacement
@@ -118,6 +165,10 @@ extension Engine {
             guard rightAscension.isFinite, (0..<24).contains(rightAscension), declination.isFinite,
                 (-90...90).contains(declination), distance.isFinite, distance >= 1
             else { throw AstronomyError.invalidParameter }
+        }
+
+        private var hasCatalogMotion: Bool {
+            catalogMotion != nil
         }
 
         /// Checks the public observer limits without constructing a C observer.
