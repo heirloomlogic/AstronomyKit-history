@@ -1,6 +1,6 @@
 # Native observer-event evidence
 
-This archive qualifies the native hour-angle, altitude and rise/set searches added for #92, which the public facades run on since the #96 cutover. It does not establish new global event tolerances or resolve the existing Jupiter, Uranus and Neptune apsis source gaps.
+This archive qualifies the hour-angle, altitude and rise/set searches added for #92, which the public facades run on since the #96 cutover. It does not establish new global event tolerances. The [complete-cycle method](../planet-data/de441-foundation-method.md) and [planetary evidence](../saturn-data/native-evidence.json) resolve the former Jupiter, Uranus and Neptune apsis acceptance gap without changing this archive's scope.
 
 `reference-fixtures.json` comes from the adjacent-query-bound raw files under `sources/horizons` and `sources/usno`. Sixteen frozen Horizons rows cover the Sun, Moon, Mars and Jupiter at TT days -36524.5, 0, 8000 and 47846.5, at three geodetic sites. Altitude is airless apparent center altitude; hour angle is the apparent local hour angle, wrapped to [0,24) hours. Both comparisons retain the existing one-arcminute angular allowance. These are selected point checks, not a full-domain guarantee.
 

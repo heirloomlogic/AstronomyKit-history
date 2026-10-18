@@ -281,7 +281,7 @@ def evidence(captures, hashes):
                 resources=resources, buildSeconds=build, toolchain=captures['toolchain'],
                 releaseExecutableBytes=captures['releaseExecutableBytes'], observerObjectBytes=captures['observerObjectBytes'], baseline=captures['baseline'],
                 criteria='All 5909 archived USNO rows retain their source-specific allowance, including 70.8 TT seconds at line 2923. Sixteen sampled altitude/hour-angle points retain one arcminute. Three printed USNO semidiameters discriminate the optical convention at 0.000001 degree; this is not an asserted physical solar-radius accuracy.',
-                limitations='USNO navigation output supports the chosen optical limb; the rise/set service implementation is unavailable. Horizon refraction remains a conventional atmosphere, not a prediction of weather. The public observer APIs run on these searches since the #96 cutover. Existing planetary apsis source gaps remain in #92. Resource values are host observations, not portable ceilings.')
+                limitations='USNO navigation output supports the chosen optical limb; the rise/set service implementation is unavailable. Horizon refraction remains a conventional atmosphere, not a prediction of weather. The public observer APIs run on these searches since the #96 cutover. Planetary apsis qualification is outside this observer artifact. Resource values are host observations, not portable ceilings.')
 
 
 def capture(directory, retained_debug_usno_revision=None):
