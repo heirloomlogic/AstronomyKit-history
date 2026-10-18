@@ -1,0 +1,278 @@
+{
+  "contributions": {
+    "de421MinusDE441GeometricObscuration": -1.537485361247093e-08,
+    "de441ApparentMinusGeometricObscuration": 0.0008997314569488823,
+    "peakAngleMinusAxisSeconds": -1.2395024299621582,
+    "peakAxisMinusNativeSeconds": 39.42352384328842,
+    "tdbMinusTtTwoMillisecondObscurationSpan": 8.392552430791511e-09
+  },
+  "de441GeometricControl": {
+    "axisDistanceKilometers": 3170.2580578312327,
+    "moonDistanceKilometers": 390411.1511339937,
+    "moonRadiusKilometers": 1737.4172040810186,
+    "obscuration": 0.9615818677584221,
+    "separationArcseconds": 1674.8965542039716,
+    "sunDistanceKilometers": 151118401.06056583,
+    "umbraRadiusKilometers": 4661.571452518767
+  },
+  "matrix": [
+    {
+      "axisDistanceKilometers": 3170.203749979101,
+      "epoch": "catalogPeakWithPublishedDeltaT",
+      "jdTDBApproximation": 2461280.6773032406,
+      "moonDistanceKilometers": 390408.06097022584,
+      "moonRadiusKilometers": 1737.417204353371,
+      "obscuration": 0.9462438313641426,
+      "separationArcseconds": 1674.8811201402964,
+      "shadow": "geometric",
+      "sunDistanceKilometers": 151118372.58594102,
+      "umbraRadiusKilometers": 4597.792049276362
+    },
+    {
+      "axisDistanceKilometers": 3170.203749979101,
+      "epoch": "catalogPeakWithPublishedDeltaT",
+      "jdTDBApproximation": 2461280.6773032406,
+      "moonDistanceKilometers": 390408.06097022584,
+      "moonRadiusKilometers": 1737.417204353371,
+      "obscuration": 0.9615973097162639,
+      "separationArcseconds": 1674.8811201402964,
+      "shadow": "fiveMillenniumDanjon",
+      "sunDistanceKilometers": 151118372.58594102,
+      "umbraRadiusKilometers": 4661.5852227021305
+    },
+    {
+      "axisDistanceKilometers": 3170.203749979101,
+      "epoch": "catalogPeakWithPublishedDeltaT",
+      "jdTDBApproximation": 2461280.6773032406,
+      "moonDistanceKilometers": 390408.06097022584,
+      "moonRadiusKilometers": 1737.417204353371,
+      "obscuration": 0.9617155990310627,
+      "separationArcseconds": 1674.8811201402964,
+      "shadow": "danjonExpandedTerms",
+      "sunDistanceKilometers": 151118372.58594102,
+      "umbraRadiusKilometers": 4662.103251070309
+    },
+    {
+      "axisDistanceKilometers": 3170.203749979101,
+      "epoch": "catalogPeakWithPublishedDeltaT",
+      "jdTDBApproximation": 2461280.6773032406,
+      "moonDistanceKilometers": 390408.06097022584,
+      "moonRadiusKilometers": 1737.417204353371,
+      "obscuration": 0.9655031103323035,
+      "separationArcseconds": 1674.8811201402964,
+      "shadow": "chauvenet",
+      "sunDistanceKilometers": 151118372.58594102,
+      "umbraRadiusKilometers": 4678.955153185144
+    },
+    {
+      "axisDistanceKilometers": 3170.258123785706,
+      "epoch": "nativeSelectedPeak",
+      "jdTDBApproximation": 2461280.676452763,
+      "moonDistanceKilometers": 390411.15156324895,
+      "moonRadiusKilometers": 1737.4172040809806,
+      "obscuration": 0.9462267972217703,
+      "separationArcseconds": 1674.8965872057524,
+      "shadow": "geometric",
+      "sunDistanceKilometers": 151118401.06303957,
+      "umbraRadiusKilometers": 4597.778277403034
+    },
+    {
+      "axisDistanceKilometers": 3170.258123785706,
+      "epoch": "nativeSelectedPeak",
+      "jdTDBApproximation": 2461280.676452763,
+      "moonDistanceKilometers": 390411.15156324895,
+      "moonRadiusKilometers": 1737.4172040809806,
+      "obscuration": 0.9615818523835685,
+      "separationArcseconds": 1674.8965872057524,
+      "shadow": "fiveMillenniumDanjon",
+      "sunDistanceKilometers": 151118401.06303957,
+      "umbraRadiusKilometers": 4661.571450588485
+    },
+    {
+      "axisDistanceKilometers": 3170.258123785706,
+      "epoch": "nativeSelectedPeak",
+      "jdTDBApproximation": 2461280.676452763,
+      "moonDistanceKilometers": 390411.15156324895,
+      "moonRadiusKilometers": 1737.4172040809806,
+      "obscuration": 0.961700155722677,
+      "separationArcseconds": 1674.8965872057524,
+      "shadow": "danjonExpandedTerms",
+      "sunDistanceKilometers": 151118401.06303957,
+      "umbraRadiusKilometers": 4662.089478954695
+    },
+    {
+      "axisDistanceKilometers": 3170.258123785706,
+      "epoch": "nativeSelectedPeak",
+      "jdTDBApproximation": 2461280.676452763,
+      "moonDistanceKilometers": 390411.15156324895,
+      "moonRadiusKilometers": 1737.4172040809806,
+      "obscuration": 0.9654880746499074,
+      "separationArcseconds": 1674.8965872057524,
+      "shadow": "chauvenet",
+      "sunDistanceKilometers": 151118401.06303957,
+      "umbraRadiusKilometers": 4678.941105698519
+    },
+    {
+      "axisDistanceKilometers": 3170.167355355344,
+      "epoch": "svsPrintedMinuteWithCatalogDeltaT",
+      "jdTDBApproximation": 2461280.6765624997,
+      "moonDistanceKilometers": 390410.75278465886,
+      "moonRadiusKilometers": 1737.4172041161264,
+      "obscuration": 0.9462498822175643,
+      "separationArcseconds": 1674.8503456137664,
+      "shadow": "geometric",
+      "sunDistanceKilometers": 151118397.3886606,
+      "umbraRadiusKilometers": 4597.780054384926
+    },
+    {
+      "axisDistanceKilometers": 3170.167355355344,
+      "epoch": "svsPrintedMinuteWithCatalogDeltaT",
+      "jdTDBApproximation": 2461280.6765624997,
+      "moonDistanceKilometers": 390410.75278465886,
+      "moonRadiusKilometers": 1737.4172041161264,
+      "obscuration": 0.9616028091132292,
+      "separationArcseconds": 1674.8503456137664,
+      "shadow": "fiveMillenniumDanjon",
+      "sunDistanceKilometers": 151118397.3886606,
+      "umbraRadiusKilometers": 4661.573227601387
+    },
+    {
+      "axisDistanceKilometers": 3170.167355355344,
+      "epoch": "svsPrintedMinuteWithCatalogDeltaT",
+      "jdTDBApproximation": 2461280.6765624997,
+      "moonDistanceKilometers": 390410.75278465886,
+      "moonRadiusKilometers": 1737.4172041161264,
+      "obscuration": 0.9617210935087845,
+      "separationArcseconds": 1674.8503456137664,
+      "shadow": "danjonExpandedTerms",
+      "sunDistanceKilometers": 151118397.3886606,
+      "umbraRadiusKilometers": 4662.091255967849
+    },
+    {
+      "axisDistanceKilometers": 3170.167355355344,
+      "epoch": "svsPrintedMinuteWithCatalogDeltaT",
+      "jdTDBApproximation": 2461280.6765624997,
+      "moonDistanceKilometers": 390410.75278465886,
+      "moonRadiusKilometers": 1737.4172041161264,
+      "obscuration": 0.965508387291902,
+      "separationArcseconds": 1674.8503456137664,
+      "shadow": "chauvenet",
+      "sunDistanceKilometers": 151118397.3886606,
+      "umbraRadiusKilometers": 4678.9429182427375
+    },
+    {
+      "axisDistanceKilometers": 3170.0436267453238,
+      "epoch": "de421AxisDistanceMinimum",
+      "jdTDBApproximation": 2461280.6769090537,
+      "moonDistanceKilometers": 390409.493424335,
+      "moonRadiusKilometers": 1737.4172042271202,
+      "obscuration": 0.9462821498166928,
+      "separationArcseconds": 1674.7903828612352,
+      "shadow": "geometric",
+      "sunDistanceKilometers": 151118385.78478062,
+      "umbraRadiusKilometers": 4597.7856661721335
+    },
+    {
+      "axisDistanceKilometers": 3170.0436267453238,
+      "epoch": "de421AxisDistanceMinimum",
+      "jdTDBApproximation": 2461280.6769090537,
+      "moonDistanceKilometers": 390409.493424335,
+      "moonRadiusKilometers": 1737.4172042271202,
+      "obscuration": 0.9616320988884044,
+      "separationArcseconds": 1674.7903828612352,
+      "shadow": "fiveMillenniumDanjon",
+      "sunDistanceKilometers": 151118385.78478062,
+      "umbraRadiusKilometers": 4661.5788394865185
+    },
+    {
+      "axisDistanceKilometers": 3170.0436267453238,
+      "epoch": "de421AxisDistanceMinimum",
+      "jdTDBApproximation": 2461280.6769090537,
+      "moonDistanceKilometers": 390409.493424335,
+      "moonRadiusKilometers": 1737.4172042271202,
+      "obscuration": 0.9617503567806612,
+      "separationArcseconds": 1674.7903828612352,
+      "shadow": "danjonExpandedTerms",
+      "sunDistanceKilometers": 151118385.78478062,
+      "umbraRadiusKilometers": 4662.096867853782
+    },
+    {
+      "axisDistanceKilometers": 3170.0436267453238,
+      "epoch": "de421AxisDistanceMinimum",
+      "jdTDBApproximation": 2461280.6769090537,
+      "moonDistanceKilometers": 390409.493424335,
+      "moonRadiusKilometers": 1737.4172042271202,
+      "obscuration": 0.9655367897766212,
+      "separationArcseconds": 1674.7903828612352,
+      "shadow": "chauvenet",
+      "sunDistanceKilometers": 151118385.78478062,
+      "umbraRadiusKilometers": 4678.9486423373355
+    },
+    {
+      "axisDistanceKilometers": 3170.0438380363444,
+      "epoch": "de421AngularSeparationMinimum",
+      "jdTDBApproximation": 2461280.6768947076,
+      "moonDistanceKilometers": 390409.5455573063,
+      "moonRadiusKilometers": 1737.4172042225257,
+      "obscuration": 0.9462820385549818,
+      "separationArcseconds": 1674.7902708533868,
+      "shadow": "geometric",
+      "sunDistanceKilometers": 151118386.26514027,
+      "umbraRadiusKilometers": 4597.785433864391
+    },
+    {
+      "axisDistanceKilometers": 3170.0438380363444,
+      "epoch": "de421AngularSeparationMinimum",
+      "jdTDBApproximation": 2461280.6768947076,
+      "moonDistanceKilometers": 390409.5455573063,
+      "moonRadiusKilometers": 1737.4172042225257,
+      "obscuration": 0.9616319980077472,
+      "separationArcseconds": 1674.7902708533868,
+      "shadow": "fiveMillenniumDanjon",
+      "sunDistanceKilometers": 151118386.26514027,
+      "umbraRadiusKilometers": 4661.578607174723
+    },
+    {
+      "axisDistanceKilometers": 3170.0438380363444,
+      "epoch": "de421AngularSeparationMinimum",
+      "jdTDBApproximation": 2461280.6768947076,
+      "moonDistanceKilometers": 390409.5455573063,
+      "moonRadiusKilometers": 1737.4172042225257,
+      "obscuration": 0.9617502559922164,
+      "separationArcseconds": 1674.7902708533868,
+      "shadow": "danjonExpandedTerms",
+      "sunDistanceKilometers": 151118386.26514027,
+      "umbraRadiusKilometers": 4662.096635541953
+    },
+    {
+      "axisDistanceKilometers": 3170.0438380363444,
+      "epoch": "de421AngularSeparationMinimum",
+      "jdTDBApproximation": 2461280.6768947076,
+      "moonDistanceKilometers": 390409.5455573063,
+      "moonRadiusKilometers": 1737.4172042225257,
+      "obscuration": 0.9655366910407557,
+      "separationArcseconds": 1674.7902708533868,
+      "shadow": "chauvenet",
+      "sunDistanceKilometers": 151118386.26514027,
+      "umbraRadiusKilometers": 4678.948405380473
+    }
+  ],
+  "outcome": {
+    "exactSVSConventionReproduced": false,
+    "productionDefectEstablished": false,
+    "remainingUndisclosedChoices": [
+      "full-precision SVS peak epoch, UT realization, and dynamical-time conversion",
+      "whether SVS used simultaneous geometric, light-time, or apparent positions",
+      "Earth, Sun, and atmospheric shadow radii beyond the named 5MCLE dataset",
+      "whether and how LOLA topography changed the lunar limb or covered area",
+      "projection, nonspherical overlap, full-precision result, and rounding rule"
+    ]
+  },
+  "schemaVersion": 1,
+  "scope": {
+    "de421": "direct type-2 ICRF SPK interpolation from canonical NAIF byte ranges",
+    "limb": "1737.4 km LOLA reference sphere only; no topographic limb is claimed",
+    "peak": "five declared epoch interpretations; optimized rows are bracketed local minima inside the fixed plus-or-minus 300-second event window, and published UT rows use the catalog's 75-second Delta T as a TT/TDB approximation",
+    "shadow": "four source-published circular formulas; none was selected by proximity to the SVS print"
+  }
+}

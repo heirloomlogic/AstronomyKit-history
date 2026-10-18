@@ -1,1 +1,3 @@
 *.html -diff
+*.cmt -diff
+de421/*.bin binary

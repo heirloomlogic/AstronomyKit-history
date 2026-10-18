@@ -1,0 +1,70 @@
+{
+  "ranges": [
+    {
+      "end": 1023,
+      "path": "Scripts/svs-lunar-obscuration/sources/de421/0-1023.bin",
+      "sha256": "3b88a2933303980591a41fcfc3fe5e90d90bb76a6684faa25e35fe8be05fb4fd",
+      "start": 0
+    },
+    {
+      "end": 4095,
+      "path": "Scripts/svs-lunar-obscuration/sources/de421/3072-4095.bin",
+      "sha256": "4a3eff16586944928006f0b759f63c3d2118af7bbae43ee1d0e31e3b723f39d3",
+      "start": 3072
+    },
+    {
+      "end": 4336239,
+      "path": "Scripts/svs-lunar-obscuration/sources/de421/4335912-4336239.bin",
+      "sha256": "024990c4aee7d11313771ca9aee5d77b985a563ac45f9ad6061b1a3ed5aa63a8",
+      "start": 4335912
+    },
+    {
+      "end": 4538975,
+      "path": "Scripts/svs-lunar-obscuration/sources/de421/4538944-4538975.bin",
+      "sha256": "ad15376118460202c25a82cb12d5d2700759e2c1133676fa2e9b695e920a2e2c",
+      "start": 4538944
+    },
+    {
+      "end": 7379247,
+      "path": "Scripts/svs-lunar-obscuration/sources/de421/7378968-7379247.bin",
+      "sha256": "ff15f2b4900c4f63289562a5524cd5166857e55a72d65818ee6a0e956c819cff",
+      "start": 7378968
+    },
+    {
+      "end": 7552319,
+      "path": "Scripts/svs-lunar-obscuration/sources/de421/7552288-7552319.bin",
+      "sha256": "89c68b1e82134ca428100f0a4904e299948d4d8226c8a0203dcb3b86479ea347",
+      "start": 7552288
+    },
+    {
+      "end": 11358759,
+      "path": "Scripts/svs-lunar-obscuration/sources/de421/11358432-11358759.bin",
+      "sha256": "c61d3e9e04a05a1446b301393cf468e32f6195f5ae4fae13980797046a212c95",
+      "start": 11358432
+    },
+    {
+      "end": 12170591,
+      "path": "Scripts/svs-lunar-obscuration/sources/de421/12170560-12170591.bin",
+      "sha256": "19f8efb6f31f26f3962359fef32317ced11462c9864d7226bb7c7fac0cadf113",
+      "start": 12170560
+    },
+    {
+      "end": 15977031,
+      "path": "Scripts/svs-lunar-obscuration/sources/de421/15976704-15977031.bin",
+      "sha256": "e5b0115225c2fb25d31148720867d62c15e41be9ffe1be8f6714e26a88d256f3",
+      "start": 15976704
+    },
+    {
+      "end": 16788863,
+      "path": "Scripts/svs-lunar-obscuration/sources/de421/16788832-16788863.bin",
+      "sha256": "19f8efb6f31f26f3962359fef32317ced11462c9864d7226bb7c7fac0cadf113",
+      "start": 16788832
+    }
+  ],
+  "schemaVersion": 1,
+  "source": {
+    "bytes": 16790528,
+    "sha256": "08b20db2ae22488650641c5a9033e5bfda4b1c4b440cfeaf20f621cfa18ecdb3",
+    "url": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/a_old_versions/de421.bsp"
+  }
+}
