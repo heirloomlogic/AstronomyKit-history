@@ -949,6 +949,7 @@
         "engine-positions"
       ],
       "paths": [
+        "Package.swift",
         "Scripts/assess-global-solar-radii.py",
         "Scripts/assess-rp1301-g0.py",
         "Scripts/capture-global-solar.py",
@@ -1001,6 +1002,7 @@
         "engine-positions"
       ],
       "paths": [
+        "Package.swift",
         "Scripts/capture-global-solar.py",
         "Scripts/capture-local-solar.py",
         "Scripts/eclipse-data/local-captures.json",
@@ -1148,6 +1150,7 @@
       "paths": [
         "Fuzzing/corpus/fixed-riseset-infinite-limit",
         "Fuzzing/corpus/fixed-riseset-stall",
+        "Package.swift",
         "Scripts/capture-observer-events.py",
         "Scripts/observer-event-data/README.md",
         "Scripts/observer-event-data/native-captures.json",
@@ -1212,6 +1215,7 @@
         "generated-binary-resource-tooling"
       ],
       "paths": [
+        "Package.swift",
         "Scripts/assess-moon-de441.py",
         "Scripts/assess-pluto-de441.py",
         "Scripts/assess-saturn-apsides.py",
@@ -1326,6 +1330,7 @@
         "engine-positions"
       ],
       "paths": [
+        "Package.swift",
         "Scripts/capture-pluto-observers.py",
         "Scripts/pluto-data/observer-fixtures.json",
         "Scripts/reference-data/build-fixtures.py",
@@ -1357,6 +1362,7 @@
         "engine-positions"
       ],
       "paths": [
+        "Package.swift",
         "Scripts/capture-global-solar.py",
         "Scripts/capture-transit-references.py",
         "Scripts/eclipse-data/transit-captures.json",
