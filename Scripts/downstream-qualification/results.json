@@ -1,0 +1,263 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-18T15:18:28Z",
+  "releaseAcceptance": "unmet",
+  "candidate": {
+    "revision": "68d80a16b150a2c22d972cdf7db0bbe75e0ff3d3",
+    "ephemerisVersion": "3.0.0+vsop87b-comp.poly-v2.iau2000b.utc-c72.deltat-iers-c04-20260917-pred-20271004-smh2020.native-libm"
+  },
+  "environment": {
+    "hardware": "Apple M1 Max, 64 GiB",
+    "operatingSystem": "macOS 27.0.0, Darwin arm64",
+    "swift": "Apple Swift 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1), target arm64-apple-macosx27.0.0",
+    "timezone": "UTC"
+  },
+  "consumers": [
+    {
+      "id": "astrology",
+      "repository": "https://github.com/heirloomlogic/AstrologyKit",
+      "revision": "347eddf5bc69837fff9f986a074d577032d7aae3",
+      "manifestSHA256": "0fdcb5635e0df53cf3891718e6dde29246176928aed06d3b854b31965abc736a",
+      "declaredAstronomyKit": "exact 3.2.0+upstream-2.1.19"
+    },
+    {
+      "id": "electional",
+      "repository": "https://github.com/heirloomlogic/ElectionalKit",
+      "revision": "b9cd413e5db3a64304d2afcb5e1bbe42e1910925",
+      "manifestSHA256": "09bd04c7506ee5142601e69a4e388bda5ce06a50f20e28441725e42fbfe01d4b",
+      "declaredAstronomyKit": "from 3.1.0",
+      "declaredAstrologyKit": "branch main"
+    }
+  ],
+  "resolvedGraphs": {
+    "astrology": {
+      "astronomykit": {
+        "location": "https://github.com/heirloomlogic/AstronomyKit",
+        "state": {
+          "revision": "68d80a16b150a2c22d972cdf7db0bbe75e0ff3d3",
+          "version": "3.2.0+upstream-2.1.19"
+        }
+      }
+    },
+    "electional": {
+      "astronomykit": {
+        "location": "https://github.com/heirloomlogic/AstronomyKit",
+        "state": {
+          "revision": "68d80a16b150a2c22d972cdf7db0bbe75e0ff3d3",
+          "version": "3.2.0+upstream-2.1.19"
+        }
+      },
+      "astrologykit": {
+        "location": "https://github.com/heirloomlogic/AstrologyKit",
+        "state": {
+          "branch": "main",
+          "revision": "347eddf5bc69837fff9f986a074d577032d7aae3"
+        }
+      },
+      "swift-asn1": {
+        "location": "https://github.com/apple/swift-asn1.git",
+        "state": {
+          "revision": "3b6410f7dee09eb33cdd26260c5fd47fda19b0e2",
+          "version": "1.7.3"
+        }
+      },
+      "swift-crypto": {
+        "location": "https://github.com/apple/swift-crypto",
+        "state": {
+          "revision": "1c80d3aff53fedc445b60692980cb4f19a618657",
+          "version": "5.0.1"
+        }
+      }
+    }
+  },
+  "hostedCandidateChecks": {
+    "run": "https://github.com/heirloomlogic/AstronomyKit/actions/runs/39125287365",
+    "event": "schedule",
+    "status": "failed",
+    "jobs": [
+      {"name": "test-thread-sanitizer", "status": "passed", "url": "https://github.com/heirloomlogic/AstronomyKit/actions/runs/39125287365/job/117669011915"},
+      {"name": "debug-macos", "status": "failed", "url": "https://github.com/heirloomlogic/AstronomyKit/actions/runs/39125287365/job/117669011659", "note": "Independent apparent integration reference differed before the Debug Swift test step, which was skipped."}
+    ]
+  },
+  "runs": [
+    {
+      "consumer": "astrology",
+      "configuration": "Release",
+      "dependency": "declared 3.2.0+upstream-2.1.19",
+      "name": "full suite baseline",
+      "status": "failed",
+      "durationSeconds": 117.66,
+      "maximumResidentBytes": 2653208576,
+      "reported": ["1040 tests in 116 suites failed with 12 issues, including 3 known issues", "59 tests in 7 suites failed with 3 issues"],
+      "note": "The failures reproduced serially and were stderr-capture and known vacuity expectations under Swift 6.4/macOS 27."
+    },
+    {
+      "consumer": "astrology",
+      "configuration": "Debug",
+      "dependency": "candidate",
+      "name": "build tests",
+      "status": "passed",
+      "durationSeconds": 52.26,
+      "maximumResidentBytes": 5179654144
+    },
+    {
+      "consumer": "astrology",
+      "configuration": "Release",
+      "dependency": "candidate",
+      "name": "build tests",
+      "status": "blocked",
+      "durationSeconds": 48.79,
+      "maximumResidentBytes": 9125330944,
+      "note": "The default build could not resolve a compatible testable AstrologyKit module; the native fallback also failed because AstrologyKit was not compiled for testing."
+    },
+    {
+      "consumer": "astrology",
+      "configuration": "Debug",
+      "dependency": "candidate",
+      "name": "full suite",
+      "status": "incomplete",
+      "durationSeconds": 665.10,
+      "maximumResidentBytes": 5183930368,
+      "note": "Stopped at the bound without a test summary; no test count is inferred."
+    },
+    {
+      "consumer": "astrology",
+      "configuration": "Debug",
+      "dependency": "candidate",
+      "name": "public consumer",
+      "status": "failed",
+      "durationSeconds": 10.368,
+      "reported": "59 tests in 7 suites failed with 1 issue",
+      "note": "The published Regulus 150.1977 degrees tolerance assertion passed. The separate expectation that AstrologyKit and AstronomyKit differ by more than 0.3 degrees failed after both returned ecliptic-of-date values. This does not independently establish scientific accuracy."
+    },
+    {
+      "consumer": "astrology",
+      "configuration": "Debug",
+      "dependency": "candidate",
+      "name": "fixed star longitudes",
+      "status": "passed",
+      "durationSeconds": 2.121,
+      "reported": "4 tests in 1 suite"
+    },
+    {
+      "consumer": "astrology",
+      "configuration": "Debug",
+      "dependency": "candidate",
+      "name": "polar edge regression",
+      "status": "passed",
+      "durationSeconds": 19.646,
+      "reported": "6 tests in 1 suite"
+    },
+    {
+      "consumer": "astrology",
+      "configuration": "Debug",
+      "dependency": "candidate",
+      "name": "analytic event motion",
+      "status": "incomplete",
+      "durationSeconds": 120.006,
+      "note": "No summary was emitted before the bound."
+    },
+    {
+      "consumer": "astrology",
+      "configuration": "Debug",
+      "dependency": "candidate",
+      "name": "multi-decade positions",
+      "status": "passed",
+      "durationSeconds": 4.022,
+      "reported": "3 tests in 1 suite"
+    },
+    {
+      "consumer": "astrology",
+      "configuration": "Debug",
+      "dependency": "candidate",
+      "name": "election event service",
+      "status": "passed",
+      "durationSeconds": 1.442,
+      "reported": "17 tests in 1 suite"
+    },
+    {
+      "consumer": "electional",
+      "configuration": "Debug",
+      "dependency": "candidate through pinned AstrologyKit",
+      "name": "build tests",
+      "status": "passed",
+      "durationSeconds": 57.15,
+      "maximumResidentBytes": 5184880640
+    },
+    {
+      "consumer": "electional",
+      "configuration": "Debug",
+      "dependency": "candidate through pinned AstrologyKit",
+      "name": "public consumer",
+      "status": "passed",
+      "durationSeconds": 30.730,
+      "reported": "31 tests in 9 suites"
+    },
+    {
+      "consumer": "electional",
+      "configuration": "Debug",
+      "dependency": "candidate through pinned AstrologyKit",
+      "name": "published elections",
+      "status": "passed",
+      "durationSeconds": 13.622,
+      "reported": "8 tests in 1 suite"
+    },
+    {
+      "consumer": "electional",
+      "configuration": "Debug",
+      "dependency": "candidate through pinned AstrologyKit",
+      "name": "assessment",
+      "status": "passed",
+      "durationSeconds": 2.711,
+      "reported": "20 tests in 2 suites"
+    },
+    {
+      "consumer": "electional",
+      "configuration": "Debug",
+      "dependency": "candidate through pinned AstrologyKit",
+      "name": "search horizon",
+      "status": "passed",
+      "durationSeconds": 2.605,
+      "reported": "22 tests in 1 suite"
+    },
+    {
+      "consumer": "electional",
+      "configuration": "Debug",
+      "dependency": "candidate through pinned AstrologyKit",
+      "name": "one-day production search benchmark",
+      "status": "passed",
+      "durationSeconds": 15.714,
+      "reported": "1 test in 1 suite",
+      "measurements": {"eventEvaluations": 58368, "candidates": 23, "stretches": 1, "unresolvedIntervals": 90, "unresolvedShare": 0.0005208354166666666, "unresolvedOver3Seconds": 0, "exhausted": false}
+    },
+    {
+      "consumer": "electional",
+      "configuration": "Debug",
+      "dependency": "candidate through pinned AstrologyKit",
+      "name": "seven-day production search benchmark",
+      "status": "passed",
+      "durationSeconds": 79.378,
+      "reported": "1 test in 1 suite",
+      "measurements": {"eventEvaluations": 439281, "candidates": 100, "stretches": 1, "unresolvedIntervals": 648, "unresolvedShare": 0.0005365431481481482, "unresolvedOver3Seconds": 0, "exhausted": false}
+    },
+    {
+      "consumer": "electional",
+      "configuration": "Debug",
+      "dependency": "candidate through pinned AstrologyKit",
+      "name": "one-day terrestrial window",
+      "status": "passed",
+      "durationSeconds": 47.860,
+      "reported": "1 test in 1 suite",
+      "measurements": {"chartEvaluations": 543, "logicalChartEvaluations": 14628, "contactFactCacheHits": 14085, "contactFactBuildAttempts": 30, "eventEvaluations": 403556, "candidates": 10, "unresolvedIntervals": 168, "unresolvedShare": 0.000504954837962963, "exhausted": false, "cancelled": false}
+    },
+    {
+      "consumer": "electional",
+      "configuration": "Debug",
+      "dependency": "candidate through pinned AstrologyKit",
+      "name": "seven-day terrestrial window",
+      "status": "incomplete",
+      "durationSeconds": 240.026,
+      "note": "Stopped at the bound without a result file or test summary; no count or outcome is inferred."
+    }
+  ]
+}
