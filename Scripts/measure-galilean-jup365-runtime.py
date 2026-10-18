@@ -39,9 +39,20 @@ def encoded(value):
     return json.dumps(value, indent=2, sort_keys=True, allow_nan=False).encode() + b"\n"
 
 
+def source_paths():
+    compiled = (path.relative_to(ROOT) for path in (ROOT / "Sources/AstronomyKit").rglob("*.swift"))
+    return sorted(set(BOUND_PATHS).union(compiled), key=str)
+
+
 def source_hashes():
-    paths = BOUND_PATHS + sorted(path.relative_to(ROOT) for path in GENERATED.glob("*.swift"))
-    return {str(path): digest((ROOT / path).read_bytes()) for path in paths}
+    return {str(path): digest((ROOT / path).read_bytes()) for path in source_paths()}
+
+
+def require_stable_source_snapshot(before):
+    after = source_hashes()
+    if after != before:
+        raise ValueError("compiled sources changed during runtime measurement")
+    return after
 
 
 def parse_time_log(log):
@@ -115,6 +126,7 @@ def validate(report):
 
 def capture(scratch):
     shutil.rmtree(scratch, ignore_errors=True)
+    source_snapshot = source_hashes()
     command = ["/usr/bin/time", "-lp", "swift", "build", "-c", "release", "-j", "2", "--scratch-path", str(scratch)]
     process = subprocess.run(command, cwd=ROOT, capture_output=True, text=True)
     build_log = process.stdout + process.stderr
@@ -133,7 +145,7 @@ def capture(scratch):
     report = {
         "schemaVersion": 1,
         "host": {"machine": platform.machine(), "platform": platform.platform(), "swift": subprocess.run(["swift", "--version"], check=True, capture_output=True, text=True).stdout.strip()},
-        "sourceSHA256": source_hashes(),
+        "sourceSHA256": source_snapshot,
         "build": {"command": " ".join(command), **parse_time_log(build_log)},
         "sizes": {
             "generatedSwiftBytes": sum(path.stat().st_size for path in GENERATED.glob("*.swift")),
@@ -153,6 +165,7 @@ def capture(scratch):
             stream.write(encoded(report))
             stream.flush()
             os.fsync(stream.fileno())
+        require_stable_source_snapshot(source_snapshot)
         os.replace(temporary, REPORT)
     finally:
         temporary.unlink(missing_ok=True)

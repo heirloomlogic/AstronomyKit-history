@@ -1,6 +1,7 @@
 import copy
 import importlib.util
 from pathlib import Path
+from unittest import mock
 import tempfile
 import unittest
 
@@ -47,6 +48,40 @@ class Jup365RuntimeMeasurementTests(unittest.TestCase):
             mutation(candidate)
             with self.subTest(mutation=mutation), self.assertRaises(ValueError):
                 self.tool.validate(candidate)
+
+    def test_source_inventory_covers_the_compiled_target_and_measurement_owners(self):
+        compiled = {
+            path.relative_to(self.tool.ROOT)
+            for path in (self.tool.ROOT / "Sources/AstronomyKit").rglob("*.swift")
+        }
+        inventory = set(self.tool.source_paths())
+        self.assertTrue(compiled)
+        self.assertTrue(compiled.issubset(inventory))
+        for path in (
+            Path("Package.swift"),
+            Path("Scripts/jupiter-moon-data/jup365-runtime-probe.swift"),
+            Path("Scripts/measure-galilean-jup365-runtime.py"),
+            Path("Scripts/test_measure_galilean_jup365_runtime.py"),
+        ):
+            self.assertIn(path, inventory)
+
+    def test_inventory_changes_invalidate_recorded_measurements(self):
+        candidate = self.candidate()
+        added = Path("Sources/AstronomyKit/AddedAfterCapture.swift")
+        for observed in (
+            {**candidate["sourceSHA256"], str(added): "f" * 64},
+            dict(list(candidate["sourceSHA256"].items())[1:]),
+        ):
+            with mock.patch.object(self.tool, "source_hashes", return_value=observed), self.assertRaises(ValueError):
+                self.tool.validate(candidate)
+
+    def test_capture_rejects_source_changes_before_publication(self):
+        before = {"Package.swift": "a" * 64}
+        after = {"Package.swift": "b" * 64}
+        with mock.patch.object(self.tool, "source_hashes", return_value=after), self.assertRaisesRegex(
+            ValueError, "changed during runtime measurement"
+        ):
+            self.tool.require_stable_source_snapshot(before)
 
     def test_exactly_one_rejects_missing_and_ambiguous_artifacts(self):
         with tempfile.TemporaryDirectory() as directory:

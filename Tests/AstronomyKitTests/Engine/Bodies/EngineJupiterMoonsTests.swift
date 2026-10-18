@@ -31,11 +31,11 @@ struct EngineJupiterMoonsTests {
         let directFixtures: [Fixture]
     }
 
-    static let representation: Representation = {
+    static func representation() throws -> Representation {
         let root = (0..<5).reduce(URL(fileURLWithPath: #filePath)) { url, _ in url.deletingLastPathComponent() }
         let url = root.appendingPathComponent("Scripts/jupiter-moon-data/jup365/representation.json")
-        return try! JSONDecoder().decode(Representation.self, from: Data(contentsOf: url))
-    }()
+        return try JSONDecoder().decode(Representation.self, from: Data(contentsOf: url))
+    }
 
     /// A Fortran `D` exponent number as `BisL1.2.dat` and `TestL1.2.res` print it,
     /// or NaN, which equals nothing, for text that is not one.
@@ -172,8 +172,9 @@ struct EngineJupiterMoonsTests {
     @Test("Every qualified direct fixture decodes from the compiled table")
     func directFixtures() throws {
         let indices = ["io": 0, "europa": 1, "ganymede": 2, "callisto": 3, "jupiter": 4]
-        #expect(Self.representation.directFixtures.count == 45)
-        for fixture in Self.representation.directFixtures {
+        let representation = try Self.representation()
+        #expect(representation.directFixtures.count == 45)
+        for fixture in representation.directFixtures {
             let index = try #require(indices[fixture.component])
             let state = try #require(Moons.Jup365.evaluate(component: index, at: fixture.julianDateTDB))
             let expectedPosition = SIMD3(fixture.candidatePositionKm)
