@@ -23,17 +23,6 @@ BINDING_FILES = {
     'Scripts/evidence_dependencies.py',
     'Scripts/test_evidence_dependencies.py',
 }
-HISTORICAL_ARTIFACTS = {
-    'galilean-residuals': ('Scripts/jupiter-moon-data/residual-evidence.json', 'sourceSHA256'),
-    'global-solar': ('Scripts/eclipse-data/global-evidence.json', 'sourceHashes'),
-    'local-solar': ('Scripts/eclipse-data/local-evidence.json', 'sourceHashes'),
-    'observer-events': ('Scripts/observer-event-data/native-evidence.json', 'sourceSHA256'),
-    'planetary-events': ('Scripts/saturn-data/native-evidence.json', 'sourceSHA256'),
-    'pluto-observers': ('Scripts/pluto-data/observer-evidence.json', 'sourceSHA256'),
-    'transits': ('Scripts/eclipse-data/transit-evidence.json', 'sourceHashes'),
-}
-
-
 def _unique_strings(values, context):
     if not isinstance(values, list) or not values or any(not isinstance(value, str) or not value for value in values):
         raise ValueError(f'{context} must be a nonempty string list')
@@ -140,25 +129,21 @@ def source_hashes(owner, root=ROOT, overrides=None):
     }
 
 
-def historical_source_hashes(owner, revision, root=ROOT):
-    """Read one owner's source bindings from an exact ancestor revision."""
-    if owner not in HISTORICAL_ARTIFACTS or re.fullmatch(r'[0-9a-f]{40}', revision or '') is None:
-        raise ValueError('historical dependency revision is invalid')
-    ancestor = subprocess.run(
-        ['git', 'merge-base', '--is-ancestor', revision, 'HEAD'], cwd=root,
+def _captured_digest(path, revision, root):
+    """Hash one dependency at the exact revision recorded by its retained capture."""
+    if re.fullmatch(r'[0-9a-f]{40}', revision or '') is None:
+        raise ValueError('retained capture revision is invalid')
+    available = subprocess.run(
+        ['git', 'cat-file', '-e', f'{revision}^{{commit}}'], cwd=root,
         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
     )
-    if ancestor.returncode != 0:
-        raise ValueError('historical dependency revision is not an ancestor')
-    artifact, binding_key = HISTORICAL_ARTIFACTS[owner]
+    if available.returncode != 0:
+        raise ValueError('retained capture revision is unavailable')
     try:
-        encoded = subprocess.check_output(['git', 'show', f'{revision}:{artifact}'], cwd=root)
-        document = json.loads(encoded, object_pairs_hook=_reject_duplicates)
-        bindings = document[binding_key]
-    except (subprocess.CalledProcessError, UnicodeDecodeError, json.JSONDecodeError, KeyError) as error:
-        raise ValueError('historical dependency bindings are unavailable') from error
-    _validate_hashes(bindings, 'historical dependency bindings')
-    return bindings
+        data = subprocess.check_output(['git', 'show', f'{revision}:{path}'], cwd=root, stderr=subprocess.DEVNULL)
+    except subprocess.CalledProcessError as error:
+        raise ValueError(f'retained capture dependency is unavailable: {path}') from error
+    return hashlib.sha256(data).hexdigest()
 
 
 def _validate_hashes(hashes, context):
@@ -166,17 +151,15 @@ def _validate_hashes(hashes, context):
         raise ValueError(f'{context} are malformed')
 
 
-def verify_retained_inputs(owner, previous_hashes, root=ROOT, historical_hashes=None):
+def verify_retained_inputs(owner, previous_hashes, root=ROOT, capture_revision=None):
     """Require unchanged result inputs before replay tools rebind archived measurements."""
     _validate_hashes(previous_hashes, 'previous dependency bindings')
-    history = {} if historical_hashes is None else historical_hashes
-    _validate_hashes(history, 'historical dependency bindings')
     current = source_hashes(owner, root=root)
     all_paths = set(previous_hashes) | set(current)
     replay_tools = BINDING_FILES | {OWNER_FILES[owner]} | {path for path in all_paths if path.startswith('Scripts/test_') and path.endswith('.py')}
     changed = []
     for path in sorted(all_paths - replay_tools):
-        if path not in previous_hashes and history.get(path) == current.get(path):
+        if path not in previous_hashes and capture_revision and _captured_digest(path, capture_revision, root) == current.get(path):
             continue
         if previous_hashes.get(path) != current.get(path):
             changed.append(path)

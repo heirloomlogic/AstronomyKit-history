@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest import mock
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -101,21 +102,21 @@ class EvidenceDependencyTests(unittest.TestCase):
         replay_change[dependencies.OWNER_FILES[owner]] = '0' * 64
         self.assertEqual(dependencies.verify_retained_inputs(owner, replay_change), previous)
 
-    def test_retained_rebind_accepts_newly_declared_input_only_with_matching_history(self):
+    def test_retained_rebind_accepts_newly_declared_input_only_at_the_capture_revision(self):
         owner = 'global-solar'
         current = dependencies.source_hashes(owner)
         relevant = 'Sources/AstronomyKit/Engine/Gravity/Generated/DE441/PlutoDE441SunData.swift'
         previous = dict(current)
         del previous[relevant]
-        self.assertEqual(
-            dependencies.verify_retained_inputs(owner, previous, historical_hashes={relevant: current[relevant]}),
-            current,
-        )
-        for history in [{}, {relevant: '0' * 64}]:
-            with self.subTest(history=history), self.assertRaisesRegex(ValueError, 'result dependencies differ'):
-                dependencies.verify_retained_inputs(owner, previous, historical_hashes=history)
-        with self.assertRaisesRegex(ValueError, 'historical dependency bindings are malformed'):
-            dependencies.verify_retained_inputs(owner, previous, historical_hashes={relevant: 'invalid'})
+        capture_revision = '1' * 40
+        with mock.patch.object(dependencies, '_captured_digest', return_value=current[relevant]) as captured:
+            self.assertEqual(dependencies.verify_retained_inputs(owner, previous, capture_revision=capture_revision), current)
+            captured.assert_called_once_with(relevant, capture_revision, ROOT)
+        with mock.patch.object(dependencies, '_captured_digest', return_value='0' * 64):
+            with self.assertRaisesRegex(ValueError, 'result dependencies differ'):
+                dependencies.verify_retained_inputs(owner, previous, capture_revision=capture_revision)
+        with self.assertRaisesRegex(ValueError, 'result dependencies differ'):
+            dependencies.verify_retained_inputs(owner, previous)
 
     def test_retained_rebind_rejects_paths_removed_from_the_inventory(self):
         owner = 'global-solar'
@@ -135,7 +136,7 @@ class EvidenceDependencyTests(unittest.TestCase):
             inventory_path.write_text(json.dumps(document))
             dependencies.load_inventory(root=shadow)
             with self.assertRaisesRegex(ValueError, 'result dependencies differ'):
-                dependencies.verify_retained_inputs(owner, previous, root=shadow, historical_hashes=previous)
+                dependencies.verify_retained_inputs(owner, previous, root=shadow)
 
     def test_retained_rebind_rejects_a_removed_group_owner_and_declaration(self):
         owner = 'global-solar'
@@ -155,15 +156,17 @@ class EvidenceDependencyTests(unittest.TestCase):
             inventory_path.write_text(json.dumps(document))
             dependencies.load_inventory(root=shadow)
             with self.assertRaisesRegex(ValueError, 'result dependencies differ'):
-                dependencies.verify_retained_inputs(owner, previous, root=shadow, historical_hashes=previous)
+                dependencies.verify_retained_inputs(owner, previous, root=shadow)
 
     def test_transitive_runtime_dependencies_are_owned_by_every_result_they_affect(self):
         inventory = dependencies.load_inventory()
         apparent_sun = 'Sources/AstronomyKit/Engine/Gravity/Generated/DE441/PlutoDE441SunData.swift'
+        apparent_evaluator = 'Sources/AstronomyKit/Engine/Gravity/EnginePlutoDE441.swift'
         moon_blend = 'Sources/AstronomyKit/Engine/Moon/EngineMoonEphemeris.swift'
-        for owner in ['global-solar', 'local-solar', 'observer-events', 'transits']:
-            with self.subTest(owner=owner, dependency=apparent_sun):
-                self.assertIn(apparent_sun, inventory[owner])
+        for owner in ['global-solar', 'local-solar', 'observer-events', 'planetary-events', 'pluto-observers', 'transits']:
+            for dependency in [apparent_sun, apparent_evaluator]:
+                with self.subTest(owner=owner, dependency=dependency):
+                    self.assertIn(dependency, inventory[owner])
         self.assertIn(moon_blend, inventory['pluto-observers'])
         for dependency in [
             'Sources/AstronomyKit/AstronomyError.swift',

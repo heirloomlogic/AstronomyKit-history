@@ -26,6 +26,7 @@
         "transits"
       ],
       "paths": [
+        "Sources/AstronomyKit/Engine/Gravity/EnginePlutoDE441.swift",
         "Sources/AstronomyKit/Engine/Gravity/Generated/DE441/PlutoDE441SunData.swift"
       ]
     },
@@ -166,7 +167,6 @@
       "paths": [
         "Sources/AstronomyKit/Engine/Gravity/EngineGravity.swift",
         "Sources/AstronomyKit/Engine/Gravity/EnginePluto.swift",
-        "Sources/AstronomyKit/Engine/Gravity/EnginePlutoDE441.swift",
         "Sources/AstronomyKit/Engine/Gravity/EnginePlutoEphemeris.swift",
         "Sources/AstronomyKit/Engine/Gravity/EnginePlutoLightTime.swift",
         "Sources/AstronomyKit/Engine/Gravity/Generated/DE441/PlutoDE441PlutoData.swift",

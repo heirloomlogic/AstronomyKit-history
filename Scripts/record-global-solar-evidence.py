@@ -146,9 +146,8 @@ def capture(directory):
 
 
 def main():
-    parser=argparse.ArgumentParser();parser.add_argument('--capture',type=Path);parser.add_argument('--check',action='store_true');parser.add_argument('--historical-revision',metavar='REVISION');args=parser.parse_args()
+    parser=argparse.ArgumentParser();parser.add_argument('--capture',type=Path);parser.add_argument('--check',action='store_true');args=parser.parse_args()
     if args.capture and args.check:parser.error('capture and check are exclusive')
-    if args.historical_revision and (args.capture or args.check):parser.error('--historical-revision is only valid for retained rebinding')
     values=capture(args.capture) if args.capture else json.loads(CAPTURE.read_bytes())
     data=archive.encoded(values)
     result=archive.encoded(evidence(values,hashes(data if args.capture else None)))
@@ -157,8 +156,7 @@ def main():
     else:
         if not args.capture:
             previous=json.loads(OUTPUT.read_bytes());candidate=json.loads(result)
-            history=dependencies.historical_source_hashes('global-solar',args.historical_revision) if args.historical_revision else None
-            dependencies.verify_retained_inputs('global-solar',previous['sourceHashes'],historical_hashes=history)
+            dependencies.verify_retained_inputs('global-solar',previous['sourceHashes'],capture_revision=values['runtimeBaseRevision'])
             dependencies.verify_rebound_document(previous,candidate,'sourceHashes')
         archive.publish({**({CAPTURE: data} if args.capture else {}), OUTPUT: result})
     print('global solar evidence and recorded relations match')
