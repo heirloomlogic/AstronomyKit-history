@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Negative controls for native lunar-eclipse evidence."""
 
+import copy
 import importlib.util
 import json
 from pathlib import Path
@@ -19,6 +20,26 @@ class EclipseEvidenceTests(unittest.TestCase):
 
     def test_recorded_captures_validate(self):
         RECORD.evidence(self.captures, RECORD.source_hashes())
+
+    def test_retained_rebind_rejects_changed_missing_or_different_measurements(self):
+        previous = RECORD.evidence(self.captures, RECORD.source_hashes())
+        self.assertEqual(RECORD.rebind(self.captures, previous), previous)
+        for dependency in [
+            "Sources/AstronomyKit/Engine/Foundation/EngineConstants.swift",
+            "Tests/AstronomyKitTests/Engine/Planets/PlanetTestSupport.swift",
+        ]:
+            altered = copy.deepcopy(previous)
+            altered["sourceSHA256"].pop(dependency)
+            with self.subTest(dependency=dependency), self.assertRaisesRegex(ValueError, "result dependencies differ"):
+                RECORD.rebind(self.captures, altered)
+        changed = copy.deepcopy(previous)
+        changed["sourceSHA256"]["Sources/AstronomyKit/Engine/Foundation/EngineConstants.swift"] = "0" * 64
+        with self.assertRaisesRegex(ValueError, "result dependencies differ"):
+            RECORD.rebind(self.captures, changed)
+        different = copy.deepcopy(self.captures)
+        different["resources"]["coldSeconds"] += 1
+        with self.assertRaisesRegex(ValueError, "changed scientific or measured payload"):
+            RECORD.rebind(different, previous)
 
     def test_peak_outside_published_allowance_is_rejected(self):
         for configuration in ("debug", "release"):

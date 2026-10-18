@@ -38,6 +38,9 @@ jobs:
           EXPECTED_SHA: ${{ github.event.pull_request.head.sha }}
         run: test "$(git rev-parse HEAD)" = "$EXPECTED_SHA"
 
+      - name: Verify evidence dependency inventories
+        run: python3 -m unittest Scripts/test_evidence_dependencies.py -v
+
       - name: Verify generated time table
         run: python3 Scripts/generate-time-table.py --check
 

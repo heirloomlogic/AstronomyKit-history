@@ -49,21 +49,33 @@ class Jup365RuntimeMeasurementTests(unittest.TestCase):
             with self.subTest(mutation=mutation), self.assertRaises(ValueError):
                 self.tool.validate(candidate)
 
-    def test_source_inventory_covers_the_compiled_target_and_measurement_owners(self):
-        compiled = {
-            path.relative_to(self.tool.ROOT)
-            for path in (self.tool.ROOT / "Sources/AstronomyKit").rglob("*.swift")
-        }
+    def test_source_inventory_is_explicit_and_covers_measurement_owners(self):
         inventory = set(self.tool.source_paths())
-        self.assertTrue(compiled)
-        self.assertTrue(compiled.issubset(inventory))
         for path in (
             Path("Package.swift"),
             Path("Scripts/jupiter-moon-data/jup365-runtime-probe.swift"),
             Path("Scripts/measure-galilean-jup365-runtime.py"),
             Path("Scripts/test_measure_galilean_jup365_runtime.py"),
+            Path("Sources/AstronomyKit/Engine/Bodies/EngineJupiterMoonsJup365.swift"),
+            Path("Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Index.swift"),
         ):
             self.assertIn(path, inventory)
+        self.assertNotIn(Path("Sources/AstronomyKit/Engine/NewUnrelatedEngineFile.swift"), inventory)
+
+    def test_source_footprint_rejects_an_unlisted_file_that_changes_the_measured_size(self):
+        inventory = self.tool.dependencies.load_inventory()
+        all_owned = {path for paths in inventory.values() for path in paths}
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            for relative in all_owned:
+                destination = root / relative
+                destination.parent.mkdir(parents=True, exist_ok=True)
+                destination.symlink_to(self.tool.ROOT / relative)
+            self.assertTrue(self.tool.source_footprint_entries(root))
+            added = root / "Sources/AstronomyKit/Engine/NewUnlistedRuntimeSource.swift"
+            added.write_text("enum NewUnlistedRuntimeSource {}\n")
+            with self.assertRaisesRegex(ValueError, "runtime source footprint inventory differs"):
+                self.tool.source_paths(root)
 
     def test_inventory_changes_invalidate_recorded_measurements(self):
         candidate = self.candidate()

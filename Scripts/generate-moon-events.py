@@ -13,6 +13,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+DEPENDENCY_SPEC = importlib.util.spec_from_file_location("moon_event_dependencies", ROOT / "Scripts/evidence_dependencies.py")
+dependencies = importlib.util.module_from_spec(DEPENDENCY_SPEC)
+DEPENDENCY_SPEC.loader.exec_module(dependencies)
 EVIDENCE = ROOT / "Scripts/moon-data/de441-compact-evidence.json"
 OUTPUT = ROOT / "Scripts/moon-data/de441-event-fixtures.json"
 FIXTURE_SHA256 = "94f77aad56bb3e136edcd7a04c04113f723cbd10371ea88c586f4504d2375ea6"
@@ -189,25 +192,7 @@ def check(data):
 
 
 def event_source_paths():
-    paths = ["Scripts/generate-moon-events.py", "Scripts/moon-data/de441-event-fixtures.json",
-             "Scripts/moon-data/de441-compact-evidence.json",
-             "Scripts/moon-data/apparent-phase-references.json",
-             "Scripts/moon-data/horizons-apparent-phase-moon.json",
-             "Scripts/moon-data/horizons-apparent-phase-moon.query.json",
-             "Scripts/moon-data/horizons-apparent-phase-sun.json",
-             "Scripts/moon-data/horizons-apparent-phase-sun.query.json",
-             "Scripts/test_generate_moon_events.py",
-             "Sources/AstronomyKit/Engine/Events/EngineLunarEvents.swift",
-             "Tests/AstronomyKitTests/Engine/Events/EngineLunarEventTests.swift",
-             "Tests/AstronomyKitTests/Engine/Moon/MoonEventQualification.swift",
-             "Tests/AstronomyKitTests/Engine/Moon/EngineMoonEventQualificationTests.swift",
-             "Tests/AstronomyKitTests/Engine/Moon/EngineLibrationTests.swift",
-             "Tests/AstronomyKitTests/Fixtures/IndependentReferences/reference-fixtures.json"]
-    paths += [str(path.relative_to(ROOT)) for path in (ROOT / "Sources/AstronomyKit/Engine").rglob("*.swift")]
-    paths += ["Sources/AstronomyKit/Time.swift", "Sources/AstronomyKit/AstronomyError.swift",
-              "Sources/AstronomyKit/CelestialBody.swift",
-              "Tests/AstronomyKitTests/IndependentReferenceFixtures.swift"]
-    return sorted(set(paths))
+    return list(dependencies.paths("moon-events"))
 
 
 def check_source_hashes(evidence_path, root=ROOT, required_sources=None):
@@ -247,11 +232,10 @@ def collect_results(prefix):
             rows = [row for row in results[name] if row["event"] == event and row.get("gating", True)]
             summaries[name][event] = {"count": len(rows),
                                      "maximumAbsoluteResidualSeconds": max(abs(row["residualSeconds"]) for row in rows)}
-    files = event_source_paths()
     result = {"schemaVersion": 1,
               "runtimeBaseRevision": subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip(),
               "toolchain": subprocess.check_output(["swift", "--version"], text=True, stderr=subprocess.STDOUT).strip(),
-              "sourceSHA256": {path: hashlib.sha256((ROOT / path).read_bytes()).hexdigest() for path in files},
+              "sourceSHA256": dependencies.source_hashes("moon-events"),
               "apparentPhaseReferences": json.loads(APPARENT_PHASE_OUTPUT.read_bytes()),
               "summaries": summaries, "results": results,
               "scope": "Published tolerances retain their existing reference scope. Production searches are paired with direct-source roots in frozen full-span and transition windows; no universal event-time or velocity bound is inferred.",

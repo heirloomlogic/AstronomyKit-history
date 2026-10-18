@@ -3,6 +3,7 @@
 
 import argparse
 import hashlib
+import importlib.util
 import json
 import os
 from pathlib import Path
@@ -16,19 +17,13 @@ import time
 
 
 ROOT = Path(__file__).resolve().parents[1]
+DEPENDENCY_SPEC = importlib.util.spec_from_file_location("galilean_runtime_dependencies", ROOT / "Scripts/evidence_dependencies.py")
+dependencies = importlib.util.module_from_spec(DEPENDENCY_SPEC)
+DEPENDENCY_SPEC.loader.exec_module(dependencies)
 REPORT = ROOT / "Scripts/jupiter-moon-data/jup365/runtime-performance.json"
 PROBE = ROOT / "Scripts/jupiter-moon-data/jup365-runtime-probe.swift"
 GENERATED = ROOT / "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365"
-BOUND_PATHS = [
-    Path("Package.swift"),
-    Path("Scripts/generate-galilean-jup365-swift.py"),
-    Path("Scripts/jupiter-moon-data/jup365-runtime-probe.swift"),
-    Path("Scripts/jupiter-moon-data/jup365/representation.json"),
-    Path("Scripts/measure-galilean-jup365-runtime.py"),
-    Path("Scripts/test_measure_galilean_jup365_runtime.py"),
-    Path("Sources/AstronomyKit/Engine/Bodies/EngineJupiterMoons.swift"),
-    Path("Sources/AstronomyKit/Engine/Bodies/EngineJupiterMoonsJup365.swift"),
-]
+FOOTPRINT_DIRECTORIES = {Path("Sources/AstronomyKit/Documentation.docc")}
 
 
 def digest(data):
@@ -39,13 +34,29 @@ def encoded(value):
     return json.dumps(value, indent=2, sort_keys=True, allow_nan=False).encode() + b"\n"
 
 
-def source_paths():
-    compiled = (path.relative_to(ROOT) for path in (ROOT / "Sources/AstronomyKit").rglob("*.swift"))
-    return sorted(set(BOUND_PATHS).union(compiled), key=str)
+def source_footprint_entries(root=ROOT, owned=None):
+    source_root = root / "Sources/AstronomyKit"
+    entries = {path.relative_to(root) for path in source_root.rglob("*.*")}
+    files = {path for path in entries if (root / path).is_file()}
+    directories = entries - files
+    bound = {Path(path) for path in dependencies.paths("galilean-runtime", root=root)} if owned is None else owned
+    unowned = files - bound
+    if unowned or directories != FOOTPRINT_DIRECTORIES:
+        raise ValueError(
+            f"runtime source footprint inventory differs: unowned={sorted(unowned)!r}, "
+            f"directories={sorted(directories)!r}"
+        )
+    return sorted(entries)
 
 
-def source_hashes():
-    return {str(path): digest((ROOT / path).read_bytes()) for path in source_paths()}
+def source_paths(root=ROOT):
+    paths = [Path(path) for path in dependencies.paths("galilean-runtime", root=root)]
+    source_footprint_entries(root, set(paths))
+    return paths
+
+
+def source_hashes(root=ROOT):
+    return {str(path): digest((root / path).read_bytes()) for path in source_paths(root)}
 
 
 def require_stable_source_snapshot(before):
@@ -149,7 +160,7 @@ def capture(scratch):
         "build": {"command": " ".join(command), **parse_time_log(build_log)},
         "sizes": {
             "generatedSwiftBytes": sum(path.stat().st_size for path in GENERATED.glob("*.swift")),
-            "astronomyKitSourcesBytes": sum(path.stat().st_size for path in (ROOT / "Sources/AstronomyKit").rglob("*.*")),
+            "astronomyKitSourcesBytes": sum((ROOT / path).stat().st_size for path in source_footprint_entries()),
             "staticLibraryBytes": library.stat().st_size,
             "astronomyKitObjectBytes": object_file.stat().st_size,
             "probeExecutableBytes": probe.stat().st_size,

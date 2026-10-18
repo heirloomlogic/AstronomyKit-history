@@ -21,12 +21,12 @@ class PlutoDE441EvidenceRecorderTests(unittest.TestCase):
         self.assertTrue(PATH.is_file(), "the Pluto-native evidence recorder is missing")
         self.tool = module()
 
-    def test_source_inventory_includes_every_engine_file_and_recorder_owner(self):
+    def test_source_inventory_is_explicit_and_keeps_conservative_runtime_owners(self):
         paths = self.tool.source_paths()
-        engine = {str(path.relative_to(self.tool.ROOT)) for path in (self.tool.ROOT / "Sources/AstronomyKit/Engine").rglob("*.swift")}
-        self.assertTrue(engine <= set(paths))
-        self.assertIn("Scripts/record-pluto-de441-evidence.py", paths)
-        self.assertIn("Scripts/test_record_pluto_de441_evidence.py", paths)
+        self.assertEqual(list(self.tool.dependencies.paths("pluto-native")), paths)
+        for path in ["Scripts/record-pluto-de441-evidence.py", "Scripts/test_record_pluto_de441_evidence.py", "Sources/AstronomyKit/Engine/Gravity/EnginePlutoDE441.swift", "Sources/AstronomyKit/Engine/Moon/EngineMoonEphemeris.swift"]:
+            self.assertIn(path, paths)
+        self.assertNotIn("Sources/AstronomyKit/Engine/NewUnrelatedEngineFile.swift", paths)
 
     def test_capture_validation_rejects_missing_nonfinite_and_configuration_drift(self):
         boundary = {"count": 273939, "maximumPositionKm": 1e-6, "maximumRateKmPerTDBDay": 1e-10}

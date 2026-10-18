@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Bind fresh native planetary-event measurements to their source and runtime files."""
 import argparse
-import hashlib
 import importlib.util
 import json
 import math
@@ -12,33 +11,14 @@ import subprocess
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT/'Scripts/saturn-data/native-evidence.json'
 CAPTURES = ROOT/'Scripts/saturn-data/native-captures.json'
+dependency_spec = importlib.util.spec_from_file_location('planetary_dependencies', ROOT/'Scripts/evidence_dependencies.py')
+dependencies = importlib.util.module_from_spec(dependency_spec)
+dependency_spec.loader.exec_module(dependencies)
 
 
 def source_hashes(capture_bytes=None):
-    paths = list((ROOT/'Sources/AstronomyKit/Engine').rglob('*.swift'))
-    paths += list((ROOT/'Scripts/reference-data/sources/planetary-apsides').glob('*.json'))
-    paths += [ROOT/p for p in [
-        'Scripts/record-planetary-event-evidence.py', 'Scripts/assess-saturn-apsides.py',
-        'Scripts/assess-pluto-de441.py', 'Scripts/assess-moon-de441.py', 'Scripts/qualify-moon-de441.py',
-        'Scripts/generate-moon-tables.py', 'Scripts/packed-table-payload.py', 'Scripts/generate-saturn-tables.py', 'Scripts/test_saturn_ephemeris.py',
-        'Sources/CLibAstronomy/EphemerisTime/dtdb.c', 'Sources/CLibAstronomy/astronomy.c',
-        'Sources/AstronomyKit/Apsis.swift', 'Sources/AstronomyKit/Time.swift', 'Sources/AstronomyKit/CelestialBody.swift',
-        'Tests/AstronomyKitTests/IndependentReferenceFixtures.swift',
-        'Scripts/reference-data/capture-planetary-apsides.py', 'Scripts/reference-data/test_capture_planetary_apsides.py',
-        'Scripts/reference-data/build-fixtures.py', 'Scripts/reference-data/planetary-apsis-evidence.json',
-        'Scripts/generate-planet-cycle-census.py', 'Scripts/test_planet_cycle_census.py',
-        'Scripts/planet-data/de441-cycle-census.json',
-        'Scripts/reference-data/sources/horizons/saturn-apsis-precision.json',
-        'Scripts/reference-data/sources/horizons/saturn-apsis-precision.query.json',
-        'Scripts/saturn-data/assessment.json', 'Scripts/saturn-data/direct-fixtures.json', 'Scripts/saturn-data/native-captures.json',
-        'Scripts/saturn-data/barycenter-reference.json', 'Scripts/saturn-data/barycenter-reference.query.json',
-        'Tests/AstronomyKitTests/Fixtures/IndependentReferences/reference-fixtures.json',
-        'Tests/AstronomyKitTests/Engine/Events/EnginePlanetaryEventTests.swift',
-        'Tests/AstronomyKitTests/Engine/Gravity/EngineGravityTests.swift',
-        'Tests/AstronomyKitTests/Engine/Planets/EngineSaturnEphemerisTests.swift',
-        'Tests/AstronomyKitTests/Engine/Planets/EngineSaturnMeasurementTests.swift',
-    ]]
-    return {str(p.relative_to(ROOT)): hashlib.sha256(capture_bytes if p == CAPTURES and capture_bytes is not None else p.read_bytes()).hexdigest() for p in sorted(paths)}
+    overrides = None if capture_bytes is None else {str(CAPTURES.relative_to(ROOT)): capture_bytes}
+    return dependencies.source_hashes('planetary-events', overrides=overrides)
 
 
 def measurements(directory, configuration):
@@ -173,16 +153,17 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--check', action='store_true')
     parser.add_argument('--capture', type=Path, help='directory with fresh Debug and Release Swift measurement files')
+    parser.add_argument('--rebind', action='store_true', help='rebind validated archived measurements after ownership-only changes')
     args = parser.parse_args()
-    if bool(args.check) == bool(args.capture):
-        parser.error('choose --check or --capture')
+    if sum([args.check, args.capture is not None, args.rebind]) != 1:
+        parser.error('choose exactly one of --check, --capture, or --rebind')
     if args.check:
         result = json.loads(OUTPUT.read_bytes())
         if result['encodingBoundaryLimits'] != encoding_boundary_limits():
             raise ValueError('encoded boundary qualification differs')
         if result['sourceSHA256'] != source_hashes():
             raise ValueError('native evidence source bindings differ; recapture after source changes')
-    else:
+    elif args.capture:
         release = args.capture/'saturn-assessment/measurement-release.json'
         executable = ROOT/'.build/out/Products/Release/AstronomyKitTests.xctest/Contents/MacOS/AstronomyKitTests'
         captures = dict(debug=measurements(args.capture, 'debug'), release=measurements(args.capture, 'release'),
@@ -199,11 +180,16 @@ def main():
                       releaseExecutableBytes=executable.stat().st_size,
                       baseline=json.loads((args.capture/'saturn-assessment/baseline-binary.json').read_bytes()),
                       **metadata())
-    validate_recording(result, None if args.check else captures)
-    if not args.check:
+    else:
+        result = json.loads(OUTPUT.read_bytes())
+        result['sourceSHA256'] = dependencies.verify_retained_inputs('planetary-events', result['sourceSHA256'])
+        dependencies.verify_rebound_document(json.loads(OUTPUT.read_bytes()), result, 'sourceSHA256')
+    validate_recording(result, None if args.check or args.rebind else captures)
+    if args.capture:
         CAPTURES.write_bytes(capture_bytes)
+    if args.capture or args.rebind:
         OUTPUT.write_text(json.dumps(result, indent=2, sort_keys=True)+'\n')
-    print('Verified native planetary event evidence' if args.check else 'Recorded native planetary event evidence')
+    print('Verified native planetary event evidence' if args.check else 'Rebound native planetary event evidence' if args.rebind else 'Recorded native planetary event evidence')
 
 
 if __name__ == '__main__':

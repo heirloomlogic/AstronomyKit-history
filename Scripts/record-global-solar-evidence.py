@@ -2,7 +2,6 @@
 """Replay global-solar source relations and bind native observations to their inputs."""
 import argparse
 import datetime
-import hashlib
 import importlib.util
 import json
 import math
@@ -24,13 +23,12 @@ def load_module(name, filename):
 lunar = load_module('lunar_evidence', 'record-eclipse-event-evidence.py')
 archive = load_module('global_archive', 'capture-global-solar.py')
 radii = load_module('global_radii', 'assess-global-solar-radii.py')
+dependencies = load_module('global_dependencies', 'evidence_dependencies.py')
 
 
 def hashes(capture_bytes=None):
-    paths = list((ROOT/'Sources/AstronomyKit/Engine').rglob('*.swift'))
-    paths += [ROOT/x for x in ['Sources/AstronomyKit/AstronomyError.swift', 'Sources/AstronomyKit/Time.swift', 'Sources/AstronomyKit/CelestialBody.swift', 'Sources/AstronomyKit/Observer.swift', 'Tests/AstronomyKitTests/IndependentReferenceFixtures.swift', 'Tests/AstronomyKitTests/Engine/Eclipses/EngineGlobalSolarEventTests.swift', 'Tests/AstronomyKitTests/Fixtures/IndependentReferences/reference-fixtures.json', 'Scripts/record-eclipse-event-evidence.py', 'Scripts/capture-global-solar.py', 'Scripts/record-global-solar-evidence.py', 'Scripts/test_global_solar.py', 'Scripts/assess-global-solar-radii.py', 'Scripts/assess-rp1301-g0.py', 'Scripts/global-solar-radius-probe.swift', 'Scripts/eclipse-data/radius-vectors.json', 'Scripts/eclipse-data/radius-comparison.json', 'Scripts/eclipse-data/rp1301-g0-decomposition.json', 'Scripts/eclipse-data/global-references.json', 'Scripts/reference-data/sources/solar_2001.html']]
-    paths += list(archive.SOURCE.iterdir()) + [CAPTURE]
-    return {str(p.relative_to(ROOT)): hashlib.sha256(capture_bytes if p==CAPTURE and capture_bytes is not None else p.read_bytes()).hexdigest() for p in sorted(paths)}
+    overrides = None if capture_bytes is None else {str(CAPTURE.relative_to(ROOT)): capture_bytes}
+    return dependencies.source_hashes('global-solar', overrides=overrides)
 
 
 def references():
@@ -156,6 +154,10 @@ def main():
     if args.check:
         if not evidence_matches(json.loads(OUTPUT.read_bytes()), json.loads(result)):raise SystemExit('global solar evidence differs')
     else:
+        if not args.capture:
+            previous=json.loads(OUTPUT.read_bytes());candidate=json.loads(result)
+            dependencies.verify_retained_inputs('global-solar',previous['sourceHashes'])
+            dependencies.verify_rebound_document(previous,candidate,'sourceHashes')
         archive.publish({**({CAPTURE: data} if args.capture else {}), OUTPUT: result})
     print('global solar evidence and recorded relations match')
 

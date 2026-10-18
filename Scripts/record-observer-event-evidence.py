@@ -20,10 +20,16 @@ RETAINED_USNO_TOOL_PATHS = {
     'Scripts/observer-event-data/native-captures.json',
     'Scripts/record-observer-event-evidence.py',
     'Scripts/test_observer_events.py',
+    'Scripts/evidence-dependencies.json',
+    'Scripts/evidence_dependencies.py',
+    'Scripts/test_evidence_dependencies.py',
 }
 spec = importlib.util.spec_from_file_location('observer_references', ROOT/'Scripts/capture-observer-events.py')
 references = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(references)
+dependency_spec = importlib.util.spec_from_file_location('observer_dependencies', ROOT/'Scripts/evidence_dependencies.py')
+dependencies = importlib.util.module_from_spec(dependency_spec)
+dependency_spec.loader.exec_module(dependencies)
 
 
 def finite(value):
@@ -35,32 +41,12 @@ def finite(value):
 
 
 def sources(capture_bytes=None):
-    paths = list((ROOT/'Sources/AstronomyKit/Engine').rglob('*.swift'))
-    paths += list((ROOT/'Tests/AstronomyKitTests/Engine/Events').glob('EngineObserver*Tests.swift'))
-    paths += list((DATA/'sources').rglob('*.json'))
-    paths += [ROOT/p for p in [
-        'Scripts/capture-observer-events.py', 'Scripts/record-observer-event-evidence.py',
-        'Scripts/test_observer_events.py', 'Scripts/observer-event-data/README.md', 'Scripts/observer-event-data/reference-fixtures.json',
-        'Scripts/observer-event-data/native-captures.json', 'Sources/CLibAstronomy/astronomy.c',
-        'Sources/AstronomyKit/RiseSet.swift', 'Sources/AstronomyKit/Time.swift',
-        'Sources/AstronomyKit/Observer.swift', 'Sources/AstronomyKit/CelestialBody.swift',
-        'Sources/AstronomyKit/AstronomyError.swift',
-        'Tests/AstronomyKitTests/IndependentReferenceFixtures.swift',
-        'Tests/AstronomyKitTests/Fixtures/IndependentReferences/reference-fixtures.json',
-        'Fuzzing/corpus/fixed-riseset-infinite-limit', 'Fuzzing/corpus/fixed-riseset-stall',
-    ]]
-    return {str(p.relative_to(ROOT)): hashlib.sha256(capture_bytes if p == CAPTURES and capture_bytes is not None else p.read_bytes()).hexdigest() for p in sorted(paths)}
+    overrides = None if capture_bytes is None else {str(CAPTURES.relative_to(ROOT)): capture_bytes}
+    return dependencies.source_hashes('observer-events', overrides=overrides)
 
 
 def git_bytes(*arguments):
     return subprocess.check_output(['git', *arguments], cwd=ROOT)
-
-
-def allowed_retained_usno_engine_change(path):
-    return path in {
-        'Sources/AstronomyKit/Engine/Bodies/EngineJupiterMoons.swift',
-        'Sources/AstronomyKit/Engine/Bodies/EngineJupiterMoonsJup365.swift',
-    } or path.startswith('Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/')
 
 
 def retained_debug_usno(revision):
@@ -72,28 +58,26 @@ def retained_debug_usno(revision):
     capture_bytes = git_bytes('show', f'{revision}:{capture_path}')
     prior = json.loads(capture_bytes)
     prior_hashes = json.loads(git_bytes('show', f'{revision}:{evidence_path}'))['sourceSHA256']
-    prior_engine_paths = {path for path in prior_hashes if path.startswith('Sources/AstronomyKit/Engine/')}
-    current_engine_paths = {str(path.relative_to(ROOT)) for path in (ROOT/'Sources/AstronomyKit/Engine').rglob('*.swift')}
-    changed_engine_paths = sorted(set(git_bytes('diff', '--name-only', revision, '--', 'Sources/AstronomyKit/Engine').decode().splitlines()) | (current_engine_paths-prior_engine_paths))
-    unsupported = [path for path in changed_engine_paths if not allowed_retained_usno_engine_change(path)]
-    if unsupported:
-        raise ValueError('retained Debug USNO runtime inputs changed: ' + ', '.join(unsupported))
-    for path, expected in prior_hashes.items():
-        if path in RETAINED_USNO_TOOL_PATHS or allowed_retained_usno_engine_change(path):
+    owned_paths = dependencies.paths('observer-events')
+    for path in owned_paths:
+        if path in RETAINED_USNO_TOOL_PATHS:
             continue
         current = ROOT/path
-        if not current.is_file() or hashlib.sha256(current.read_bytes()).hexdigest() != expected:
+        expected = prior_hashes.get(path)
+        if expected is None or hashlib.sha256(current.read_bytes()).hexdigest() != expected:
             raise ValueError(f'retained Debug USNO source differs: {path}')
     rows = prior['debug']['usno']
     rows_sha256 = hashlib.sha256(json.dumps(rows, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
+    changed_engine_paths = git_bytes('diff', '--name-only', revision, '--', 'Sources/AstronomyKit/Engine').decode().splitlines()
+    excluded_engine_changes = sorted(path for path in changed_engine_paths if path not in owned_paths)
     provenance = {
         'kind': 'retainedUnchangedInput',
         'sourceRevision': revision,
         'sourceCapturePath': capture_path,
         'sourceCaptureSHA256': hashlib.sha256(capture_bytes).hexdigest(),
         'rowsSHA256': rows_sha256,
-        'excludedEngineChanges': changed_engine_paths,
-        'scope': 'Only the historical Debug USNO rows are retained. Their Sun/Moon runtime and reference inputs are unchanged; the listed Galilean-only Engine changes cannot enter these rows. Release USNO rows, other Debug observations, resources, binary sizes, and build receipts are current captures.',
+        'excludedEngineChanges': excluded_engine_changes,
+        'scope': 'Only the historical Debug USNO rows are retained. Their complete maintained runtime and reference inputs are unchanged. Release USNO rows, other Debug observations, resources, binary sizes, and build receipts are current captures.',
     }
     return rows, provenance
 
@@ -324,6 +308,10 @@ def main():
         if json.loads(OUTPUT.read_bytes()) != expected:
             raise SystemExit('recorded observer evidence differs from source-bound captures')
     else:
+        if not args.capture:
+            previous = json.loads(OUTPUT.read_bytes())
+            dependencies.verify_retained_inputs('observer-events', previous['sourceSHA256'])
+            dependencies.verify_rebound_document(previous, expected, 'sourceSHA256')
         if args.capture:
             CAPTURES.write_bytes(encoded)
         OUTPUT.write_text(json.dumps(expected, indent=2, sort_keys=True, allow_nan=False)+'\n')

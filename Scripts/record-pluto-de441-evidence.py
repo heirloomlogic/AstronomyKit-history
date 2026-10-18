@@ -2,7 +2,7 @@
 """Capture and replay the current native Pluto DE441 evidence."""
 import argparse
 import base64
-import hashlib
+import importlib.util
 import json
 import math
 import os
@@ -13,32 +13,10 @@ import tempfile
 
 
 ROOT = Path(__file__).resolve().parents[1]
+DEPENDENCY_SPEC = importlib.util.spec_from_file_location("pluto_native_dependencies", ROOT / "Scripts/evidence_dependencies.py")
+dependencies = importlib.util.module_from_spec(DEPENDENCY_SPEC)
+DEPENDENCY_SPEC.loader.exec_module(dependencies)
 OUTPUT = ROOT / "Scripts/pluto-data/de441-native-evidence.json"
-EXPLICIT_SOURCES = {
-    "Scripts/generate-pluto-de441.py",
-    "Scripts/generate-pluto-tables.py",
-    "Scripts/packed-table-payload.py",
-    "Scripts/pluto-data/de441-evidence.json",
-    "Scripts/pluto-data/de441-native-fixtures.json",
-    "Scripts/pluto-data/plu060-evidence.json",
-    "Scripts/pluto-data/plu060-qualification.json",
-    "Scripts/qualify-pluto-center.py",
-    "Scripts/record-pluto-de441-evidence.py",
-    "Scripts/test_generate_pluto_de441.py",
-    "Scripts/test_record_pluto_de441_evidence.py",
-    "Sources/AstronomyKit/AstronomyError.swift",
-    "Sources/AstronomyKit/CelestialBody.swift",
-    "Sources/AstronomyKit/Time.swift",
-    "Tests/AstronomyKitTests/DistanceAccuracyTests.swift",
-    "Tests/AstronomyKitTests/Engine/Foundation/EngineChebyshevTests.swift",
-    "Tests/AstronomyKitTests/Engine/Gravity/EnginePlutoCenterQualificationTests.swift",
-    "Tests/AstronomyKitTests/Engine/Gravity/EnginePlutoDE441Tests.swift",
-    "Tests/AstronomyKitTests/Engine/Gravity/EnginePlutoEphemerisTests.swift",
-    "Tests/AstronomyKitTests/Engine/Gravity/EnginePlutoHorizonsTests.swift",
-    "Tests/AstronomyKitTests/Engine/Gravity/EnginePlutoMeasurementTests.swift",
-    "Tests/AstronomyKitTests/Engine/Gravity/EnginePlutoTests.swift",
-    "Tests/AstronomyKitTests/Fixtures/IndependentReferences/distance-fixtures.json",
-}
 REPLAY_OWNERS = {"Scripts/record-pluto-de441-evidence.py", "Scripts/test_record_pluto_de441_evidence.py"}
 PRESERVED_KEYS = {
     "apparentIntegrationCaptureRevision",
@@ -71,16 +49,11 @@ def encoded(value):
 
 
 def source_paths(root=ROOT):
-    engine = {str(path.relative_to(root)) for path in (root / "Sources/AstronomyKit/Engine").rglob("*.swift")}
-    result = sorted(engine | EXPLICIT_SOURCES)
-    missing = [path for path in result if not (root / path).is_file()]
-    if missing:
-        raise ValueError(f"Missing Pluto evidence source owners: {missing}")
-    return result
+    return list(dependencies.paths("pluto-native", root=root))
 
 
 def source_hashes(root=ROOT):
-    return {path: hashlib.sha256((root / path).read_bytes()).hexdigest() for path in source_paths(root)}
+    return dependencies.source_hashes("pluto-native", root=root)
 
 
 def finite(value):

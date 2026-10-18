@@ -5,7 +5,7 @@ import argparse
 import ast
 import datetime
 import functools
-import hashlib
+import importlib.util
 import json
 import math
 from pathlib import Path
@@ -17,36 +17,14 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "Scripts/eclipse-data"
 CAPTURES = DATA / "native-captures.json"
 OUTPUT = DATA / "native-evidence.json"
+DEPENDENCY_SPEC = importlib.util.spec_from_file_location("eclipse_dependencies", ROOT / "Scripts/evidence_dependencies.py")
+dependencies = importlib.util.module_from_spec(DEPENDENCY_SPEC)
+DEPENDENCY_SPEC.loader.exec_module(dependencies)
 
 
 def source_hashes(capture_bytes=None):
-    paths = list((ROOT / "Sources/AstronomyKit/Engine").rglob("*.swift"))
-    paths += [
-        ROOT / "Sources/AstronomyKit/AstronomyError.swift",
-        ROOT / "Sources/AstronomyKit/CelestialBody.swift",
-        ROOT / "Sources/AstronomyKit/Time.swift",
-        ROOT / "Tests/AstronomyKitTests/Engine/Eclipses/EngineEclipseEventTests.swift",
-        ROOT / "Tests/AstronomyKitTests/IndependentReferenceFixtures.swift",
-        ROOT / "Tests/AstronomyKitTests/Fixtures/IndependentReferences/reference-fixtures.json",
-        ROOT / "Scripts/reference-data/build-fixtures.py",
-        ROOT / "Scripts/reference-data/sources/lunar_1701.html",
-        ROOT / "Scripts/reference-data/sources/lunar_1901.html",
-        ROOT / "Scripts/reference-data/sources/lunar_2001.html",
-        ROOT / "Scripts/reference-data/sources/nasa-lunar-2001-2100.html",
-        ROOT / "Scripts/reference-data/sources/nasa-oh2001.html",
-        ROOT / "Scripts/reference-data/sources/nasa-shadow-enlargement.html",
-        ROOT / "Scripts/reference-data/sources/nasa-svs-4953.html",
-        ROOT / "Scripts/reference-data/sources/nasa-svs-5672.html",
-        ROOT / "Scripts/record-eclipse-event-evidence.py",
-        ROOT / "Scripts/test_eclipse_event_evidence.py",
-        ROOT / "Scripts/eclipse-data/native-captures.json",
-    ]
-    return {
-        str(path.relative_to(ROOT)): hashlib.sha256(
-            capture_bytes if path == CAPTURES and capture_bytes is not None else path.read_bytes()
-        ).hexdigest()
-        for path in sorted(paths)
-    }
+    overrides = None if capture_bytes is None else {str(CAPTURES.relative_to(ROOT)): capture_bytes}
+    return dependencies.source_hashes("eclipse-native", overrides=overrides)
 
 
 def finite(value):
@@ -274,6 +252,13 @@ def capture(directory):
     }
 
 
+def rebind(captures, previous):
+    hashes = dependencies.verify_retained_inputs("eclipse-native", previous["sourceSHA256"])
+    result = evidence(captures, hashes)
+    dependencies.verify_rebound_document(previous, result, "sourceSHA256")
+    return result
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--capture", type=Path)
@@ -281,7 +266,10 @@ def main():
     arguments = parser.parse_args()
     captures = capture(arguments.capture) if arguments.capture else json.loads(CAPTURES.read_bytes())
     capture_bytes = (json.dumps(captures, indent=2, sort_keys=True, allow_nan=False) + "\n").encode()
-    result = evidence(captures, source_hashes(capture_bytes if arguments.capture else None))
+    if arguments.capture or arguments.check:
+        result = evidence(captures, source_hashes(capture_bytes if arguments.capture else None))
+    else:
+        result = rebind(captures, json.loads(OUTPUT.read_bytes()))
     if arguments.check:
         if json.loads(OUTPUT.read_bytes()) != result:
             raise SystemExit("recorded lunar eclipse evidence differs from source-bound captures")
