@@ -800,6 +800,8 @@ extension Engine.JupiterMoons {
 
 The committed [residual harness](Scripts/jupiter-moon-data/residual-method.md) splits the current model's position error in km and returned Keplerian-velocity error in km per TT day over all 104 archived Horizons rows. Its [evidence](Scripts/jupiter-moon-data/residual-evidence.json) preserves raw captures, source hashes, separate per-moon maxima, and exact worst epochs. It does not reproduce the former full-theory comparison or qualify unsampled epochs.
 
+The [jup365 representation qualification](Scripts/jupiter-moon-data/jup365/README.md) extracts every source record over the kernel's actual JD TDB `[2305456.5, 2524602.5)` domain. Its mixed Float32 and scaled Int16 payload totals 60,192,342 bytes and has continuous coefficient-representation bounds below 0.229 km in jovicentric position and 33.74 km per TDB day in its analytic derivative. The report separately records 104 sampled Horizons residuals, source provenance, size, and a host-specific Swift lookup measurement. These files are not used by `Engine.JupiterMoons`; runtime selection, L1.2 fallback, and endpoint transitions remain for the next #254 change.
+
 ### Differences from the C engine
 
 - The rotation is built from Ψ and I. The C engine's `Rotation_JUP_EQJ`, printed to 15 digits, agrees within 4.5e-16.

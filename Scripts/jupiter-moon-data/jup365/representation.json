@@ -1,0 +1,1863 @@
+{
+  "base64PayloadBytes": 80256456,
+  "combinedJovicentricRepresentationBound": {
+    "callisto": {
+      "positionKm": 0.19732811199541736,
+      "velocityKmPerTDBDay": 5.479945075830614
+    },
+    "europa": {
+      "positionKm": 0.22824665791046364,
+      "velocityKmPerTDBDay": 21.898471666322823
+    },
+    "ganymede": {
+      "positionKm": 0.2234372388597968,
+      "velocityKmPerTDBDay": 7.52748738203812
+    },
+    "io": {
+      "positionKm": 0.20616142975892485,
+      "velocityKmPerTDBDay": 33.735438704701345
+    }
+  },
+  "components": {
+    "callisto": {
+      "center": 5,
+      "clock": "TDB",
+      "coefficientRepresentationBound": {
+        "positionKm": 0.17746995095031307,
+        "velocityKmPerTDBDay": 3.6445080221462347,
+        "worstPosition": {
+          "axisBoundsKm": [
+            0.11162695581692415,
+            0.1321701266639268,
+            0.03957352452075136
+          ],
+          "record": 57723,
+          "startJDTDB": 2435333.25
+        },
+        "worstVelocity": {
+          "axisBoundsKmPerTDBDay": [
+            2.5110110070851372,
+            2.38688968366202,
+            1.1313797257390452
+          ],
+          "record": 13497,
+          "startJDTDB": 2335824.75
+        }
+      },
+      "encodedBytes": 6428334,
+      "exclusiveEndJDTDB": 2524602.5,
+      "float32CoefficientCount": 4,
+      "frame": "ICRF",
+      "keptCoefficientCount": 7,
+      "recordCount": 97399,
+      "recordDays": 2.25,
+      "sha256": "68b3138f9f207491462f176f36f82645a47c8a9b9ac0a99877cdf9f2ec2cc8d1",
+      "sourceCoefficientCount": 11,
+      "startJDTDB": 2305456.5,
+      "tailScales": [
+        [
+          0.010123541419231571,
+          0.00045690054003379177,
+          2.0766987334221106e-05
+        ],
+        [
+          0.00919300881764954,
+          0.0004130165378423096,
+          1.886116067888132e-05
+        ],
+        [
+          0.004332819744761475,
+          0.00019507878292707618,
+          8.88913494943127e-06
+        ]
+      ],
+      "target": 504
+    },
+    "europa": {
+      "center": 5,
+      "clock": "TDB",
+      "coefficientRepresentationBound": {
+        "positionKm": 0.20838849686535935,
+        "velocityKmPerTDBDay": 20.063034612638443,
+        "worstPosition": {
+          "axisBoundsKm": [
+            0.15162751256983653,
+            0.13067203552736528,
+            0.05796276553808403
+          ],
+          "record": 7159,
+          "startJDTDB": 2313510.375
+        },
+        "worstVelocity": {
+          "axisBoundsKmPerTDBDay": [
+            14.80271690551757,
+            12.154595486820613,
+            5.972498525306822
+          ],
+          "record": 149196,
+          "startJDTDB": 2473302.0
+        }
+      },
+      "encodedBytes": 15194166,
+      "exclusiveEndJDTDB": 2524602.5,
+      "float32CoefficientCount": 4,
+      "frame": "ICRF",
+      "keptCoefficientCount": 9,
+      "recordCount": 194797,
+      "recordDays": 1.125,
+      "sha256": "e93860be76f9bc195bc7a098003bd190bf081963fbf144a9ae6fc1c779b0b9f8",
+      "sourceCoefficientCount": 16,
+      "startJDTDB": 2305456.5,
+      "tailScales": [
+        [
+          0.1064634191208646,
+          0.011460087334513858,
+          0.0010889789041803473,
+          9.941114299160253e-05,
+          8.995837322271422e-06
+        ],
+        [
+          0.09651633300968239,
+          0.010381996028820428,
+          0.0009871227463838419,
+          9.011827388177874e-05,
+          8.118688424216944e-06
+        ],
+        [
+          0.04652425295551948,
+          0.005008472971428576,
+          0.00047503005793948083,
+          4.3388658631479087e-05,
+          3.9250705644790355e-06
+        ]
+      ],
+      "target": 502
+    },
+    "ganymede": {
+      "center": 5,
+      "clock": "TDB",
+      "coefficientRepresentationBound": {
+        "positionKm": 0.2035790778146925,
+        "velocityKmPerTDBDay": 5.692050328353741,
+        "worstPosition": {
+          "axisBoundsKm": [
+            0.14815330500676316,
+            0.13295170615952007,
+            0.04264836419754259
+          ],
+          "record": 145809,
+          "startJDTDB": 2469491.625
+        },
+        "worstVelocity": {
+          "axisBoundsKmPerTDBDay": [
+            3.321076420646604,
+            4.183073922145696,
+            1.9676841490954966
+          ],
+          "record": 89816,
+          "startJDTDB": 2406499.5
+        }
+      },
+      "encodedBytes": 11687820,
+      "exclusiveEndJDTDB": 2524602.5,
+      "float32CoefficientCount": 3,
+      "frame": "ICRF",
+      "keptCoefficientCount": 7,
+      "recordCount": 194797,
+      "recordDays": 1.125,
+      "sha256": "296570f8f80d91dd8b7d2e2b3717fd7b99bd8edad81a89b0fd05c50897ad5af5",
+      "sourceCoefficientCount": 10,
+      "startJDTDB": 2305456.5,
+      "tailScales": [
+        [
+          0.1633113391146247,
+          0.010233262694105023,
+          0.0005184841663936003,
+          2.3496318969249325e-05
+        ],
+        [
+          0.14752388418172363,
+          0.009247852464501346,
+          0.0004675579462095213,
+          2.1185474701750765e-05
+        ],
+        [
+          0.07058544293980137,
+          0.004429198211114062,
+          0.0002239040200937042,
+          1.0147554310445612e-05
+        ]
+      ],
+      "target": 503
+    },
+    "io": {
+      "center": 5,
+      "clock": "TDB",
+      "coefficientRepresentationBound": {
+        "positionKm": 0.18630326871382055,
+        "velocityKmPerTDBDay": 31.900001651016957,
+        "worstPosition": {
+          "axisBoundsKm": [
+            0.1255747733107248,
+            0.1272558298072414,
+            0.052400744474525196
+          ],
+          "record": 13251,
+          "startJDTDB": 2320363.875
+        },
+        "worstVelocity": {
+          "axisBoundsKmPerTDBDay": [
+            20.61786678151855,
+            22.220544141710832,
+            9.93786157886687
+          ],
+          "record": 147181,
+          "startJDTDB": 2471035.125
+        }
+      },
+      "encodedBytes": 19869294,
+      "exclusiveEndJDTDB": 2524602.5,
+      "float32CoefficientCount": 6,
+      "frame": "ICRF",
+      "keptCoefficientCount": 11,
+      "recordCount": 194797,
+      "recordDays": 1.125,
+      "sha256": "ab022a52f50f1b5067dabcb4037596f2cb0671c249c1a7ee6905c53be72864e8",
+      "sourceCoefficientCount": 16,
+      "startJDTDB": 2305456.5,
+      "tailScales": [
+        [
+          0.033441080429441425,
+          0.005314277924454468,
+          0.0007940671205226638,
+          0.00011979515170940802,
+          1.8441382813173405e-05
+        ],
+        [
+          0.030195480207284305,
+          0.004798309593747385,
+          0.0007169135045712146,
+          0.00010816227544550969,
+          1.666392575023009e-05
+        ],
+        [
+          0.014415199764701292,
+          0.002290227843770878,
+          0.0003422113517840398,
+          5.155201946807188e-05,
+          7.949408451530427e-06
+        ]
+      ],
+      "target": 501
+    },
+    "jupiter": {
+      "center": 5,
+      "clock": "TDB",
+      "coefficientRepresentationBound": {
+        "positionKm": 0.019858161045104277,
+        "velocityKmPerTDBDay": 1.8354370536843783,
+        "worstPosition": {
+          "axisBoundsKm": [
+            0.014254374623892327,
+            0.01260099303091744,
+            0.00568984523601489
+          ],
+          "record": 52866,
+          "startJDTDB": 2424405.0
+        },
+        "worstVelocity": {
+          "axisBoundsKmPerTDBDay": [
+            1.3167357753465412,
+            1.1586556580179406,
+            0.5408818189800295
+          ],
+          "record": 47237,
+          "startJDTDB": 2411739.75
+        }
+      },
+      "encodedBytes": 7012728,
+      "exclusiveEndJDTDB": 2524602.5,
+      "float32CoefficientCount": 2,
+      "frame": "ICRF",
+      "keptCoefficientCount": 10,
+      "recordCount": 97399,
+      "recordDays": 2.25,
+      "sha256": "9321822b32463f1f177c957fc8bd485f34353daca9f875c54fdb07159a886ac7",
+      "sourceCoefficientCount": 16,
+      "startJDTDB": 2305456.5,
+      "tailScales": [
+        [
+          0.0013829988587917739,
+          0.0007138329720458531,
+          0.00037733645002208593,
+          0.0001664506818631882,
+          6.094465769417327e-05,
+          1.91632746332531e-05,
+          5.409254376000654e-06,
+          1.447228918235788e-06
+        ],
+        [
+          0.0012472416051323004,
+          0.0006450129187654903,
+          0.0003407317667148241,
+          0.00015033978690433237,
+          5.50366930666187e-05,
+          1.73001805389311e-05,
+          4.882523078047474e-06,
+          1.307255040068222e-06
+        ],
+        [
+          0.0005968309250459903,
+          0.0003081374901549916,
+          0.00016281967519727686,
+          7.177404210161388e-05,
+          2.627645012161097e-05,
+          8.261907941523437e-06,
+          2.3315073653342553e-06,
+          6.243859586390895e-07
+        ]
+      ],
+      "target": 599
+    }
+  },
+  "coverageJDTDB": [
+    2305456.5,
+    2524602.5
+  ],
+  "decodedPayloadBytes": 60192342,
+  "directFixtures": [
+    {
+      "candidatePositionKm": [
+        399196.7390764441,
+        -126268.66822920885,
+        -53542.8490818496
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        480572.4098181308,
+        1276678.5368692065,
+        616209.1341118035
+      ],
+      "component": "io",
+      "julianDateTDB": 2305456.5,
+      "sourcePositionErrorKm": 0.08580438984709665,
+      "sourceVelocityErrorKmPerTDBDay": 20.40753056653856
+    },
+    {
+      "candidatePositionKm": [
+        -131255.8496095227,
+        360927.55172147043,
+        170158.32231194302
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        -1427448.191488176,
+        -417475.01482520276,
+        -221732.40172971357
+      ],
+      "component": "io",
+      "julianDateTDB": 2450464.4999999995,
+      "sourcePositionErrorKm": 0.053226119759688335,
+      "sourceVelocityErrorKmPerTDBDay": 9.352719361302233
+    },
+    {
+      "candidatePositionKm": [
+        -131255.93121954572,
+        360927.55314224167,
+        170158.3299610204
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        -1427446.691794171,
+        -417464.30606119876,
+        -221727.37035942136
+      ],
+      "component": "io",
+      "julianDateTDB": 2450464.5,
+      "sourcePositionErrorKm": 0.046501900886558,
+      "sourceVelocityErrorKmPerTDBDay": 12.129624968450326
+    },
+    {
+      "candidatePositionKm": [
+        -131255.93188425235,
+        360927.5529478448,
+        170158.3298577706
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        -1427446.6910135194,
+        -417464.30820614914,
+        -221727.37137064274
+      ],
+      "component": "io",
+      "julianDateTDB": 2450464.5000000005,
+      "sourcePositionErrorKm": 0.04650189521995537,
+      "sourceVelocityErrorKmPerTDBDay": 12.129624563369712
+    },
+    {
+      "candidatePositionKm": [
+        44849.21191436654,
+        -379987.70532517176,
+        -180279.0243001869
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        1484767.5547926608,
+        137460.97225006786,
+        90453.76648378996
+      ],
+      "component": "io",
+      "julianDateTDB": 2451544.5,
+      "sourcePositionErrorKm": 0.0947118035694866,
+      "sourceVelocityErrorKmPerTDBDay": 19.66472657592719
+    },
+    {
+      "candidatePositionKm": [
+        360934.5167118135,
+        191639.74693930396,
+        97369.009271804
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        -770844.1178070187,
+        1170785.325674881,
+        544821.9917982911
+      ],
+      "component": "io",
+      "julianDateTDB": 2451545.0625,
+      "sourcePositionErrorKm": 0.010526397188296123,
+      "sourceVelocityErrorKmPerTDBDay": 1.8511266943613827
+    },
+    {
+      "candidatePositionKm": [
+        -349116.31489646353,
+        216229.53434054,
+        97145.95206650939
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        -845654.9499844908,
+        -1109456.4946974544,
+        -542781.27951516
+      ],
+      "component": "io",
+      "julianDateTDB": 2451545.6249999995,
+      "sourcePositionErrorKm": 0.10289772722502473,
+      "sourceVelocityErrorKmPerTDBDay": 19.855686247735076
+    },
+    {
+      "candidatePositionKm": [
+        -349116.2025157797,
+        216229.4564997833,
+        97145.93351006956
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        -845653.5195811486,
+        -1109474.08422813,
+        -542789.4222842222
+      ],
+      "component": "io",
+      "julianDateTDB": 2451545.625,
+      "sourcePositionErrorKm": 0.062054410471991645,
+      "sourceVelocityErrorKmPerTDBDay": 8.892745991380023
+    },
+    {
+      "candidatePositionKm": [
+        -356578.68433455564,
+        -203770.53764070815,
+        -103275.67738047379
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        805884.1971179501,
+        -1138432.9160676422,
+        -529161.5689103729
+      ],
+      "component": "io",
+      "julianDateTDB": 2524602.4999999995,
+      "sourcePositionErrorKm": 0.042215052826475134,
+      "sourceVelocityErrorKmPerTDBDay": 0.14815110626837674
+    },
+    {
+      "candidatePositionKm": [
+        -574494.1598494054,
+        -299709.0014457551,
+        -157093.94432195433
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        613394.4817940465,
+        -930884.969856915,
+        -429111.81006039784
+      ],
+      "component": "europa",
+      "julianDateTDB": 2305456.5,
+      "sourcePositionErrorKm": 0.05651080157169277,
+      "sourceVelocityErrorKmPerTDBDay": 4.940532907498637
+    },
+    {
+      "candidatePositionKm": [
+        -313222.4032268793,
+        546150.0877921445,
+        249501.55480128428
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        -1043366.1490253024,
+        -482878.5493171263,
+        -248376.562087687
+      ],
+      "component": "europa",
+      "julianDateTDB": 2450464.4999999995,
+      "sourcePositionErrorKm": 0.04655835255853565,
+      "sourceVelocityErrorKmPerTDBDay": 1.9333083660540247
+    },
+    {
+      "candidatePositionKm": [
+        -313222.4716650646,
+        546150.0552467498,
+        249501.5391728111
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        -1043366.3661240091,
+        -482879.55202483054,
+        -248378.21456853359
+      ],
+      "component": "europa",
+      "julianDateTDB": 2450464.5,
+      "sourcePositionErrorKm": 0.04923844238175796,
+      "sourceVelocityErrorKmPerTDBDay": 1.4906175029637019
+    },
+    {
+      "candidatePositionKm": [
+        -313222.47215091984,
+        546150.0550218915,
+        249501.539057151
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        -1043366.3656795605,
+        -482879.55279922514,
+        -248378.21492229056
+      ],
+      "component": "europa",
+      "julianDateTDB": 2450464.5000000005,
+      "sourcePositionErrorKm": 0.049238442193956,
+      "sourceVelocityErrorKmPerTDBDay": 1.4906174753898667
+    },
+    {
+      "candidatePositionKm": [
+        -632024.7116351415,
+        200861.6854165667,
+        83766.25262051464
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        -377791.0351573872,
+        -1021810.8946206146,
+        -483118.204315743
+      ],
+      "component": "europa",
+      "julianDateTDB": 2451544.5,
+      "sourcePositionErrorKm": 0.025859194863230385,
+      "sourceVelocityErrorKmPerTDBDay": 3.7601673323891363
+    },
+    {
+      "candidatePositionKm": [
+        -517466.8952965517,
+        -374853.8754094481,
+        -183242.34208649793
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        753373.8806313925,
+        -849165.9091697002,
+        -384563.75327101414
+      ],
+      "component": "europa",
+      "julianDateTDB": 2451545.0625,
+      "sourcePositionErrorKm": 0.04395615581808401,
+      "sourceVelocityErrorKmPerTDBDay": 0.45265257161757533
+    },
+    {
+      "candidatePositionKm": [
+        79850.81104157655,
+        -600467.132376325,
+        -279119.64191136183
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        1186893.6248025615,
+        114464.53772222903,
+        72266.33709581471
+      ],
+      "component": "europa",
+      "julianDateTDB": 2451545.6249999995,
+      "sourcePositionErrorKm": 0.07622411627557125,
+      "sourceVelocityErrorKmPerTDBDay": 4.828368468831372
+    },
+    {
+      "candidatePositionKm": [
+        79850.9179991394,
+        -600467.0886322974,
+        -279119.68744351366
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        1186897.862389863,
+        114460.40884969044,
+        72264.60778221785
+      ],
+      "component": "europa",
+      "julianDateTDB": 2451545.625,
+      "sourcePositionErrorKm": 0.05209189255296118,
+      "sourceVelocityErrorKmPerTDBDay": 1.9014524141800002
+    },
+    {
+      "candidatePositionKm": [
+        -290444.58840573585,
+        546357.3572710137,
+        257648.4523859012
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        -1066644.7295882395,
+        -463293.345510619,
+        -248107.83271871594
+      ],
+      "component": "europa",
+      "julianDateTDB": 2524602.4999999995,
+      "sourcePositionErrorKm": 0.03943793215142368,
+      "sourceVelocityErrorKmPerTDBDay": 0.0368722343410742
+    },
+    {
+      "candidatePositionKm": [
+        -594955.0567352567,
+        -799339.4685252849,
+        -390168.0801616913
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        781340.0292207629,
+        -475490.76552690275,
+        -217191.35613170595
+      ],
+      "component": "ganymede",
+      "julianDateTDB": 2305456.5,
+      "sourcePositionErrorKm": 0.04301530245182116,
+      "sourceVelocityErrorKmPerTDBDay": 1.033038048916529
+    },
+    {
+      "candidatePositionKm": [
+        -908911.351101755,
+        -504326.0658622026,
+        -251867.37100167022
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        496001.3089542092,
+        -723432.5256321501,
+        -339649.1155890448
+      ],
+      "component": "ganymede",
+      "julianDateTDB": 2450464.4999999995,
+      "sourcePositionErrorKm": 0.13269170321812127,
+      "sourceVelocityErrorKmPerTDBDay": 3.428766501249064
+    },
+    {
+      "candidatePositionKm": [
+        -908911.454829165,
+        -504325.9600340805,
+        -251867.37413266356
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        496002.09724369727,
+        -723431.1748467409,
+        -339648.5638783718
+      ],
+      "component": "ganymede",
+      "julianDateTDB": 2450464.5,
+      "sourcePositionErrorKm": 0.029039636924615756,
+      "sourceVelocityErrorKmPerTDBDay": 2.625244167298555
+    },
+    {
+      "candidatePositionKm": [
+        -908911.4545981961,
+        -504325.96037095436,
+        -251867.37429082475
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        496002.09757079626,
+        -723431.1746652231,
+        -339648.56378772104
+      ],
+      "component": "ganymede",
+      "julianDateTDB": 2450464.5000000005,
+      "sourcePositionErrorKm": 0.02903963622469841,
+      "sourceVelocityErrorKmPerTDBDay": 2.6252441315947737
+    },
+    {
+      "candidatePositionKm": [
+        -1035673.8573975033,
+        -240678.47669017361,
+        -127940.70900670376
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        240054.08324246234,
+        -820625.1401768624,
+        -389474.41541980696
+      ],
+      "component": "ganymede",
+      "julianDateTDB": 2451544.5,
+      "sourcePositionErrorKm": 0.07591392320767394,
+      "sourceVelocityErrorKmPerTDBDay": 2.911736135529201
+    },
+    {
+      "candidatePositionKm": [
+        -782352.4229464122,
+        -654994.8841648417,
+        -322940.2833574423
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        642409.933892562,
+        -622363.2039399046,
+        -289670.8227536218
+      ],
+      "component": "ganymede",
+      "julianDateTDB": 2451545.0625,
+      "sourcePositionErrorKm": 0.004244747058229187,
+      "sourceVelocityErrorKmPerTDBDay": 0.5163551059169977
+    },
+    {
+      "candidatePositionKm": [
+        -341880.7775079984,
+        -912586.4376144137,
+        -440668.0891914664
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        891765.571442843,
+        -274679.08174634207,
+        -120303.45995199477
+      ],
+      "component": "ganymede",
+      "julianDateTDB": 2451545.6249999995,
+      "sourcePositionErrorKm": 0.07810513020942354,
+      "sourceVelocityErrorKmPerTDBDay": 2.3120137909915277
+    },
+    {
+      "candidatePositionKm": [
+        -341880.7686554084,
+        -912586.4321458922,
+        -440668.11415516346
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        891765.5034329337,
+        -274677.3666206142,
+        -120303.0146758746
+      ],
+      "component": "ganymede",
+      "julianDateTDB": 2451545.625,
+      "sourcePositionErrorKm": 0.08677782375317887,
+      "sourceVelocityErrorKmPerTDBDay": 1.3538867865527784
+    },
+    {
+      "candidatePositionKm": [
+        995160.316890497,
+        -363254.5719958535,
+        -153706.50122649365
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        344203.11927911185,
+        788060.5738265204,
+        379038.3466026007
+      ],
+      "component": "ganymede",
+      "julianDateTDB": 2524602.4999999995,
+      "sourcePositionErrorKm": 0.019604999207813414,
+      "sourceVelocityErrorKmPerTDBDay": 0.34203509519904424
+    },
+    {
+      "candidatePositionKm": [
+        -1112245.9461558736,
+        -1385954.4499433718,
+        -658134.7182251356
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        568458.4858594721,
+        -379444.5621951269,
+        -169250.74569901743
+      ],
+      "component": "callisto",
+      "julianDateTDB": 2305456.5,
+      "sourcePositionErrorKm": 0.02664679931132352,
+      "sourceVelocityErrorKmPerTDBDay": 0.9440560109454562
+    },
+    {
+      "candidatePositionKm": [
+        -1876497.4920047394,
+        258754.61980596322,
+        94882.42013379798
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        -101640.39580719176,
+        -628689.0086619355,
+        -298979.0148927734
+      ],
+      "component": "callisto",
+      "julianDateTDB": 2450464.4999999995,
+      "sourcePositionErrorKm": 0.06337076065782159,
+      "sourceVelocityErrorKmPerTDBDay": 0.7864033647795418
+    },
+    {
+      "candidatePositionKm": [
+        -1876497.431817987,
+        258754.60444510658,
+        94882.4481350447
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        -101640.69429259439,
+        -628688.8419539235,
+        -298978.9620516048
+      ],
+      "component": "callisto",
+      "julianDateTDB": 2450464.5,
+      "sourcePositionErrorKm": 0.015733446343051464,
+      "sourceVelocityErrorKmPerTDBDay": 0.6684096398037156
+    },
+    {
+      "candidatePositionKm": [
+        -1876497.4318653173,
+        258754.60415235048,
+        94882.44799582176
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        -101640.69417146307,
+        -628688.8419706261,
+        -298978.9620577295
+      ],
+      "component": "callisto",
+      "julianDateTDB": 2450464.5000000005,
+      "sourcePositionErrorKm": 0.0157334460334059,
+      "sourceVelocityErrorKmPerTDBDay": 0.6684096353195368
+    },
+    {
+      "candidatePositionKm": [
+        666051.863074217,
+        1584617.338731185,
+        759077.8861204035
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        -662149.3533376264,
+        235613.99547491668,
+        101736.82206898711
+      ],
+      "component": "callisto",
+      "julianDateTDB": 2451544.5,
+      "sourcePositionErrorKm": 0.027618845054478865,
+      "sourceVelocityErrorKmPerTDBDay": 0.9446376208352335
+    },
+    {
+      "candidatePositionKm": [
+        -115768.67959230312,
+        1701435.5676683076,
+        802888.0807277551
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        -706823.0037681918,
+        -30642.093501329764,
+        -24825.034899675495
+      ],
+      "component": "callisto",
+      "julianDateTDB": 2451545.625,
+      "sourcePositionErrorKm": 0.04221627548674903,
+      "sourceVelocityErrorKmPerTDBDay": 0.21773770748291646
+    },
+    {
+      "candidatePositionKm": [
+        -877402.7195794205,
+        1518605.152844936,
+        705294.1275147492
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        -627169.9899570487,
+        -289183.8496600306,
+        -145920.74393642147
+      ],
+      "component": "callisto",
+      "julianDateTDB": 2451546.7499999995,
+      "sourcePositionErrorKm": 0.0658268621185147,
+      "sourceVelocityErrorKmPerTDBDay": 0.985503565466827
+    },
+    {
+      "candidatePositionKm": [
+        -877402.6924472299,
+        1518605.166857214,
+        705294.1580077568
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        -627169.4979621344,
+        -289183.8447521091,
+        -145920.67856128898
+      ],
+      "component": "callisto",
+      "julianDateTDB": 2451546.75,
+      "sourcePositionErrorKm": 0.04496588752151967,
+      "sourceVelocityErrorKmPerTDBDay": 0.6533015699660987
+    },
+    {
+      "candidatePositionKm": [
+        589456.3174913432,
+        -1636093.5306044538,
+        -754524.1414206834
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        669481.2434336821,
+        194555.81065195877,
+        97050.50660054298
+      ],
+      "component": "callisto",
+      "julianDateTDB": 2524602.4999999995,
+      "sourcePositionErrorKm": 0.019301668786189097,
+      "sourceVelocityErrorKmPerTDBDay": 0.07887966569634476
+    },
+    {
+      "candidatePositionKm": [
+        105.21416266474687,
+        154.45176680284274,
+        74.24152502610741
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        -131.6718453390169,
+        21.649543307850642,
+        8.18927121612872
+      ],
+      "component": "jupiter",
+      "julianDateTDB": 2305456.5,
+      "sourcePositionErrorKm": 0.00714064682954882,
+      "sourceVelocityErrorKmPerTDBDay": 0.6049163509671175
+    },
+    {
+      "candidatePositionKm": [
+        191.37269764261578,
+        -6.08261690482474,
+        -0.028998480717733394
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        60.401989184768894,
+        124.37368906355424,
+        60.36831016106204
+      ],
+      "component": "jupiter",
+      "julianDateTDB": 2450464.4999999995,
+      "sourcePositionErrorKm": 0.0060292238499593896,
+      "sourceVelocityErrorKmPerTDBDay": 0.5136950304581693
+    },
+    {
+      "candidatePositionKm": [
+        191.3725479258744,
+        -6.084898752384769,
+        -0.030035040595807312
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        60.74255294029216,
+        123.7214316954732,
+        60.06043577078999
+      ],
+      "component": "jupiter",
+      "julianDateTDB": 2450464.5,
+      "sourcePositionErrorKm": 0.0036787039494013242,
+      "sourceVelocityErrorKmPerTDBDay": 0.2891462057280611
+    },
+    {
+      "candidatePositionKm": [
+        191.37254795415984,
+        -6.084898694772491,
+        -0.030035012627990146
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        60.74255285756562,
+        123.72143180569424,
+        60.06043582195639
+      ],
+      "component": "jupiter",
+      "julianDateTDB": 2450464.5000000005,
+      "sourcePositionErrorKm": 0.003678703817140003,
+      "sourceVelocityErrorKmPerTDBDay": 0.28914620217922926
+    },
+    {
+      "candidatePositionKm": [
+        56.964973302167884,
+        -58.218879593520576,
+        -26.66850081911259
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        -42.27174756713658,
+        70.30269147502736,
+        32.69246668414201
+      ],
+      "component": "jupiter",
+      "julianDateTDB": 2451544.5,
+      "sourcePositionErrorKm": 0.008480589059530376,
+      "sourceVelocityErrorKmPerTDBDay": 0.8054727725635141
+    },
+    {
+      "candidatePositionKm": [
+        47.641002147327555,
+        -20.185616380109153,
+        -8.619786917109765
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        -19.75509348863319,
+        72.45735601742675,
+        34.495835976413495
+      ],
+      "component": "jupiter",
+      "julianDateTDB": 2451545.625,
+      "sourcePositionErrorKm": 0.008772447126445796,
+      "sourceVelocityErrorKmPerTDBDay": 0.02629341754994834
+    },
+    {
+      "candidatePositionKm": [
+        -35.696906883305154,
+        -38.54619569867906,
+        -18.346116786894722
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        10.610088350927988,
+        -109.47498175914093,
+        -51.72443968963181
+      ],
+      "component": "jupiter",
+      "julianDateTDB": 2451546.7499999995,
+      "sourcePositionErrorKm": 0.006809399055828486,
+      "sourceVelocityErrorKmPerTDBDay": 0.6289907521512585
+    },
+    {
+      "candidatePositionKm": [
+        -35.70098595907516,
+        -38.54629187641919,
+        -18.34585748646999
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        9.802009045396959,
+        -109.79491108172141,
+        -51.89439719671419
+      ],
+      "component": "jupiter",
+      "julianDateTDB": 2451546.75,
+      "sourcePositionErrorKm": 0.0029796980085606143,
+      "sourceVelocityErrorKmPerTDBDay": 0.2843780992302719
+    },
+    {
+      "candidatePositionKm": [
+        -86.95005353529686,
+        116.83597690324379,
+        53.09718285161792
+      ],
+      "candidateVelocityKmPerTDBDay": [
+        -75.75669939893152,
+        -7.220362445754726,
+        -3.8972059770523604
+      ],
+      "component": "jupiter",
+      "julianDateTDB": 2524602.4999999995,
+      "sourcePositionErrorKm": 0.01111583728416427,
+      "sourceVelocityErrorKmPerTDBDay": 0.04931418719934566
+    }
+  ],
+  "generatorBindingsSHA256": {
+    "Scripts/assess-moon-de441.py": "5da238cbd372de58899fc7de9ca49dbe5e02a33b0886a8ce8bf69854783c26a4",
+    "Scripts/galilean-residuals.py": "5894921a3b7108ba3721f11537f01206d772a183312a71d91059face59e6ff33",
+    "Scripts/generate-galilean-jup365.py": "daae85a38ce70941850e97632dae0f6883d4eeb934acf9af48f39685b08afbe5",
+    "Scripts/generate-planet-de441.py": "652d00c5aa3ed6556d26364a2bb89d95eed92c2def21d0af82834c932ab841c9",
+    "Scripts/jupiter-moon-data/jup365-probe.swift": "aee61ed93b6ece21d99372cf71b343abb23e2d526e3241a20d8d7559af233abb",
+    "Scripts/reference-data/sources/horizons/callisto-domain-vector.json": "9a92f36fec0e06fd64bbd817bbe382f28e69e9b219d55f17c7cb71b93c509a8c",
+    "Scripts/reference-data/sources/horizons/callisto-domain-vector.query.json": "afcee0b6236cc47115f6bfbe927ec04574b3aaefe07ef29220e200c8ed390940",
+    "Scripts/reference-data/sources/horizons/callisto-vector.json": "ed9c3a527e7a0b30acf0777cc647e8b5f8957ad4e6347b147dd74f34a84a434f",
+    "Scripts/reference-data/sources/horizons/callisto-vector.query.json": "5563d44a1a0f0ed1f7dcbbdad3834058181f052d09aefb7ad857d724e5aea236",
+    "Scripts/reference-data/sources/horizons/europa-domain-vector.json": "a3f5f394432819ec582918e482868584f55309e3834f0fc6740738c9836a40ec",
+    "Scripts/reference-data/sources/horizons/europa-domain-vector.query.json": "5a07546a9fe8a6a03e260fd763790183c5113f91a88f12285dc703e71369a5c2",
+    "Scripts/reference-data/sources/horizons/europa-vector.json": "eac288e6512eeef9850c1087052426bcc394e6a287aa17bc29ec4e84db2da9f0",
+    "Scripts/reference-data/sources/horizons/europa-vector.query.json": "4a5d5018b32653d60c9c652eb79680385bdd70a46f248a7e3dcabaf446399f44",
+    "Scripts/reference-data/sources/horizons/ganymede-domain-vector.json": "2da5ac534603b9353806011e109a36d103c8e8446e4b54e0fcc60a112c4e460b",
+    "Scripts/reference-data/sources/horizons/ganymede-domain-vector.query.json": "5c21861cea16eaa9ccc75b7f9eb51d348cd99bfccb9567ffe874792067e036ce",
+    "Scripts/reference-data/sources/horizons/ganymede-vector.json": "f76302a946d97f80836fcbb1010ebeae1c18c315b04dee61ddb23816c446e241",
+    "Scripts/reference-data/sources/horizons/ganymede-vector.query.json": "9cd234ea55255992f0f35a7f47b06e05ea7c04355a24ed30ad92c1832c23d59d",
+    "Scripts/reference-data/sources/horizons/io-domain-vector.json": "7526eb5ec18787db7a294cabb9719efae48acde9a9d1c099e5f219a724114870",
+    "Scripts/reference-data/sources/horizons/io-domain-vector.query.json": "17982b2777787b3254a3073458c7463d33dbbdd561d8b22281178d915b8c907b",
+    "Scripts/reference-data/sources/horizons/io-vector.json": "4c09f6807a15f45ecd936d38ab1c5ca71dfe759bc063c0a3ac1685b1f1aaa981",
+    "Scripts/reference-data/sources/horizons/io-vector.query.json": "f20330c61f533ee38a5235929338c4ff17a7bbfd1a59e75e8053536d32da19e6",
+    "Scripts/test_galilean_residuals.py": "791f5decb42016fe8ab861c16884704fb59b0de67464c86284b936c72853f10e",
+    "Scripts/test_generate_galilean_jup365.py": "8ecca9907dbbb41df666a042b0596beab269dd91bedfcfeb005b3a14c28739d7",
+    "Tests/AstronomyKitTests/Fixtures/IndependentReferences/reference-fixtures.json": "a9fe5925fc0c556d088147d78fc5f6b053f32a839e13250f7589e47dfc9a12ab"
+  },
+  "sampledHorizonsResiduals": {
+    "rows": [
+      {
+        "body": "io",
+        "julianDateTDB": 2415020.5,
+        "positionErrorKm": 0.03604040246629135,
+        "velocityErrorKmPerTDBDay": 1.2198903643851622
+      },
+      {
+        "body": "io",
+        "julianDateTDB": 2451544.5,
+        "positionErrorKm": 0.09198798316153407,
+        "velocityErrorKmPerTDBDay": 19.382975362571834
+      },
+      {
+        "body": "io",
+        "julianDateTDB": 2488069.5,
+        "positionErrorKm": 0.0386324177985044,
+        "velocityErrorKmPerTDBDay": 1.0740044498400292
+      },
+      {
+        "body": "io",
+        "julianDateTDB": 2426544.0,
+        "positionErrorKm": 0.05902149330922299,
+        "velocityErrorKmPerTDBDay": 1.6586564894839584
+      },
+      {
+        "body": "io",
+        "julianDateTDB": 2426545.0,
+        "positionErrorKm": 0.011337889556306099,
+        "velocityErrorKmPerTDBDay": 0.837012582245419
+      },
+      {
+        "body": "io",
+        "julianDateTDB": 2429045.0,
+        "positionErrorKm": 0.048380026693287184,
+        "velocityErrorKmPerTDBDay": 0.3842429452642608
+      },
+      {
+        "body": "io",
+        "julianDateTDB": 2431545.0,
+        "positionErrorKm": 0.03143246480933323,
+        "velocityErrorKmPerTDBDay": 1.0822673516217893
+      },
+      {
+        "body": "io",
+        "julianDateTDB": 2434045.0,
+        "positionErrorKm": 0.0338265174075764,
+        "velocityErrorKmPerTDBDay": 2.52802724092032
+      },
+      {
+        "body": "io",
+        "julianDateTDB": 2436545.0,
+        "positionErrorKm": 0.024381639177694835,
+        "velocityErrorKmPerTDBDay": 1.2889379810756374
+      },
+      {
+        "body": "io",
+        "julianDateTDB": 2439045.0,
+        "positionErrorKm": 0.029048177104820275,
+        "velocityErrorKmPerTDBDay": 0.8496876707127917
+      },
+      {
+        "body": "io",
+        "julianDateTDB": 2441545.0,
+        "positionErrorKm": 0.08238407347648577,
+        "velocityErrorKmPerTDBDay": 0.6850368069999863
+      },
+      {
+        "body": "io",
+        "julianDateTDB": 2444045.0,
+        "positionErrorKm": 0.03973750802002334,
+        "velocityErrorKmPerTDBDay": 2.5829745420712347
+      },
+      {
+        "body": "io",
+        "julianDateTDB": 2446545.0,
+        "positionErrorKm": 0.06163336689235544,
+        "velocityErrorKmPerTDBDay": 11.816315977040233
+      },
+      {
+        "body": "io",
+        "julianDateTDB": 2449045.0,
+        "positionErrorKm": 0.04019654769447972,
+        "velocityErrorKmPerTDBDay": 1.7843851800372805
+      },
+      {
+        "body": "io",
+        "julianDateTDB": 2451545.0,
+        "positionErrorKm": 0.08820846381377102,
+        "velocityErrorKmPerTDBDay": 0.5818520370408885
+      },
+      {
+        "body": "io",
+        "julianDateTDB": 2454045.0,
+        "positionErrorKm": 0.06171987055140794,
+        "velocityErrorKmPerTDBDay": 1.5456267117630023
+      },
+      {
+        "body": "io",
+        "julianDateTDB": 2456545.0,
+        "positionErrorKm": 0.01965798722069104,
+        "velocityErrorKmPerTDBDay": 1.9588297257909295
+      },
+      {
+        "body": "io",
+        "julianDateTDB": 2459045.0,
+        "positionErrorKm": 0.04384405498086403,
+        "velocityErrorKmPerTDBDay": 2.6716672165718127
+      },
+      {
+        "body": "io",
+        "julianDateTDB": 2461545.0,
+        "positionErrorKm": 0.06278704991977443,
+        "velocityErrorKmPerTDBDay": 1.926737031401785
+      },
+      {
+        "body": "io",
+        "julianDateTDB": 2464045.0,
+        "positionErrorKm": 0.07400693979107666,
+        "velocityErrorKmPerTDBDay": 0.47672496606028103
+      },
+      {
+        "body": "io",
+        "julianDateTDB": 2466545.0,
+        "positionErrorKm": 0.02995802790074114,
+        "velocityErrorKmPerTDBDay": 1.338636367706544
+      },
+      {
+        "body": "io",
+        "julianDateTDB": 2469045.0,
+        "positionErrorKm": 0.0953561236519953,
+        "velocityErrorKmPerTDBDay": 20.38643241539366
+      },
+      {
+        "body": "io",
+        "julianDateTDB": 2471545.0,
+        "positionErrorKm": 0.016775244750357524,
+        "velocityErrorKmPerTDBDay": 2.1294820490322293
+      },
+      {
+        "body": "io",
+        "julianDateTDB": 2474045.0,
+        "positionErrorKm": 0.08227011461179554,
+        "velocityErrorKmPerTDBDay": 0.4848756457934217
+      },
+      {
+        "body": "io",
+        "julianDateTDB": 2476545.0,
+        "positionErrorKm": 0.02891471046014405,
+        "velocityErrorKmPerTDBDay": 0.723723451518243
+      },
+      {
+        "body": "io",
+        "julianDateTDB": 2476546.0,
+        "positionErrorKm": 0.11122003099325407,
+        "velocityErrorKmPerTDBDay": 0.7993004774010816
+      },
+      {
+        "body": "europa",
+        "julianDateTDB": 2415020.5,
+        "positionErrorKm": 0.0255285308738878,
+        "velocityErrorKmPerTDBDay": 0.2569339346570905
+      },
+      {
+        "body": "europa",
+        "julianDateTDB": 2451544.5,
+        "positionErrorKm": 0.03127124660412847,
+        "velocityErrorKmPerTDBDay": 3.3375200768380444
+      },
+      {
+        "body": "europa",
+        "julianDateTDB": 2488069.5,
+        "positionErrorKm": 0.030268176008347636,
+        "velocityErrorKmPerTDBDay": 0.7857406247251849
+      },
+      {
+        "body": "europa",
+        "julianDateTDB": 2426544.0,
+        "positionErrorKm": 0.03468038640424714,
+        "velocityErrorKmPerTDBDay": 0.7351250602371762
+      },
+      {
+        "body": "europa",
+        "julianDateTDB": 2426545.0,
+        "positionErrorKm": 0.020584158786338725,
+        "velocityErrorKmPerTDBDay": 0.34153288055083925
+      },
+      {
+        "body": "europa",
+        "julianDateTDB": 2429045.0,
+        "positionErrorKm": 0.04768201729310287,
+        "velocityErrorKmPerTDBDay": 0.2292159671020578
+      },
+      {
+        "body": "europa",
+        "julianDateTDB": 2431545.0,
+        "positionErrorKm": 0.0229091468162806,
+        "velocityErrorKmPerTDBDay": 0.3184584644989358
+      },
+      {
+        "body": "europa",
+        "julianDateTDB": 2434045.0,
+        "positionErrorKm": 0.027385817828578577,
+        "velocityErrorKmPerTDBDay": 0.15606437493922978
+      },
+      {
+        "body": "europa",
+        "julianDateTDB": 2436545.0,
+        "positionErrorKm": 0.026476556496284158,
+        "velocityErrorKmPerTDBDay": 0.3130884214430744
+      },
+      {
+        "body": "europa",
+        "julianDateTDB": 2439045.0,
+        "positionErrorKm": 0.023436198525300315,
+        "velocityErrorKmPerTDBDay": 0.29691584942014937
+      },
+      {
+        "body": "europa",
+        "julianDateTDB": 2441545.0,
+        "positionErrorKm": 0.09304534631351644,
+        "velocityErrorKmPerTDBDay": 0.4073444281891282
+      },
+      {
+        "body": "europa",
+        "julianDateTDB": 2444045.0,
+        "positionErrorKm": 0.04789889040634168,
+        "velocityErrorKmPerTDBDay": 0.9384180024528022
+      },
+      {
+        "body": "europa",
+        "julianDateTDB": 2446545.0,
+        "positionErrorKm": 0.03931798703949233,
+        "velocityErrorKmPerTDBDay": 2.7194358018599614
+      },
+      {
+        "body": "europa",
+        "julianDateTDB": 2449045.0,
+        "positionErrorKm": 0.07870005343502032,
+        "velocityErrorKmPerTDBDay": 0.21220160239306668
+      },
+      {
+        "body": "europa",
+        "julianDateTDB": 2451545.0,
+        "positionErrorKm": 0.026082370254774806,
+        "velocityErrorKmPerTDBDay": 0.3229989442727156
+      },
+      {
+        "body": "europa",
+        "julianDateTDB": 2454045.0,
+        "positionErrorKm": 0.008968462276610625,
+        "velocityErrorKmPerTDBDay": 0.63648216911005
+      },
+      {
+        "body": "europa",
+        "julianDateTDB": 2456545.0,
+        "positionErrorKm": 0.05170249909244139,
+        "velocityErrorKmPerTDBDay": 0.22971216075894146
+      },
+      {
+        "body": "europa",
+        "julianDateTDB": 2459045.0,
+        "positionErrorKm": 0.02847065575029583,
+        "velocityErrorKmPerTDBDay": 0.39087521429460986
+      },
+      {
+        "body": "europa",
+        "julianDateTDB": 2461545.0,
+        "positionErrorKm": 0.030345268288410276,
+        "velocityErrorKmPerTDBDay": 1.2045813467042983
+      },
+      {
+        "body": "europa",
+        "julianDateTDB": 2464045.0,
+        "positionErrorKm": 0.07975741939770918,
+        "velocityErrorKmPerTDBDay": 0.31405281098966303
+      },
+      {
+        "body": "europa",
+        "julianDateTDB": 2466545.0,
+        "positionErrorKm": 0.051230728019617575,
+        "velocityErrorKmPerTDBDay": 0.3124442628257103
+      },
+      {
+        "body": "europa",
+        "julianDateTDB": 2469045.0,
+        "positionErrorKm": 0.08728507323941302,
+        "velocityErrorKmPerTDBDay": 4.559380672697238
+      },
+      {
+        "body": "europa",
+        "julianDateTDB": 2471545.0,
+        "positionErrorKm": 0.0171932395111444,
+        "velocityErrorKmPerTDBDay": 0.5990475099917111
+      },
+      {
+        "body": "europa",
+        "julianDateTDB": 2474045.0,
+        "positionErrorKm": 0.022849145204334908,
+        "velocityErrorKmPerTDBDay": 0.30869665477773
+      },
+      {
+        "body": "europa",
+        "julianDateTDB": 2476545.0,
+        "positionErrorKm": 0.02274620206550737,
+        "velocityErrorKmPerTDBDay": 0.6956415512251769
+      },
+      {
+        "body": "europa",
+        "julianDateTDB": 2476546.0,
+        "positionErrorKm": 0.049920957183314324,
+        "velocityErrorKmPerTDBDay": 0.6924171745786452
+      },
+      {
+        "body": "ganymede",
+        "julianDateTDB": 2415020.5,
+        "positionErrorKm": 0.05706805064637801,
+        "velocityErrorKmPerTDBDay": 0.259076314810189
+      },
+      {
+        "body": "ganymede",
+        "julianDateTDB": 2451544.5,
+        "positionErrorKm": 0.0838109382893361,
+        "velocityErrorKmPerTDBDay": 3.566234088264383
+      },
+      {
+        "body": "ganymede",
+        "julianDateTDB": 2488069.5,
+        "positionErrorKm": 0.022033430849498957,
+        "velocityErrorKmPerTDBDay": 0.1082180719096025
+      },
+      {
+        "body": "ganymede",
+        "julianDateTDB": 2426544.0,
+        "positionErrorKm": 0.016355103573717486,
+        "velocityErrorKmPerTDBDay": 0.2527684053277386
+      },
+      {
+        "body": "ganymede",
+        "julianDateTDB": 2426545.0,
+        "positionErrorKm": 0.06836229306416573,
+        "velocityErrorKmPerTDBDay": 0.30840526074839
+      },
+      {
+        "body": "ganymede",
+        "julianDateTDB": 2429045.0,
+        "positionErrorKm": 0.037284380714512504,
+        "velocityErrorKmPerTDBDay": 0.34414936793647893
+      },
+      {
+        "body": "ganymede",
+        "julianDateTDB": 2431545.0,
+        "positionErrorKm": 0.07136861985513686,
+        "velocityErrorKmPerTDBDay": 0.36372663407203704
+      },
+      {
+        "body": "ganymede",
+        "julianDateTDB": 2434045.0,
+        "positionErrorKm": 0.03564994190605354,
+        "velocityErrorKmPerTDBDay": 0.4988994460271741
+      },
+      {
+        "body": "ganymede",
+        "julianDateTDB": 2436545.0,
+        "positionErrorKm": 0.03946892768251628,
+        "velocityErrorKmPerTDBDay": 0.5889494282488371
+      },
+      {
+        "body": "ganymede",
+        "julianDateTDB": 2439045.0,
+        "positionErrorKm": 0.05586755458684704,
+        "velocityErrorKmPerTDBDay": 0.2135100522473576
+      },
+      {
+        "body": "ganymede",
+        "julianDateTDB": 2441545.0,
+        "positionErrorKm": 0.06755778510270756,
+        "velocityErrorKmPerTDBDay": 0.490970156137921
+      },
+      {
+        "body": "ganymede",
+        "julianDateTDB": 2444045.0,
+        "positionErrorKm": 0.04224505566367385,
+        "velocityErrorKmPerTDBDay": 0.21804420513639916
+      },
+      {
+        "body": "ganymede",
+        "julianDateTDB": 2446545.0,
+        "positionErrorKm": 0.03347554526332471,
+        "velocityErrorKmPerTDBDay": 2.4850338637848814
+      },
+      {
+        "body": "ganymede",
+        "julianDateTDB": 2449045.0,
+        "positionErrorKm": 0.08154196883847183,
+        "velocityErrorKmPerTDBDay": 0.10762815087202995
+      },
+      {
+        "body": "ganymede",
+        "julianDateTDB": 2451545.0,
+        "positionErrorKm": 0.035930384149624746,
+        "velocityErrorKmPerTDBDay": 0.5112279311937465
+      },
+      {
+        "body": "ganymede",
+        "julianDateTDB": 2454045.0,
+        "positionErrorKm": 0.07910061937531862,
+        "velocityErrorKmPerTDBDay": 0.1376916913111228
+      },
+      {
+        "body": "ganymede",
+        "julianDateTDB": 2456545.0,
+        "positionErrorKm": 0.04357703779077254,
+        "velocityErrorKmPerTDBDay": 0.3701250350241954
+      },
+      {
+        "body": "ganymede",
+        "julianDateTDB": 2459045.0,
+        "positionErrorKm": 0.03193610553443512,
+        "velocityErrorKmPerTDBDay": 0.25205970247936427
+      },
+      {
+        "body": "ganymede",
+        "julianDateTDB": 2461545.0,
+        "positionErrorKm": 0.10180186046927323,
+        "velocityErrorKmPerTDBDay": 0.4905239940448007
+      },
+      {
+        "body": "ganymede",
+        "julianDateTDB": 2464045.0,
+        "positionErrorKm": 0.024981078221271477,
+        "velocityErrorKmPerTDBDay": 0.342850515144802
+      },
+      {
+        "body": "ganymede",
+        "julianDateTDB": 2466545.0,
+        "positionErrorKm": 0.031335434406693646,
+        "velocityErrorKmPerTDBDay": 0.25536582419364573
+      },
+      {
+        "body": "ganymede",
+        "julianDateTDB": 2469045.0,
+        "positionErrorKm": 0.11176104256431987,
+        "velocityErrorKmPerTDBDay": 2.8992474083858166
+      },
+      {
+        "body": "ganymede",
+        "julianDateTDB": 2471545.0,
+        "positionErrorKm": 0.12733681832533056,
+        "velocityErrorKmPerTDBDay": 0.21347739818641243
+      },
+      {
+        "body": "ganymede",
+        "julianDateTDB": 2474045.0,
+        "positionErrorKm": 0.03436282754696022,
+        "velocityErrorKmPerTDBDay": 0.3774122183932373
+      },
+      {
+        "body": "ganymede",
+        "julianDateTDB": 2476545.0,
+        "positionErrorKm": 0.08229272213548874,
+        "velocityErrorKmPerTDBDay": 0.2873136430999196
+      },
+      {
+        "body": "ganymede",
+        "julianDateTDB": 2476546.0,
+        "positionErrorKm": 0.04045344682372546,
+        "velocityErrorKmPerTDBDay": 0.40412861453038135
+      },
+      {
+        "body": "callisto",
+        "julianDateTDB": 2415020.5,
+        "positionErrorKm": 0.02553593093083741,
+        "velocityErrorKmPerTDBDay": 0.28545610536066734
+      },
+      {
+        "body": "callisto",
+        "julianDateTDB": 2451544.5,
+        "positionErrorKm": 0.027105616327606382,
+        "velocityErrorKmPerTDBDay": 1.2371458862149782
+      },
+      {
+        "body": "callisto",
+        "julianDateTDB": 2488069.5,
+        "positionErrorKm": 0.018227967128167325,
+        "velocityErrorKmPerTDBDay": 0.21451167629231793
+      },
+      {
+        "body": "callisto",
+        "julianDateTDB": 2426544.0,
+        "positionErrorKm": 0.041616544556345864,
+        "velocityErrorKmPerTDBDay": 0.1620165714428104
+      },
+      {
+        "body": "callisto",
+        "julianDateTDB": 2426545.0,
+        "positionErrorKm": 0.038725545250885715,
+        "velocityErrorKmPerTDBDay": 0.10101478519689484
+      },
+      {
+        "body": "callisto",
+        "julianDateTDB": 2429045.0,
+        "positionErrorKm": 0.08627405906321343,
+        "velocityErrorKmPerTDBDay": 0.207258933538128
+      },
+      {
+        "body": "callisto",
+        "julianDateTDB": 2431545.0,
+        "positionErrorKm": 0.05090825009667187,
+        "velocityErrorKmPerTDBDay": 0.021401039078903113
+      },
+      {
+        "body": "callisto",
+        "julianDateTDB": 2434045.0,
+        "positionErrorKm": 0.04942590500835769,
+        "velocityErrorKmPerTDBDay": 0.14261751120261418
+      },
+      {
+        "body": "callisto",
+        "julianDateTDB": 2436545.0,
+        "positionErrorKm": 0.052353558865474145,
+        "velocityErrorKmPerTDBDay": 0.09957280742659556
+      },
+      {
+        "body": "callisto",
+        "julianDateTDB": 2439045.0,
+        "positionErrorKm": 0.04520954676477808,
+        "velocityErrorKmPerTDBDay": 0.09594175941457458
+      },
+      {
+        "body": "callisto",
+        "julianDateTDB": 2441545.0,
+        "positionErrorKm": 0.04532652188658327,
+        "velocityErrorKmPerTDBDay": 0.10265561708424904
+      },
+      {
+        "body": "callisto",
+        "julianDateTDB": 2444045.0,
+        "positionErrorKm": 0.05158346745463742,
+        "velocityErrorKmPerTDBDay": 0.1680610743753356
+      },
+      {
+        "body": "callisto",
+        "julianDateTDB": 2446545.0,
+        "positionErrorKm": 0.029959959480023658,
+        "velocityErrorKmPerTDBDay": 1.9613439417663963
+      },
+      {
+        "body": "callisto",
+        "julianDateTDB": 2449045.0,
+        "positionErrorKm": 0.06231848759591794,
+        "velocityErrorKmPerTDBDay": 0.26581122179864564
+      },
+      {
+        "body": "callisto",
+        "julianDateTDB": 2451545.0,
+        "positionErrorKm": 0.03022418359597746,
+        "velocityErrorKmPerTDBDay": 0.0822330047764182
+      },
+      {
+        "body": "callisto",
+        "julianDateTDB": 2454045.0,
+        "positionErrorKm": 0.04169606647267107,
+        "velocityErrorKmPerTDBDay": 0.16486581848936624
+      },
+      {
+        "body": "callisto",
+        "julianDateTDB": 2456545.0,
+        "positionErrorKm": 0.0212663697012972,
+        "velocityErrorKmPerTDBDay": 0.020278759990986363
+      },
+      {
+        "body": "callisto",
+        "julianDateTDB": 2459045.0,
+        "positionErrorKm": 0.06844486580620049,
+        "velocityErrorKmPerTDBDay": 0.17488541334189758
+      },
+      {
+        "body": "callisto",
+        "julianDateTDB": 2461545.0,
+        "positionErrorKm": 0.02893148429544629,
+        "velocityErrorKmPerTDBDay": 0.09257477084492421
+      },
+      {
+        "body": "callisto",
+        "julianDateTDB": 2464045.0,
+        "positionErrorKm": 0.019212606136036623,
+        "velocityErrorKmPerTDBDay": 0.1312897310618504
+      },
+      {
+        "body": "callisto",
+        "julianDateTDB": 2466545.0,
+        "positionErrorKm": 0.043407257052010415,
+        "velocityErrorKmPerTDBDay": 0.3265482866709689
+      },
+      {
+        "body": "callisto",
+        "julianDateTDB": 2469045.0,
+        "positionErrorKm": 0.023704219621142854,
+        "velocityErrorKmPerTDBDay": 1.0173355827757442
+      },
+      {
+        "body": "callisto",
+        "julianDateTDB": 2471545.0,
+        "positionErrorKm": 0.024083073052498398,
+        "velocityErrorKmPerTDBDay": 0.1852400040546801
+      },
+      {
+        "body": "callisto",
+        "julianDateTDB": 2474045.0,
+        "positionErrorKm": 0.03889841584331976,
+        "velocityErrorKmPerTDBDay": 0.12292908719523156
+      },
+      {
+        "body": "callisto",
+        "julianDateTDB": 2476545.0,
+        "positionErrorKm": 0.025163468364313744,
+        "velocityErrorKmPerTDBDay": 0.17946888017154947
+      },
+      {
+        "body": "callisto",
+        "julianDateTDB": 2476546.0,
+        "positionErrorKm": 0.028242747631872487,
+        "velocityErrorKmPerTDBDay": 0.09605457237025831
+      }
+    ],
+    "summary": {
+      "callisto": {
+        "count": 26,
+        "maximumPositionErrorJDTDB": 2429045.0,
+        "maximumPositionErrorKm": 0.08627405906321343,
+        "maximumVelocityErrorJDTDB": 2446545.0,
+        "maximumVelocityErrorKmPerTDBDay": 1.9613439417663963
+      },
+      "europa": {
+        "count": 26,
+        "maximumPositionErrorJDTDB": 2441545.0,
+        "maximumPositionErrorKm": 0.09304534631351644,
+        "maximumVelocityErrorJDTDB": 2469045.0,
+        "maximumVelocityErrorKmPerTDBDay": 4.559380672697238
+      },
+      "ganymede": {
+        "count": 26,
+        "maximumPositionErrorJDTDB": 2471545.0,
+        "maximumPositionErrorKm": 0.12733681832533056,
+        "maximumVelocityErrorJDTDB": 2451544.5,
+        "maximumVelocityErrorKmPerTDBDay": 3.566234088264383
+      },
+      "io": {
+        "count": 26,
+        "maximumPositionErrorJDTDB": 2476546.0,
+        "maximumPositionErrorKm": 0.11122003099325407,
+        "maximumVelocityErrorJDTDB": 2469045.0,
+        "maximumVelocityErrorKmPerTDBDay": 20.38643241539366
+      }
+    }
+  },
+  "schemaVersion": 1,
+  "source": {
+    "comment": {
+      "sha256": "3c851a4b5d1223e155320e7f63558ebcc81908c8f68fb1c7b43985a69663e08a",
+      "url": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/satellites/jup365.cmt"
+    },
+    "identity": [
+      1136581632,
+      null,
+      "Sun, 14 Mar 2021 15:29:22 GMT"
+    ],
+    "retrievedByteRangesSHA256": {
+      "0-1023": "b2427e56478c67f39b06f7da6e5e02a4c33c15a1469eff99f2b689b79d0eea38",
+      "100785184-103191583": "25bfcd47b01a33b1ba512dba56bbc80e9465b150bfb77e420339e05a294eebb1",
+      "103191584-103191615": "8ea7acf81f00c76af73c297571bda57c6c8b66940832e029edfc619a4f273c88",
+      "103191616-105288767": "aee038a49495c7e22ffbfe84ac8f5a946e7e62f97b7e6814b8bcbc79eabd51bc",
+      "105288768-107385919": "4e26aa773ddead8923a1bce9a4d684a2f8595b2a8ca5c9911ae50e62d23abcc0",
+      "107385920-109483071": "c2f2e620725df754fae196d0a65a2951ba11ae4a6ddbfc283ee760af6b5b0434",
+      "109483072-111580223": "8382c0c413c42c6cf89fa71509d5f986f92b4d0de3ab9ce99f1ffe252bbff753",
+      "1095678328-1098955127": "1cebf800362ff95bc5165c0873a5881da6037a444109acc2cbc7685f5a6100c1",
+      "1098955128-1102231927": "62470cb15b1d1df3150ce2a70dbe341e52a0b489c82c29b7ea77f933e4a92ad4",
+      "1102231928-1105508727": "93fd1882387d48ff266cd5f1b42a9e591096d0b37ac272e0a06fcea5a96bc0b3",
+      "1105508728-1108785527": "cab29e3a44501ac4cbb0cbc9c4a75c76a4f6bdc8fa26d6591245e87de051729a",
+      "1108785528-1108858727": "a1ac0a7d7fa7a191d2b34efd87fd13f95a750bc3192e281b1a12845a16a83b70",
+      "1108858728-1108858759": "3d39cbb5e520c66e10b11b8925acfabf7c3fe7c12bdbc496475aabd4383ad562",
+      "111580224-113677375": "020bb3d9b38e57da7aa80c353861ed108fb9f73c0bd87cda12997f08f86d2168",
+      "113677376-115774527": "02b7209b69c4a3d26bc64137b81594c59f7ab38b79f3c46e52f0009c7f78c9f2",
+      "115774528-117871679": "06b742ae2e58ecad92380e3608ddb0e6b8edd5f7e7e0939d5c770494b32e0a13",
+      "117871680-119968831": "8f211ed397d8b9e2f38c7c7ceb53cf04bec01e1d5115361b00970513376b921a",
+      "119968832-122065983": "6363e3edeeadf8200b5f8710a4bded2809e161c29d2e09bdd5f1594735874167",
+      "122065984-124163135": "73ed82cc917cfd6e6f188aa312906550b59cbab0fdf76cf8061dddd19950b39a",
+      "124163136-126260287": "819afbd0b0d9ddf9b05c040dd796e498954473fbda71c50375201f4f1d935bca",
+      "126260288-128357439": "4b8cc3f6dbaadfe9c1dab630479bbb1b023ba68b82bf921a4e0296bd7d1849c9",
+      "128357440-130454591": "9dc247efda076dc95c8048b1b358e8b0c1eb6b1bb6f5c9c01f2c6b5585705131",
+      "130454592-132551743": "a3b03e22a4b3053c05ddd3033e40d8feb8d3a1d84a43b3ad86b8855a0f0a9a31",
+      "13181952-16458751": "0b275697f2926dab73f0785f1ce61fec64dddca1f736e4b7bf8dd47092af716f",
+      "132551744-134648895": "b5ded2ea9827912f9b9ad420ce938761472d1213f6a9e546389c331643f88b72",
+      "134648896-136188991": "cc2a4d3b16be4ad05c2e2a06c0f303535969a5d6e35a8665e81274927e316127",
+      "136188992-136189023": "5a83d8f3710604053afe29ff933f5eb6f222c9f66186c5d9220f085f8eda4a00",
+      "136189024-138482783": "ded16387930f5bdd1812ec785d7810d6afa404036a9f825ea113666d0519053e",
+      "138482784-140776543": "b0732cfeba46857eb3d7d5a20d693155beed9031ab4b9cdd70c4cc4a613d7ac6",
+      "140776544-143070303": "a44703b58e51b617d7bf857d66c74ef0e741762a5a008b8a50a47fd8182378a7",
+      "143070304-145364063": "61ca57a5752993fd707d25d9f2af7df660f3b07e46df620bb4ad27a3adf4ba5a",
+      "145364064-147657823": "202395e0d47db2d809cc07d14a49ee43e9baf6b8b8e1e4097d8b841e90e1e8dc",
+      "147657824-149951583": "b84ebc43d534b33db38a0dad42c25dfd40ccfbdf3c842678d03306440b78a888",
+      "149951584-152245343": "2bedd5137e3428723f760a67af32ecfd44120848dcb5155a01fc137f66dbe300",
+      "152245344-154234463": "d86caa5108109308294a64ed3460f84ca25ab02e4fce50bfcb7f16ffa40c4ee3",
+      "154234464-154234495": "2513422d89ea109cf6b058c4afd9cfc0e323db8d48ba353ea6f0fdf0e3f144ea",
+      "16458752-19735551": "8b34b41cf182e33978aebb866b64a497d68994f3b4aace59c37569e7eb52f3cd",
+      "19735552-23012351": "65f2878220220e38945287bf14ab683071c8cfa5ffc007595c8e6130aa9d3b5c",
+      "23012352-26289151": "133928e59cf26530f508d1709640b99f683b2e972db8c66bac53d6175c3e70d7",
+      "26289152-29565951": "5aa6ed791e07b86acbe9b34b3ebe3e29b97592e3f17f61c422c70f40eb9821f8",
+      "29565952-32842751": "9e66c2b6d54bac66d7c7e7e363697e183f2974d6464795ea663d15c46c09c42e",
+      "32842752-36119551": "e724089483b01db926041dfe5a1ce556974255cbfd3615604c0f8cc4d4729e46",
+      "3351552-6628351": "2edb2355cabd37247013bc24e8e544142a73be08e78105456d5cb5b48cd8c1a7",
+      "36119552-39396351": "b8415e7b24d1ec92ec2fa3368296fcb73dd6320244df86f8356a858fc6358f2e",
+      "39396352-42673151": "e55f6b6721f7deda37dd328fdf71f4cd4e25861e5524d741b4cae14f4a5d857b",
+      "42673152-45949951": "59f0adc698d4e7194fdc88f0bc1bb10c5d390d307507b5d5408274fab820f949",
+      "45949952-49226751": "3b02c309b624c7bb35942e28329d0b065e9a7ec286be6d24e388c2dfd4743dfc",
+      "49226752-51633151": "84044db8e19ba7b906b55f8179ac581967f910241069267bc7fa7a0558fdea76",
+      "51633152-51633183": "8ea7acf81f00c76af73c297571bda57c6c8b66940832e029edfc619a4f273c88",
+      "51633184-54909983": "35bb5925d506bb87bb51d2799f051aeff28db357f73da0dc0f32f2916a29571f",
+      "54909984-58186783": "8113c430baa3c6f86fa34316113167dd3c4c14a6fabcbd88826fd0a43a4c5b2d",
+      "58186784-61463583": "c22a6a0a932e300f3cb91b0cff22ab81db9ae7a0f4ac2764d11493fb62fac0f5",
+      "61463584-64740383": "c65f564734aca23908775e3660f45a6c7c95641604fac19ccf1ea53c1917bc41",
+      "64740384-68017183": "b84c68fc39c89d12f23846c912cc9922ecd2be2c3624ad28bba606e7d171db26",
+      "6628352-9905151": "a6e6a7a464d8718f56d4fc2a86afc56709f61a7119d97e24a5f888190f958d50",
+      "68017184-71293983": "2f1d5d662f5eaa1b03e3bd1e364ccba559b312618526cf76c8547634762c2f1f",
+      "707971840-711248639": "c7806ae543d84317b44f31564281827a12e6d833c339a3ff6fe6a0e0e9dea32a",
+      "711248640-714525439": "79bd2ff5e0716fbf1ed413c37316657d58b15ac2ce0bd1848f52eaa1fead8921",
+      "71293984-74570783": "bb42a2ab9a90aed088404611caa11ac693c1820a6545054940192eacc8016249",
+      "714525440-717802239": "189c125f7649c2aa935bcacc1737ea6ef0f3c628d2a78ade2299aa9d9567f8f8",
+      "717802240-721079039": "8566056e6044d2a188e552c804b3304738902721a8242b9fec0030cfaf4affa9",
+      "721079040-724355839": "2e322b18e58e0b6a4b3d7a3a0cf1bca3b8f630fd8a60e29d37458cfab770442a",
+      "724355840-727632639": "6acf49c44bfc11131068746b50c2039129bd984bd6003e423600b13d559f3ac4",
+      "72704-73727": "ae368f7e8b1002cc9dae1337aee84990577855db1556677b68a05df0755b10a2",
+      "727632640-730909439": "303b51a1696239ac12b5284599ce896900094afebc80a4b2fc606aeae3d4a91b",
+      "730909440-733751039": "82571d8a1a4a2017a8dd93e74f4276ae1f61b5b9e71cc5403eeb95063a5390aa",
+      "733751040-733751071": "26d5046c4497f095f6388c6cd85eb06458e59f51ab8907510e985e19fe0e7647",
+      "733751072-737027871": "6e948445ba72f792f8aa589e8f3f7d07b57e52650393c0a64ca51b2eb0551ea8",
+      "737027872-740304671": "2fb63d4e4bd00030dc56be28f18d24c9e4c0d9630bab1536b7dbc58aa3d17988",
+      "740304672-743581471": "8902ecde9c683996674826e16d867bd5821459b9a507080ff114ec3cd289f079",
+      "743581472-746858271": "c0da8409cf5d7d2c23ea399c7ff687641468a165002cec44e2cc862935d9c604",
+      "74570784-77847583": "f5bb869946df8bd969bc7437413d6b256bac09c5763b66176c3d0e294e5c7b9e",
+      "746858272-750135071": "fef54bf7f1284903e72913d1c9ce93ec1882b9f274909b16ec106f855d3eae4a",
+      "74752-3351551": "524c5a57cc11c5f8baed7bcdd70054489e66440d3bd5b0649b830e26c2b24544",
+      "750135072-753411871": "45a981c38fc37200998dc0b09799e74790767250a8315270e5f5dfd5fae4211c",
+      "753411872-756688671": "55aabdfba8ab58d4316433887644581d8f847ce014d39f382008b640654b18e8",
+      "756688672-759965471": "8ba30b0ce2f6ec71cad2a1ebad5542db8b8075e2757f12b78c421fbfe770f0cc",
+      "759965472-760111471": "3864d87577bbc84b5a8ebb565b3f50af9647b922407c2cff2c8a16672b08f571",
+      "760111472-760111503": "ca98c8ed961065de6b10de43e18ad23d4a8d81d5e0e2c42d3e09de17629a548b",
+      "760111504-763388303": "693df51d1f737c75b3f2660e86b30610feb2104e23dba332ec269f450e8191bd",
+      "763388304-766665103": "a9c10c7d9edab3637ebf6dde2f0ee0ab8b0cd4b6c4645766a12a66cdd08066d7",
+      "766665104-769941903": "fdf56dc47c0bc01fd416da20194539f5fa96f3e4ee52be1c1273b3e29f4f1d19",
+      "769941904-773218703": "338cf4bc0aa8f8529374834a30313ebd7f58bf480d268c813494b29585e9bba1",
+      "773218704-776495503": "62b610c6f6a3879abcd327c000227a72856de364218ec20511c5b5415563de0c",
+      "776495504-779772303": "7ec39ac4b883ac3179bc2057b41229cf63699f86f38900bdf8c040e092279176",
+      "77847584-81124383": "e6465a5eb50d9758cae65e2a2477dd613c0a25064aa69d4661b3879c64c7f37a",
+      "779772304-783049103": "86ec4a9d66b1eefc7ccfd39c7b7a87b253765a7953cce13d3ad6ab793fcf70ab",
+      "783049104-786325903": "4556a673dbcf45f672b11bd88dedde51052c9f4c2a7cf2f16b29a3d3461e2ac3",
+      "786325904-786471903": "94befeb68fce73ce852562f3e9683ed7079bb9235957ccdca9589098b862697e",
+      "786471904-786471935": "ca98c8ed961065de6b10de43e18ad23d4a8d81d5e0e2c42d3e09de17629a548b",
+      "786471936-788569087": "b572eb3875a480f3bfc17f2d3c6a8cf5555668607ad5191a22078cbcb037b4ca",
+      "788569088-790666239": "189cc533e1f67dd68e8f0658369a70343ae3b10af429db7d5795f16c57c396a8",
+      "790666240-792763391": "c664850abd407fb7a51aa81b51f439a1b4446a5d306a0eaf11707f0f2a80797b",
+      "792763392-794860543": "a30e4f73c44fefddfc4c58fc0ac4eebbc9e38ada753e3bd86e2daca004dacb80",
+      "794860544-796957695": "8bae95742a87dfc74e7a75283a80627c767337ea381b6010dc7baf8115511813",
+      "796957696-799054847": "fe55d5842809417ac5cf5aae7c195f91b8dad548556c1986b1b5ee71a4ed607a",
+      "799054848-801151999": "888ac9f692cbd75d42b16aede6c3a31c2278ead3ba8b6825ba275b0b30b0bdf4",
+      "801152000-803249151": "c4d113cd552628d6bf508b5464453171851647c2cdfaace35ee1f310a14ad7af",
+      "803249152-803342591": "3356d8f5c0d7ff6851698158b48e7086ef8be53651ee40fbac19e33cd2083809",
+      "803342592-803342623": "d1c55528a0e96a7a5730e7cb4b56ab08fee912343ec5ae530bdec17e1ab5a7a7",
+      "803342624-805636383": "3206251e1be0f2ac77a19b76680272754369b195f00ee66fbd62024f7ded2cd7",
+      "805636384-807930143": "c2eb67c03c737285fbc19bc1a106df9bbde518a5f3b3fa899e5244425f18f683",
+      "807930144-810223903": "82972d6a9178f997e596fb13d8a623f484aa2d1066cf93c81de0ea25028e080a",
+      "810223904-812517663": "975424f6c7b4466c5cb8e339f26682f6c01177fd113604aef3c7b1ac77d437a2",
+      "81124384-84401183": "69eaac6ad81782b633246577bbe242ab829cd0ec814ea5ed838554b91efcc777",
+      "812517664-812568903": "581e28a8365db7a1e108cbe2c960ce856af8504bf53007eabd6ce3199fe9e2ae",
+      "812568904-812568935": "3d1daa820142e44177920f64475988437106402afca22a13dc163b6eae1f6e3b",
+      "84401184-87677983": "e6f1cf3b457341c7e57c29d9a0b933973369b0ded5c826eb540caed5119ca3b9",
+      "87677984-90954783": "dc05a7e70d109954f41b52e9e034292a6a2b5fb9296920dd5a99440b96539d0a",
+      "90954784-94231583": "c5eb9eb6a06974de0829190d213bd9ea9d9125895871515dfc97dc6f79b6531c",
+      "94231584-97508383": "a3b7773ba046c3d8d0f311e5a7952cba99099cd7ea967da07e2cb194e202e293",
+      "97508384-100785183": "ff1f1b68fe8d6ee268578f0108965fe8c48fb28ba0c192b36dfa3e2255ae2df8",
+      "9905152-13181951": "c68b1c112f35cc975c82611285b70fa67f8e440ab0df16c806d0767c719a6125"
+    },
+    "url": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/satellites/jup365.bsp"
+  },
+  "sourceSeamJDTDB": 2450464.5
+}
