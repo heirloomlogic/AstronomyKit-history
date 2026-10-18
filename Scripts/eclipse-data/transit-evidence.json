@@ -1,7 +1,7 @@
 {
   "buildSeconds": {
-    "debug": 105.44,
-    "release": 1.27
+    "debug": 33.41,
+    "release": 147.44
   },
   "limitations": "Sampled independent UT contacts/angular minima and published next identities, not full-domain accuracy. Physical spheres use NASA fact-sheet mean radii; these are not attributed to the Meeus catalog. Apparent vectors retain engine light-time/aberration conventions. OH2001 December penumbral contacts remain outside 120 s; matching Danjon diagrams are separately qualified. Global G0/1986 and local peak limitations remain in their evidence owners. The public facade runs on these searches since the #96 cutover; host costs are not portable gates.",
   "published": [
@@ -98,21 +98,21 @@
       "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/venusfact.html"
     }
   },
-  "releaseExecutableBytes": 577339520,
+  "releaseExecutableBytes": 577440208,
   "releaseObjectBytes": {
-    "EngineTransitEvents.o": 56672
+    "EngineTransitEvents.o": 56688
   },
   "resources": {
     "checksum": 537515.4329263234,
-    "coldSeconds": 0.04494798183441162,
+    "coldSeconds": 0.033174991607666016,
     "host": "Version 27.0.1 (Build 26A434)",
     "nextCount": 19,
-    "nextSeconds": 1.7478379011154175,
-    "peakAfterColdBytes": 97058816,
-    "peakAfterWorkloadBytes": 134070272,
-    "peakBeforeBytes": 59539456
+    "nextSeconds": 1.162442922592163,
+    "peakAfterColdBytes": 112263168,
+    "peakAfterWorkloadBytes": 119177216,
+    "peakBeforeBytes": 111968256
   },
-  "runtimeBaseRevision": "e68b00977c71256b1e28a49da5a7525feb6fe71d",
+  "runtimeBaseRevision": "956c0be5d277b8d7a00f235a8a0131b1cbcf86c2",
   "schemaVersion": 1,
   "sequences": {
     "global": [
@@ -238,10 +238,10 @@
   "sourceHashes": {
     "Scripts/capture-global-solar.py": "60e3cd29f2ec6efb8bc98c7df745c792c3d61c34676ae20ea99d3ee10ac91f1b",
     "Scripts/capture-transit-references.py": "353dbde0ada3434cb96205cffc0aeda8fff46142b876c99015246c805daee224",
-    "Scripts/eclipse-data/transit-captures.json": "5b2a2b823cbc955d965b16188c6dd8a85b074aa32297e3b538fcd6151705aaea",
+    "Scripts/eclipse-data/transit-captures.json": "c30270aafd45cd3f79de4b9e2cb555a9174c38c880f0e1faa6d85ec9c07351ea",
     "Scripts/eclipse-data/transit-references.json": "cc822496e688ba73e8d9e83d1aaab071d436bebf24c964bb4ca4537218d543bb",
-    "Scripts/evidence-dependencies.json": "ace514074db1fa64facc18bb0032f1b8ed1c29a56e42b39a9c43d8057c70858d",
-    "Scripts/evidence_dependencies.py": "29cdaa6c7b84e654ec156619e0dbcd90ddfd31b9ad1ea82c8cc67de16e48aa96",
+    "Scripts/evidence-dependencies.json": "32fda9a7efd5972ab55f7cf30eb3b1861969eb2eadaf7ef266a4d176cfe3d25c",
+    "Scripts/evidence_dependencies.py": "c34600670139aa58672ff755ed4c6edb52db405db2f73d2805beb6ca5cfbb76d",
     "Scripts/record-eclipse-event-evidence.py": "3bb05c08c84169ebda915352a959fa4d6949cdabbe69fab639555f5625d0185a",
     "Scripts/record-transit-evidence.py": "b265d18aeba84276304c80c131b95b61085f37ee6ed4ad973977869ed35413e1",
     "Scripts/reference-data/build-fixtures.py": "624f89695e2f0afffe8f53f73bfb7de24a69c06386a1eb80d49b911da6b17d50",
@@ -262,7 +262,7 @@
     "Scripts/reference-data/sources/transit/venusfact.html": "473c61da0bf7188764ec8ae5b12c0fdc9f922bccd9e3f6b47c885fef0723541c",
     "Scripts/reference-data/sources/transit/venusfact.html.query.json": "7da22e95fade9ab13a649655a650aafecd7a8bceaa762f56b38a47999322ea30",
     "Scripts/reference-data/sources/venus.html": "c06f2f10efc8554328bb51ed1725d13f1ec53a5a82a0c25089dcf1104994ca7f",
-    "Scripts/test_evidence_dependencies.py": "cdb3783a1d3b0d140956f495e2a4a5cebc151b90dcf7854fb7c792b434b431b4",
+    "Scripts/test_evidence_dependencies.py": "bce85f416426b4f3ce52b50c5baa80a8f401236c095d56d0192acaeef6cc3406",
     "Scripts/test_transit_evidence.py": "7e652ebcd6600d3160da9514185e08acfd472261314ce401f9c45ea533390fd5",
     "Sources/AstronomyKit/AstronomyError.swift": "7122525f8f8796baaef9e6a3baff8c2332d0a0f817927af6c98d83b4a81c7746",
     "Sources/AstronomyKit/AstronomyKit.swift": "c6dad36ea132847c27a822f1c50f04eacf5251d3f28e123a436e820a8cd761dd",
@@ -291,6 +291,8 @@
     "Sources/AstronomyKit/Engine/Foundation/EngineTime.swift": "f394027d5f0622e25d059a9df49bb1ee1c5df7f53663b6b394430d45d0b57763",
     "Sources/AstronomyKit/Engine/Foundation/EngineVector.swift": "20970e5598737d1cafc949d47bed32b7351fc98c6c95b8f8c01fd736dd726e81",
     "Sources/AstronomyKit/Engine/Foundation/Generated/DeltaTObservedTable.swift": "0e0894da3b5558619d768fabd6964075764d21808dc23d288377561945fa6d31",
+    "Sources/AstronomyKit/Engine/Gravity/EnginePlutoDE441.swift": "17c428ed2ded2e1d392fdc37d0b726122d42293fa0de8c9816db6c3ed8372122",
+    "Sources/AstronomyKit/Engine/Gravity/Generated/DE441/PlutoDE441SunData.swift": "b8b0fd48631ad87985be734207575b63e41705ec62a3c6488c3a8be3242ad370",
     "Sources/AstronomyKit/Engine/Moon/EngineFrameBias.swift": "96e32a064cb907b394223c966eaee27a104a5309d0fdbaaaa1cfc5e25b8d66a3",
     "Sources/AstronomyKit/Engine/Moon/EngineLibration.swift": "4c7be92f565aaa2e254bdc60b5bb4ad05148f8476e23b98f348eac9b5c23a468",
     "Sources/AstronomyKit/Engine/Moon/EngineMoon.swift": "82db60c3da117d53782e65fa898d75bd28ee9702841186c14ea86534ff4e1b71",

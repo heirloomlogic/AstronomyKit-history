@@ -1278,12 +1278,15 @@
   "schemaVersion": 1,
   "sourceSHA256": {
     "Scripts/capture-pluto-observers.py": "91ed773e834e564fc7d2bd267c9f6f119aebacace32bcebd568984fa26202712",
-    "Scripts/evidence-dependencies.json": "ace514074db1fa64facc18bb0032f1b8ed1c29a56e42b39a9c43d8057c70858d",
-    "Scripts/evidence_dependencies.py": "29cdaa6c7b84e654ec156619e0dbcd90ddfd31b9ad1ea82c8cc67de16e48aa96",
+    "Scripts/evidence-dependencies.json": "32fda9a7efd5972ab55f7cf30eb3b1861969eb2eadaf7ef266a4d176cfe3d25c",
+    "Scripts/evidence_dependencies.py": "c34600670139aa58672ff755ed4c6edb52db405db2f73d2805beb6ca5cfbb76d",
     "Scripts/pluto-data/observer-fixtures.json": "1d378416ddeabdaec6f157b4eef6bcf2122d00808d4997e9c67ff83ec29a25be",
     "Scripts/reference-data/build-fixtures.py": "624f89695e2f0afffe8f53f73bfb7de24a69c06386a1eb80d49b911da6b17d50",
     "Scripts/test_capture_pluto_observers.py": "ae2f59cdbeae9e87406aaf603cb5af59d62e17f4241e6adc3aa9367dc78d3324",
-    "Scripts/test_evidence_dependencies.py": "cdb3783a1d3b0d140956f495e2a4a5cebc151b90dcf7854fb7c792b434b431b4",
+    "Scripts/test_evidence_dependencies.py": "bce85f416426b4f3ce52b50c5baa80a8f401236c095d56d0192acaeef6cc3406",
+    "Sources/AstronomyKit/AstronomyError.swift": "7122525f8f8796baaef9e6a3baff8c2332d0a0f817927af6c98d83b4a81c7746",
+    "Sources/AstronomyKit/CelestialBody.swift": "7c94d629be89ce9c7e2d2a4de616e3f526fd2d0034d8750e60e8d400f159aa61",
+    "Sources/AstronomyKit/Coordinates.swift": "9b1ae70052f416252af118b50cc61bf2c900918cd76ccea021017c28f793d60a",
     "Sources/AstronomyKit/Engine/Foundation/Engine.swift": "57d6d1ae8dbdacadc23daeab092445b9f27acf5baf021b900c21c5e59a09b38c",
     "Sources/AstronomyKit/Engine/Foundation/EngineCache.swift": "823b7d4dae2511753d2b324385c447b35ebec849b14c76b3ebab466c1fb4bebb",
     "Sources/AstronomyKit/Engine/Foundation/EngineCalendar.swift": "b6812411d8075141b0faf28a012a1364fe09c5664543558bd42adda69bddcc10",
@@ -1311,6 +1314,7 @@
     "Sources/AstronomyKit/Engine/Gravity/Generated/PlutoStateTable.swift": "23daa2037a4dd5add677903fd3e08549c2997979573fc1ba3b4caabb8d81d4e9",
     "Sources/AstronomyKit/Engine/Gravity/Generated/PlutoSunCoefficients.swift": "6a31ab43f325c9d84c265c4f32c702c2754a8de1d2a858850f160c4bb74e159b",
     "Sources/AstronomyKit/Engine/Moon/EngineFrameBias.swift": "96e32a064cb907b394223c966eaee27a104a5309d0fdbaaaa1cfc5e25b8d66a3",
+    "Sources/AstronomyKit/Engine/Moon/EngineMoonEphemeris.swift": "cef342276a14daf12d2c15e6cd500b573926ee556fff705c3cf16f375b22ea87",
     "Sources/AstronomyKit/Engine/Moon/EngineTDB.swift": "5c77325fb41d76fd9c6e23f08f2ba580924166e0fa2681913a815c1f32b6ad8e",
     "Sources/AstronomyKit/Engine/Moon/Generated/TDBTerms.swift": "e117834cde595413631dd655605ae97a0fd85b20829476472f1eacba1fdb2ef2",
     "Sources/AstronomyKit/Engine/Orientation/EngineAtmosphere.swift": "597cf1e08dc7e8de30c21983549f3ea3fe0467a823f7bdfe87abb0003532b8bf",
@@ -1366,7 +1370,12 @@
     "Sources/AstronomyKit/Engine/Positions/EngineGeocentric.swift": "e76fe8ffe7a3f8e4605c8e32c808a4a0d6e3dc733292f25a0e5143a08694acc7",
     "Sources/AstronomyKit/Engine/Positions/EngineHeliocentric.swift": "900cf42846d48f1582a94996365a0228a72ba9b38f56e2a0d71f04bf8a722769",
     "Sources/AstronomyKit/Engine/Positions/EngineIllumination.swift": "7caf847bc8937b91cc57dcbc9e191ee05a67143ce83af837678679acced8b6bf",
-    "Tests/AstronomyKitTests/Engine/Positions/EnginePlutoConsumerQualificationTests.swift": "f461eb17c3b2da97999100edcdb2c44b55f4c017fa052ca3b70ef548250c7fe7"
+    "Sources/AstronomyKit/NativeCoordinateValues.swift": "b5ed3d4e3be8879941591634d377396a0c77ec2ae8824224505021466c908cbd",
+    "Sources/AstronomyKit/Observer.swift": "5bd1ff1f613cec548aabdf724cd3167186568c84583b6eb350112c8891946677",
+    "Sources/AstronomyKit/Position.swift": "4995b76ee2204daf0a4b3452b633edbf88865373c9f2d118edea42a0f130e4bd",
+    "Sources/AstronomyKit/Time.swift": "3d38636da7ca64c91633896cc9494b03383055a5db951539c849c6c71fa449dd",
+    "Tests/AstronomyKitTests/Engine/Positions/EnginePlutoConsumerQualificationTests.swift": "f461eb17c3b2da97999100edcdb2c44b55f4c017fa052ca3b70ef548250c7fe7",
+    "Tests/AstronomyKitTests/JPLValidationTests.swift": "e29ad7242369262ce9269eb220c15e65b9c099a29cf2d7b4935493a488172cfa"
   },
   "toleranceArcminutes": 1
 }

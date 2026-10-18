@@ -41,14 +41,14 @@
     "sourcePrintedMagnitude": 1.0
   },
   "buildSeconds": {
-    "debug": 105.44,
-    "release": 1.27
+    "debug": 33.41,
+    "release": 147.44
   },
   "limitations": "Sampled native geometry and published events, which the public facade uses since the #96 cutover. RP1301 direct Table 4 areas pass conditional rounding intervals. G0 is a mixed-k Besselian magnitude, so its square is retained only as a diagnostic beside physical single-radius area. No radius was fitted. Host costs are observations, not portable gates.",
-  "releaseExecutableBytes": 577339520,
+  "releaseExecutableBytes": 577440208,
   "releaseObjectBytes": {
-    "EngineGeoidIntersection.o": 31016,
-    "EngineGlobalSolarEvents.o": 92504
+    "EngineGeoidIntersection.o": 31032,
+    "EngineGlobalSolarEvents.o": 92528
   },
   "residuals": [
     {
@@ -89,27 +89,27 @@
   ],
   "resources": {
     "checksum": -2866939.3745380742,
-    "coldSeconds": 0.08246994018554688,
+    "coldSeconds": 0.06815195083618164,
     "host": "Version 27.0.1 (Build 26A434)",
     "nextCount": 99,
-    "nextSeconds": 7.2048609256744385,
-    "peakAfterColdBytes": 123994112,
-    "peakAfterWorkloadBytes": 125976576,
-    "peakBeforeBytes": 49086464
+    "nextSeconds": 4.686558961868286,
+    "peakAfterColdBytes": 105480192,
+    "peakAfterWorkloadBytes": 107495424,
+    "peakBeforeBytes": 48496640
   },
-  "runtimeBaseRevision": "e68b00977c71256b1e28a49da5a7525feb6fe71d",
+  "runtimeBaseRevision": "956c0be5d277b8d7a00f235a8a0131b1cbcf86c2",
   "schemaVersion": 1,
   "sourceHashes": {
     "Scripts/assess-global-solar-radii.py": "a23afc2a186c09466ef2db23ad8a14a55d84578fe90219d1f931bb0d0121d639",
     "Scripts/assess-rp1301-g0.py": "36dad831724e3c611793009c382c333eb80bdc8f625b16a65d9b92638be60882",
     "Scripts/capture-global-solar.py": "60e3cd29f2ec6efb8bc98c7df745c792c3d61c34676ae20ea99d3ee10ac91f1b",
-    "Scripts/eclipse-data/global-captures.json": "2cab416e68e91fd708d5c7bed95620458ffe72c79d50d1618783683f1990fef2",
+    "Scripts/eclipse-data/global-captures.json": "33675f8b108564f3891dc7ab124ab73c093dbc46db80163d8938028f20a93581",
     "Scripts/eclipse-data/global-references.json": "cff3956935437c3b24bcb17695e15bc743520f8e31f7f4c7cf6ee7a017acb207",
     "Scripts/eclipse-data/radius-comparison.json": "2dec7be5573f1630413fa2ca51a0efc7111af978517f64aa30f00fca062d7f1d",
     "Scripts/eclipse-data/radius-vectors.json": "7bbb9a9b3497f9a47b7f5852dc6e27564725622841ee46f48fe35779724948d5",
     "Scripts/eclipse-data/rp1301-g0-decomposition.json": "3af066b72bcdaa203788901ebf336f8ba356be6fedcacabd9f8f7fe604d539ab",
-    "Scripts/evidence-dependencies.json": "ace514074db1fa64facc18bb0032f1b8ed1c29a56e42b39a9c43d8057c70858d",
-    "Scripts/evidence_dependencies.py": "29cdaa6c7b84e654ec156619e0dbcd90ddfd31b9ad1ea82c8cc67de16e48aa96",
+    "Scripts/evidence-dependencies.json": "32fda9a7efd5972ab55f7cf30eb3b1861969eb2eadaf7ef266a4d176cfe3d25c",
+    "Scripts/evidence_dependencies.py": "c34600670139aa58672ff755ed4c6edb52db405db2f73d2805beb6ca5cfbb76d",
     "Scripts/global-solar-radius-probe.swift": "4148e4c7451b832c3e3bb4f782b5088835694c48bcadf5e68fb8a53c8ce19329",
     "Scripts/record-eclipse-event-evidence.py": "3bb05c08c84169ebda915352a959fa4d6949cdabbe69fab639555f5625d0185a",
     "Scripts/record-global-solar-evidence.py": "28c58079ebba470ea1ec9d19b3bd816838dac3b0592cee389e4a88b0f87292ef",
@@ -128,7 +128,7 @@
     "Scripts/reference-data/sources/global-solar/rp1301-table4.html": "0b6c2c938b181a85c457bafd7bd442115ef93a620021589f76a8f12a94ae9e28",
     "Scripts/reference-data/sources/global-solar/rp1301-table4.html.query.json": "592a46292903b96ec9dfc8581fa28ec02cb33de8e643f4cda5aca9f9d2312bac",
     "Scripts/reference-data/sources/solar_2001.html": "820b7a9e4a04881ff212ee59603f03fb3ebdcb72e340414494b1fb84271efc9d",
-    "Scripts/test_evidence_dependencies.py": "cdb3783a1d3b0d140956f495e2a4a5cebc151b90dcf7854fb7c792b434b431b4",
+    "Scripts/test_evidence_dependencies.py": "bce85f416426b4f3ce52b50c5baa80a8f401236c095d56d0192acaeef6cc3406",
     "Scripts/test_global_solar.py": "6249197c774d503b19b09b98558d495eba961d70a5d86d265d7e4d2ce0f8a9c5",
     "Sources/AstronomyKit/AstronomyError.swift": "7122525f8f8796baaef9e6a3baff8c2332d0a0f817927af6c98d83b4a81c7746",
     "Sources/AstronomyKit/CelestialBody.swift": "7c94d629be89ce9c7e2d2a4de616e3f526fd2d0034d8750e60e8d400f159aa61",
@@ -155,6 +155,8 @@
     "Sources/AstronomyKit/Engine/Foundation/EngineTime.swift": "f394027d5f0622e25d059a9df49bb1ee1c5df7f53663b6b394430d45d0b57763",
     "Sources/AstronomyKit/Engine/Foundation/EngineVector.swift": "20970e5598737d1cafc949d47bed32b7351fc98c6c95b8f8c01fd736dd726e81",
     "Sources/AstronomyKit/Engine/Foundation/Generated/DeltaTObservedTable.swift": "0e0894da3b5558619d768fabd6964075764d21808dc23d288377561945fa6d31",
+    "Sources/AstronomyKit/Engine/Gravity/EnginePlutoDE441.swift": "17c428ed2ded2e1d392fdc37d0b726122d42293fa0de8c9816db6c3ed8372122",
+    "Sources/AstronomyKit/Engine/Gravity/Generated/DE441/PlutoDE441SunData.swift": "b8b0fd48631ad87985be734207575b63e41705ec62a3c6488c3a8be3242ad370",
     "Sources/AstronomyKit/Engine/Moon/EngineFrameBias.swift": "96e32a064cb907b394223c966eaee27a104a5309d0fdbaaaa1cfc5e25b8d66a3",
     "Sources/AstronomyKit/Engine/Moon/EngineLibration.swift": "4c7be92f565aaa2e254bdc60b5bb4ad05148f8476e23b98f348eac9b5c23a468",
     "Sources/AstronomyKit/Engine/Moon/EngineMoon.swift": "82db60c3da117d53782e65fa898d75bd28ee9702841186c14ea86534ff4e1b71",

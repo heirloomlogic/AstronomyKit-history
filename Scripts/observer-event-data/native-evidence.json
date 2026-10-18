@@ -7,8 +7,8 @@
     "sha256": "f6a2b408dcb32a3ad1e8f57dcc16767f055d3f4bd93c675728a4a351bc9c5d6e"
   },
   "buildSeconds": {
-    "debug": 105.44,
-    "release": 1.27
+    "debug": 1.08,
+    "release": 147.44
   },
   "criteria": "All 5909 archived USNO rows retain their source-specific allowance, including 70.8 TT seconds at line 2923. Sixteen sampled altitude/hour-angle points retain one arcminute. Three printed USNO semidiameters discriminate the optical convention at 0.000001 degree; this is not an asserted physical solar-radius accuracy.",
   "debug": {
@@ -38,10 +38,10 @@
   "debugUSNOProvenance": {
     "kind": "fresh",
     "rowsSHA256": "5fad9c1291c0dc8f85757d4c4a9288a28cfdcc7cfbaa5b83467d2338e102eb75",
-    "runtimeRevision": "e68b00977c71256b1e28a49da5a7525feb6fe71d"
+    "runtimeRevision": "956c0be5d277b8d7a00f235a8a0131b1cbcf86c2"
   },
   "limitations": "USNO navigation output supports the chosen optical limb; the rise/set service implementation is unavailable. Horizon refraction remains a conventional atmosphere, not a prediction of weather. The public observer APIs run on these searches since the #96 cutover. Planetary apsis qualification is outside this observer artifact. Resource values are host observations, not portable ceilings.",
-  "observerObjectBytes": 99576,
+  "observerObjectBytes": 99592,
   "release": {
     "maximumAltitudeErrorArcminutes": 0.004687803544172198,
     "maximumHourAngleErrorArcminutes": 0.008029473282267219,
@@ -66,20 +66,20 @@
       "sourceLine": 2923
     }
   },
-  "releaseExecutableBytes": 577339520,
+  "releaseExecutableBytes": 577440208,
   "resources": {
     "checksum": 3257705.9472739175,
-    "coldSunRiseSeconds": 0.014773011207580566,
+    "coldSunRiseSeconds": 0.017217040061950684,
     "eventsPerWorkload": 100,
     "host": "Version 27.0.1 (Build 26A434)",
-    "peakAfterColdBytes": 82984960,
-    "peakAfterWorkloadsBytes": 105185280,
-    "peakBeforeBytes": 48136192,
+    "peakAfterColdBytes": 83230720,
+    "peakAfterWorkloadsBytes": 105431040,
+    "peakBeforeBytes": 48447488,
     "seconds": {
-      "moonRise": 0.800663948059082,
-      "publicCSunRise": 0.9206149578094482,
-      "sunHourAngle": 0.2794250249862671,
-      "sunRise": 0.9194129705429077
+      "moonRise": 0.6625490188598633,
+      "publicCSunRise": 0.686087965965271,
+      "sunHourAngle": 0.17458903789520264,
+      "sunRise": 0.7584120035171509
     }
   },
   "schemaVersion": 2,
@@ -87,10 +87,10 @@
     "Fuzzing/corpus/fixed-riseset-infinite-limit": "6d88cbde5da0ca9da353a20326d522e27c88dde3714498e5d4bc6929753a4e02",
     "Fuzzing/corpus/fixed-riseset-stall": "ca78b6218e4c663f595a10afa5cb38a76a73ba5d15e81f3923c133d3454305c8",
     "Scripts/capture-observer-events.py": "7bd88e87e94c1baa4972970fbccc96426ed3a3d925b7c1c8dc8317e0edbc0875",
-    "Scripts/evidence-dependencies.json": "ace514074db1fa64facc18bb0032f1b8ed1c29a56e42b39a9c43d8057c70858d",
-    "Scripts/evidence_dependencies.py": "29cdaa6c7b84e654ec156619e0dbcd90ddfd31b9ad1ea82c8cc67de16e48aa96",
+    "Scripts/evidence-dependencies.json": "32fda9a7efd5972ab55f7cf30eb3b1861969eb2eadaf7ef266a4d176cfe3d25c",
+    "Scripts/evidence_dependencies.py": "c34600670139aa58672ff755ed4c6edb52db405db2f73d2805beb6ca5cfbb76d",
     "Scripts/observer-event-data/README.md": "db297f09a5ec215ba39a0fd2df7d16d8b586821f9d7cd70e7feb9b7fefdbd7bd",
-    "Scripts/observer-event-data/native-captures.json": "fbe547215b76c6961dac192dc335e8764a11a6c4eaed11333e701a1ad220e55c",
+    "Scripts/observer-event-data/native-captures.json": "31b4877f34c7b0618f2e27eb96bedbc2ee3c84daaac415e94329f0bd5b765dee",
     "Scripts/observer-event-data/reference-fixtures.json": "7f0fdbf7b72e6cd828f4301bacfd75a6505b4ba01bc594c4431e2a8fd116b638",
     "Scripts/observer-event-data/sources/horizons/horizons-sd-2000-01-03.json": "b1805e417fbcc5c4a63ae541b5946f87af4aa3aff905dc1c9e9f9b65f6885077",
     "Scripts/observer-event-data/sources/horizons/horizons-sd-2000-01-03.query.json": "aa5dca2f03c8552562289c7d799ab3512fc955dc14760511a74dea342ae0dbd6",
@@ -121,7 +121,7 @@
     "Scripts/observer-event-data/sources/usno/usno-semidiameter.json": "73c0f2238f714d464a2c6e4c1a75e4874d9d921be9d5e9fb053e4c51aa67fe0c",
     "Scripts/observer-event-data/sources/usno/usno-semidiameter.query.json": "c609deb5cf451bd785f03d04181050748501d0f69257f7dfa229cd24acc2b0b1",
     "Scripts/record-observer-event-evidence.py": "f97d730062816577857e72b505f1c5d15b0dc820b9a9cab13e46c7c3d62b8a07",
-    "Scripts/test_evidence_dependencies.py": "cdb3783a1d3b0d140956f495e2a4a5cebc151b90dcf7854fb7c792b434b431b4",
+    "Scripts/test_evidence_dependencies.py": "bce85f416426b4f3ce52b50c5baa80a8f401236c095d56d0192acaeef6cc3406",
     "Scripts/test_observer_events.py": "b0c78ca69f7bcc21d01e8bc4afed9c5dc30c4630b84ba9525138daa892c05d88",
     "Sources/AstronomyKit/AstronomyError.swift": "7122525f8f8796baaef9e6a3baff8c2332d0a0f817927af6c98d83b4a81c7746",
     "Sources/AstronomyKit/CelestialBody.swift": "7c94d629be89ce9c7e2d2a4de616e3f526fd2d0034d8750e60e8d400f159aa61",
@@ -141,6 +141,8 @@
     "Sources/AstronomyKit/Engine/Foundation/EngineTime.swift": "f394027d5f0622e25d059a9df49bb1ee1c5df7f53663b6b394430d45d0b57763",
     "Sources/AstronomyKit/Engine/Foundation/EngineVector.swift": "20970e5598737d1cafc949d47bed32b7351fc98c6c95b8f8c01fd736dd726e81",
     "Sources/AstronomyKit/Engine/Foundation/Generated/DeltaTObservedTable.swift": "0e0894da3b5558619d768fabd6964075764d21808dc23d288377561945fa6d31",
+    "Sources/AstronomyKit/Engine/Gravity/EnginePlutoDE441.swift": "17c428ed2ded2e1d392fdc37d0b726122d42293fa0de8c9816db6c3ed8372122",
+    "Sources/AstronomyKit/Engine/Gravity/Generated/DE441/PlutoDE441SunData.swift": "b8b0fd48631ad87985be734207575b63e41705ec62a3c6488c3a8be3242ad370",
     "Sources/AstronomyKit/Engine/Moon/EngineFrameBias.swift": "96e32a064cb907b394223c966eaee27a104a5309d0fdbaaaa1cfc5e25b8d66a3",
     "Sources/AstronomyKit/Engine/Moon/EngineLibration.swift": "4c7be92f565aaa2e254bdc60b5bb4ad05148f8476e23b98f348eac9b5c23a468",
     "Sources/AstronomyKit/Engine/Moon/EngineMoon.swift": "82db60c3da117d53782e65fa898d75bd28ee9702841186c14ea86534ff4e1b71",

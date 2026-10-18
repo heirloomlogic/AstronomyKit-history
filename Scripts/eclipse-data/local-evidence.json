@@ -1,7 +1,7 @@
 {
   "buildSeconds": {
-    "debug": 105.44,
-    "release": 1.27
+    "debug": 33.41,
+    "release": 147.44
   },
   "centralMidpointDifferencesSeconds": {
     "Springfield, ILLINOIS": 0.13159174122847617
@@ -173,19 +173,19 @@
       "source": "rp1301-footnotes.html"
     }
   },
-  "releaseExecutableBytes": 577339520,
+  "releaseExecutableBytes": 577440208,
   "releaseObjectBytes": {
-    "EngineLocalSolarEvents.o": 76968
+    "EngineLocalSolarEvents.o": 76984
   },
   "resources": {
     "checksum": 340147.30894289777,
-    "coldSeconds": 0.18003201484680176,
+    "coldSeconds": 0.09523200988769531,
     "host": "Version 27.0.1 (Build 26A434)",
     "nextCount": 19,
-    "nextSeconds": 9.592411994934082,
-    "peakAfterColdBytes": 124157952,
-    "peakAfterWorkloadBytes": 126173184,
-    "peakBeforeBytes": 56705024
+    "nextSeconds": 6.107656002044678,
+    "peakAfterColdBytes": 109887488,
+    "peakAfterWorkloadBytes": 111935488,
+    "peakBeforeBytes": 109789184
   },
   "rp1301Contacts": [
     {
@@ -237,7 +237,7 @@
       "seconds": -0.9330867149401456
     }
   ],
-  "runtimeBaseRevision": "e68b00977c71256b1e28a49da5a7525feb6fe71d",
+  "runtimeBaseRevision": "956c0be5d277b8d7a00f235a8a0131b1cbcf86c2",
   "schemaVersion": 1,
   "sequence": [
     {
@@ -262,10 +262,10 @@
   "sourceHashes": {
     "Scripts/capture-global-solar.py": "60e3cd29f2ec6efb8bc98c7df745c792c3d61c34676ae20ea99d3ee10ac91f1b",
     "Scripts/capture-local-solar.py": "c65a5f544352fddd7ef75e8ed3d8da374c94dfce78672fc8d3c2f6b066d3877a",
-    "Scripts/eclipse-data/local-captures.json": "10d0444a641eed9f751d12d82948c5f3de16ece42090fc812567552855c8a4c5",
+    "Scripts/eclipse-data/local-captures.json": "f036aef39773034b9cbcedded8e22d680e63443821cd17e80966999c25e74f73",
     "Scripts/eclipse-data/local-references.json": "7d2301230ee722952c2654f1ae8d067c3d8a615ab3d2061adc606df9fc7bced0",
-    "Scripts/evidence-dependencies.json": "ace514074db1fa64facc18bb0032f1b8ed1c29a56e42b39a9c43d8057c70858d",
-    "Scripts/evidence_dependencies.py": "29cdaa6c7b84e654ec156619e0dbcd90ddfd31b9ad1ea82c8cc67de16e48aa96",
+    "Scripts/evidence-dependencies.json": "32fda9a7efd5972ab55f7cf30eb3b1861969eb2eadaf7ef266a4d176cfe3d25c",
+    "Scripts/evidence_dependencies.py": "c34600670139aa58672ff755ed4c6edb52db405db2f73d2805beb6ca5cfbb76d",
     "Scripts/local-solar-peak-probe.swift": "d7f46ceb60aa765d0db551f16736d8c77ce8743cb0242432eececf8c91bfe520",
     "Scripts/record-eclipse-event-evidence.py": "3bb05c08c84169ebda915352a959fa4d6949cdabbe69fab639555f5625d0185a",
     "Scripts/record-local-solar-evidence.py": "80f40e296d72e7d1a9e7c316a68ce22ccb16670eed3fc032041bf3cea1c94f95",
@@ -298,7 +298,7 @@
     "Scripts/reference-data/sources/local-solar/rp1301-table8.html.query.json": "8dd60754d9ce5f60461d346b42c0a3730cb8d3e30b0dd8893585cd4c17e3e381",
     "Scripts/reference-data/sources/local_solar_eclipse.txt": "1273c79b53122d6e5efc264b3c64e571e9a47d777103eaffbcdf5fb44c7743f0",
     "Scripts/reference-data/sources/solar_2001.html": "820b7a9e4a04881ff212ee59603f03fb3ebdcb72e340414494b1fb84271efc9d",
-    "Scripts/test_evidence_dependencies.py": "cdb3783a1d3b0d140956f495e2a4a5cebc151b90dcf7854fb7c792b434b431b4",
+    "Scripts/test_evidence_dependencies.py": "bce85f416426b4f3ce52b50c5baa80a8f401236c095d56d0192acaeef6cc3406",
     "Scripts/test_local_solar.py": "bb3fc67cf148916781859dbee0b863f3efdd1e30c1748cba320f80e43d01ab77",
     "Sources/AstronomyKit/AstronomyError.swift": "7122525f8f8796baaef9e6a3baff8c2332d0a0f817927af6c98d83b4a81c7746",
     "Sources/AstronomyKit/AstronomyKit.swift": "c6dad36ea132847c27a822f1c50f04eacf5251d3f28e123a436e820a8cd761dd",
@@ -327,6 +327,8 @@
     "Sources/AstronomyKit/Engine/Foundation/EngineTime.swift": "f394027d5f0622e25d059a9df49bb1ee1c5df7f53663b6b394430d45d0b57763",
     "Sources/AstronomyKit/Engine/Foundation/EngineVector.swift": "20970e5598737d1cafc949d47bed32b7351fc98c6c95b8f8c01fd736dd726e81",
     "Sources/AstronomyKit/Engine/Foundation/Generated/DeltaTObservedTable.swift": "0e0894da3b5558619d768fabd6964075764d21808dc23d288377561945fa6d31",
+    "Sources/AstronomyKit/Engine/Gravity/EnginePlutoDE441.swift": "17c428ed2ded2e1d392fdc37d0b726122d42293fa0de8c9816db6c3ed8372122",
+    "Sources/AstronomyKit/Engine/Gravity/Generated/DE441/PlutoDE441SunData.swift": "b8b0fd48631ad87985be734207575b63e41705ec62a3c6488c3a8be3242ad370",
     "Sources/AstronomyKit/Engine/Moon/EngineFrameBias.swift": "96e32a064cb907b394223c966eaee27a104a5309d0fdbaaaa1cfc5e25b8d66a3",
     "Sources/AstronomyKit/Engine/Moon/EngineLibration.swift": "4c7be92f565aaa2e254bdc60b5bb4ad05148f8476e23b98f348eac9b5c23a468",
     "Sources/AstronomyKit/Engine/Moon/EngineMoon.swift": "82db60c3da117d53782e65fa898d75bd28ee9702841186c14ea86534ff4e1b71",
