@@ -31,13 +31,45 @@ struct EngineGalileanResidualCaptureTests {
                     "julianDateTDB": reference.julianDateTDB, "ttDays": tt,
                     "tdbMinusTTSeconds": clock.offsetSeconds, "tdbPerTTRate": clock.rate,
                     "positionAU": [state.x, state.y, state.z],
-                    "keplerianVelocityAUPerTTDay": [state.vx, state.vy, state.vz],
+                    "velocityAUPerTTDay": [state.vx, state.vy, state.vz],
+                ])
+            }
+        }
+        var transitions: [[String: Any]] = []
+        for (side, boundaryTT, direction) in [
+            ("beforeStart", Moons.Jup365.startTT, -1.0),
+            ("afterEnd", Moons.Jup365.endTT, 1.0),
+        ] {
+            for (name, moon, _) in names {
+                var maximumPosition = 0.0
+                var maximumVelocity = 0.0
+                for index in 0...4096 {
+                    let tt = boundaryTT + direction * Moons.Jup365.transitionDays * Double(index) / 4096
+                    let time = PlanetTestSupport.time(tt: tt)
+                    let selected = try Moons.selectedState(of: moon, at: time)
+                    let fallback = try Moons.state(Moons.models[moon.rawValue], at: time)
+                    maximumPosition = max(
+                        maximumPosition,
+                        sqrt(
+                            pow(selected.x - fallback.x, 2) + pow(selected.y - fallback.y, 2)
+                                + pow(selected.z - fallback.z, 2)) * Engine.kilometersPerAU)
+                    maximumVelocity = max(
+                        maximumVelocity,
+                        sqrt(
+                            pow(selected.vx - fallback.vx, 2) + pow(selected.vy - fallback.vy, 2)
+                                + pow(selected.vz - fallback.vz, 2)) * Engine.kilometersPerAU)
+                }
+                transitions.append([
+                    "body": name, "side": side, "sampleCount": 4097,
+                    "maximumPositionCorrectionKm": maximumPosition,
+                    "maximumVelocityCorrectionKmPerTTDay": maximumVelocity,
                 ])
             }
         }
         if let path = ProcessInfo.processInfo.environment["GALILEAN_RESIDUAL_OUTPUT"] {
             try JSONSerialization.data(
-                withJSONObject: ["schemaVersion": 1, "rows": rows], options: [.prettyPrinted, .sortedKeys]
+                withJSONObject: ["schemaVersion": 3, "rows": rows, "transitions": transitions],
+                options: [.prettyPrinted, .sortedKeys]
             ).write(to: URL(fileURLWithPath: path), options: .atomic)
         }
     }

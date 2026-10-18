@@ -1,6 +1,6 @@
 # jup365 representation qualification
 
-This directory holds a reproducible mixed-precision representation of JPL's jup365 Galilean-satellite kernel. It is qualification input for issue #254, not a runtime table: `Engine.JupiterMoons` still uses the truncated L1.2 series. The later runtime change must select this representation only inside its documented domain, preserve L1.2 outside it, and supply derivative-consistent endpoint transitions.
+This directory holds the reproducible mixed-precision representation of JPL's jup365 Galilean-satellite kernel used by `Engine.JupiterMoons`. `Scripts/generate-galilean-jup365-swift.py` compiles the five qualified payloads into record-addressable Swift strings; runtime evaluation selects them only inside the source domain and retains the truncated L1.2 series outside finite endpoint bridges.
 
 ## Source and coordinates
 
@@ -47,6 +47,12 @@ The unchanged base at `b6f0cc0c4027ef626e2ba8686914cd472f99de80` contained 461,2
 
 `performance.json` binds a standalone Swift probe to this representation. On the recorded arm64 macOS host with Swift 6.4 and `swiftc -O`, mapping the manifest and five payloads took 1.858 ms. A first pass over 200,000 jovicentric states spanning the full domain took 0.849 µs per state; a second pass took 0.834 µs per state. The checksum was identical across passes. This measures the candidate lookup and polynomial evaluation from memory-mapped binary payloads on that host. It does not predict the final package, compile, launch, or cache cost of link 2's compiled representation.
 
+`runtime-performance.json` records the final compiled path on an arm64 macOS 27.0.1 host with Swift 6.4. The 49 generated Swift files occupy 81,067,832 bytes and bring `Sources/AstronomyKit` to 552,784,259 bytes. A clean two-job Release build took 50.20 seconds wall time (38.97 seconds reported by SwiftPM), used 9,324,118,016 bytes maximum resident set size and 825,378,976 bytes peak memory footprint, and produced a 552,958,136-byte static library and 552,891,328-byte AstronomyKit object. Compared with the recorded unchanged-base build, the library and object each grew by 81,111,832 bytes. The statically linked probe executable is 556,931,336 bytes.
+
+The same Release probe measured a 1.443 ms first in-process `Jupiter.moons` call, 7.719 µs per repeated same-epoch call, and 15.294 µs per call over 100,000 calls spanning 4,096 epochs. The implementation has no decoded-record cache; the same-epoch result measures code and data locality rather than a cache hit. Seven separate process launches plus one public call ranged from 22.234 to 290.336 ms, with a 283.554 ms median; those process measurements include executable loading and host filesystem/page-cache effects. These host observations are neither portable performance limits nor scientific bounds.
+
+The complete half-open source domain remains unblended. Immediately outside it, a 32-day cubic Hermite correction joins the endpoint jup365 state to raw L1.2, matching both returned position and velocity at the source boundary and reaching exact raw L1.2 position and velocity at the outer join. The residual evidence samples each bridge on a 4,097-point grid per moon and side. The largest sampled correction is Io's before the source start: 28,538.244 km in position and 6,014.864 km per TT day in returned velocity. Those corrections describe the difference between source and fallback models near a boundary; they do not extend the jup365 representation certificate or establish physical accuracy. L1.2's returned Keplerian velocity is not the time derivative of its changing-element position, so the bridge matches the returned state velocity at both endpoints rather than certifying a derivative of the fallback position.
+
 ## Reproduction
 
 Run the local controls from the repository root:
@@ -55,6 +61,9 @@ Run the local controls from the repository root:
 python3 -m unittest Scripts/test_generate_galilean_jup365.py -v
 python3 Scripts/generate-galilean-jup365.py --check
 python3 Scripts/generate-galilean-jup365.py --measure --iterations 200000
+python3 -m unittest Scripts/test_generate_galilean_jup365_swift.py Scripts/test_measure_galilean_jup365_runtime.py -v
+python3 Scripts/generate-galilean-jup365-swift.py --check
+python3 Scripts/measure-galilean-jup365-runtime.py --check
 ```
 
 `--check` is offline. It checks generator and reference bindings, payload shapes and digests, coverage and coordinate semantics, all direct fixtures, all 104 archived Horizons rows, the continuous bound limits, and the performance-record bindings. `--measure` recompiles the checked-in Swift probe and replaces `performance.json` with a host-specific measurement.

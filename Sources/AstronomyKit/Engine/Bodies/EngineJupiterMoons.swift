@@ -98,23 +98,25 @@ extension Engine.JupiterMoons {
     ///   finite.
     static func states(at time: Engine.Time) throws -> States {
         try Engine.checkAcceptedTime(time)
+        if let states = Jup365.states(at: time) { return states }
         return States(
-            io: try state(models[Moon.io.rawValue], at: time),
-            europa: try state(models[Moon.europa.rawValue], at: time),
-            ganymede: try state(models[Moon.ganymede.rawValue], at: time),
-            callisto: try state(models[Moon.callisto.rawValue], at: time)
+            io: try state(of: .io, at: time),
+            europa: try state(of: .europa, at: time),
+            ganymede: try state(of: .ganymede, at: time),
+            callisto: try state(of: .callisto, at: time)
         )
     }
 
     /// `moon`'s position in AU and velocity in AU per TT day relative to
     /// Jupiter's center, on the mean equator and equinox of J2000, at
-    /// `time`. The velocity is the Keplerian velocity of the elements, as
-    /// L1.2 defines it.
+    /// `time`. Inside jup365 the velocity is the analytic derivative of its
+    /// Chebyshev position. Outside the finite endpoint bridges it is L1.2's
+    /// Keplerian velocity; each bridge matches both returned endpoint states.
     ///
     /// - Throws: As ``states(at:)``.
     static func state(of moon: Moon, at time: Engine.Time) throws -> Engine.State<Engine.EQJ> {
         try Engine.checkAcceptedTime(time)
-        return try state(models[moon.rawValue], at: time)
+        return try selectedState(of: moon, at: time)
     }
 
     /// The state `model` gives at `time`, rotated to ``Engine/EQJ``, without

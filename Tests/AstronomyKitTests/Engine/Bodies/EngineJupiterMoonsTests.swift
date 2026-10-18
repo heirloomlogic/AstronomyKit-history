@@ -20,6 +20,23 @@ struct EngineJupiterMoonsTests {
 
     typealias States = EngineMoonStatesTests
 
+    struct Representation: Decodable {
+        struct Fixture: Decodable {
+            let component: String
+            let julianDateTDB: Double
+            let candidatePositionKm: [Double]
+            let candidateVelocityKmPerTDBDay: [Double]
+        }
+
+        let directFixtures: [Fixture]
+    }
+
+    static func representation() throws -> Representation {
+        let root = (0..<5).reduce(URL(fileURLWithPath: #filePath)) { url, _ in url.deletingLastPathComponent() }
+        let url = root.appendingPathComponent("Scripts/jupiter-moon-data/jup365/representation.json")
+        return try JSONDecoder().decode(Representation.self, from: Data(contentsOf: url))
+    }
+
     /// A Fortran `D` exponent number as `BisL1.2.dat` and `TestL1.2.res` print it,
     /// or NaN, which equals nothing, for text that is not one.
     static func published(_ text: String) -> Double {
@@ -126,31 +143,132 @@ struct EngineJupiterMoonsTests {
         }
     }
 
-    /// Inside the domain within Astronomy Engine's 9e-4 (`ctest.c`), which
-    /// the fixture carries; outside it, where no limit was set, finite.
-    @Test("States match Horizons within 9e-4 inside the domain", arguments: vectors)
+    /// The qualified representation limits are continuous coefficient bounds relative to jup365. The 104 Horizons rows independently check the complete public clock, origin, frame and unit path at finite epochs.
+    @Test("States match all archived Horizons rows within the qualified km limits", arguments: vectors)
     func horizons(reference: IndependentReferenceArchive.Vector) throws {
         let moon = try #require(Self.moons[reference.body], "unexpected Galilean moon \(reference.body)")
-        let state = try Moons.state(of: moon, at: Self.time(tt: Horizons.tt(reference)))
-        let errors = Self.errors(state, reference)
-        if let tolerance = reference.relativeTolerance {
-            #expect(errors.position <= tolerance)
-            #expect(errors.velocity <= tolerance)
-        } else {
-            #expect(errors.position.isFinite && errors.velocity.isFinite)
-        }
+        let tt = Horizons.tt(reference)
+        let state = try Moons.state(of: moon, at: Self.time(tt: tt))
+        let positionError = EngineGravityTests.length(States.position(state) - States.eqj(reference.positionAU))
+        let referenceVelocity = States.eqj(reference.velocityAUPerDay) * Engine.TDB.rate(tt: tt)
+        let velocityError = EngineGravityTests.length(States.velocity(state) - referenceVelocity)
+        #expect(positionError * Engine.kilometersPerAU <= 0.25, "\(reference.body) \(reference.julianDateTDB)")
+        #expect(velocityError * Engine.kilometersPerAU <= 35, "\(reference.body) \(reference.julianDateTDB)")
     }
 
     @Test("The check fails for the wrong moon or an hour off")
     func negativeControls() throws {
         let reference = try #require(Self.vectors.first { $0.body == "io" && $0.relativeTolerance != nil })
-        let tolerance = try #require(reference.relativeTolerance)
         let tt = Horizons.tt(reference)
         let europa = try Moons.state(of: .europa, at: Self.time(tt: tt))
-        #expect(Self.errors(europa, reference).position > tolerance)
+        #expect(Self.errors(europa, reference).position * Engine.kilometersPerAU > 0.25)
         let late = try Moons.state(of: .io, at: Self.time(tt: tt + 1.0 / 24))
-        #expect(Self.errors(late, reference).position > tolerance)
-        #expect(Self.errors(late, reference).velocity > tolerance)
+        #expect(Self.errors(late, reference).position * Engine.kilometersPerAU > 0.25)
+        #expect(Self.errors(late, reference).velocity * Engine.kilometersPerAU > 35)
+    }
+
+    // MARK: - jup365 representation and selection
+
+    @Test("Every qualified direct fixture decodes from the compiled table")
+    func directFixtures() throws {
+        let indices = ["io": 0, "europa": 1, "ganymede": 2, "callisto": 3, "jupiter": 4]
+        let representation = try Self.representation()
+        #expect(representation.directFixtures.count == 45)
+        for fixture in representation.directFixtures {
+            let index = try #require(indices[fixture.component])
+            let state = try #require(Moons.Jup365.evaluate(component: index, at: fixture.julianDateTDB))
+            let expectedPosition = SIMD3(fixture.candidatePositionKm)
+            let expectedVelocity = SIMD3(fixture.candidateVelocityKmPerTDBDay)
+            #expect(
+                EngineGravityTests.length(state.positionKm - expectedPosition) < 1e-6,
+                "\(fixture.component) \(fixture.julianDateTDB)")
+            #expect(
+                EngineGravityTests.length(state.velocityKmPerTDBDay - expectedVelocity) < 1e-4,
+                "\(fixture.component) \(fixture.julianDateTDB)")
+        }
+    }
+
+    @Test("Record selection keeps the half-open source domain and actual internal seam")
+    func sourceBoundaries() throws {
+        let table = Moons.Jup365.self
+        #expect(table.evaluate(component: 0, at: table.startJDTDB.nextDown) == nil)
+        #expect(table.evaluate(component: 0, at: table.startJDTDB) != nil)
+        #expect(table.evaluate(component: 0, at: table.exclusiveEndJDTDB.nextDown) != nil)
+        #expect(table.evaluate(component: 0, at: table.exclusiveEndJDTDB) == nil)
+        #expect(table.evaluate(component: 0, at: table.exclusiveEndJDTDB, includingExclusiveEnd: true) != nil)
+        for epoch in [table.sourceSeamJDTDB.nextDown, table.sourceSeamJDTDB, table.sourceSeamJDTDB.nextUp] {
+            let state = try #require(table.evaluate(component: 0, at: epoch))
+            #expect(EngineGravityTests.length(state.positionKm).isFinite)
+            #expect(EngineGravityTests.length(state.velocityKmPerTDBDay).isFinite)
+        }
+        let recordSeam = table.startJDTDB + table.components[0].recordDays
+        for epoch in [recordSeam.nextDown, recordSeam, recordSeam.nextUp] {
+            #expect(table.evaluate(component: 0, at: epoch) != nil)
+        }
+        for epoch in [Double.nan, .infinity, -.infinity] {
+            #expect(table.evaluate(component: 0, at: epoch) == nil)
+        }
+        #expect(table.evaluate(component: -1, at: table.startJDTDB) == nil)
+        #expect(table.evaluate(component: 5, at: table.startJDTDB) == nil)
+    }
+
+    @Test("The full source span is unblended and the exterior bridges meet both models")
+    func endpointTransitions() throws {
+        let table = Moons.Jup365.self
+        for moon in Moons.Moon.allCases {
+            for (tt, julianDate, includeEnd) in [
+                (table.startTT, table.startJDTDB, false),
+                (table.endTT, table.exclusiveEndJDTDB, true),
+            ] {
+                let time = Self.time(tt: tt)
+                let rate = Engine.TDB.rate(tt: tt)
+                let source = try #require(
+                    table.state(
+                        of: moon, atJulianDateTDB: julianDate, rate: rate, time: time, includingExclusiveEnd: includeEnd
+                    ))
+                let selected = try Moons.state(of: moon, at: time)
+                #expect(
+                    EngineGravityTests.length(States.position(selected) - States.position(source)) < 1e-14,
+                    "\(moon) \(julianDate)")
+                #expect(
+                    EngineGravityTests.length(States.velocity(selected) - States.velocity(source)) < 1e-14,
+                    "\(moon) \(julianDate)")
+            }
+            for tt in [table.startTT - table.transitionDays, table.endTT + table.transitionDays] {
+                let time = Self.time(tt: tt)
+                let selected = try Moons.state(of: moon, at: time)
+                let fallback = try Moons.state(Moons.models[moon.rawValue], at: time)
+                #expect(States.position(selected) == States.position(fallback), "\(moon) \(tt)")
+                #expect(States.velocity(selected) == States.velocity(fallback), "\(moon) \(tt)")
+            }
+            for tt in [table.startTT - table.transitionDays / 2, table.endTT + table.transitionDays / 2] {
+                let time = Self.time(tt: tt)
+                let selected = try Moons.state(of: moon, at: time)
+                let fallback = try Moons.state(Moons.models[moon.rawValue], at: time)
+                #expect(States.position(selected) != States.position(fallback), "\(moon) \(tt)")
+                #expect(States.velocity(selected) != States.velocity(fallback), "\(moon) \(tt)")
+            }
+        }
+    }
+
+    @Test("Representable endpoint neighbors remain finite and continuous")
+    func endpointNeighbors() throws {
+        let table = Moons.Jup365.self
+        for moon in Moons.Moon.allCases {
+            for boundary in [table.startTT, table.endTT] {
+                let before = try Moons.state(of: moon, at: Self.time(tt: boundary.nextDown))
+                let at = try Moons.state(of: moon, at: Self.time(tt: boundary))
+                let after = try Moons.state(of: moon, at: Self.time(tt: boundary.nextUp))
+                for (side, adjacent) in [("before", before), ("after", after)] {
+                    #expect(
+                        EngineGravityTests.length(States.position(adjacent) - States.position(at)) < 1e-9,
+                        "\(moon) \(boundary) \(side)")
+                    #expect(
+                        EngineGravityTests.length(States.velocity(adjacent) - States.velocity(at)) < 1e-8,
+                        "\(moon) \(boundary) \(side)")
+                }
+            }
+        }
     }
 
     // MARK: - Composition and guards

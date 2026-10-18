@@ -4,96 +4,96 @@
       "callisto": {
         "all": {
           "count": 26,
-          "keplerianVelocityErrorKmPerTTDay": {
-            "julianDateTDB": 2476546.0,
-            "value": 177.39246433323177
-          },
           "positionErrorKm": {
-            "julianDateTDB": 2476546.0,
-            "value": 613.3012112852515
+            "julianDateTDB": 2429045.0,
+            "value": 0.08627405905734904
+          },
+          "velocityErrorKmPerTTDay": {
+            "julianDateTDB": 2446545.0,
+            "value": 1.9613439415332135
           }
         },
         "bounded": {
           "count": 22,
-          "keplerianVelocityErrorKmPerTTDay": {
-            "julianDateTDB": 2469045.0,
-            "value": 171.51284780629885
-          },
           "positionErrorKm": {
-            "julianDateTDB": 2469045.0,
-            "value": 511.2435231718664
+            "julianDateTDB": 2429045.0,
+            "value": 0.08627405905734904
+          },
+          "velocityErrorKmPerTTDay": {
+            "julianDateTDB": 2446545.0,
+            "value": 1.9613439415332135
           }
         }
       },
       "europa": {
         "all": {
           "count": 26,
-          "keplerianVelocityErrorKmPerTTDay": {
-            "julianDateTDB": 2488069.5,
-            "value": 387.33356530208886
-          },
           "positionErrorKm": {
-            "julianDateTDB": 2476546.0,
-            "value": 225.74099967964474
+            "julianDateTDB": 2441545.0,
+            "value": 0.0930453461830616
+          },
+          "velocityErrorKmPerTTDay": {
+            "julianDateTDB": 2469045.0,
+            "value": 4.559380673907482
           }
         },
         "bounded": {
           "count": 22,
-          "keplerianVelocityErrorKmPerTTDay": {
-            "julianDateTDB": 2476545.0,
-            "value": 343.18654560038834
-          },
           "positionErrorKm": {
+            "julianDateTDB": 2441545.0,
+            "value": 0.0930453461830616
+          },
+          "velocityErrorKmPerTTDay": {
             "julianDateTDB": 2469045.0,
-            "value": 217.37407497625009
+            "value": 4.559380673907482
           }
         }
       },
       "ganymede": {
         "all": {
           "count": 26,
-          "keplerianVelocityErrorKmPerTTDay": {
-            "julianDateTDB": 2488069.5,
-            "value": 218.761416252469
-          },
           "positionErrorKm": {
-            "julianDateTDB": 2488069.5,
-            "value": 337.14114317844593
+            "julianDateTDB": 2471545.0,
+            "value": 0.12733681829436685
+          },
+          "velocityErrorKmPerTTDay": {
+            "julianDateTDB": 2451544.5,
+            "value": 3.5662340893285114
           }
         },
         "bounded": {
           "count": 22,
-          "keplerianVelocityErrorKmPerTTDay": {
-            "julianDateTDB": 2461545.0,
-            "value": 216.08738946114366
-          },
           "positionErrorKm": {
-            "julianDateTDB": 2474045.0,
-            "value": 290.5047523998447
+            "julianDateTDB": 2471545.0,
+            "value": 0.12733681829436685
+          },
+          "velocityErrorKmPerTTDay": {
+            "julianDateTDB": 2451544.5,
+            "value": 3.5662340893285114
           }
         }
       },
       "io": {
         "all": {
           "count": 26,
-          "keplerianVelocityErrorKmPerTTDay": {
-            "julianDateTDB": 2415020.5,
-            "value": 1576.8587986524285
-          },
           "positionErrorKm": {
-            "julianDateTDB": 2415020.5,
-            "value": 458.61202322581175
+            "julianDateTDB": 2476546.0,
+            "value": 0.11122003098419225
+          },
+          "velocityErrorKmPerTTDay": {
+            "julianDateTDB": 2469045.0,
+            "value": 20.386432420783603
           }
         },
         "bounded": {
           "count": 22,
-          "keplerianVelocityErrorKmPerTTDay": {
-            "julianDateTDB": 2476545.0,
-            "value": 1243.9813787336939
-          },
           "positionErrorKm": {
-            "julianDateTDB": 2476545.0,
-            "value": 353.1671004260823
+            "julianDateTDB": 2469045.0,
+            "value": 0.0953561237125406
+          },
+          "velocityErrorKmPerTTDay": {
+            "julianDateTDB": 2469045.0,
+            "value": 20.386432420783603
           }
         }
       }
@@ -102,938 +102,996 @@
       {
         "body": "io",
         "julianDateTDB": 2415020.5,
-        "keplerianVelocityErrorKmPerTTDay": 1576.8587986524285,
-        "positionErrorKm": 458.61202322581175,
+        "positionErrorKm": 0.03604040246058014,
         "relativeTolerance": null,
         "ttDays": -36524.49999999979,
-        "unscaledVelocityErrorKmPerDay": 1576.858790239675
+        "unscaledVelocityErrorKmPerDay": 1.2194978235985199,
+        "velocityErrorKmPerTTDay": 1.2198903648310924
       },
       {
         "body": "io",
         "julianDateTDB": 2451544.5,
-        "keplerianVelocityErrorKmPerTTDay": 105.35808009009664,
-        "positionErrorKm": 27.4149129513336,
+        "positionErrorKm": 0.09198798317682821,
         "relativeTolerance": 0.0009,
         "ttDays": -0.4999999986832975,
-        "unscaledVelocityErrorKmPerDay": 105.35795353854473
+        "unscaledVelocityErrorKmPerDay": 19.383026278914965,
+        "velocityErrorKmPerTTDay": 19.382975369022866
       },
       {
         "body": "io",
         "julianDateTDB": 2488069.5,
-        "keplerianVelocityErrorKmPerTTDay": 1557.8159477393174,
-        "positionErrorKm": 454.51548654574555,
+        "positionErrorKm": 0.03863241782161381,
         "relativeTolerance": null,
         "ttDays": 36524.50000000104,
-        "unscaledVelocityErrorKmPerDay": 1557.8159499311519
+        "unscaledVelocityErrorKmPerDay": 1.0743979682128226,
+        "velocityErrorKmPerTTDay": 1.0740044502424129
       },
       {
         "body": "io",
         "julianDateTDB": 2426544.0,
-        "keplerianVelocityErrorKmPerTTDay": 992.4568854820477,
-        "positionErrorKm": 277.72351108040573,
+        "positionErrorKm": 0.059021493329466414,
         "relativeTolerance": null,
         "ttDays": -25000.99999999468,
-        "unscaledVelocityErrorKmPerDay": 992.4568488344062
+        "unscaledVelocityErrorKmPerDay": 1.658200719709151,
+        "velocityErrorKmPerTTDay": 1.6586564894767204
       },
       {
         "body": "io",
         "julianDateTDB": 2426545.0,
-        "keplerianVelocityErrorKmPerTTDay": 1204.0786792117738,
-        "positionErrorKm": 349.0182922325311,
+        "positionErrorKm": 0.011337889585329844,
         "relativeTolerance": 0.0009,
         "ttDays": -24999.999999994376,
-        "unscaledVelocityErrorKmPerDay": 1204.0786954588366
+        "unscaledVelocityErrorKmPerDay": 0.8370727278208835,
+        "velocityErrorKmPerTTDay": 0.8370125823106441
       },
       {
         "body": "io",
         "julianDateTDB": 2429045.0,
-        "keplerianVelocityErrorKmPerTTDay": 917.0385992460424,
-        "positionErrorKm": 256.5828342623255,
+        "positionErrorKm": 0.04838002667674371,
         "relativeTolerance": 0.0009,
         "ttDays": -22500.000000011976,
-        "unscaledVelocityErrorKmPerDay": 917.0386071436754
+        "unscaledVelocityErrorKmPerDay": 0.38401716904969213,
+        "velocityErrorKmPerTTDay": 0.3842429451660236
       },
       {
         "body": "io",
         "julianDateTDB": 2431545.0,
-        "keplerianVelocityErrorKmPerTTDay": 773.9583784805343,
-        "positionErrorKm": 210.2908770047122,
+        "positionErrorKm": 0.03143246470553498,
         "relativeTolerance": 0.0009,
         "ttDays": -20000.00000001903,
-        "unscaledVelocityErrorKmPerDay": 773.9583785118338
+        "unscaledVelocityErrorKmPerDay": 1.0822642824937658,
+        "velocityErrorKmPerTTDay": 1.082267351451415
       },
       {
         "body": "io",
         "julianDateTDB": 2434045.0,
-        "keplerianVelocityErrorKmPerTTDay": 697.7550484427517,
-        "positionErrorKm": 183.92655454535966,
+        "positionErrorKm": 0.03382651740678841,
         "relativeTolerance": 0.0009,
         "ttDays": -17500.000000009437,
-        "unscaledVelocityErrorKmPerDay": 697.7550395093057
+        "unscaledVelocityErrorKmPerDay": 2.527827959217018,
+        "velocityErrorKmPerTTDay": 2.5280272419304106
       },
       {
         "body": "io",
         "julianDateTDB": 2436545.0,
-        "keplerianVelocityErrorKmPerTTDay": 580.4985272989069,
-        "positionErrorKm": 164.94608989834242,
+        "positionErrorKm": 0.02438163914889476,
         "relativeTolerance": 0.0009,
         "ttDays": -14999.999999991378,
-        "unscaledVelocityErrorKmPerDay": 580.4985217243039
+        "unscaledVelocityErrorKmPerDay": 1.2893205510890147,
+        "velocityErrorKmPerTTDay": 1.2889379819079743
       },
       {
         "body": "io",
         "julianDateTDB": 2439045.0,
-        "keplerianVelocityErrorKmPerTTDay": 368.07954092390446,
-        "positionErrorKm": 104.71589278085843,
+        "positionErrorKm": 0.029048176995348254,
         "relativeTolerance": 0.0009,
         "ttDays": -12499.999999981117,
-        "unscaledVelocityErrorKmPerDay": 368.0795459975437
+        "unscaledVelocityErrorKmPerDay": 0.8497164566059072,
+        "velocityErrorKmPerTTDay": 0.8496876707089399
       },
       {
         "body": "io",
         "julianDateTDB": 2441545.0,
-        "keplerianVelocityErrorKmPerTTDay": 271.91791351462757,
-        "positionErrorKm": 93.51928019643445,
+        "positionErrorKm": 0.08238407355731646,
         "relativeTolerance": 0.0009,
         "ttDays": -9999.999999987242,
-        "unscaledVelocityErrorKmPerDay": 271.91787421429757
+        "unscaledVelocityErrorKmPerDay": 0.685297618349989,
+        "velocityErrorKmPerTTDay": 0.6850368067333747
       },
       {
         "body": "io",
         "julianDateTDB": 2444045.0,
-        "keplerianVelocityErrorKmPerTTDay": 534.8869114484919,
-        "positionErrorKm": 154.14069775466785,
+        "positionErrorKm": 0.03973750815158695,
         "relativeTolerance": 0.0009,
         "ttDays": -7500.000000004545,
-        "unscaledVelocityErrorKmPerDay": 534.8868861390748
+        "unscaledVelocityErrorKmPerDay": 2.583177389592389,
+        "velocityErrorKmPerTTDay": 2.5829745410874487
       },
       {
         "body": "io",
         "julianDateTDB": 2446545.0,
-        "keplerianVelocityErrorKmPerTTDay": 355.58312737091836,
-        "positionErrorKm": 105.5167348667191,
+        "positionErrorKm": 0.06163336688602755,
         "relativeTolerance": 0.0009,
         "ttDays": -5000.000000018189,
-        "unscaledVelocityErrorKmPerDay": 355.5831316831483
+        "unscaledVelocityErrorKmPerDay": 11.816144111279504,
+        "velocityErrorKmPerTTDay": 11.816315975575892
       },
       {
         "body": "io",
         "julianDateTDB": 2449045.0,
-        "keplerianVelocityErrorKmPerTTDay": 151.54281301495334,
-        "positionErrorKm": 29.077671748329376,
+        "positionErrorKm": 0.04019654770607699,
         "relativeTolerance": 0.0009,
         "ttDays": -2500.0000000156897,
-        "unscaledVelocityErrorKmPerDay": 151.54272795988848
+        "unscaledVelocityErrorKmPerDay": 1.7840975331393343,
+        "velocityErrorKmPerTTDay": 1.7843851807091713
       },
       {
         "body": "io",
         "julianDateTDB": 2451545.0,
-        "keplerianVelocityErrorKmPerTTDay": 162.12426831019042,
-        "positionErrorKm": 55.03413369480444,
+        "positionErrorKm": 0.08820846384288734,
         "relativeTolerance": 0.0009,
         "ttDays": 1.1493888762793913e-09,
-        "unscaledVelocityErrorKmPerDay": 162.12408308779823
+        "unscaledVelocityErrorKmPerDay": 0.581403573300885,
+        "velocityErrorKmPerTTDay": 0.5818520374698355
       },
       {
         "body": "io",
         "julianDateTDB": 2454045.0,
-        "keplerianVelocityErrorKmPerTTDay": 179.85421936857293,
-        "positionErrorKm": 63.77766053268291,
+        "positionErrorKm": 0.06171987052268772,
         "relativeTolerance": 0.0009,
         "ttDays": 2500.0000000165505,
-        "unscaledVelocityErrorKmPerDay": 179.85419184796123
+        "unscaledVelocityErrorKmPerDay": 1.5458801901372687,
+        "velocityErrorKmPerTTDay": 1.5456267117567764
       },
       {
         "body": "io",
         "julianDateTDB": 2456545.0,
-        "keplerianVelocityErrorKmPerTTDay": 293.5829782585566,
-        "positionErrorKm": 87.61985155574175,
+        "positionErrorKm": 0.019657987232940773,
         "relativeTolerance": 0.0009,
         "ttDays": 5000.00000001707,
-        "unscaledVelocityErrorKmPerDay": 293.58298052352933
+        "unscaledVelocityErrorKmPerDay": 1.958638468183859,
+        "velocityErrorKmPerTTDay": 1.9588297255794156
       },
       {
         "body": "io",
         "julianDateTDB": 2459045.0,
-        "keplerianVelocityErrorKmPerTTDay": 533.5755434345236,
-        "positionErrorKm": 163.27447199752348,
+        "positionErrorKm": 0.04384405501576513,
         "relativeTolerance": 0.0009,
         "ttDays": 7500.000000003206,
-        "unscaledVelocityErrorKmPerDay": 533.57552038247
+        "unscaledVelocityErrorKmPerDay": 2.6713682151523273,
+        "velocityErrorKmPerTTDay": 2.6716672157152153
       },
       {
         "body": "io",
         "julianDateTDB": 2461545.0,
-        "keplerianVelocityErrorKmPerTTDay": 415.95003235514537,
-        "positionErrorKm": 113.99253771044971,
+        "positionErrorKm": 0.06278704993475143,
         "relativeTolerance": 0.0009,
         "ttDays": 9999.999999986469,
-        "unscaledVelocityErrorKmPerDay": 415.9499876061938
+        "unscaledVelocityErrorKmPerDay": 1.926457211916709,
+        "velocityErrorKmPerTTDay": 1.9267370308038625
       },
       {
         "body": "io",
         "julianDateTDB": 2464045.0,
-        "keplerianVelocityErrorKmPerTTDay": 551.623632467316,
-        "positionErrorKm": 153.4873778971761,
+        "positionErrorKm": 0.0740069398660486,
         "relativeTolerance": 0.0009,
         "ttDays": 12499.999999981294,
-        "unscaledVelocityErrorKmPerDay": 551.623647871099
+        "unscaledVelocityErrorKmPerDay": 0.4767011180821417,
+        "velocityErrorKmPerTTDay": 0.4767249659320719
       },
       {
         "body": "io",
         "julianDateTDB": 2466545.0,
-        "keplerianVelocityErrorKmPerTTDay": 578.0519636159269,
-        "positionErrorKm": 145.6588507045963,
+        "positionErrorKm": 0.029958027880473005,
         "relativeTolerance": 0.0009,
         "ttDays": 14999.99999999261,
-        "unscaledVelocityErrorKmPerDay": 578.0519502445412
+        "unscaledVelocityErrorKmPerDay": 1.3382410112186622,
+        "velocityErrorKmPerTTDay": 1.338636367837889
       },
       {
         "body": "io",
         "julianDateTDB": 2469045.0,
-        "keplerianVelocityErrorKmPerTTDay": 679.2066062260541,
-        "positionErrorKm": 181.90433742414535,
+        "positionErrorKm": 0.0953561237125406,
         "relativeTolerance": 0.0009,
         "ttDays": 17500.000000011074,
-        "unscaledVelocityErrorKmPerDay": 679.206580995501
+        "unscaledVelocityErrorKmPerDay": 20.386324417215825,
+        "velocityErrorKmPerTTDay": 20.386432420783603
       },
       {
         "body": "io",
         "julianDateTDB": 2471545.0,
-        "keplerianVelocityErrorKmPerTTDay": 862.8737162606066,
-        "positionErrorKm": 239.78623285098,
+        "positionErrorKm": 0.01677524474412451,
         "relativeTolerance": 0.0009,
         "ttDays": 20000.000000019452,
-        "unscaledVelocityErrorKmPerDay": 862.8737165798776
+        "unscaledVelocityErrorKmPerDay": 2.1294811471604267,
+        "velocityErrorKmPerTTDay": 2.1294820490135535
       },
       {
         "body": "io",
         "julianDateTDB": 2474045.0,
-        "keplerianVelocityErrorKmPerTTDay": 859.6650090337179,
-        "positionErrorKm": 247.4084938040943,
+        "positionErrorKm": 0.08227011457434147,
         "relativeTolerance": 0.0009,
         "ttDays": 22500.00000001027,
-        "unscaledVelocityErrorKmPerDay": 859.6650316895137
+        "unscaledVelocityErrorKmPerDay": 0.48508413857659916,
+        "velocityErrorKmPerTTDay": 0.4848756457870536
       },
       {
         "body": "io",
         "julianDateTDB": 2476545.0,
-        "keplerianVelocityErrorKmPerTTDay": 1243.9813787336939,
-        "positionErrorKm": 353.1671004260823,
+        "positionErrorKm": 0.028914710579622232,
         "relativeTolerance": 0.0009,
         "ttDays": 24999.999999992695,
-        "unscaledVelocityErrorKmPerDay": 1243.981396270379
+        "unscaledVelocityErrorKmPerDay": 0.7237381388872155,
+        "velocityErrorKmPerTTDay": 0.7237234513285485
       },
       {
         "body": "io",
         "julianDateTDB": 2476546.0,
-        "keplerianVelocityErrorKmPerTTDay": 1190.887830622671,
-        "positionErrorKm": 331.89950521194993,
+        "positionErrorKm": 0.11122003098419225,
         "relativeTolerance": null,
         "ttDays": 25000.999999993004,
-        "unscaledVelocityErrorKmPerDay": 1190.887827409496
+        "unscaledVelocityErrorKmPerDay": 0.7997586555389816,
+        "velocityErrorKmPerTTDay": 0.7993004766788865
       },
       {
         "body": "europa",
         "julianDateTDB": 2415020.5,
-        "keplerianVelocityErrorKmPerTTDay": 321.18250503953453,
-        "positionErrorKm": 104.68753011037624,
+        "positionErrorKm": 0.025528530920385085,
         "relativeTolerance": null,
         "ttDays": -36524.49999999979,
-        "unscaledVelocityErrorKmPerDay": 321.1825559662825
+        "unscaledVelocityErrorKmPerDay": 0.2566704869949619,
+        "velocityErrorKmPerTTDay": 0.2569339348929501
       },
       {
         "body": "europa",
         "julianDateTDB": 2451544.5,
-        "keplerianVelocityErrorKmPerTTDay": 95.35733537385279,
-        "positionErrorKm": 39.706049447359845,
+        "positionErrorKm": 0.03127124662697199,
         "relativeTolerance": 0.0009,
         "ttDays": -0.4999999986832975,
-        "unscaledVelocityErrorKmPerDay": 95.35763054242574
+        "unscaledVelocityErrorKmPerDay": 3.3371678662229023,
+        "velocityErrorKmPerTTDay": 3.3375200778838328
       },
       {
         "body": "europa",
         "julianDateTDB": 2488069.5,
-        "keplerianVelocityErrorKmPerTTDay": 387.33356530208886,
-        "positionErrorKm": 188.37923608422417,
+        "positionErrorKm": 0.030268175990918487,
         "relativeTolerance": null,
         "ttDays": 36524.50000000104,
-        "unscaledVelocityErrorKmPerDay": 387.33360527206537
+        "unscaledVelocityErrorKmPerDay": 0.7860518625672517,
+        "velocityErrorKmPerTTDay": 0.785740624953288
       },
       {
         "body": "europa",
         "julianDateTDB": 2426544.0,
-        "keplerianVelocityErrorKmPerTTDay": 198.96250646202614,
-        "positionErrorKm": 58.81664571463504,
+        "positionErrorKm": 0.03468038650172982,
         "relativeTolerance": null,
         "ttDays": -25000.99999999468,
-        "unscaledVelocityErrorKmPerDay": 198.96247905883223
+        "unscaledVelocityErrorKmPerDay": 0.7347958369260342,
+        "velocityErrorKmPerTTDay": 0.7351250599441727
       },
       {
         "body": "europa",
         "julianDateTDB": 2426545.0,
-        "keplerianVelocityErrorKmPerTTDay": 157.6546124963461,
-        "positionErrorKm": 127.17818954301592,
+        "positionErrorKm": 0.02058415878448239,
         "relativeTolerance": 0.0009,
         "ttDays": -24999.999999994376,
-        "unscaledVelocityErrorKmPerDay": 157.65470977252124
+        "unscaledVelocityErrorKmPerDay": 0.34186224872727866,
+        "velocityErrorKmPerTTDay": 0.3415328803826096
       },
       {
         "body": "europa",
         "julianDateTDB": 2429045.0,
-        "keplerianVelocityErrorKmPerTTDay": 191.60419406892345,
-        "positionErrorKm": 60.145224518421884,
+        "positionErrorKm": 0.047682017380229945,
         "relativeTolerance": 0.0009,
         "ttDays": -22500.000000011976,
-        "unscaledVelocityErrorKmPerDay": 191.6041035205325
+        "unscaledVelocityErrorKmPerDay": 0.22947015580342295,
+        "velocityErrorKmPerTTDay": 0.22921596710932457
       },
       {
         "body": "europa",
         "julianDateTDB": 2431545.0,
-        "keplerianVelocityErrorKmPerTTDay": 199.9656339125895,
-        "positionErrorKm": 118.61865381460302,
+        "positionErrorKm": 0.022909146781444657,
         "relativeTolerance": 0.0009,
         "ttDays": -20000.00000001903,
-        "unscaledVelocityErrorKmPerDay": 199.96562928815604
+        "unscaledVelocityErrorKmPerDay": 0.3184581511352189,
+        "velocityErrorKmPerTTDay": 0.31845846467031336
       },
       {
         "body": "europa",
         "julianDateTDB": 2434045.0,
-        "keplerianVelocityErrorKmPerTTDay": 163.57644407967408,
-        "positionErrorKm": 122.9100992207847,
+        "positionErrorKm": 0.027385817808034247,
         "relativeTolerance": 0.0009,
         "ttDays": -17500.000000009437,
-        "unscaledVelocityErrorKmPerDay": 163.5766147704303
+        "unscaledVelocityErrorKmPerDay": 0.155965349096812,
+        "velocityErrorKmPerTTDay": 0.15606437520985517
       },
       {
         "body": "europa",
         "julianDateTDB": 2436545.0,
-        "keplerianVelocityErrorKmPerTTDay": 100.53140421537871,
-        "positionErrorKm": 73.17574204322483,
+        "positionErrorKm": 0.026476556520648172,
         "relativeTolerance": 0.0009,
         "ttDays": -14999.999999991378,
-        "unscaledVelocityErrorKmPerDay": 100.53126992579737
+        "unscaledVelocityErrorKmPerDay": 0.3128281540220876,
+        "velocityErrorKmPerTTDay": 0.3130884215471411
       },
       {
         "body": "europa",
         "julianDateTDB": 2439045.0,
-        "keplerianVelocityErrorKmPerTTDay": 153.32372605490795,
-        "positionErrorKm": 81.60448453693691,
+        "positionErrorKm": 0.023436198529767752,
         "relativeTolerance": 0.0009,
         "ttDays": -12499.999999981117,
-        "unscaledVelocityErrorKmPerDay": 153.32371683174298
+        "unscaledVelocityErrorKmPerDay": 0.2969208441934269,
+        "velocityErrorKmPerTTDay": 0.2969158494240827
       },
       {
         "body": "europa",
         "julianDateTDB": 2441545.0,
-        "keplerianVelocityErrorKmPerTTDay": 195.87145511571333,
-        "positionErrorKm": 79.81475794047944,
+        "positionErrorKm": 0.0930453461830616,
         "relativeTolerance": 0.0009,
         "ttDays": -9999.999999987242,
-        "unscaledVelocityErrorKmPerDay": 195.87143958000925
+        "unscaledVelocityErrorKmPerDay": 0.40760686534537205,
+        "velocityErrorKmPerTTDay": 0.4073444278356024
       },
       {
         "body": "europa",
         "julianDateTDB": 2444045.0,
-        "keplerianVelocityErrorKmPerTTDay": 63.78106100597548,
-        "positionErrorKm": 110.69115343059782,
+        "positionErrorKm": 0.047898890325107475,
         "relativeTolerance": 0.0009,
         "ttDays": -7500.000000004545,
-        "unscaledVelocityErrorKmPerDay": 63.78077982079983
+        "unscaledVelocityErrorKmPerDay": 0.9380557589508378,
+        "velocityErrorKmPerTTDay": 0.9384180022029479
       },
       {
         "body": "europa",
         "julianDateTDB": 2446545.0,
-        "keplerianVelocityErrorKmPerTTDay": 102.37217272865519,
-        "positionErrorKm": 141.12717346339292,
+        "positionErrorKm": 0.039317987017639555,
         "relativeTolerance": 0.0009,
         "ttDays": -5000.000000018189,
-        "unscaledVelocityErrorKmPerDay": 102.37217425629323
+        "unscaledVelocityErrorKmPerDay": 2.719573819245028,
+        "velocityErrorKmPerTTDay": 2.7194358017332494
       },
       {
         "body": "europa",
         "julianDateTDB": 2449045.0,
-        "keplerianVelocityErrorKmPerTTDay": 126.96957764592905,
-        "positionErrorKm": 80.61420979875093,
+        "positionErrorKm": 0.07870005345554959,
         "relativeTolerance": 0.0009,
         "ttDays": -2500.0000000156897,
-        "unscaledVelocityErrorKmPerDay": 126.96945175395905
+        "unscaledVelocityErrorKmPerDay": 0.21239677471389576,
+        "velocityErrorKmPerTTDay": 0.21220160248219824
       },
       {
         "body": "europa",
         "julianDateTDB": 2451545.0,
-        "keplerianVelocityErrorKmPerTTDay": 69.16253399868684,
-        "positionErrorKm": 67.2320765951025,
+        "positionErrorKm": 0.026082370358304206,
         "relativeTolerance": 0.0009,
         "ttDays": 1.1493888762793913e-09,
-        "unscaledVelocityErrorKmPerDay": 69.16281262705499
+        "unscaledVelocityErrorKmPerDay": 0.32266071774204164,
+        "velocityErrorKmPerTTDay": 0.3229989443926304
       },
       {
         "body": "europa",
         "julianDateTDB": 2454045.0,
-        "keplerianVelocityErrorKmPerTTDay": 102.98526492880266,
-        "positionErrorKm": 54.48695841243136,
+        "positionErrorKm": 0.008968462311015748,
         "relativeTolerance": 0.0009,
         "ttDays": 2500.0000000165505,
-        "unscaledVelocityErrorKmPerDay": 102.98520607012064
+        "unscaledVelocityErrorKmPerDay": 0.6366741900264591,
+        "velocityErrorKmPerTTDay": 0.6364821693429121
       },
       {
         "body": "europa",
         "julianDateTDB": 2456545.0,
-        "keplerianVelocityErrorKmPerTTDay": 71.35744460559656,
-        "positionErrorKm": 103.90988622416701,
+        "positionErrorKm": 0.05170249904077179,
         "relativeTolerance": 0.0009,
         "ttDays": 5000.00000001707,
-        "unscaledVelocityErrorKmPerDay": 71.35734202847186
+        "unscaledVelocityErrorKmPerDay": 0.22956323312761795,
+        "velocityErrorKmPerTTDay": 0.2297121605746739
       },
       {
         "body": "europa",
         "julianDateTDB": 2459045.0,
-        "keplerianVelocityErrorKmPerTTDay": 166.12714462769574,
-        "positionErrorKm": 122.53644476365577,
+        "positionErrorKm": 0.028470655591153173,
         "relativeTolerance": 0.0009,
         "ttDays": 7500.000000003206,
-        "unscaledVelocityErrorKmPerDay": 166.12736117277282
+        "unscaledVelocityErrorKmPerDay": 0.39090928388624785,
+        "velocityErrorKmPerTTDay": 0.3908752141366013
       },
       {
         "body": "europa",
         "julianDateTDB": 2461545.0,
-        "keplerianVelocityErrorKmPerTTDay": 116.81260244232561,
-        "positionErrorKm": 51.57916419863538,
+        "positionErrorKm": 0.030345268410230775,
         "relativeTolerance": 0.0009,
         "ttDays": 9999.999999986469,
-        "unscaledVelocityErrorKmPerDay": 116.81240580878341
+        "unscaledVelocityErrorKmPerDay": 1.2048036198939054,
+        "velocityErrorKmPerTTDay": 1.2045813462604302
       },
       {
         "body": "europa",
         "julianDateTDB": 2464045.0,
-        "keplerianVelocityErrorKmPerTTDay": 181.1077807848341,
-        "positionErrorKm": 71.58126215179313,
+        "positionErrorKm": 0.07975741944341393,
         "relativeTolerance": 0.0009,
         "ttDays": 12499.999999981294,
-        "unscaledVelocityErrorKmPerDay": 181.10778806125674
+        "unscaledVelocityErrorKmPerDay": 0.31411755152668736,
+        "velocityErrorKmPerTTDay": 0.31405281104820887
       },
       {
         "body": "europa",
         "julianDateTDB": 2466545.0,
-        "keplerianVelocityErrorKmPerTTDay": 158.50235162035332,
-        "positionErrorKm": 127.4254531738678,
+        "positionErrorKm": 0.05123072806438177,
         "relativeTolerance": 0.0009,
         "ttDays": 14999.99999999261,
-        "unscaledVelocityErrorKmPerDay": 158.50208522646287
+        "unscaledVelocityErrorKmPerDay": 0.3126757869295556,
+        "velocityErrorKmPerTTDay": 0.3124442630221531
       },
       {
         "body": "europa",
         "julianDateTDB": 2469045.0,
-        "keplerianVelocityErrorKmPerTTDay": 234.19795877993428,
-        "positionErrorKm": 217.37407497625009,
+        "positionErrorKm": 0.08728507310336062,
         "relativeTolerance": 0.0009,
         "ttDays": 17500.000000011074,
-        "unscaledVelocityErrorKmPerDay": 234.19803437342955
+        "unscaledVelocityErrorKmPerDay": 4.559206416152722,
+        "velocityErrorKmPerTTDay": 4.559380673907482
       },
       {
         "body": "europa",
         "julianDateTDB": 2471545.0,
-        "keplerianVelocityErrorKmPerTTDay": 258.76845557764244,
-        "positionErrorKm": 142.9339103850458,
+        "positionErrorKm": 0.017193239566254778,
         "relativeTolerance": 0.0009,
         "ttDays": 20000.000000019452,
-        "unscaledVelocityErrorKmPerDay": 258.7684554373349
+        "unscaledVelocityErrorKmPerDay": 0.5990508451595034,
+        "velocityErrorKmPerTTDay": 0.5990475099038219
       },
       {
         "body": "europa",
         "julianDateTDB": 2474045.0,
-        "keplerianVelocityErrorKmPerTTDay": 178.26857635304864,
-        "positionErrorKm": 114.76033833402255,
+        "positionErrorKm": 0.022849145195435617,
         "relativeTolerance": 0.0009,
         "ttDays": 22500.00000001027,
-        "unscaledVelocityErrorKmPerDay": 178.26845771861576
+        "unscaledVelocityErrorKmPerDay": 0.3088741579157316,
+        "velocityErrorKmPerTTDay": 0.30869665471485713
       },
       {
         "body": "europa",
         "julianDateTDB": 2476545.0,
-        "keplerianVelocityErrorKmPerTTDay": 343.18654560038834,
-        "positionErrorKm": 167.89442580898066,
+        "positionErrorKm": 0.022746201909212907,
         "relativeTolerance": 0.0009,
         "ttDays": 24999.999999992695,
-        "unscaledVelocityErrorKmPerDay": 343.18663247615973
+        "unscaledVelocityErrorKmPerDay": 0.6954165733331797,
+        "velocityErrorKmPerTTDay": 0.6956415512427322
       },
       {
         "body": "europa",
         "julianDateTDB": 2476546.0,
-        "keplerianVelocityErrorKmPerTTDay": 359.9380030921187,
-        "positionErrorKm": 225.74099967964474,
+        "positionErrorKm": 0.04992095719424419,
         "relativeTolerance": null,
         "ttDays": 25000.999999993004,
-        "unscaledVelocityErrorKmPerDay": 359.93794850335155
+        "unscaledVelocityErrorKmPerDay": 0.6920854695080861,
+        "velocityErrorKmPerTTDay": 0.6924171744747734
       },
       {
         "body": "ganymede",
         "julianDateTDB": 2415020.5,
-        "keplerianVelocityErrorKmPerTTDay": 128.69877771208115,
-        "positionErrorKm": 216.59564287877475,
+        "positionErrorKm": 0.057068050527522195,
         "relativeTolerance": null,
         "ttDays": -36524.49999999979,
-        "unscaledVelocityErrorKmPerDay": 128.69889993500817
+        "unscaledVelocityErrorKmPerDay": 0.25939448597116077,
+        "velocityErrorKmPerTTDay": 0.25907631467020537
       },
       {
         "body": "ganymede",
         "julianDateTDB": 2451544.5,
-        "keplerianVelocityErrorKmPerTTDay": 138.15409280970403,
-        "positionErrorKm": 121.31723591937636,
+        "positionErrorKm": 0.0838109383046049,
         "relativeTolerance": 0.0009,
         "ttDays": -0.4999999986832975,
-        "unscaledVelocityErrorKmPerDay": 138.15408573284358
+        "unscaledVelocityErrorKmPerDay": 3.5665181875970227,
+        "velocityErrorKmPerTTDay": 3.5662340893285114
       },
       {
         "body": "ganymede",
         "julianDateTDB": 2488069.5,
-        "keplerianVelocityErrorKmPerTTDay": 218.761416252469,
-        "positionErrorKm": 337.14114317844593,
+        "positionErrorKm": 0.022033430794815432,
         "relativeTolerance": null,
         "ttDays": 36524.50000000104,
-        "unscaledVelocityErrorKmPerDay": 218.76153418657168
+        "unscaledVelocityErrorKmPerDay": 0.10850532866422918,
+        "velocityErrorKmPerTTDay": 0.1082180718508866
       },
       {
         "body": "ganymede",
         "julianDateTDB": 2426544.0,
-        "keplerianVelocityErrorKmPerTTDay": 213.22310003925796,
-        "positionErrorKm": 195.20098172267427,
+        "positionErrorKm": 0.016355103649802104,
         "relativeTolerance": null,
         "ttDays": -25000.99999999468,
-        "unscaledVelocityErrorKmPerDay": 213.2230911782315
+        "unscaledVelocityErrorKmPerDay": 0.2524866235690896,
+        "velocityErrorKmPerTTDay": 0.2527684053560547
       },
       {
         "body": "ganymede",
         "julianDateTDB": 2426545.0,
-        "keplerianVelocityErrorKmPerTTDay": 182.838824677031,
-        "positionErrorKm": 203.4875279072376,
+        "positionErrorKm": 0.06836229310644365,
         "relativeTolerance": 0.0009,
         "ttDays": -24999.999999994376,
-        "unscaledVelocityErrorKmPerDay": 182.83881012238228
+        "unscaledVelocityErrorKmPerDay": 0.30813798733438724,
+        "velocityErrorKmPerTTDay": 0.3084052607428951
       },
       {
         "body": "ganymede",
         "julianDateTDB": 2429045.0,
-        "keplerianVelocityErrorKmPerTTDay": 152.5277124195966,
-        "positionErrorKm": 158.45000150812766,
+        "positionErrorKm": 0.03728438068054463,
         "relativeTolerance": 0.0009,
         "ttDays": -22500.000000011976,
-        "unscaledVelocityErrorKmPerDay": 152.52772567433303
+        "unscaledVelocityErrorKmPerDay": 0.34437236359256285,
+        "velocityErrorKmPerTTDay": 0.34414936777311456
       },
       {
         "body": "ganymede",
         "julianDateTDB": 2431545.0,
-        "keplerianVelocityErrorKmPerTTDay": 101.51853825042917,
-        "positionErrorKm": 165.40381308862123,
+        "positionErrorKm": 0.07136861978991191,
         "relativeTolerance": 0.0009,
         "ttDays": -20000.00000001903,
-        "unscaledVelocityErrorKmPerDay": 101.51853406808803
+        "unscaledVelocityErrorKmPerDay": 0.36373601341763095,
+        "velocityErrorKmPerTTDay": 0.36372663410144435
       },
       {
         "body": "ganymede",
         "julianDateTDB": 2434045.0,
-        "keplerianVelocityErrorKmPerTTDay": 107.66222964343424,
-        "positionErrorKm": 171.78734617943363,
+        "positionErrorKm": 0.03564994190086772,
         "relativeTolerance": 0.0009,
         "ttDays": -17500.000000009437,
-        "unscaledVelocityErrorKmPerDay": 107.66243759088613
+        "unscaledVelocityErrorKmPerDay": 0.4986932505009441,
+        "velocityErrorKmPerTTDay": 0.4988994461177174
       },
       {
         "body": "ganymede",
         "julianDateTDB": 2436545.0,
-        "keplerianVelocityErrorKmPerTTDay": 149.99937168554354,
-        "positionErrorKm": 161.5752672706233,
+        "positionErrorKm": 0.039468927793554966,
         "relativeTolerance": 0.0009,
         "ttDays": -14999.999999991378,
-        "unscaledVelocityErrorKmPerDay": 149.9992181192077
+        "unscaledVelocityErrorKmPerDay": 0.5889370810507255,
+        "velocityErrorKmPerTTDay": 0.5889494284268365
       },
       {
         "body": "ganymede",
         "julianDateTDB": 2439045.0,
-        "keplerianVelocityErrorKmPerTTDay": 31.811334609162223,
-        "positionErrorKm": 97.3783917133097,
+        "positionErrorKm": 0.05586755467463569,
         "relativeTolerance": 0.0009,
         "ttDays": -12499.999999981117,
-        "unscaledVelocityErrorKmPerDay": 31.811350343697605
+        "unscaledVelocityErrorKmPerDay": 0.21353039853096165,
+        "velocityErrorKmPerTTDay": 0.21351005221600716
       },
       {
         "body": "ganymede",
         "julianDateTDB": 2441545.0,
-        "keplerianVelocityErrorKmPerTTDay": 32.87256815262213,
-        "positionErrorKm": 54.344870592946435,
+        "positionErrorKm": 0.06755778524056917,
         "relativeTolerance": 0.0009,
         "ttDays": -9999.999999987242,
-        "unscaledVelocityErrorKmPerDay": 32.872495639426134
+        "unscaledVelocityErrorKmPerDay": 0.4910727974967057,
+        "velocityErrorKmPerTTDay": 0.4909701561062291
       },
       {
         "body": "ganymede",
         "julianDateTDB": 2444045.0,
-        "keplerianVelocityErrorKmPerTTDay": 82.49081662758265,
-        "positionErrorKm": 72.36450945161626,
+        "positionErrorKm": 0.042245055723281376,
         "relativeTolerance": 0.0009,
         "ttDays": -7500.000000004545,
-        "unscaledVelocityErrorKmPerDay": 82.49096480395458
+        "unscaledVelocityErrorKmPerDay": 0.21783157678917156,
+        "velocityErrorKmPerTTDay": 0.21804420494238444
       },
       {
         "body": "ganymede",
         "julianDateTDB": 2446545.0,
-        "keplerianVelocityErrorKmPerTTDay": 92.840957413041,
-        "positionErrorKm": 152.41177678214248,
+        "positionErrorKm": 0.03347554531200248,
         "relativeTolerance": 0.0009,
         "ttDays": -5000.000000018189,
-        "unscaledVelocityErrorKmPerDay": 92.84085707015606
+        "unscaledVelocityErrorKmPerDay": 2.4849354278197207,
+        "velocityErrorKmPerTTDay": 2.4850338633127387
       },
       {
         "body": "ganymede",
         "julianDateTDB": 2449045.0,
-        "keplerianVelocityErrorKmPerTTDay": 93.85775461681122,
-        "positionErrorKm": 164.77739671403862,
+        "positionErrorKm": 0.08154196886325524,
         "relativeTolerance": 0.0009,
         "ttDays": -2500.0000000156897,
-        "unscaledVelocityErrorKmPerDay": 93.85764800008434
+        "unscaledVelocityErrorKmPerDay": 0.10771871018055627,
+        "velocityErrorKmPerTTDay": 0.10762815091066942
       },
       {
         "body": "ganymede",
         "julianDateTDB": 2451545.0,
-        "keplerianVelocityErrorKmPerTTDay": 134.27192254131884,
-        "positionErrorKm": 152.5565419022667,
+        "positionErrorKm": 0.03593038413875859,
         "relativeTolerance": 0.0009,
         "ttDays": 1.1493888762793913e-09,
-        "unscaledVelocityErrorKmPerDay": 134.27203755979076
+        "unscaledVelocityErrorKmPerDay": 0.5109229670605928,
+        "velocityErrorKmPerTTDay": 0.5112279311510636
       },
       {
         "body": "ganymede",
         "julianDateTDB": 2454045.0,
-        "keplerianVelocityErrorKmPerTTDay": 117.43251730118689,
-        "positionErrorKm": 188.13492826689634,
+        "positionErrorKm": 0.07910061944877092,
         "relativeTolerance": 0.0009,
         "ttDays": 2500.0000000165505,
-        "unscaledVelocityErrorKmPerDay": 117.43252723694188
+        "unscaledVelocityErrorKmPerDay": 0.13778336376925293,
+        "velocityErrorKmPerTTDay": 0.13769169136543177
       },
       {
         "body": "ganymede",
         "julianDateTDB": 2456545.0,
-        "keplerianVelocityErrorKmPerTTDay": 103.36819045267704,
-        "positionErrorKm": 166.2852238108414,
+        "positionErrorKm": 0.04357703810081591,
         "relativeTolerance": 0.0009,
         "ttDays": 5000.00000001707,
-        "unscaledVelocityErrorKmPerDay": 103.36823905698407
+        "unscaledVelocityErrorKmPerDay": 0.37018301565600176,
+        "velocityErrorKmPerTTDay": 0.37012503499052835
       },
       {
         "body": "ganymede",
         "julianDateTDB": 2459045.0,
-        "keplerianVelocityErrorKmPerTTDay": 178.22901575191008,
-        "positionErrorKm": 152.27950494191114,
+        "positionErrorKm": 0.03193610583684261,
         "relativeTolerance": 0.0009,
         "ttDays": 7500.000000003206,
-        "unscaledVelocityErrorKmPerDay": 178.2291057446922
+        "unscaledVelocityErrorKmPerDay": 0.25216232676426,
+        "velocityErrorKmPerTTDay": 0.25205970235012165
       },
       {
         "body": "ganymede",
         "julianDateTDB": 2461545.0,
-        "keplerianVelocityErrorKmPerTTDay": 216.08738946114366,
-        "positionErrorKm": 163.0688429219264,
+        "positionErrorKm": 0.10180186076329162,
         "relativeTolerance": 0.0009,
         "ttDays": 9999.999999986469,
-        "unscaledVelocityErrorKmPerDay": 216.08736452249227
+        "unscaledVelocityErrorKmPerDay": 0.4903286826889016,
+        "velocityErrorKmPerTTDay": 0.4905239940011446
       },
       {
         "body": "ganymede",
         "julianDateTDB": 2464045.0,
-        "keplerianVelocityErrorKmPerTTDay": 192.07539775873616,
-        "positionErrorKm": 109.80402638819241,
+        "positionErrorKm": 0.02498107818940088,
         "relativeTolerance": 0.0009,
         "ttDays": 12499.999999981294,
-        "unscaledVelocityErrorKmPerDay": 192.07539855156088
+        "unscaledVelocityErrorKmPerDay": 0.3427894231887632,
+        "velocityErrorKmPerTTDay": 0.3428505152517014
       },
       {
         "body": "ganymede",
         "julianDateTDB": 2466545.0,
-        "keplerianVelocityErrorKmPerTTDay": 170.94720932678916,
-        "positionErrorKm": 151.37353284703764,
+        "positionErrorKm": 0.031335434380869234,
         "relativeTolerance": 0.0009,
         "ttDays": 14999.99999999261,
-        "unscaledVelocityErrorKmPerDay": 170.94722728580993
+        "unscaledVelocityErrorKmPerDay": 0.2556460417867501,
+        "velocityErrorKmPerTTDay": 0.255365824470703
       },
       {
         "body": "ganymede",
         "julianDateTDB": 2469045.0,
-        "keplerianVelocityErrorKmPerTTDay": 171.442907261333,
-        "positionErrorKm": 141.17399875547198,
+        "positionErrorKm": 0.11176104261031523,
         "relativeTolerance": 0.0009,
         "ttDays": 17500.000000011074,
-        "unscaledVelocityErrorKmPerDay": 171.44295215864764
+        "unscaledVelocityErrorKmPerDay": 2.899453254303647,
+        "velocityErrorKmPerTTDay": 2.89924740927458
       },
       {
         "body": "ganymede",
         "julianDateTDB": 2471545.0,
-        "keplerianVelocityErrorKmPerTTDay": 127.09060379748578,
-        "positionErrorKm": 197.79900463414552,
+        "positionErrorKm": 0.12733681829436685,
         "relativeTolerance": 0.0009,
         "ttDays": 20000.000000019452,
-        "unscaledVelocityErrorKmPerDay": 127.09060410844515
+        "unscaledVelocityErrorKmPerDay": 0.21347323956183462,
+        "velocityErrorKmPerTTDay": 0.21347739811792246
       },
       {
         "body": "ganymede",
         "julianDateTDB": 2474045.0,
-        "keplerianVelocityErrorKmPerTTDay": 108.40263580260361,
-        "positionErrorKm": 290.5047523998447,
+        "positionErrorKm": 0.03436282755087616,
         "relativeTolerance": 0.0009,
         "ttDays": 22500.00000001027,
-        "unscaledVelocityErrorKmPerDay": 108.40246426452175
+        "unscaledVelocityErrorKmPerDay": 0.3776045330906286,
+        "velocityErrorKmPerTTDay": 0.3774122182587979
       },
       {
         "body": "ganymede",
         "julianDateTDB": 2476545.0,
-        "keplerianVelocityErrorKmPerTTDay": 142.23836702648182,
-        "positionErrorKm": 248.01240620963924,
+        "positionErrorKm": 0.08229272227529973,
         "relativeTolerance": 0.0009,
         "ttDays": 24999.999999992695,
-        "unscaledVelocityErrorKmPerDay": 142.23856756308285
+        "unscaledVelocityErrorKmPerDay": 0.2871255663988627,
+        "velocityErrorKmPerTTDay": 0.2873136431803597
       },
       {
         "body": "ganymede",
         "julianDateTDB": 2476546.0,
-        "keplerianVelocityErrorKmPerTTDay": 119.84741166165405,
-        "positionErrorKm": 164.08638701083422,
+        "positionErrorKm": 0.04045344705930536,
         "relativeTolerance": null,
         "ttDays": 25000.999999993004,
-        "unscaledVelocityErrorKmPerDay": 119.84750185341012
+        "unscaledVelocityErrorKmPerDay": 0.4040901259541678,
+        "velocityErrorKmPerTTDay": 0.40412861437018394
       },
       {
         "body": "callisto",
         "julianDateTDB": 2415020.5,
-        "keplerianVelocityErrorKmPerTTDay": 165.5437838353332,
-        "positionErrorKm": 387.1026074412594,
+        "positionErrorKm": 0.025535930910704333,
         "relativeTolerance": null,
         "ttDays": -36524.49999999979,
-        "unscaledVelocityErrorKmPerDay": 165.54371742756214
+        "unscaledVelocityErrorKmPerDay": 0.2852119872156636,
+        "velocityErrorKmPerTTDay": 0.28545610534864563
       },
       {
         "body": "callisto",
         "julianDateTDB": 2451544.5,
-        "keplerianVelocityErrorKmPerTTDay": 102.89414822056263,
-        "positionErrorKm": 74.15982610282423,
+        "positionErrorKm": 0.027105616136120187,
         "relativeTolerance": 0.0009,
         "ttDays": -0.4999999986832975,
-        "unscaledVelocityErrorKmPerDay": 102.89415608477314
+        "unscaledVelocityErrorKmPerDay": 1.2369857196135678,
+        "velocityErrorKmPerTTDay": 1.2371458866733374
       },
       {
         "body": "callisto",
         "julianDateTDB": 2488069.5,
-        "keplerianVelocityErrorKmPerTTDay": 154.74068045873824,
-        "positionErrorKm": 203.59609242334648,
+        "positionErrorKm": 0.018227967292224763,
         "relativeTolerance": null,
         "ttDays": 36524.50000000104,
-        "unscaledVelocityErrorKmPerDay": 154.74068248516397
+        "unscaledVelocityErrorKmPerDay": 0.21467992118155108,
+        "velocityErrorKmPerTTDay": 0.2145116763128738
       },
       {
         "body": "callisto",
         "julianDateTDB": 2426544.0,
-        "keplerianVelocityErrorKmPerTTDay": 155.78186213544458,
-        "positionErrorKm": 349.21250573896907,
+        "positionErrorKm": 0.04161654467823206,
         "relativeTolerance": null,
         "ttDays": -25000.99999999468,
-        "unscaledVelocityErrorKmPerDay": 155.78188285465606
+        "unscaledVelocityErrorKmPerDay": 0.16210798708297305,
+        "velocityErrorKmPerTTDay": 0.16201657130199093
       },
       {
         "body": "callisto",
         "julianDateTDB": 2426545.0,
-        "keplerianVelocityErrorKmPerTTDay": 156.58736080031952,
-        "positionErrorKm": 423.67630214256457,
+        "positionErrorKm": 0.03872554510292445,
         "relativeTolerance": 0.0009,
         "ttDays": -24999.999999994376,
-        "unscaledVelocityErrorKmPerDay": 156.5874368742664
+        "unscaledVelocityErrorKmPerDay": 0.10082560865321066,
+        "velocityErrorKmPerTTDay": 0.10101478500783917
       },
       {
         "body": "callisto",
         "julianDateTDB": 2429045.0,
-        "keplerianVelocityErrorKmPerTTDay": 130.31692292844042,
-        "positionErrorKm": 435.99488430586183,
+        "positionErrorKm": 0.08627405905734904,
         "relativeTolerance": 0.0009,
         "ttDays": -22500.000000011976,
-        "unscaledVelocityErrorKmPerDay": 130.31688374643457
+        "unscaledVelocityErrorKmPerDay": 0.20710749117196442,
+        "velocityErrorKmPerTTDay": 0.20725893342427865
       },
       {
         "body": "callisto",
         "julianDateTDB": 2431545.0,
-        "keplerianVelocityErrorKmPerTTDay": 97.12928472977791,
-        "positionErrorKm": 319.5631480144251,
+        "positionErrorKm": 0.05090824993054286,
         "relativeTolerance": 0.0009,
         "ttDays": -20000.00000001903,
-        "unscaledVelocityErrorKmPerDay": 97.12928964411194
+        "unscaledVelocityErrorKmPerDay": 0.021399027626977922,
+        "velocityErrorKmPerTTDay": 0.021401038970229595
       },
       {
         "body": "callisto",
         "julianDateTDB": 2434045.0,
-        "keplerianVelocityErrorKmPerTTDay": 142.25379253120886,
-        "positionErrorKm": 188.46746159950337,
+        "positionErrorKm": 0.049425904809108204,
         "relativeTolerance": 0.0009,
         "ttDays": -17500.000000009437,
-        "unscaledVelocityErrorKmPerDay": 142.25377279564958
+        "unscaledVelocityErrorKmPerDay": 0.142805374113269,
+        "velocityErrorKmPerTTDay": 0.14261751130903275
       },
       {
         "body": "callisto",
         "julianDateTDB": 2436545.0,
-        "keplerianVelocityErrorKmPerTTDay": 146.78540318473486,
-        "positionErrorKm": 454.4524390003015,
+        "positionErrorKm": 0.052353559392461314,
         "relativeTolerance": 0.0009,
         "ttDays": -14999.999999991378,
-        "unscaledVelocityErrorKmPerDay": 146.785423609089
+        "unscaledVelocityErrorKmPerDay": 0.09955612209038743,
+        "velocityErrorKmPerTTDay": 0.09957280741646928
       },
       {
         "body": "callisto",
         "julianDateTDB": 2439045.0,
-        "keplerianVelocityErrorKmPerTTDay": 159.54876520845215,
-        "positionErrorKm": 294.0525458585382,
+        "positionErrorKm": 0.04520954657769287,
         "relativeTolerance": 0.0009,
         "ttDays": -12499.999999981117,
-        "unscaledVelocityErrorKmPerDay": 159.5487616802637
+        "unscaledVelocityErrorKmPerDay": 0.09593913313438014,
+        "velocityErrorKmPerTTDay": 0.09594175938443446
       },
       {
         "body": "callisto",
         "julianDateTDB": 2441545.0,
-        "keplerianVelocityErrorKmPerTTDay": 131.6326655405012,
-        "positionErrorKm": 427.6768942637634,
+        "positionErrorKm": 0.04532652191156815,
         "relativeTolerance": 0.0009,
         "ttDays": -9999.999999987242,
-        "unscaledVelocityErrorKmPerDay": 131.632663754115
+        "unscaledVelocityErrorKmPerDay": 0.1025096946324006,
+        "velocityErrorKmPerTTDay": 0.1026556170893339
       },
       {
         "body": "callisto",
         "julianDateTDB": 2444045.0,
-        "keplerianVelocityErrorKmPerTTDay": 121.677770682717,
-        "positionErrorKm": 416.606346761965,
+        "positionErrorKm": 0.05158346738752566,
         "relativeTolerance": 0.0009,
         "ttDays": -7500.000000004545,
-        "unscaledVelocityErrorKmPerDay": 121.67775014401482
+        "unscaledVelocityErrorKmPerDay": 0.16802487697233687,
+        "velocityErrorKmPerTTDay": 0.1680610743005848
       },
       {
         "body": "callisto",
         "julianDateTDB": 2446545.0,
-        "keplerianVelocityErrorKmPerTTDay": 119.16396715777105,
-        "positionErrorKm": 174.64042927259518,
+        "positionErrorKm": 0.029959959610227585,
         "relativeTolerance": 0.0009,
         "ttDays": -5000.000000018189,
-        "unscaledVelocityErrorKmPerDay": 119.16396900031506
+        "unscaledVelocityErrorKmPerDay": 1.9612643136740961,
+        "velocityErrorKmPerTTDay": 1.9613439415332135
       },
       {
         "body": "callisto",
         "julianDateTDB": 2449045.0,
-        "keplerianVelocityErrorKmPerTTDay": 99.18737672233443,
-        "positionErrorKm": 444.79469431231803,
+        "positionErrorKm": 0.06231848763780038,
         "relativeTolerance": 0.0009,
         "ttDays": -2500.0000000156897,
-        "unscaledVelocityErrorKmPerDay": 99.18736652346149
+        "unscaledVelocityErrorKmPerDay": 0.2657716307683489,
+        "velocityErrorKmPerTTDay": 0.26581122186286943
       },
       {
         "body": "callisto",
         "julianDateTDB": 2451545.0,
-        "keplerianVelocityErrorKmPerTTDay": 103.44423371269434,
-        "positionErrorKm": 156.8819980159822,
+        "positionErrorKm": 0.03022418354322773,
         "relativeTolerance": 0.0009,
         "ttDays": 1.1493888762793913e-09,
-        "unscaledVelocityErrorKmPerDay": 103.44422304824184
+        "unscaledVelocityErrorKmPerDay": 0.08226785102552783,
+        "velocityErrorKmPerTTDay": 0.08223300473038599
       },
       {
         "body": "callisto",
         "julianDateTDB": 2454045.0,
-        "keplerianVelocityErrorKmPerTTDay": 99.4008973029747,
-        "positionErrorKm": 397.6759481951634,
+        "positionErrorKm": 0.04169606634884318,
         "relativeTolerance": 0.0009,
         "ttDays": 2500.0000000165505,
-        "unscaledVelocityErrorKmPerDay": 99.40088300675302
+        "unscaledVelocityErrorKmPerDay": 0.16498183672359978,
+        "velocityErrorKmPerTTDay": 0.16486581840374145
       },
       {
         "body": "callisto",
         "julianDateTDB": 2456545.0,
-        "keplerianVelocityErrorKmPerTTDay": 164.05514459552924,
-        "positionErrorKm": 486.4404230097717,
+        "positionErrorKm": 0.02126636933252639,
         "relativeTolerance": 0.0009,
         "ttDays": 5000.00000001707,
-        "unscaledVelocityErrorKmPerDay": 164.0551360186142
+        "unscaledVelocityErrorKmPerDay": 0.0203510767013849,
+        "velocityErrorKmPerTTDay": 0.020278759925080363
       },
       {
         "body": "callisto",
         "julianDateTDB": 2459045.0,
-        "keplerianVelocityErrorKmPerTTDay": 113.01123476268054,
-        "positionErrorKm": 259.0786270940797,
+        "positionErrorKm": 0.06844486567059677,
         "relativeTolerance": 0.0009,
         "ttDays": 7500.000000003206,
-        "unscaledVelocityErrorKmPerDay": 113.01116184798605
+        "unscaledVelocityErrorKmPerDay": 0.17505689530581922,
+        "velocityErrorKmPerTTDay": 0.17488541339659583
       },
       {
         "body": "callisto",
         "julianDateTDB": 2461545.0,
-        "keplerianVelocityErrorKmPerTTDay": 124.72668741408572,
-        "positionErrorKm": 332.94428414430485,
+        "positionErrorKm": 0.028931484625460076,
         "relativeTolerance": 0.0009,
         "ttDays": 9999.999999986469,
-        "unscaledVelocityErrorKmPerDay": 124.72676406003815
+        "unscaledVelocityErrorKmPerDay": 0.09250920462167961,
+        "velocityErrorKmPerTTDay": 0.0925747707521319
       },
       {
         "body": "callisto",
         "julianDateTDB": 2464045.0,
-        "keplerianVelocityErrorKmPerTTDay": 134.9503246749153,
-        "positionErrorKm": 259.7178757676904,
+        "positionErrorKm": 0.019212605878816548,
         "relativeTolerance": 0.0009,
         "ttDays": 12499.999999981294,
-        "unscaledVelocityErrorKmPerDay": 134.9503345273546
+        "unscaledVelocityErrorKmPerDay": 0.1313210526702068,
+        "velocityErrorKmPerTTDay": 0.13128973109865738
       },
       {
         "body": "callisto",
         "julianDateTDB": 2466545.0,
-        "keplerianVelocityErrorKmPerTTDay": 138.57600972585863,
-        "positionErrorKm": 382.5755347514961,
+        "positionErrorKm": 0.04340725706526162,
         "relativeTolerance": 0.0009,
         "ttDays": 14999.99999999261,
-        "unscaledVelocityErrorKmPerDay": 138.57597524567598
+        "unscaledVelocityErrorKmPerDay": 0.3265299096859084,
+        "velocityErrorKmPerTTDay": 0.3265482867454051
       },
       {
         "body": "callisto",
         "julianDateTDB": 2469045.0,
-        "keplerianVelocityErrorKmPerTTDay": 171.51284780629885,
-        "positionErrorKm": 511.2435231718664,
+        "positionErrorKm": 0.023704219778016716,
         "relativeTolerance": 0.0009,
         "ttDays": 17500.000000011074,
-        "unscaledVelocityErrorKmPerDay": 171.51287683831808
+        "unscaledVelocityErrorKmPerDay": 1.0175237011821505,
+        "velocityErrorKmPerTTDay": 1.01733558290654
       },
       {
         "body": "callisto",
         "julianDateTDB": 2471545.0,
-        "keplerianVelocityErrorKmPerTTDay": 139.4785611184414,
-        "positionErrorKm": 441.61628157902555,
+        "positionErrorKm": 0.024083072741917722,
         "relativeTolerance": 0.0009,
         "ttDays": 20000.000000019452,
-        "unscaledVelocityErrorKmPerDay": 139.4785610355554
+        "unscaledVelocityErrorKmPerDay": 0.18524315427917898,
+        "velocityErrorKmPerTTDay": 0.1852400039188073
       },
       {
         "body": "callisto",
         "julianDateTDB": 2474045.0,
-        "keplerianVelocityErrorKmPerTTDay": 135.35856119414495,
-        "positionErrorKm": 369.8970456078905,
+        "positionErrorKm": 0.03889841578527717,
         "relativeTolerance": 0.0009,
         "ttDays": 22500.00000001027,
-        "unscaledVelocityErrorKmPerDay": 135.35860781337078
+        "unscaledVelocityErrorKmPerDay": 0.12287785313451527,
+        "velocityErrorKmPerTTDay": 0.12292908713534871
       },
       {
         "body": "callisto",
         "julianDateTDB": 2476545.0,
-        "keplerianVelocityErrorKmPerTTDay": 165.46848222461168,
-        "positionErrorKm": 477.51229394141626,
+        "positionErrorKm": 0.025163468413273462,
         "relativeTolerance": 0.0009,
         "ttDays": 24999.999999992695,
-        "unscaledVelocityErrorKmPerDay": 165.46844214002414
+        "unscaledVelocityErrorKmPerDay": 0.17926736118893313,
+        "velocityErrorKmPerTTDay": 0.17946888011895587
       },
       {
         "body": "callisto",
         "julianDateTDB": 2476546.0,
-        "keplerianVelocityErrorKmPerTTDay": 177.39246433323177,
-        "positionErrorKm": 613.3012112852515,
+        "positionErrorKm": 0.028242747792315184,
         "relativeTolerance": null,
         "ttDays": 25000.999999993004,
-        "unscaledVelocityErrorKmPerDay": 177.3924814938099
+        "unscaledVelocityErrorKmPerDay": 0.0958720207022075,
+        "velocityErrorKmPerTTDay": 0.09605457220511633
+      }
+    ],
+    "transitions": [
+      {
+        "body": "io",
+        "maximumPositionCorrectionKm": 28538.243693265093,
+        "maximumVelocityCorrectionKmPerTTDay": 6014.864070091665,
+        "sampleCount": 4097,
+        "side": "beforeStart"
+      },
+      {
+        "body": "europa",
+        "maximumPositionCorrectionKm": 7193.6469742783365,
+        "maximumVelocityCorrectionKmPerTTDay": 1543.864774795974,
+        "sampleCount": 4097,
+        "side": "beforeStart"
+      },
+      {
+        "body": "ganymede",
+        "maximumPositionCorrectionKm": 1734.8947817553083,
+        "maximumVelocityCorrectionKmPerTTDay": 353.47340028152934,
+        "sampleCount": 4097,
+        "side": "beforeStart"
+      },
+      {
+        "body": "callisto",
+        "maximumPositionCorrectionKm": 567.5178801006139,
+        "maximumVelocityCorrectionKmPerTTDay": 131.09082716750686,
+        "sampleCount": 4097,
+        "side": "beforeStart"
+      },
+      {
+        "body": "io",
+        "maximumPositionCorrectionKm": 14845.939475720164,
+        "maximumVelocityCorrectionKmPerTTDay": 3125.495855943179,
+        "sampleCount": 4097,
+        "side": "afterEnd"
+      },
+      {
+        "body": "europa",
+        "maximumPositionCorrectionKm": 3586.3591022759592,
+        "maximumVelocityCorrectionKmPerTTDay": 731.4730373026057,
+        "sampleCount": 4097,
+        "side": "afterEnd"
+      },
+      {
+        "body": "ganymede",
+        "maximumPositionCorrectionKm": 1018.3515590065374,
+        "maximumVelocityCorrectionKmPerTTDay": 220.8987994266256,
+        "sampleCount": 4097,
+        "side": "afterEnd"
+      },
+      {
+        "body": "callisto",
+        "maximumPositionCorrectionKm": 996.956208074137,
+        "maximumVelocityCorrectionKmPerTTDay": 217.33649848947195,
+        "sampleCount": 4097,
+        "side": "afterEnd"
       }
     ]
   },
@@ -1045,20 +1103,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2415020.5,
-        "keplerianVelocityAUPerTTDay": [
-          0.009091195377945234,
-          -0.0037513517968906294,
-          -0.0016479898847638003
-        ],
         "positionAU": [
-          -0.0011641539586549055,
-          -0.0023217757707460003,
-          -0.0011261954231415467
+          -0.0011669125751569876,
+          -0.0023205816157635434,
+          -0.001125594795001516
         ],
         "target": 501,
         "tdbMinusTTSeconds": -1.8460232004197188e-05,
         "tdbPerTTRate": 1.0000000003440765,
-        "ttDays": -36524.49999999979
+        "ttDays": -36524.49999999979,
+        "velocityAUPerTTDay": [
+          0.009087009699493174,
+          -0.003760106470488594,
+          -0.0016520921455413084
+        ]
       },
       {
         "body": "io",
@@ -1066,20 +1124,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2451544.5,
-        "keplerianVelocityAUPerTTDay": [
-          0.00992519416081302,
-          0.0009183862155380351,
-          0.000603687713685486
-        ],
         "positionAU": [
-          0.00029947110062814714,
-          -0.002539807429904452,
-          -0.0012048018234254803
+          0.00029941775977670705,
+          -0.0025396717711040134,
+          -0.001204912516496624
         ],
         "target": 501,
         "tdbMinusTTSeconds": -0.00011376309885469016,
         "tdbPerTTRate": 1.0000000003343732,
-        "ttDays": -0.4999999986832975
+        "ttDays": -0.4999999986832975,
+        "velocityAUPerTTDay": [
+          0.009925340632513402,
+          0.0009184006232925343,
+          0.000604426717190047
+        ]
       },
       {
         "body": "io",
@@ -1087,20 +1145,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2488069.5,
-        "keplerianVelocityAUPerTTDay": [
-          -0.00487724108647032,
-          -0.007847646256326571,
-          -0.0038158075381982915
-        ],
         "positionAU": [
-          -0.002469943158282881,
-          0.001249849667466708,
-          0.0005584407693217377
+          -0.002471395744151831,
+          0.0012475954234478902,
+          0.0005570121897308095
         ],
         "target": 501,
         "tdbMinusTTSeconds": -8.994766295553033e-05,
         "tdbPerTTRate": 1.0000000003314982,
-        "ttDays": 36524.50000000104
+        "ttDays": 36524.50000000104,
+        "velocityAUPerTTDay": [
+          -0.004868130039745342,
+          -0.007851988184262054,
+          -0.0038183891962769597
+        ]
       },
       {
         "body": "io",
@@ -1108,20 +1166,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2426544,
-        "keplerianVelocityAUPerTTDay": [
-          -0.009390648731958214,
-          -0.0031185689744943805,
-          -0.0016448041051774728
-        ],
         "positionAU": [
-          -0.00097844582652916,
-          0.002387550315043435,
-          0.001123733752904877
+          -0.0009767749362042091,
+          0.002388172650682603,
+          0.0011242521590597633
         ],
         "target": 501,
         "tdbMinusTTSeconds": -0.0004594034913487613,
         "tdbPerTTRate": 0.999999999691713,
-        "ttDays": -25000.99999999468
+        "ttDays": -25000.99999999468,
+        "velocityAUPerTTDay": [
+          -0.009392484518804105,
+          -0.003112771959070211,
+          -0.0016421490674573382
+        ]
       },
       {
         "body": "io",
@@ -1129,20 +1187,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2426545,
-        "keplerianVelocityAUPerTTDay": [
-          0.007128330701471215,
-          0.006258176763332195,
-          0.003106320861845306
-        ],
         "positionAU": [
-          0.001984655979378914,
-          -0.0018309696182724133,
-          -0.0008412881139590138
+          0.001982926145814968,
+          -0.0018322950304270101,
+          -0.0008421213878930583
         ],
         "target": 501,
         "tdbMinusTTSeconds": -0.00048601033060072506,
         "tdbPerTTRate": 0.999999999692403,
-        "ttDays": -24999.999999994376
+        "ttDays": -24999.999999994376,
+        "velocityAUPerTTDay": [
+          0.007134144652006238,
+          0.006252995923986058,
+          0.0031043083902729963
+        ]
       },
       {
         "body": "io",
@@ -1150,20 +1208,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2429045,
-        "keplerianVelocityAUPerTTDay": [
-          0.0006117425556506403,
-          0.008991673313710227,
-          0.004301652978582709
-        ],
         "positionAU": [
-          0.0028206448498367203,
-          -0.00018218282072082648,
-          -4.1493725090740865e-05
+          0.0028204707299664,
+          -0.00018370349210974338,
+          -4.2267950395240446e-05
         ],
         "target": 501,
         "tdbMinusTTSeconds": 0.0010347223771392249,
         "tdbPerTTRate": 0.9999999997453948,
-        "ttDays": -22500.000000011976
+        "ttDays": -22500.000000011976,
+        "velocityAUPerTTDay": [
+          0.0006178536080414176,
+          0.008991283678181548,
+          0.004301888655958947
+        ]
       },
       {
         "body": "io",
@@ -1171,20 +1229,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2431545,
-        "keplerianVelocityAUPerTTDay": [
-          -0.006308233835044275,
-          0.007093149534167443,
-          0.0032876860752135643
-        ],
         "positionAU": [
-          0.0021912554518557356,
-          0.0015742487967972763,
-          0.000785509352720774
+          0.0021921549811037763,
+          0.001573265949146054,
+          0.0007850610357926158
         ],
         "target": 501,
         "tdbMinusTTSeconds": 0.001644158147129201,
         "tdbPerTTRate": 1.0000000000130238,
-        "ttDays": -20000.00000001903
+        "ttDays": -20000.00000001903,
+        "velocityAUPerTTDay": [
+          -0.0063041943500650585,
+          0.007096093160506294,
+          0.0032890490436369825
+        ]
       },
       {
         "body": "io",
@@ -1192,20 +1250,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2434045,
-        "keplerianVelocityAUPerTTDay": [
-          -0.009930624690274283,
-          0.001377078806641515,
-          0.0005046993791327439
-        ],
         "positionAU": [
-          0.0003998673881416615,
-          0.002509696619090858,
-          0.0012041516390967353
+          0.00040107850676972137,
+          0.0025095701057929105,
+          0.0012039805423493459
         ],
         "target": 501,
         "tdbMinusTTSeconds": 0.0008152664239047638,
         "tdbPerTTRate": 1.0000000002916545,
-        "ttDays": -17500.000000009437
+        "ttDays": -17500.000000009437,
+        "velocityAUPerTTDay": [
+          -0.009930025934968523,
+          0.0013813781293940406,
+          0.0005064459690691557
+        ]
       },
       {
         "body": "io",
@@ -1213,20 +1271,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2436545,
-        "keplerianVelocityAUPerTTDay": [
-          -0.008273526078303482,
-          -0.0049860941890477245,
-          -0.0025065508076207365
-        ],
         "positionAU": [
-          -0.0015870099068216648,
-          0.002122975361591169,
-          0.0009879313688486327
+          -0.0015860841134770745,
+          0.002123567208074419,
+          0.00098802465773809
         ],
         "target": 501,
         "tdbMinusTTSeconds": -0.0007448720136424303,
         "tdbPerTTRate": 1.000000000305798,
-        "ttDays": -14999.999999991378
+        "ttDays": -14999.999999991378,
+        "velocityAUPerTTDay": [
+          -0.00827574003612767,
+          -0.004983163588522909,
+          -0.0025052840691537413
+        ]
       },
       {
         "body": "io",
@@ -1234,20 +1292,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2439045,
-        "keplerianVelocityAUPerTTDay": [
-          -0.0024119120377610885,
-          -0.0087372539414385,
-          -0.004199064948141002
-        ],
         "positionAU": [
-          -0.002739744079561879,
-          0.000641047698194003,
-          0.00026263922178468844
+          -0.0027396414404419903,
+          0.0006417334808094098,
+          0.00026273585752311637
         ],
         "target": 501,
         "tdbMinusTTSeconds": -0.0016315316452368317,
         "tdbPerTTRate": 1.0000000000316218,
-        "ttDays": -12499.999999981117
+        "ttDays": -12499.999999981117,
+        "velocityAUPerTTDay": [
+          -0.002414225586570923,
+          -0.008736530145448548,
+          -0.004198620445483324
+        ]
       },
       {
         "body": "io",
@@ -1255,20 +1313,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2441545,
-        "keplerianVelocityAUPerTTDay": [
-          0.004793670930671094,
-          -0.008002256809483597,
-          -0.0037341962505956904
-        ],
         "positionAU": [
-          -0.002471933665892165,
-          -0.0011903763297730523,
-          -0.0006049508227947267
+          -0.0024722869771379927,
+          -0.0011898608877598,
+          -0.0006049720062665491
         ],
         "target": 501,
         "tdbMinusTTSeconds": -0.0011023101069915508,
         "tdbPerTTRate": 0.9999999997519934,
-        "ttDays": -9999.999999987242
+        "ttDays": -9999.999999987242,
+        "velocityAUPerTTDay": [
+          0.004792049813973648,
+          -0.008003057026235801,
+          -0.0037340373602759614
+        ]
       },
       {
         "body": "io",
@@ -1276,20 +1334,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2444045,
-        "keplerianVelocityAUPerTTDay": [
-          0.0094999308085273,
-          -0.002976139422696076,
-          -0.0012670901049611832
-        ],
         "positionAU": [
-          -0.0008963807126216642,
-          -0.0024019399761002497,
-          -0.0011576308523158206
+          -0.0008973657179622085,
+          -0.0024016392537444912,
+          -0.0011576627542092305
         ],
         "target": 501,
         "tdbMinusTTSeconds": 0.00039266841147611494,
         "tdbPerTTRate": 0.9999999996903165,
-        "ttDays": -7500.000000004545
+        "ttDays": -7500.000000004545,
+        "velocityAUPerTTDay": [
+          0.009498620175902904,
+          -0.002979405458060444,
+          -0.0012676339362369452
+        ]
       },
       {
         "body": "io",
@@ -1297,20 +1355,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2446545,
-        "keplerianVelocityAUPerTTDay": [
-          0.009146895039543518,
-          0.003538574470357651,
-          0.001834661652813823
-        ],
         "positionAU": [
-          0.0011351828324181756,
-          -0.0023469582882849347,
-          -0.0010991564936827056
+          0.0011345219809004647,
+          -0.0023471824457001215,
+          -0.0010992618731471139
         ],
         "target": 501,
         "tdbMinusTTSeconds": 0.0015715444071052538,
         "tdbPerTTRate": 0.9999999998829754,
-        "ttDays": -5000.000000018189
+        "ttDays": -5000.000000018189,
+        "velocityAUPerTTDay": [
+          0.009147872928985747,
+          0.0035364164757489542,
+          0.0018346871868147494
+        ]
       },
       {
         "body": "io",
@@ -1318,20 +1376,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2449045,
-        "keplerianVelocityAUPerTTDay": [
-          0.004126290742421153,
-          0.008188973772924952,
-          0.003968866852609312
-        ],
         "positionAU": [
-          0.0025686148275806562,
-          -0.0010784765560775459,
-          -0.00047048921691421726
+          0.002568463614191168,
+          -0.0010785810625061835,
+          -0.0004704264484029835
         ],
         "target": 501,
         "tdbMinusTTSeconds": 0.0013555856568013842,
         "tdbPerTTRate": 1.00000000019373,
-        "ttDays": -2500.0000000156897
+        "ttDays": -2500.0000000156897,
+        "velocityAUPerTTDay": [
+          0.004126908572010125,
+          0.008188655612329955,
+          0.003969599962224362
+        ]
       },
       {
         "body": "io",
@@ -1339,20 +1397,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2451545,
-        "keplerianVelocityAUPerTTDay": [
-          -0.003116070325930939,
-          0.008645397335975863,
-          0.004065973759064726
-        ],
         "positionAU": [
-          0.002672102643097928,
-          0.0007643059025735413,
-          0.00040882063406384245
+          0.0026719245317715634,
+          0.0007644382776206639,
+          0.0004091146230795809
         ],
         "target": 501,
         "tdbMinusTTSeconds": -9.930719891053941e-05,
         "tdbPerTTRate": 1.0000000003348737,
-        "ttDays": 1.1493888762793913e-09
+        "ttDays": 1.1493888762793913e-09,
+        "velocityAUPerTTDay": [
+          -0.0031170764044106307,
+          0.008645308828398583,
+          0.004066367539586843
+        ]
       },
       {
         "body": "io",
@@ -1360,20 +1418,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2454045,
-        "keplerianVelocityAUPerTTDay": [
-          -0.008756903852187931,
-          0.004472786259890073,
-          0.0019881950060486324
-        ],
         "positionAU": [
-          0.001363242370907132,
-          0.002213123689485904,
-          0.0010779873442473401
+          0.0013629039923247984,
+          0.0022131653466279985,
+          0.0010782439027552948
         ],
         "target": 501,
         "tdbMinusTTSeconds": -0.0014299524586083728,
         "tdbPerTTRate": 1.0000000001692289,
-        "ttDays": 2500.0000000165505
+        "ttDays": 2500.0000000165505,
+        "velocityAUPerTTDay": [
+          -0.008757576478450692,
+          0.004472110471479512,
+          0.001987461414929545
+        ]
       },
       {
         "body": "io",
@@ -1381,20 +1439,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2456545,
-        "keplerianVelocityAUPerTTDay": [
-          -0.009715682770072124,
-          -0.0019748884581067072,
-          -0.0011034076884543888
-        ],
         "positionAU": [
-          -0.0006455194914949395,
-          0.002490518516815076,
-          0.001178519543517445
+          -0.0006460784018343529,
+          0.0024903496476659545,
+          0.0011784716746534257
         ],
         "target": 501,
         "tdbMinusTTSeconds": -0.0014749084234971645,
         "tdbPerTTRate": 0.9999999998639396,
-        "ttDays": 5000.00000001707
+        "ttDays": 5000.00000001707,
+        "velocityAUPerTTDay": [
+          -0.009715293341017879,
+          -0.0019761838897918776,
+          -0.001104824029732536
+        ]
       },
       {
         "body": "io",
@@ -1402,20 +1460,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2459045,
-        "keplerianVelocityAUPerTTDay": [
-          -0.00571055798475092,
-          -0.007364710526151473,
-          -0.0036113260988861087
-        ],
         "positionAU": [
-          -0.0023116310952993433,
-          0.0014790854296189875,
-          0.0006683123625780082
+          -0.0023122725661201657,
+          0.001478355580359576,
+          0.0006678153596426208
         ],
         "target": 501,
         "tdbMinusTTSeconds": -0.0002769782448689867,
         "tdbPerTTRate": 0.9999999996762707,
-        "ttDays": 7500.000000003206
+        "ttDays": 7500.000000003206,
+        "velocityAUPerTTDay": [
+          -0.0057075594592962626,
+          -0.0073661922831465085,
+          -0.003612602716956828
+        ]
       },
       {
         "body": "io",
@@ -1423,20 +1481,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2461545,
-        "keplerianVelocityAUPerTTDay": [
-          0.0013393483567517737,
-          -0.008997727471923168,
-          -0.004273371303836908
-        ],
         "positionAU": [
-          -0.0027840556170379504,
-          -0.0003160302476481712,
-          -0.00019559521601053594
+          -0.002784109635682067,
+          -0.000316586147793181,
+          -0.00019611326257049636
         ],
         "target": 501,
         "tdbMinusTTSeconds": 0.00116917899854325,
         "tdbPerTTRate": 0.99999999976968,
-        "ttDays": 9999.999999986469
+        "ttDays": 9999.999999986469,
+        "velocityAUPerTTDay": [
+          0.001342039534272174,
+          -0.008997034684552154,
+          -0.004273164163248762
+        ]
       },
       {
         "body": "io",
@@ -1444,20 +1502,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2464045,
-        "keplerianVelocityAUPerTTDay": [
-          0.007721784889186073,
-          -0.005821615496538599,
-          -0.0026584084047254486
-        ],
         "positionAU": [
-          -0.0017875263719155218,
-          -0.0019514506105193083,
-          -0.000958933684106933
+          -0.0017868517775901016,
+          -0.001952039297393897,
+          -0.0009594341169847813
         ],
         "target": 501,
         "tdbMinusTTSeconds": 0.00161626525470403,
         "tdbPerTTRate": 1.000000000073585,
-        "ttDays": 12499.999999981294
+        "ttDays": 12499.999999981294,
+        "velocityAUPerTTDay": [
+          0.00772366758551983,
+          -0.005819117544218563,
+          -0.0026564614052770794
+        ]
       },
       {
         "body": "io",
@@ -1465,20 +1523,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2466545,
-        "keplerianVelocityAUPerTTDay": [
-          0.009962948833552794,
-          0.0003566974893372394,
-          0.000322329305156795
-        ],
         "positionAU": [
-          0.0001350236917567256,
-          -0.002552162535958248,
-          -0.0012158053228319768
+          0.00013599046610999864,
+          -0.0025520759003588053,
+          -0.0012157310318622432
         ],
         "target": 501,
         "tdbMinusTTSeconds": 0.0006385175130061116,
         "tdbPerTTRate": 1.000000000308986,
-        "ttDays": 14999.99999999261
+        "ttDays": 14999.99999999261,
+        "velocityAUPerTTDay": [
+          0.009962865665895623,
+          0.00035953348905967523,
+          0.0003249456896602919
+        ]
       },
       {
         "body": "io",
@@ -1486,20 +1544,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2469045,
-        "keplerianVelocityAUPerTTDay": [
-          0.007104174848844811,
-          0.006306726893848798,
-          0.0031174280088582234
-        ],
         "positionAU": [
-          0.001978519763273012,
-          -0.0018299381827880682,
-          -0.0008420632829147849
+          0.0019792922447632562,
+          -0.001829238166875916,
+          -0.000841437085813681
         ],
         "target": 501,
         "tdbMinusTTSeconds": -0.0009567330394063734,
         "tdbPerTTRate": 1.000000000267522,
-        "ttDays": 17500.000000011074
+        "ttDays": 17500.000000011074,
+        "velocityAUPerTTDay": [
+          0.007101095854148717,
+          0.006309574166804275,
+          0.0031194778113824958
+        ]
       },
       {
         "body": "io",
@@ -1507,20 +1565,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2471545,
-        "keplerianVelocityAUPerTTDay": [
-          0.0004830921810783454,
-          0.009062288705738494,
-          0.004323509967415373
-        ],
         "positionAU": [
-          0.0028045210240213204,
-          -0.00014255255898365586,
-          -2.395163244716119e-05
+          0.0028045557991549564,
+          -0.00014126753820892923,
+          -2.2994335784744367e-05
         ],
         "target": 501,
         "tdbMinusTTSeconds": -0.0016806640050495195,
         "tdbPerTTRate": 0.9999999999954516,
-        "ttDays": 20000.000000019452
+        "ttDays": 20000.000000019452,
+        "velocityAUPerTTDay": [
+          0.00047736562966454023,
+          0.009062838698408786,
+          0.004323619706353359
+        ]
       },
       {
         "body": "io",
@@ -1528,20 +1586,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2474045,
-        "keplerianVelocityAUPerTTDay": [
-          -0.006435808147889153,
-          0.006981102189495462,
-          0.003221011574439764
-        ],
         "positionAU": [
-          0.0021514754001865865,
-          0.0016266122884003682,
-          0.0008077825538233035
+          0.0021503503122496776,
+          0.0016275908528866714,
+          0.0008084978118018527
         ],
         "target": 501,
         "tdbMinusTTSeconds": -0.0008872925546697294,
         "tdbPerTTRate": 0.999999999732123,
-        "ttDays": 22500.00000001027
+        "ttDays": 22500.00000001027,
+        "velocityAUPerTTDay": [
+          -0.0064403585541103914,
+          0.006978389135226754,
+          0.003218792859280346
+        ]
       },
       {
         "body": "io",
@@ -1549,20 +1607,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2476545,
-        "keplerianVelocityAUPerTTDay": [
-          -0.009879553976181378,
-          0.001289069987420858,
-          0.00045690421033242157
-        ],
         "positionAU": [
-          0.00038249729090712584,
-          0.002529858046351512,
-          0.0012102479075200422
+          0.0003801452983924617,
+          0.002530057486009952,
+          0.0012102928495212855
         ],
         "target": 501,
         "tdbMinusTTSeconds": 0.0006310807160867544,
         "tdbPerTTRate": 0.9999999996936719,
-        "ttDays": 24999.999999992695
+        "ttDays": 24999.999999992695,
+        "velocityAUPerTTDay": [
+          -0.009880967827957486,
+          0.0012822733660956649,
+          0.00045231797439052333
+        ]
       },
       {
         "body": "io",
@@ -1570,20 +1628,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2476546,
-        "keplerianVelocityAUPerTTDay": [
-          0.009682419983767628,
-          0.002382588632834829,
-          0.001287619549608452
-        ],
         "positionAU": [
-          0.0007565372192059687,
-          -0.002446112573335298,
-          -0.0011523239179065503
+          0.000758687351117318,
+          -0.0024457224878690984,
+          -0.0011519447664656473
         ],
         "target": 501,
         "tdbMinusTTSeconds": 0.0006045072852596656,
         "tdbPerTTRate": 0.9999999996912372,
-        "ttDays": 25000.999999993004
+        "ttDays": 25000.999999993004,
+        "velocityAUPerTTDay": [
+          0.0096802193932033,
+          0.0023889728804131097,
+          0.0012918334214801139
+        ]
       },
       {
         "body": "europa",
@@ -1591,20 +1649,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2415020.5,
-        "keplerianVelocityAUPerTTDay": [
-          -0.0038412255428482457,
-          -0.0062253425822211056,
-          -0.0030880161001820947
-        ],
         "positionAU": [
-          -0.0039020527957617803,
-          0.0020260676551194907,
-          0.0008796796724552283
+          -0.0039018155554336365,
+          0.00202664628225313,
+          0.0008799939757776904
         ],
         "target": 502,
         "tdbMinusTTSeconds": -1.8460232004197188e-05,
         "tdbPerTTRate": 1.0000000003440765,
-        "ttDays": -36524.49999999979
+        "ttDays": -36524.49999999979,
+        "velocityAUPerTTDay": [
+          -0.003842543256099063,
+          -0.006223819026236833,
+          -0.003088756202067274
+        ]
       },
       {
         "body": "europa",
@@ -1612,20 +1670,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2451544.5,
-        "keplerianVelocityAUPerTTDay": [
-          -0.0025248386576943982,
-          -0.006831377484604352,
-          -0.0032299701517056866
-        ],
         "positionAU": [
-          -0.004225017046648344,
-          0.0013428889305482376,
-          0.0005600609128524332
+          -0.004225205085621283,
+          0.0013430663243072145,
+          0.0005601213774554709
         ],
         "target": 502,
         "tdbMinusTTSeconds": -0.00011376309885469016,
         "tdbPerTTRate": 1.0000000003343732,
-        "ttDays": -0.4999999986832975
+        "ttDays": -0.4999999986832975,
+        "velocityAUPerTTDay": [
+          -0.002525094296862045,
+          -0.0068308541798310736,
+          -0.003229663834572992
+        ]
       },
       {
         "body": "europa",
@@ -1633,20 +1691,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2488069.5,
-        "keplerianVelocityAUPerTTDay": [
-          0.00795113327393386,
-          0.0005210148684804891,
-          0.00030728389867420736
-        ],
         "positionAU": [
-          0.00037408450830654167,
-          -0.004013327004065153,
-          -0.0019198252387366002
+          0.0003751387890935364,
+          -0.004013091042171149,
+          -0.0019204718043816375
         ],
         "target": 502,
         "tdbMinusTTSeconds": -8.994766295553033e-05,
         "tdbPerTTRate": 1.0000000003314982,
-        "ttDays": 36524.50000000104
+        "ttDays": 36524.50000000104,
+        "velocityAUPerTTDay": [
+          0.007950702142501055,
+          0.0005223575878762256,
+          0.0003094572590906106
+        ]
       },
       {
         "body": "europa",
@@ -1654,20 +1712,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2426544,
-        "keplerianVelocityAUPerTTDay": [
-          -0.004682283533118133,
-          -0.005664600087829912,
-          -0.0028235695143819634
-        ],
         "positionAU": [
-          -0.003647351626481097,
-          0.002446694244955769,
-          0.0010771659882112818
+          -0.0036472343782388817,
+          0.002447031248450516,
+          0.001077000876754531
         ],
         "target": 502,
         "tdbMinusTTSeconds": -0.0004594034913487613,
         "tdbPerTTRate": 0.999999999691713,
-        "ttDays": -25000.99999999468
+        "ttDays": -25000.99999999468,
+        "velocityAUPerTTDay": [
+          -0.00468287475264085,
+          -0.005663631219091066,
+          -0.002824264748496967
+        ]
       },
       {
         "body": "europa",
@@ -1675,20 +1733,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2426545,
-        "keplerianVelocityAUPerTTDay": [
-          0.007114919335915054,
-          -0.00318755903858901,
-          -0.0013439556749016337
-        ],
         "positionAU": [
-          -0.0020011406284532844,
-          -0.0036173844982875683,
-          -0.0017782580362207233
+          -0.0020017031661317573,
+          -0.0036168388493968344,
+          -0.0017785874260510882
         ],
         "target": 502,
         "tdbMinusTTSeconds": -0.00048601033060072506,
         "tdbPerTTRate": 0.999999999692403,
-        "ttDays": -24999.999999994376
+        "ttDays": -24999.999999994376,
+        "velocityAUPerTTDay": [
+          0.007114836588467229,
+          -0.0031885651052706745,
+          -0.001343652246772916
+        ]
       },
       {
         "body": "europa",
@@ -1696,20 +1754,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2429045,
-        "keplerianVelocityAUPerTTDay": [
-          0.0069644232056537405,
-          -0.003552208331045857,
-          -0.0015281699002450252
-        ],
         "positionAU": [
-          -0.0022027291563548245,
-          -0.0035078979762827645,
-          -0.0016781723087269207
+          -0.00220293617912869,
+          -0.0035078425031314186,
+          -0.0016785127000317733
         ],
         "target": 502,
         "tdbMinusTTSeconds": 0.0010347223771392249,
         "tdbPerTTRate": 0.9999999997453948,
-        "ttDays": -22500.000000011976
+        "ttDays": -22500.000000011976,
+        "velocityAUPerTTDay": [
+          0.006963653865542889,
+          -0.0035530840772465388,
+          -0.0015276401456351088
+        ]
       },
       {
         "body": "europa",
@@ -1717,20 +1775,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2431545,
-        "keplerianVelocityAUPerTTDay": [
-          0.006795178850475174,
-          -0.0038455625741636986,
-          -0.0017611150382504336
-        ],
         "positionAU": [
-          -0.002361257334270044,
-          -0.0034014176519274117,
-          -0.00162382945357909
+          -0.00236164544110065,
+          -0.0034007415056621897,
+          -0.0016236843541348914
         ],
         "target": 502,
         "tdbMinusTTSeconds": 0.001644158147129201,
         "tdbPerTTRate": 1.0000000000130238,
-        "ttDays": -20000.00000001903
+        "ttDays": -20000.00000001903,
+        "velocityAUPerTTDay": [
+          0.006794880481903854,
+          -0.003846862573053019,
+          -0.001761227922786084
+        ]
       },
       {
         "body": "europa",
@@ -1738,20 +1796,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2434045,
-        "keplerianVelocityAUPerTTDay": [
-          0.006583582103803729,
-          -0.004125094520272463,
-          -0.001925617894825713
-        ],
         "positionAU": [
-          -0.0025126216565237564,
-          -0.0032919042875622553,
-          -0.0016220541822383602
+          -0.0025133624138966503,
+          -0.003291745591109936,
+          -0.0016223720364385058
         ],
         "target": 502,
         "tdbMinusTTSeconds": 0.0008152664239047638,
         "tdbPerTTRate": 1.0000000002916545,
-        "ttDays": -17500.000000009437
+        "ttDays": -17500.000000009437,
+        "velocityAUPerTTDay": [
+          0.0065826073708460065,
+          -0.004125586351551068,
+          -0.0019256735188178083
+        ]
       },
       {
         "body": "europa",
@@ -1759,20 +1817,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2436545,
-        "keplerianVelocityAUPerTTDay": [
-          0.006307138520042126,
-          -0.004427705011553551,
-          -0.001995523590147668
-        ],
         "positionAU": [
-          -0.0026955915815919927,
-          -0.003189852666126648,
-          -0.0016002949693527573
+          -0.0026956079541916944,
+          -0.003189476965261334,
+          -0.001600607918977311
         ],
         "target": 502,
         "tdbMinusTTSeconds": -0.0007448720136424303,
         "tdbPerTTRate": 1.000000000305798,
-        "ttDays": -14999.999999991378
+        "ttDays": -14999.999999991378,
+        "velocityAUPerTTDay": [
+          0.006307123985431931,
+          -0.0044283050343394015,
+          -0.001995220552820483
+        ]
       },
       {
         "body": "europa",
@@ -1780,20 +1838,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2439045,
-        "keplerianVelocityAUPerTTDay": [
-          0.005971172304273825,
-          -0.0047327950594452895,
-          -0.0020894334496358797
-        ],
         "positionAU": [
-          -0.0029209561573884687,
-          -0.003080093548619415,
-          -0.0015126417886556004
+          -0.0029211839323408256,
+          -0.0030796222535309542,
+          -0.0015127948100690633
         ],
         "target": 502,
         "tdbMinusTTSeconds": -0.0016315316452368317,
         "tdbPerTTRate": 1.0000000000316218,
-        "ttDays": -12499.999999981117
+        "ttDays": -12499.999999981117,
+        "velocityAUPerTTDay": [
+          0.005970974896968846,
+          -0.0047336795119366755,
+          -0.002088951081675207
+        ]
       },
       {
         "body": "europa",
@@ -1801,20 +1859,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2441545,
-        "keplerianVelocityAUPerTTDay": [
-          0.005629632167050164,
-          -0.005000490663615883,
-          -0.0022780539864529436
-        ],
         "positionAU": [
-          -0.0031510704040176763,
-          -0.0029292131104250046,
-          -0.001404349944575582
+          -0.003151394865917268,
+          -0.00292880569635983,
+          -0.0014044671338146054
         ],
         "target": 502,
         "tdbMinusTTSeconds": -0.0011023101069915508,
         "tdbPerTTRate": 0.9999999997519934,
-        "ttDays": -9999.999999987242
+        "ttDays": -9999.999999987242,
+        "velocityAUPerTTDay": [
+          0.005628682532654369,
+          -0.0050013782212719095,
+          -0.002278202633829742
+        ]
       },
       {
         "body": "europa",
@@ -1822,20 +1880,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2444045,
-        "keplerianVelocityAUPerTTDay": [
-          0.005276564223632424,
-          -0.005284525584648906,
-          -0.002499647435297199
-        ],
         "positionAU": [
-          -0.0033696825591259193,
-          -0.002707490651433034,
-          -0.0013243561305809322
+          -0.00337016935356335,
+          -0.0027070603446762596,
+          -0.0013247099615226418
         ],
         "target": 502,
         "tdbMinusTTSeconds": 0.00039266841147611494,
         "tdbPerTTRate": 0.9999999996903165,
-        "ttDays": -7500.000000004545
+        "ttDays": -7500.000000004545,
+        "velocityAUPerTTDay": [
+          0.005276183604946135,
+          -0.0052843769602569,
+          -0.002499749420042641
+        ]
       },
       {
         "body": "europa",
@@ -1843,20 +1901,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2446545,
-        "keplerianVelocityAUPerTTDay": [
-          0.004944573947204886,
-          -0.005594189987419439,
-          -0.0026322697284554882
-        ],
         "positionAU": [
-          -0.0035376440530040737,
-          -0.002472127130425806,
-          -0.001264412945889402
+          -0.00353720760642721,
+          -0.002472359999168179,
+          -0.001265216342674811
         ],
         "target": 502,
         "tdbMinusTTSeconds": 0.0015715444071052538,
         "tdbPerTTRate": 0.9999999998829754,
-        "ttDays": -5000.000000018189
+        "ttDays": -5000.000000018189,
+        "velocityAUPerTTDay": [
+          0.004945101462631168,
+          -0.005593776175223083,
+          -0.0026321263290485465
+        ]
       },
       {
         "body": "europa",
@@ -1864,20 +1922,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2449045,
-        "keplerianVelocityAUPerTTDay": [
-          0.004627602532542642,
-          -0.005905610768824504,
-          -0.0026965675275690435
-        ],
         "positionAU": [
-          -0.0036561926579351403,
-          -0.0022794442749947,
-          -0.0011732452007715156
+          -0.0036561411240861315,
+          -0.0022789114218826293,
+          -0.0011733100092668881
         ],
         "target": 502,
         "tdbMinusTTSeconds": 0.0013555856568013842,
         "tdbPerTTRate": 1.00000000019373,
-        "ttDays": -2500.0000000156897
+        "ttDays": -2500.0000000156897,
+        "velocityAUPerTTDay": [
+          0.004627345795324197,
+          -0.005906420176185888,
+          -0.0026966059742021607
+        ]
       },
       {
         "body": "europa",
@@ -1885,20 +1943,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2451545,
-        "keplerianVelocityAUPerTTDay": [
-          0.00431028426398756,
-          -0.006143763542700999,
-          -0.002800499287686022
-        ],
         "positionAU": [
-          -0.003751242237985051,
-          -0.002135739047117886,
-          -0.0010567698648782074
+          -0.003751687609869434,
+          -0.002135685020921434,
+          -0.0010567420724484705
         ],
         "target": 502,
         "tdbMinusTTSeconds": -9.930719891053941e-05,
         "tdbPerTTRate": 1.0000000003348737,
-        "ttDays": 1.1493888762793913e-09
+        "ttDays": 1.1493888762793913e-09,
+        "velocityAUPerTTDay": [
+          0.00430983439218421,
+          -0.006143702634294554,
+          -0.0028004018493682347
+        ]
       },
       {
         "body": "europa",
@@ -1906,20 +1964,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2454045,
-        "keplerianVelocityAUPerTTDay": [
-          0.003975800826183584,
-          -0.00628227075526842,
-          -0.002957149362600463
-        ],
         "positionAU": [
-          -0.003851107691702395,
-          -0.0020024833750147152,
-          -0.000977461879074988
+          -0.003851025310614315,
+          -0.0020021304568000847,
+          -0.0009774976456044223
         ],
         "target": 502,
         "tdbMinusTTSeconds": -0.0014299524586083728,
         "tdbPerTTRate": 1.0000000001692289,
-        "ttDays": 2500.0000000165505
+        "ttDays": 2500.0000000165505,
+        "velocityAUPerTTDay": [
+          0.003975488310327561,
+          -0.006282452320918111,
+          -0.0029577357967515796
+        ]
       },
       {
         "body": "europa",
@@ -1927,20 +1985,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2456545,
-        "keplerianVelocityAUPerTTDay": [
-          0.003589482592815544,
-          -0.006398244311760255,
-          -0.0030662518352054095
-        ],
         "positionAU": [
-          -0.0039768664793324235,
-          -0.0018295839803486758,
-          -0.0009407150931940204
+          -0.003976948519115289,
+          -0.0018293669832222866,
+          -0.0009413698902486339
         ],
         "target": 502,
         "tdbMinusTTSeconds": -0.0014749084234971645,
         "tdbPerTTRate": 0.9999999998639396,
-        "ttDays": 5000.00000001707
+        "ttDays": 5000.00000001707,
+        "velocityAUPerTTDay": [
+          0.0035896732371137326,
+          -0.006397872399752657,
+          -0.0030660243344177874
+        ]
       },
       {
         "body": "europa",
@@ -1948,20 +2006,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2459045,
-        "keplerianVelocityAUPerTTDay": [
-          0.0031710589413162177,
-          -0.0065432818174928275,
-          -0.0030765424391866487
-        ],
         "positionAU": [
-          -0.004114182477733739,
-          -0.0016229499790665904,
-          -0.0008798819292956564
+          -0.004113744268680798,
+          -0.0016229813984895774,
+          -0.0008805731137948174
         ],
         "target": 502,
         "tdbMinusTTSeconds": -0.0002769782448689867,
         "tdbPerTTRate": 0.9999999996762707,
-        "ttDays": 7500.000000003206
+        "ttDays": 7500.000000003206,
+        "velocityAUPerTTDay": [
+          0.0031718350959019674,
+          -0.00654389800186144,
+          -0.0030760448854236953
+        ]
       },
       {
         "body": "europa",
@@ -1969,20 +2027,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2461545,
-        "keplerianVelocityAUPerTTDay": [
-          0.002707186881876957,
-          -0.006706432944461427,
-          -0.0030881984249247554
-        ],
         "positionAU": [
-          -0.004246896016357749,
-          -0.0013833680645361707,
-          -0.0007394288077524384
+          -0.004247053864388414,
+          -0.0013835040163412895,
+          -0.0007397035437651114
         ],
         "target": 502,
         "tdbMinusTTSeconds": 0.00116917899854325,
         "tdbPerTTRate": 0.99999999976968,
-        "ttDays": 9999.999999986469
+        "ttDays": 9999.999999986469,
+        "velocityAUPerTTDay": [
+          0.002706979633693891,
+          -0.006706171374714886,
+          -0.00308748814020398
+        ]
       },
       {
         "body": "europa",
@@ -1990,20 +2048,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2464045,
-        "keplerianVelocityAUPerTTDay": [
-          0.0022343780675487877,
-          -0.006840350047547217,
-          -0.003192723082029099
-        ],
         "positionAU": [
-          -0.004343131914336911,
-          -0.0011240514504203812,
-          -0.0005709577626290879
+          -0.004343074293145255,
+          -0.0011243527548705809,
+          -0.0005713251042025156
         ],
         "target": 502,
         "tdbMinusTTSeconds": 0.00161626525470403,
         "tdbPerTTRate": 1.000000000073585,
-        "ttDays": 12499.999999981294
+        "ttDays": 12499.999999981294,
+        "velocityAUPerTTDay": [
+          0.0022354105709797563,
+          -0.0068397736408786595,
+          -0.0031929882056826024
+        ]
       },
       {
         "body": "europa",
@@ -2011,20 +2069,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2466545,
-        "keplerianVelocityAUPerTTDay": [
-          0.001787151414016317,
-          -0.006953167495175715,
-          -0.003340359282619489
-        ],
         "positionAU": [
-          -0.00438931861416983,
-          -0.0008616870512791514,
-          -0.00045605519088537936
+          -0.004388991495095579,
+          -0.0008611914660275429,
+          -0.00045666589599118563
         ],
         "target": 502,
         "tdbMinusTTSeconds": 0.0006385175130061116,
         "tdbPerTTRate": 1.000000000308986,
-        "ttDays": 14999.99999999261
+        "ttDays": 14999.99999999261,
+        "velocityAUPerTTDay": [
+          0.0017872990775431824,
+          -0.006953537175130832,
+          -0.003341341567506535
+        ]
       },
       {
         "body": "europa",
@@ -2032,20 +2090,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2469045,
-        "keplerianVelocityAUPerTTDay": [
-          0.0013756635173977586,
-          -0.007078631105087308,
-          -0.003408048274248503
-        ],
         "positionAU": [
-          -0.004401670365342587,
-          -0.0006267011010446944,
-          -0.0003952173519294253
+          -0.004401671456749197,
+          -0.0006271415801073114,
+          -0.0003966020895235124
         ],
         "target": 502,
         "tdbMinusTTSeconds": -0.0009567330394063734,
         "tdbPerTTRate": 1.000000000267522,
-        "ttDays": 17500.000000011074
+        "ttDays": 17500.000000011074,
+        "velocityAUPerTTDay": [
+          0.0013770290699102376,
+          -0.007078213989962764,
+          -0.0034074561174081827
+        ]
       },
       {
         "body": "europa",
@@ -2053,20 +2111,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2471545,
-        "keplerianVelocityAUPerTTDay": [
-          0.0009992696765099877,
-          -0.00719195947426696,
-          -0.0033783912188158323
-        ],
         "positionAU": [
-          -0.004410129845408532,
-          -0.0004531395479097804,
-          -0.0003239310675564338
+          -0.004409896558827682,
+          -0.0004535871771591541,
+          -0.0003247421808465037
         ],
         "target": 502,
         "tdbMinusTTSeconds": -0.0016806640050495195,
         "tdbPerTTRate": 0.9999999999954516,
-        "ttDays": 20000.000000019452
+        "ttDays": 20000.000000019452,
+        "velocityAUPerTTDay": [
+          0.0010007163077421402,
+          -0.007192140473616012,
+          -0.0033774657313772557
+        ]
       },
       {
         "body": "europa",
@@ -2074,20 +2132,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2474045,
-        "keplerianVelocityAUPerTTDay": [
-          0.0006162792392171598,
-          -0.0072265950444239824,
-          -0.0033632127578332102
-        ],
         "positionAU": [
-          -0.004437308147034922,
-          -0.0003090289389558208,
-          -0.00020915058082815525
+          -0.004437558509758064,
+          -0.0003096193418060785,
+          -0.00020957176689672815
         ],
         "target": 502,
         "tdbMinusTTSeconds": -0.0008872925546697294,
         "tdbPerTTRate": 0.999999999732123,
-        "ttDays": 22500.00000001027
+        "ttDays": 22500.00000001027,
+        "velocityAUPerTTDay": [
+          0.0006173379225344535,
+          -0.007226058420984778,
+          -0.003363119749663633
+        ]
       },
       {
         "body": "europa",
@@ -2095,20 +2153,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2476545,
-        "keplerianVelocityAUPerTTDay": [
-          0.0002001020741511424,
-          -0.007170379748518363,
-          -0.0034160917789443045
-        ],
         "positionAU": [
-          -0.0044782129154215455,
-          -0.0001280662102501688,
-          -9.426176558538428e-05
+          -0.004477890465239243,
+          -0.00012867847773318083,
+          -9.514525224533527e-05
         ],
         "target": 502,
         "tdbMinusTTSeconds": 0.0006310807160867544,
         "tdbPerTTRate": 0.9999999996936719,
-        "ttDays": 24999.999999992695
+        "ttDays": 24999.999999992695,
+        "velocityAUPerTTDay": [
+          0.0002018523885975144,
+          -0.00717023480930769,
+          -0.003417571716689435
+        ]
       },
       {
         "body": "europa",
@@ -2116,20 +2174,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2476546,
-        "keplerianVelocityAUPerTTDay": [
-          0.0076821048216818965,
-          0.0014808042665685386,
-          0.0007627879362242312
-        ],
         "positionAU": [
-          0.00095549434254216,
-          -0.003999301882303667,
-          -0.001899097530312884
+          0.0009568306769615867,
+          -0.003998842585984051,
+          -0.0018996274507625853
         ],
         "target": 502,
         "tdbMinusTTSeconds": 0.0006045072852596656,
         "tdbPerTTRate": 0.9999999996912372,
-        "ttDays": 25000.999999993004
+        "ttDays": 25000.999999993004,
+        "velocityAUPerTTDay": [
+          0.007681306816917863,
+          0.0014820753186511743,
+          0.0007646654054423411
+        ]
       },
       {
         "body": "ganymede",
@@ -2137,20 +2195,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2415020.5,
-        "keplerianVelocityAUPerTTDay": [
-          0.0015756410133923393,
-          -0.00548681095132164,
-          -0.002601684700078636
-        ],
         "positionAU": [
-          -0.006939346485955423,
-          -0.001571275179513868,
-          -0.000867594605579647
+          -0.006939617653492735,
+          -0.001571922939801662,
+          -0.000868860753762936
         ],
         "target": 503,
         "tdbMinusTTSeconds": -1.8460232004197188e-05,
         "tdbPerTTRate": 1.0000000003440765,
-        "ttDays": -36524.49999999979
+        "ttDays": -36524.49999999979,
+        "velocityAUPerTTDay": [
+          0.0015763004120879546,
+          -0.005486259961635994,
+          -0.0026016660174749944
+        ]
       },
       {
         "body": "ganymede",
@@ -2158,20 +2216,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2451544.5,
-        "keplerianVelocityAUPerTTDay": [
-          0.0016057478005385946,
-          -0.005485931230342572,
-          -0.0026032635357863257
-        ],
         "positionAU": [
-          -0.006923038159662892,
-          -0.0016091361569224075,
-          -0.0008548830750973338
+          -0.006923432872389398,
+          -0.0016084475950511763,
+          -0.0008550519369820247
         ],
         "target": 503,
         "tdbMinusTTSeconds": -0.00011376309885469016,
         "tdbPerTTRate": 1.0000000003343732,
-        "ttDays": -0.4999999986832975
+        "ttDays": -0.4999999986832975,
+        "velocityAUPerTTDay": [
+          0.001604945181767452,
+          -0.005486010163009184,
+          -0.0026036941462140887
+        ]
       },
       {
         "body": "ganymede",
@@ -2179,20 +2237,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2488069.5,
-        "keplerianVelocityAUPerTTDay": [
-          0.00571343240985609,
-          -0.0023833105694769817,
-          -0.0010407455770178769
-        ],
         "positionAU": [
-          -0.0029599337045638683,
-          -0.005883864188687227,
-          -0.0028147282488599264
+          -0.002962185218365733,
+          -0.005883904852304619,
+          -0.002814820746688928
         ],
         "target": 503,
         "tdbMinusTTSeconds": -8.994766295553033e-05,
         "tdbPerTTRate": 1.0000000003314982,
-        "ttDays": 36524.50000000104
+        "ttDays": 36524.50000000104,
+        "velocityAUPerTTDay": [
+          0.005712368421708036,
+          -0.0023842531277708788,
+          -0.0010410886808394802
+        ]
       },
       {
         "body": "ganymede",
@@ -2200,20 +2258,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2426544,
-        "keplerianVelocityAUPerTTDay": [
-          -0.00589306041499995,
-          0.002027579562801203,
-          0.0008577312319526827
-        ],
         "positionAU": [
-          0.0024988059320298073,
-          0.006034674879367846,
-          0.002903876634755547
+          0.00249784287486904,
+          0.006035225302779171,
+          0.002904563613601415
         ],
         "target": 503,
         "tdbMinusTTSeconds": -0.0004594034913487613,
         "tdbPerTTRate": 0.999999999691713,
-        "ttDays": -25000.99999999468
+        "ttDays": -25000.99999999468,
+        "velocityAUPerTTDay": [
+          -0.005893364637445186,
+          0.0020271205278364233,
+          0.0008564165600852749
+        ]
       },
       {
         "body": "ganymede",
@@ -2221,20 +2279,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2426545,
-        "keplerianVelocityAUPerTTDay": [
-          -0.005449971586835416,
-          -0.0027939214684997646,
-          -0.0014196318583421371
-        ],
         "positionAU": [
-          -0.003568343015537065,
-          0.005624392588112956,
-          0.0026031453227825367
+          -0.003569347635820342,
+          0.005624051885123765,
+          0.0026022933024152256
         ],
         "target": 503,
         "tdbMinusTTSeconds": -0.00048601033060072506,
         "tdbPerTTRate": 0.999999999692403,
-        "ttDays": -24999.999999994376
+        "ttDays": -24999.999999994376,
+        "velocityAUPerTTDay": [
+          -0.005449493008540588,
+          -0.0027941619015312788,
+          -0.0014207310049483802
+        ]
       },
       {
         "body": "ganymede",
@@ -2242,20 +2300,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2429045,
-        "keplerianVelocityAUPerTTDay": [
-          0.006259778514145856,
-          0.0003409253219589383,
-          0.0002682751328468126
-        ],
         "positionAU": [
-          0.00048125039837695346,
-          -0.006465302482407174,
-          -0.003052518043796652
+          0.00048230739959076674,
+          -0.006465360133954394,
+          -0.003052559710756265
         ],
         "target": 503,
         "tdbMinusTTSeconds": 0.0010347223771392249,
         "tdbPerTTRate": 0.9999999997453948,
-        "ttDays": -22500.000000011976
+        "ttDays": -22500.000000011976,
+        "velocityAUPerTTDay": [
+          0.0062597775571647755,
+          0.00034115973630674816,
+          0.00026926804734296394
+        ]
       },
       {
         "body": "ganymede",
@@ -2263,20 +2321,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2431545,
-        "keplerianVelocityAUPerTTDay": [
-          -0.0058273874111079114,
-          0.002182598285701653,
-          0.0009349312757282828
-        ],
         "positionAU": [
-          0.0026975927131828495,
-          0.005965605272240552,
-          0.0028639207893092935
+          0.0026965423598802273,
+          0.005965259595661916,
+          0.0028639301794095838
         ],
         "target": 503,
         "tdbMinusTTSeconds": 0.001644158147129201,
         "tdbPerTTRate": 1.0000000000130238,
-        "ttDays": -20000.00000001903
+        "ttDays": -20000.00000001903,
+        "velocityAUPerTTDay": [
+          -0.0058277534695370375,
+          0.002182537342810497,
+          0.0009343620549345606
+        ]
       },
       {
         "body": "ganymede",
@@ -2284,20 +2342,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2434045,
-        "keplerianVelocityAUPerTTDay": [
-          0.004195240698102904,
-          -0.004250766370552843,
-          -0.0019409603160062685
-        ],
         "positionAU": [
-          -0.005324098572182585,
-          -0.00429673344326459,
-          -0.002109569348703761
+          -0.005324898405796261,
+          -0.004297421201072845,
+          -0.002110022850047883
         ],
         "target": 503,
         "tdbMinusTTSeconds": 0.0008152664239047638,
         "tdbPerTTRate": 1.0000000002916545,
-        "ttDays": -17500.000000009437
+        "ttDays": -17500.000000009437,
+        "velocityAUPerTTDay": [
+          0.004195136320929648,
+          -0.004250310352922785,
+          -0.0019404090448908483
+        ]
       },
       {
         "body": "ganymede",
@@ -2305,20 +2363,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2436545,
-        "keplerianVelocityAUPerTTDay": [
-          -0.001723320861564675,
-          0.005474306572217987,
-          0.0025596878418864466
-        ],
         "positionAU": [
-          0.00688003346191259,
-          0.0017375219778567141,
-          0.0009162944041877058
+          0.0068790229234248716,
+          0.001737774613076497,
+          0.0009165789681690295
         ],
         "target": 503,
         "tdbMinusTTSeconds": -0.0007448720136424303,
         "tdbPerTTRate": 1.000000000305798,
-        "ttDays": -14999.999999991378
+        "ttDays": -14999.999999991378,
+        "velocityAUPerTTDay": [
+          -0.0017242283359832245,
+          0.005474701395075684,
+          0.0025595466418431444
+        ]
       },
       {
         "body": "ganymede",
@@ -2326,20 +2384,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2439045,
-        "keplerianVelocityAUPerTTDay": [
-          -0.0011019599849258074,
-          -0.005588860499095927,
-          -0.0026572419642519308
-        ],
         "positionAU": [
-          -0.007041908997432676,
-          0.00117328076972877,
-          0.0004631195918654933
+          -0.0070420282396295355,
+          0.001173857802291012,
+          0.00046284367626184763
         ],
         "target": 503,
         "tdbMinusTTSeconds": -0.0016315316452368317,
         "tdbPerTTRate": 1.0000000000316218,
-        "ttDays": -12499.999999981117
+        "ttDays": -12499.999999981117,
+        "velocityAUPerTTDay": [
+          -0.0011019352714750168,
+          -0.005588839494154284,
+          -0.0026570325096815224
+        ]
       },
       {
         "body": "ganymede",
@@ -2347,20 +2405,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2441545,
-        "keplerianVelocityAUPerTTDay": [
-          0.003689355379989388,
-          0.004576494761665881,
-          0.0022146733568798047
-        ],
         "positionAU": [
-          0.00579746653199215,
-          -0.0038213935609332636,
-          -0.0017368849214367784
+          0.005797379311074225,
+          -0.003821689392328814,
+          -0.0017366924430762506
         ],
         "target": 503,
         "tdbMinusTTSeconds": -0.0011023101069915508,
         "tdbPerTTRate": 0.9999999997519934,
-        "ttDays": -9999.999999987242
+        "ttDays": -9999.999999987242,
+        "velocityAUPerTTDay": [
+          0.003689339218361102,
+          0.0045763372132181694,
+          0.0022148278011084655
+        ]
       },
       {
         "body": "ganymede",
@@ -2368,20 +2426,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2444045,
-        "keplerianVelocityAUPerTTDay": [
-          -0.005553659126427165,
-          -0.002628624154522385,
-          -0.0013148246185480494
-        ],
         "positionAU": [
-          -0.003336212911154916,
-          0.005735182918447073,
-          0.0026791490975963976
+          -0.00333639442108176,
+          0.005734743782140591,
+          0.0026790583171463897
         ],
         "target": 503,
         "tdbMinusTTSeconds": 0.00039266841147611494,
         "tdbPerTTRate": 0.9999999996903165,
-        "ttDays": -7500.000000004545
+        "ttDays": -7500.000000004545,
+        "velocityAUPerTTDay": [
+          -0.005553849364401185,
+          -0.00262863653642433,
+          -0.0013153425450514017
+        ]
       },
       {
         "body": "ganymede",
@@ -2389,20 +2447,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2446545,
-        "keplerianVelocityAUPerTTDay": [
-          0.006284531748612157,
-          0.00017505085218791228,
-          0.00015663591799104727
-        ],
         "positionAU": [
-          0.0002643755074302531,
-          -0.006454985579611553,
-          -0.003064387614745174
+          0.00026447664028532886,
+          -0.0064554063988859515,
+          -0.0030653101499046732
         ],
         "target": 503,
         "tdbMinusTTSeconds": 0.0015715444071052538,
         "tdbPerTTRate": 0.9999999998829754,
-        "ttDays": -5000.000000018189
+        "ttDays": -5000.000000018189,
+        "velocityAUPerTTDay": [
+          0.006283979141836734,
+          0.00017491308723276266,
+          0.00015684596058317577
+        ]
       },
       {
         "body": "ganymede",
@@ -2410,20 +2468,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2449045,
-        "keplerianVelocityAUPerTTDay": [
-          -0.005735310773767748,
-          0.0023293368120908355,
-          0.0010440967119765873
-        ],
         "positionAU": [
-          0.002910258285472214,
-          0.005894350152561145,
-          0.0028438644545590373
+          0.0029101581086142547,
+          0.005893279058577949,
+          0.002844100832834532
         ],
         "target": 503,
         "tdbMinusTTSeconds": 0.0013555856568013842,
         "tdbPerTTRate": 1.00000000019373,
-        "ttDays": -2500.0000000156897
+        "ttDays": -2500.0000000156897,
+        "velocityAUPerTTDay": [
+          -0.005735442409826788,
+          0.00232986412134033,
+          0.001044409579479091
+        ]
       },
       {
         "body": "ganymede",
@@ -2431,20 +2489,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2451545,
-        "keplerianVelocityAUPerTTDay": [
-          0.004036536951656236,
-          -0.0043648814128993095,
-          -0.0020372229674957033
-        ],
         "positionAU": [
-          -0.005489515815459092,
-          -0.004111901456556607,
-          -0.0020338789801293312
+          -0.0054903525367787824,
+          -0.004111594386068183,
+          -0.0020343741146232317
         ],
         "target": 503,
         "tdbMinusTTSeconds": -9.930719891053941e-05,
         "tdbPerTTRate": 1.0000000003348737,
-        "ttDays": 1.1493888762793913e-09
+        "ttDays": 1.1493888762793913e-09,
+        "velocityAUPerTTDay": [
+          0.004035696299528612,
+          -0.004365058623070498,
+          -0.00203748680142658
+        ]
       },
       {
         "body": "ganymede",
@@ -2452,20 +2510,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2454045,
-        "keplerianVelocityAUPerTTDay": [
-          -0.0015403006109232322,
-          0.005509992857085733,
-          0.002617179822271336
-        ],
         "positionAU": [
-          0.006926047815967813,
-          0.0015535743300725973,
-          0.000836727796177114
+          0.006926254388746679,
+          0.001552342548286724,
+          0.000836878714242026
         ],
         "target": 503,
         "tdbMinusTTSeconds": -0.0014299524586083728,
         "tdbPerTTRate": 1.0000000001692289,
-        "ttDays": 2500.0000000165505
+        "ttDays": 2500.0000000165505,
+        "velocityAUPerTTDay": [
+          -0.0015395751645416525,
+          0.0055099978818381554,
+          0.002617479517646779
+        ]
       },
       {
         "body": "ganymede",
@@ -2473,20 +2531,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2456545,
-        "keplerianVelocityAUPerTTDay": [
-          -0.001304949147170758,
-          -0.005525374916373309,
-          -0.0026647507426849153
-        ],
         "positionAU": [
-          -0.007010343620258144,
-          0.0013919022308011525,
-          0.0005671956757270629
+          -0.007010176586079684,
+          0.0013927494799990906,
+          0.0005664954807396852
         ],
         "target": 503,
         "tdbMinusTTSeconds": -0.0014749084234971645,
         "tdbPerTTRate": 0.9999999998639396,
-        "ttDays": 5000.00000001707
+        "ttDays": 5000.00000001707,
+        "velocityAUPerTTDay": [
+          -0.001305294323885724,
+          -0.005525304694906455,
+          -0.0026653436762633194
+        ]
       },
       {
         "body": "ganymede",
@@ -2494,20 +2552,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2459045,
-        "keplerianVelocityAUPerTTDay": [
-          0.00386687924630973,
-          0.004457869636659429,
-          0.0021943604665814135
-        ],
         "positionAU": [
-          0.005635928747168727,
-          -0.003986313534790826,
-          -0.0018268442727874623
+          0.005635128334946639,
+          -0.003986653622583074,
+          -0.0018263155164271914
         ],
         "target": 503,
         "tdbMinusTTSeconds": -0.0002769782448689867,
         "tdbPerTTRate": 0.9999999996762707,
-        "ttDays": 7500.000000003206
+        "ttDays": 7500.000000003206,
+        "velocityAUPerTTDay": [
+          0.003867321355772951,
+          0.004457473703631642,
+          0.0021953923485888613
+        ]
       },
       {
         "body": "ganymede",
@@ -2515,20 +2573,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2461545,
-        "keplerianVelocityAUPerTTDay": [
-          -0.005632961271516299,
-          -0.002456820517394513,
-          -0.0012690893912021058
-        ],
         "positionAU": [
-          -0.0031597187618962134,
-          0.005818555417479549,
-          0.0027399209425933648
+          -0.003158905768331701,
+          0.005819236787338882,
+          0.0027401745955668083
         ],
         "target": 503,
         "tdbMinusTTSeconds": 0.00116917899854325,
         "tdbPerTTRate": 0.99999999976968,
-        "ttDays": 9999.999999986469
+        "ttDays": 9999.999999986469,
+        "velocityAUPerTTDay": [
+          -0.005633045090678938,
+          -0.00245572587511918,
+          -0.0012700256518188599
+        ]
       },
       {
         "body": "ganymede",
@@ -2536,20 +2594,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2464045,
-        "keplerianVelocityAUPerTTDay": [
-          0.006284910845255052,
-          -3.745726532750213e-05,
-          9.238988062110921e-05
-        ],
         "positionAU": [
-          -2.9596422533451654e-06,
-          -0.006451655999493783,
-          -0.003090972132538681
+          -3.487763821679711e-06,
+          -0.006451597539346431,
+          -0.0030914786186332184
         ],
         "target": 503,
         "tdbMinusTTSeconds": 0.00161626525470403,
         "tdbPerTTRate": 1.000000000073585,
-        "ttDays": 12499.999999981294
+        "ttDays": 12499.999999981294,
+        "velocityAUPerTTDay": [
+          0.006284877244002929,
+          -3.854035483234279e-05,
+          9.308012997395969e-05
+        ]
       },
       {
         "body": "ganymede",
@@ -2557,20 +2615,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2466545,
-        "keplerianVelocityAUPerTTDay": [
-          -0.0056663925636951905,
-          0.0025086702700521267,
-          0.0010941304164102886
-        ],
         "positionAU": [
-          0.0030954463335344665,
-          0.005787851639884612,
-          0.0028224314738460195
+          0.0030961007521514428,
+          0.005787126715999399,
+          0.0028226957188587968
         ],
         "target": 503,
         "tdbMinusTTSeconds": 0.0006385175130061116,
         "tdbPerTTRate": 1.000000000308986,
-        "ttDays": 14999.99999999261
+        "ttDays": 14999.99999999261,
+        "velocityAUPerTTDay": [
+          -0.0056660071118262,
+          0.0025096020750962175,
+          0.0010935926436772044
+        ]
       },
       {
         "body": "ganymede",
@@ -2578,20 +2636,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2469045,
-        "keplerianVelocityAUPerTTDay": [
-          0.003871082555460095,
-          -0.004476056275370526,
-          -0.0020611680940596675
-        ],
         "positionAU": [
-          -0.005643191812912978,
-          -0.003958612019265414,
-          -0.0019917331482085057
+          -0.0056437365982002245,
+          -0.00395826964061006,
+          -0.001992424239586931
         ],
         "target": 503,
         "tdbMinusTTSeconds": -0.0009567330394063734,
         "tdbPerTTRate": 1.000000000267522,
-        "ttDays": 17500.000000011074
+        "ttDays": 17500.000000011074,
+        "velocityAUPerTTDay": [
+          0.003870456146927062,
+          -0.0044766684851182854,
+          -0.0020604390429479038
+        ]
       },
       {
         "body": "ganymede",
@@ -2599,20 +2657,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2471545,
-        "keplerianVelocityAUPerTTDay": [
-          -0.0013237310132569967,
-          0.005572614941358269,
-          0.0026265282527138277
-        ],
         "positionAU": [
-          0.006977726368950874,
-          0.001296413660569089,
-          0.000747620096303998
+          0.00697735610635805,
+          0.0012954710372456947,
+          0.0007484700066124051
         ],
         "target": 503,
         "tdbMinusTTSeconds": -0.0016806640050495195,
         "tdbPerTTRate": 0.9999999999954516,
-        "ttDays": 20000.000000019452
+        "ttDays": 20000.000000019452,
+        "velocityAUPerTTDay": [
+          -0.0013232019323853902,
+          0.005573048877452873,
+          0.0026260250797212714
+        ]
       },
       {
         "body": "ganymede",
@@ -2620,20 +2678,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2474045,
-        "keplerianVelocityAUPerTTDay": [
-          -0.0014893286657273383,
-          -0.0054958088519523425,
-          -0.0026373843026922857
-        ],
         "positionAU": [
-          -0.006962289877040072,
-          0.0015759806601476222,
-          0.0006156114156965322
+          -0.0069630760818951845,
+          0.0015773834344817524,
+          0.0006145226285038909
         ],
         "target": 503,
         "tdbMinusTTSeconds": -0.0008872925546697294,
         "tdbPerTTRate": 0.999999999732123,
-        "ttDays": 22500.00000001027
+        "ttDays": 22500.00000001027,
+        "velocityAUPerTTDay": [
+          -0.001489703086907299,
+          -0.005495330974018614,
+          -0.0026369877941414136
+        ]
       },
       {
         "body": "ganymede",
@@ -2641,20 +2699,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2476545,
-        "keplerianVelocityAUPerTTDay": [
-          0.004025545775440147,
-          0.004330245612106961,
-          0.002124965037054452
-        ],
         "positionAU": [
-          0.005486157020314552,
-          -0.004192995213093131,
-          -0.0018804004423708832
+          0.0054849413182419164,
+          -0.0041933105494666445,
+          -0.001879317639181213
         ],
         "target": 503,
         "tdbMinusTTSeconds": 0.0006310807160867544,
         "tdbPerTTRate": 0.9999999996936719,
-        "ttDays": 24999.999999992695
+        "ttDays": 24999.999999992695,
+        "velocityAUPerTTDay": [
+          0.004026402008959839,
+          0.004330209887407275,
+          0.002125377105024092
+        ]
       },
       {
         "body": "ganymede",
@@ -2662,20 +2720,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2476546,
-        "keplerianVelocityAUPerTTDay": [
-          -0.0011445152047126553,
-          0.005599685511947422,
-          0.0026279905689369294
-        ],
         "positionAU": [
-          0.007028650231717447,
-          0.0011181282767070509,
-          0.0006617942298842639
+          0.007028319464302678,
+          0.0011176102943424304,
+          0.0006627027087862074
         ],
         "target": 503,
         "tdbMinusTTSeconds": 0.0006045072852596656,
         "tdbPerTTRate": 0.9999999996912372,
-        "ttDays": 25000.999999993004
+        "ttDays": 25000.999999993004,
+        "velocityAUPerTTDay": [
+          -0.0011440173590410957,
+          0.005600220956940429,
+          0.002627662324541366
+        ]
       },
       {
         "body": "callisto",
@@ -2683,20 +2741,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2415020.5,
-        "keplerianVelocityAUPerTTDay": [
-          0.004365832539339187,
-          -0.0017427104333017122,
-          -0.0007891483611302146
-        ],
         "positionAU": [
-          -0.005068362539284332,
-          -0.010317624247943233,
-          -0.004942266732455126
+          -0.005070468530875162,
+          -0.010316283748970069,
+          -0.004941586218405227
         ],
         "target": 504,
         "tdbMinusTTSeconds": -1.8460232004197188e-05,
         "tdbPerTTRate": 1.0000000003440765,
-        "ttDays": -36524.49999999979
+        "ttDays": -36524.49999999979,
+        "velocityAUPerTTDay": [
+          0.004365754855849472,
+          -0.0017437991146317792,
+          -0.0007889700553379685
+        ]
       },
       {
         "body": "callisto",
@@ -2704,20 +2762,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2451544.5,
-        "keplerianVelocityAUPerTTDay": [
-          -0.004426074724277248,
-          0.0015739732436920457,
-          0.0006802403634969917
-        ],
         "positionAU": [
-          0.004451634543579841,
-          0.01059269744360721,
-          0.005074664529209857
+          0.004451900578333668,
+          0.01059290230825403,
+          0.005074299821426341
         ],
         "target": 504,
         "tdbMinusTTSeconds": -0.00011376309885469016,
         "tdbPerTTRate": 1.0000000003343732,
-        "ttDays": -0.4999999986832975
+        "ttDays": -0.4999999986832975,
+        "velocityAUPerTTDay": [
+          -0.004425912529319146,
+          0.0015745120452312785,
+          0.0006798504197569032
+        ]
       },
       {
         "body": "callisto",
@@ -2725,20 +2783,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2488069.5,
-        "keplerianVelocityAUPerTTDay": [
-          0.004707074134055355,
-          9.337755731535338e-05,
-          0.0001134158839317436
-        ],
         "positionAU": [
-          0.0003060812889897245,
-          -0.011466835142046569,
-          -0.00536410306379611
+          0.0003048174288724389,
+          -0.01146733983193721,
+          -0.005364104754437149
         ],
         "target": 504,
         "tdbMinusTTSeconds": -8.994766295553033e-05,
         "tdbPerTTRate": 1.0000000003314982,
-        "ttDays": 36524.50000000104
+        "ttDays": 36524.50000000104,
+        "velocityAUPerTTDay": [
+          0.00470707645417172,
+          9.240810722898413e-05,
+          0.00011377855590421599
+        ]
       },
       {
         "body": "callisto",
@@ -2746,20 +2804,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2426544,
-        "keplerianVelocityAUPerTTDay": [
-          -0.004137894613546422,
-          0.0020718071470429505,
-          0.000942308714678944
-        ],
         "positionAU": [
-          0.006012984068630926,
-          0.010004929518651682,
-          0.004822413866579051
+          0.006014683261737287,
+          0.010003471390813286,
+          0.004821753858649106
         ],
         "target": 504,
         "tdbMinusTTSeconds": -0.0004594034913487613,
         "tdbPerTTRate": 0.999999999691713,
-        "ttDays": -25000.99999999468
+        "ttDays": -25000.99999999468,
+        "velocityAUPerTTDay": [
+          -0.004137625515555322,
+          0.0020727404135193663,
+          0.0009419314961330215
+        ]
       },
       {
         "body": "callisto",
@@ -2767,20 +2825,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2426545,
-        "keplerianVelocityAUPerTTDay": [
-          -0.004672436075298593,
-          0.0005625830707391778,
-          0.00021875303653719853
-        ],
         "positionAU": [
-          0.0015552670191983059,
-          0.01133736416333028,
-          0.0054096484464589
+          0.0015573317352944296,
+          0.01133602610755884,
+          0.005408245309659163
         ],
         "target": 504,
         "tdbMinusTTSeconds": -0.00048601033060072506,
         "tdbPerTTRate": 0.999999999692403,
-        "ttDays": -24999.999999994376
+        "ttDays": -24999.999999994376,
+        "velocityAUPerTTDay": [
+          -0.004672704694515226,
+          0.0005635488146824947,
+          0.00021845001573605978
+        ]
       },
       {
         "body": "callisto",
@@ -2788,20 +2846,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2429045,
-        "keplerianVelocityAUPerTTDay": [
-          -0.0008652204353770448,
-          0.0042267678279058725,
-          0.002001888890068695
-        ],
         "positionAU": [
-          0.012313127353397435,
-          0.0020832150866486334,
-          0.0011257048463050347
+          0.012313792166395882,
+          0.002080391175152429,
+          0.0011259879909229788
         ],
         "target": 504,
         "tdbMinusTTSeconds": 0.0010347223771392249,
         "tdbPerTTRate": 0.9999999997453948,
-        "ttDays": -22500.000000011976
+        "ttDays": -22500.000000011976,
+        "velocityAUPerTTDay": [
+          -0.0008644067454782854,
+          0.004226862499562611,
+          0.0020015954114000084
+        ]
       },
       {
         "body": "callisto",
@@ -2809,20 +2867,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2431545,
-        "keplerianVelocityAUPerTTDay": [
-          0.004227874584925216,
-          0.0019801033361173835,
-          0.0009903027628957505
-        ],
         "positionAU": [
-          0.005768374999373508,
-          -0.010032021799303249,
-          -0.00470819124527542
+          0.00576809172186048,
+          -0.01003400598651766,
+          -0.0047074514950428345
         ],
         "target": 504,
         "tdbMinusTTSeconds": 0.001644158147129201,
         "tdbPerTTRate": 1.0000000000130238,
-        "ttDays": -20000.00000001903
+        "ttDays": -20000.00000001903,
+        "velocityAUPerTTDay": [
+          0.0042277201507822425,
+          0.001979505362966689,
+          0.000990503443629918
+        ]
       },
       {
         "body": "callisto",
@@ -2830,20 +2888,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2434045,
-        "keplerianVelocityAUPerTTDay": [
-          0.003348833946946119,
-          -0.0030382614010847305,
-          -0.001405570031933115
-        ],
         "positionAU": [
-          -0.008968722519825447,
-          -0.007942716022638,
-          -0.0038847548301259318
+          -0.008969603078964657,
+          -0.007941817262189605,
+          -0.0038848235363440837
         ],
         "target": 504,
         "tdbMinusTTSeconds": 0.0008152664239047638,
         "tdbPerTTRate": 1.0000000002916545,
-        "ttDays": -17500.000000009437
+        "ttDays": -17500.000000009437,
+        "velocityAUPerTTDay": [
+          0.003348405267100967,
+          -0.0030390367464747155,
+          -0.0014052236978883913
+        ]
       },
       {
         "body": "callisto",
@@ -2851,20 +2909,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2436545,
-        "keplerianVelocityAUPerTTDay": [
-          -0.0021294635384239793,
-          -0.0037774545030639776,
-          -0.0018224194440182296
-        ],
         "positionAU": [
-          -0.011296437635273784,
-          0.00524923577897731,
-          0.0023554790218031003
+          -0.011295406885755418,
+          0.005252078914601917,
+          0.002355190326666087
         ],
         "target": 504,
         "tdbMinusTTSeconds": -0.0007448720136424303,
         "tdbPerTTRate": 1.000000000305798,
-        "ttDays": -14999.999999991378
+        "ttDays": -14999.999999991378,
+        "velocityAUPerTTDay": [
+          -0.0021302910981987905,
+          -0.0037769960036964536,
+          -0.0018221617785272183
+        ]
       },
       {
         "body": "callisto",
@@ -2872,20 +2930,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2439045,
-        "keplerianVelocityAUPerTTDay": [
-          -0.004668695870156256,
-          0.0006770921513736836,
-          0.0002611104377736777
-        ],
         "positionAU": [
-          0.0018500751788172306,
-          0.01126738153303877,
-          0.005377815216726342
+          0.0018516611383084037,
+          0.011266880253715795,
+          0.005376768137503908
         ],
         "target": 504,
         "tdbMinusTTSeconds": -0.0016315316452368317,
         "tdbPerTTRate": 1.0000000000316218,
-        "ttDays": -12499.999999981117
+        "ttDays": -12499.999999981117,
+        "velocityAUPerTTDay": [
+          -0.004668735334202407,
+          0.0006781117474920575,
+          0.00026080153304562377
+        ]
       },
       {
         "body": "callisto",
@@ -2893,20 +2951,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2441545,
-        "keplerianVelocityAUPerTTDay": [
-          -0.0007266669256608787,
-          0.00425935201858825,
-          0.002012784553450264
-        ],
         "positionAU": [
-          0.012353923823593372,
-          0.001709239419001424,
-          0.000978315428529633
+          0.012353812867920666,
+          0.0017063831626394773,
+          0.0009783461795533231
         ],
         "target": 504,
         "tdbMinusTTSeconds": -0.0011023101069915508,
         "tdbPerTTRate": 0.9999999997519934,
-        "ttDays": -9999.999999987242
+        "ttDays": -9999.999999987242,
+        "velocityAUPerTTDay": [
+          -0.0007258675181636002,
+          0.004259605381038909,
+          0.0020125169136551244
+        ]
       },
       {
         "body": "callisto",
@@ -2914,20 +2972,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2444045,
-        "keplerianVelocityAUPerTTDay": [
-          0.004287555479517317,
-          0.0018538919982017976,
-          0.0009392115904558643
-        ],
         "positionAU": [
-          0.005400257918170942,
-          -0.010228151225052617,
-          -0.004778459046813163
+          0.0053983676936404865,
+          -0.010230002314437402,
+          -0.004777590702477039
         ],
         "target": 504,
         "tdbMinusTTSeconds": 0.00039266841147611494,
         "tdbPerTTRate": 0.9999999996903165,
-        "ttDays": -7500.000000004545
+        "ttDays": -7500.000000004545,
+        "velocityAUPerTTDay": [
+          0.004287779309396556,
+          0.0018531200400067136,
+          0.0009393298487892212
+        ]
       },
       {
         "body": "callisto",
@@ -2935,20 +2993,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2446545,
-        "keplerianVelocityAUPerTTDay": [
-          0.0032502488855118213,
-          -0.00311148003560189,
-          -0.0014291197577871477
-        ],
         "positionAU": [
-          -0.00921944468085074,
-          -0.00775286199282186,
-          -0.00380592685864248
+          -0.009220473548574932,
+          -0.007752446449868527,
+          -0.003806289980230166
         ],
         "target": 504,
         "tdbMinusTTSeconds": 0.0015715444071052538,
         "tdbPerTTRate": 0.9999999998829754,
-        "ttDays": -5000.000000018189
+        "ttDays": -5000.000000018189,
+        "velocityAUPerTTDay": [
+          0.003249855359994505,
+          -0.0031120874711551365,
+          -0.0014287921916995255
+        ]
       },
       {
         "body": "callisto",
@@ -2956,20 +3014,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2449045,
-        "keplerianVelocityAUPerTTDay": [
-          -0.002233250728135284,
-          -0.0037295836931672596,
-          -0.0017981744816200473
-        ],
         "positionAU": [
-          -0.011167763940635933,
-          0.005477325778024786,
-          0.002433671322204401
+          -0.011166874579849204,
+          0.005480140451307047,
+          0.0024333163740473517
         ],
         "target": 504,
         "tdbMinusTTSeconds": 0.0013555856568013842,
         "tdbPerTTRate": 1.00000000019373,
-        "ttDays": -2500.0000000156897
+        "ttDays": -2500.0000000156897,
+        "velocityAUPerTTDay": [
+          -0.0022338509865400566,
+          -0.0037293733273823394,
+          -0.0017979934695072594
+        ]
       },
       {
         "body": "callisto",
@@ -2977,20 +3035,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2451545,
-        "keplerianVelocityAUPerTTDay": [
-          -0.004662584483698475,
-          0.0007974340104333156,
-          0.00030952495063479944
-        ],
         "positionAU": [
-          0.002172580867585492,
-          0.011187996084656204,
-          0.005323161130237526
+          0.002173023507518394,
+          0.011187708802834142,
+          0.0053222546885121685
         ],
         "target": 504,
         "tdbMinusTTSeconds": -9.930719891053941e-05,
         "tdbPerTTRate": 1.0000000003348737,
-        "ttDays": 1.1493888762793913e-09
+        "ttDays": 1.1493888762793913e-09,
+        "velocityAUPerTTDay": [
+          -0.004662531842679709,
+          0.0007980478681916945,
+          0.00030921169118686565
+        ]
       },
       {
         "body": "callisto",
@@ -2998,20 +3056,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2454045,
-        "keplerianVelocityAUPerTTDay": [
-          -0.000581527297794516,
-          0.004286282442323787,
-          0.002016466334590468
-        ],
         "positionAU": [
-          0.01240135500867158,
-          0.0013189403001782776,
-          0.0008049804094017443
+          0.012400421424580615,
+          0.0013164514222576533,
+          0.0008049845907470285
         ],
         "target": 504,
         "tdbMinusTTSeconds": -0.0014299524586083728,
         "tdbPerTTRate": 1.0000000001692289,
-        "ttDays": 2500.0000000165505
+        "ttDays": 2500.0000000165505,
+        "velocityAUPerTTDay": [
+          -0.0005809597990158877,
+          0.004286550991903338,
+          0.002016247520152339
+        ]
       },
       {
         "body": "callisto",
@@ -3019,20 +3077,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2456545,
-        "keplerianVelocityAUPerTTDay": [
-          0.004334003404409151,
-          0.00173414767262501,
-          0.0008825510857814438
-        ],
         "positionAU": [
-          0.005061516445216133,
-          -0.010413728147140996,
-          -0.004840429411694763
+          0.005059107252844253,
+          -0.010415765843951695,
+          -0.004839644133262748
         ],
         "target": 504,
         "tdbMinusTTSeconds": -0.0014749084234971645,
         "tdbPerTTRate": 0.9999999998639396,
-        "ttDays": 5000.00000001707
+        "ttDays": 5000.00000001707,
+        "velocityAUPerTTDay": [
+          0.0043343245155188235,
+          0.0017331000897705593,
+          0.0008825070983749248
+        ]
       },
       {
         "body": "callisto",
@@ -3040,20 +3098,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2459045,
-        "keplerianVelocityAUPerTTDay": [
-          0.0031552556108072997,
-          -0.0031818163506415423,
-          -0.0014539945855295306
-        ],
         "positionAU": [
-          -0.009434077695286874,
-          -0.0075780638135906275,
-          -0.003713779015336823
+          -0.009435781332717464,
+          -0.00757787229180413,
+          -0.003714027400361572
         ],
         "target": 504,
         "tdbMinusTTSeconds": -0.0002769782448689867,
         "tdbPerTTRate": 0.9999999996762707,
-        "ttDays": 7500.000000003206
+        "ttDays": 7500.000000003206,
+        "velocityAUPerTTDay": [
+          0.003154671665014228,
+          -0.003182179192601221,
+          -0.0014536822836991633
+        ]
       },
       {
         "body": "callisto",
@@ -3061,20 +3119,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2461545,
-        "keplerianVelocityAUPerTTDay": [
-          -0.002342215472489446,
-          -0.003685615126615555,
-          -0.001771654710883849
-        ],
         "positionAU": [
-          -0.011010739816000564,
-          0.005705912779164102,
-          0.002527230797206365
+          -0.011009428804640425,
+          0.0057076066522339765,
+          0.002526626123426511
         ],
         "target": 504,
         "tdbMinusTTSeconds": 0.00116917899854325,
         "tdbPerTTRate": 0.99999999976968,
-        "ttDays": 9999.999999986469
+        "ttDays": 9999.999999986469,
+        "velocityAUPerTTDay": [
+          -0.0023430490790353176,
+          -0.0036855822725623635,
+          -0.0017716681173369471
+        ]
       },
       {
         "body": "callisto",
@@ -3082,20 +3140,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2464045,
-        "keplerianVelocityAUPerTTDay": [
-          -0.004649095152401526,
-          0.0009188746857401354,
-          0.00036486015065944895
-        ],
         "positionAU": [
-          0.0025251445586618906,
-          0.011100753138532295,
-          0.005265463860191883
+          0.002526806063699027,
+          0.011100310028834017,
+          0.005265225674582821
         ],
         "target": 504,
         "tdbMinusTTSeconds": 0.00161626525470403,
         "tdbPerTTRate": 1.000000000073585,
-        "ttDays": 12499.999999981294
+        "ttDays": 12499.999999981294,
+        "velocityAUPerTTDay": [
+          -0.0046487650710658945,
+          0.000919707518886276,
+          0.00036476042323302864
+        ]
       },
       {
         "body": "callisto",
@@ -3103,20 +3161,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2466545,
-        "keplerianVelocityAUPerTTDay": [
-          -0.0004332785061371163,
-          0.0043018589787748585,
-          0.002018447695152463
-        ],
         "positionAU": [
-          0.012447350212281976,
-          0.0009358413034975705,
-          0.0006213319206101519
+          0.012446843894354468,
+          0.0009333384738698123,
+          0.0006214665326662145
         ],
         "target": 504,
         "tdbMinusTTSeconds": 0.0006385175130061116,
         "tdbPerTTRate": 1.000000000308986,
-        "ttDays": 14999.99999999261
+        "ttDays": 14999.99999999261,
+        "velocityAUPerTTDay": [
+          -0.0004324148329965123,
+          0.004302164107484324,
+          0.002018324258957721
+        ]
       },
       {
         "body": "callisto",
@@ -3124,20 +3182,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2469045,
-        "keplerianVelocityAUPerTTDay": [
-          0.004374933975970922,
-          0.0016201921961353607,
-          0.0008256010431069177
-        ],
         "positionAU": [
-          0.004746619649598232,
-          -0.010576693928088018,
-          -0.0049058242879371295
+          0.00474384373382586,
+          -0.01057865825617566,
+          -0.004905484163385597
         ],
         "target": 504,
         "tdbMinusTTSeconds": -0.0009567330394063734,
         "tdbPerTTRate": 1.000000000267522,
-        "ttDays": 17500.000000011074
+        "ttDays": 17500.000000011074,
+        "velocityAUPerTTDay": [
+          0.004375186556487769,
+          0.001619083749805077,
+          0.0008254676071482295
+        ]
       },
       {
         "body": "callisto",
@@ -3145,20 +3203,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2471545,
-        "keplerianVelocityAUPerTTDay": [
-          0.0030627875690254743,
-          -0.003248759783264527,
-          -0.001482614044125772
-        ],
         "positionAU": [
-          -0.00963047781711045,
-          -0.007399137429455428,
-          -0.0036188337712951234
+          -0.009632740203187013,
+          -0.007397247558805724,
+          -0.0036186795229528387
         ],
         "target": 504,
         "tdbMinusTTSeconds": -0.0016806640050495195,
         "tdbPerTTRate": 0.9999999999954516,
-        "ttDays": 20000.000000019452
+        "ttDays": 20000.000000019452,
+        "velocityAUPerTTDay": [
+          0.0030620898385900937,
+          -0.003249378579496696,
+          -0.001482618441363623
+        ]
       },
       {
         "body": "callisto",
@@ -3166,20 +3224,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2474045,
-        "keplerianVelocityAUPerTTDay": [
-          -0.002454153153543886,
-          -0.003638564992087399,
-          -0.0017458586601568078
-        ],
         "positionAU": [
-          -0.01082885041230201,
-          0.005935944021915045,
-          0.0026309042869297884
+          -0.010827569324033883,
+          0.005937946668609742,
+          0.0026302237692727745
         ],
         "target": 504,
         "tdbMinusTTSeconds": -0.0008872925546697294,
         "tdbPerTTRate": 0.999999999732123,
-        "ttDays": 22500.00000001027
+        "ttDays": 22500.00000001027,
+        "velocityAUPerTTDay": [
+          -0.0024549724580317303,
+          -0.0036382195025264374,
+          -0.0017460300491977008
+        ]
       },
       {
         "body": "callisto",
@@ -3187,20 +3245,20 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2476545,
-        "keplerianVelocityAUPerTTDay": [
-          -0.004629731432512043,
-          0.0010454079191092006,
-          0.00042313719496171406
-        ],
         "positionAU": [
-          0.0029011251496314948,
-          0.01100204483363115,
-          0.005211145501349872
+          0.002904273540211841,
+          0.011001567721719594,
+          0.005211363902662378
         ],
         "target": 504,
         "tdbMinusTTSeconds": 0.0006310807160867544,
         "tdbPerTTRate": 0.9999999996936719,
-        "ttDays": 24999.999999992695
+        "ttDays": 24999.999999992695,
+        "velocityAUPerTTDay": [
+          -0.004629306930841675,
+          0.0010464199631585456,
+          0.00042300454421089314
+        ]
       },
       {
         "body": "callisto",
@@ -3208,29 +3266,87 @@
         "epochScale": "TDB",
         "frame": "EQJ",
         "julianDateTDB": 2476546,
-        "keplerianVelocityAUPerTTDay": [
-          -0.004707522943078745,
-          -0.000571979971366679,
-          -0.0003378224119820687
-        ],
         "positionAU": [
-          -0.0018250486709559652,
-          0.011241061256731718,
-          0.0052540406182110385
+          -0.0018209526528688697,
+          0.01124107584382149,
+          0.005253872852511882
         ],
         "target": 504,
         "tdbMinusTTSeconds": 0.0006045072852596656,
         "tdbPerTTRate": 0.9999999996912372,
-        "ttDays": 25000.999999993004
+        "ttDays": 25000.999999993004,
+        "velocityAUPerTTDay": [
+          -0.004707751776993224,
+          -0.0005708191153595738,
+          -0.0003379065392422395
+        ]
       }
     ],
-    "schemaVersion": 1
+    "schemaVersion": 3,
+    "transitions": [
+      {
+        "body": "io",
+        "maximumPositionCorrectionKm": 28538.243693265093,
+        "maximumVelocityCorrectionKmPerTTDay": 6014.864070091665,
+        "sampleCount": 4097,
+        "side": "beforeStart"
+      },
+      {
+        "body": "europa",
+        "maximumPositionCorrectionKm": 7193.6469742783365,
+        "maximumVelocityCorrectionKmPerTTDay": 1543.864774795974,
+        "sampleCount": 4097,
+        "side": "beforeStart"
+      },
+      {
+        "body": "ganymede",
+        "maximumPositionCorrectionKm": 1734.8947817553083,
+        "maximumVelocityCorrectionKmPerTTDay": 353.47340028152934,
+        "sampleCount": 4097,
+        "side": "beforeStart"
+      },
+      {
+        "body": "callisto",
+        "maximumPositionCorrectionKm": 567.5178801006139,
+        "maximumVelocityCorrectionKmPerTTDay": 131.09082716750686,
+        "sampleCount": 4097,
+        "side": "beforeStart"
+      },
+      {
+        "body": "io",
+        "maximumPositionCorrectionKm": 14845.939475720164,
+        "maximumVelocityCorrectionKmPerTTDay": 3125.495855943179,
+        "sampleCount": 4097,
+        "side": "afterEnd"
+      },
+      {
+        "body": "europa",
+        "maximumPositionCorrectionKm": 3586.3591022759592,
+        "maximumVelocityCorrectionKmPerTTDay": 731.4730373026057,
+        "sampleCount": 4097,
+        "side": "afterEnd"
+      },
+      {
+        "body": "ganymede",
+        "maximumPositionCorrectionKm": 1018.3515590065374,
+        "maximumVelocityCorrectionKmPerTTDay": 220.8987994266256,
+        "sampleCount": 4097,
+        "side": "afterEnd"
+      },
+      {
+        "body": "callisto",
+        "maximumPositionCorrectionKm": 996.956208074137,
+        "maximumVelocityCorrectionKmPerTTDay": 217.33649848947195,
+        "sampleCount": 4097,
+        "side": "afterEnd"
+      }
+    ]
   },
-  "captureSHA256": "6ef5363dc88879890817bef776cd044a7ae35d86211b35f166658d394988df9b",
-  "schemaVersion": 3,
+  "captureSHA256": "77a02ca55e3a5823991c0d7b76fe79223a408600f4a5c035defe4d85debfb8fb",
+  "schemaVersion": 4,
   "sourceSHA256": {
     "Package.swift": "f09138b379aebee7f80817802440177a09c754b962ad1d212f265a708ef5714d",
-    "Scripts/galilean-residuals.py": "5894921a3b7108ba3721f11537f01206d772a183312a71d91059face59e6ff33",
+    "Scripts/galilean-residuals.py": "3246cdbb9bb20fdc754a5459551a1013d55ad460b9f768facf22cf99d2773cde",
     "Scripts/generate-jupiter-moon-series.py": "b75c47644d1e116cf9923a373bd9e15d8d89e91e50ef616f011099aa6f4de8f5",
     "Scripts/jupiter-moon-data/manifest.json": "c4f42d1f533559dd3dfdff1ddff454f715aa14eefad15e073784d8a1248b9421",
     "Scripts/reference-data/build-fixtures.py": "624f89695e2f0afffe8f53f73bfb7de24a69c06386a1eb80d49b911da6b17d50",
@@ -3250,7 +3366,7 @@
     "Scripts/reference-data/sources/horizons/io-domain-vector.query.json": "17982b2777787b3254a3073458c7463d33dbbdd561d8b22281178d915b8c907b",
     "Scripts/reference-data/sources/horizons/io-vector.json": "4c09f6807a15f45ecd936d38ab1c5ca71dfe759bc063c0a3ac1685b1f1aaa981",
     "Scripts/reference-data/sources/horizons/io-vector.query.json": "f20330c61f533ee38a5235929338c4ff17a7bbfd1a59e75e8053536d32da19e6",
-    "Scripts/test_galilean_residuals.py": "791f5decb42016fe8ab861c16884704fb59b0de67464c86284b936c72853f10e",
+    "Scripts/test_galilean_residuals.py": "f6907f9585a8cad9a93097dfd372037ffbf01e6d89cd675d305f2cc152667fcb",
     "Sources/AstronomyKit/Apsis.swift": "846e96c10636302634649bb827e843e3b6debf9b1d3f948f0b412f8e26dcece6",
     "Sources/AstronomyKit/AstronomyError.swift": "7122525f8f8796baaef9e6a3baff8c2332d0a0f817927af6c98d83b4a81c7746",
     "Sources/AstronomyKit/AstronomyKit.swift": "c6dad36ea132847c27a822f1c50f04eacf5251d3f28e123a436e820a8cd761dd",
@@ -3262,9 +3378,59 @@
     "Sources/AstronomyKit/Coordinates.swift": "f09e2f8820bc0c2e13a7b2e0ea746c08a4a48b7ee168a628ec06ac905bfb273d",
     "Sources/AstronomyKit/Eclipse.swift": "fd2f24307e73c6a4c72d46a855e439cffbf744bd1dc1a56d778191f32ab52f0f",
     "Sources/AstronomyKit/Elongation.swift": "6231ae73f3faceb7344ca5e37ccf547a82b85ce9fbe5e061259ad52479f3d6d7",
-    "Sources/AstronomyKit/Engine/Bodies/EngineJupiterMoons.swift": "63f246663de2c8d4fbbe976cc737f4881a09b14aae55d5c64e4d997c084b751b",
+    "Sources/AstronomyKit/Engine/Bodies/EngineJupiterMoons.swift": "c450d38bedf50e91869d0d2df81870ce332d5fb8bdab2a846fb9bcce398434fd",
+    "Sources/AstronomyKit/Engine/Bodies/EngineJupiterMoonsJup365.swift": "721df90c823fa464649815cbd39e54dbfc5ca7926a1e984517e99bcb89efeeab",
     "Sources/AstronomyKit/Engine/Bodies/EngineLagrange.swift": "5884b92dc6b643ba6481499527467f7cb367b4e8afe2f318bb9d3a40b0b003f6",
     "Sources/AstronomyKit/Engine/Bodies/EngineRotationAxis.swift": "d9fd0b02d56f3ebaff5283aadf56ca6b41993c42e6e4ac2804ad43c8caebc858",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Callisto000.swift": "d677eff24be929bf3ff0f6a059447e0a40c5c2e440ce2d75ecb5634e32b277f6",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Callisto001.swift": "a599d14e848c4316b53f56e1792479dece412810e911087d139becb7c8e35a37",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Callisto002.swift": "e862a9383b107a93439fa2ecac0bbb9daef7c720aae7fc3f8238069e56ebcc74",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Callisto003.swift": "af05512fecbb5dfa5eaffb06d35b377d6c97afcd34a8a9bf22d9b3769fadef4c",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Callisto004.swift": "c50ff9bea818576b106bde76d7a4596bfcfd61ebe351f59560bf6b41ad666e63",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Callisto005.swift": "4e3953068cda95580fdb07cc4379d862a8e7515f6ba96ff36b3977cac27d2a4e",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Europa000.swift": "4ee2a32bb3b62d2818fc50485e2e11554b84aaed703806f125436299fa0eab22",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Europa001.swift": "09ddead83b1e4df6960b5716c87a8090a78c2f09a442097a922ca09504df6722",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Europa002.swift": "55610046c753c1e18b56ee815fa13b5b4c79ee8f1833f720e599469c6e4ee0da",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Europa003.swift": "755c36105dec564aae5b8c4e2c19f9e2fbeae81c9e6f0ffda214bccc214c8481",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Europa004.swift": "a762a5d50eb7b45b4560ed253d4b4c6156f2d83d1d5397e73f83dc3ed4db01b9",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Europa005.swift": "c2f0b01d5f68431ab99f883c373969104762651a0cec75125a72e9cd5265f379",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Europa006.swift": "61789bfffcbef500d0711064163ab77bd4eeb3ee9857b68463b0dac1cfa9647e",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Europa007.swift": "2bc68281e23f023f7b37fb6f1e2400518357cb1724980e54793fa860d7ce8a70",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Europa008.swift": "53c4a7abe3b84aae77c5d190b38d4f2b8c7bbbe3a77db42505bf21a9836050bd",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Europa009.swift": "67c81fba4b7a7a25cff1a3102f4e77623758de1a6bbe9758f7858d4fa5e18a73",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Europa010.swift": "c0a40d1992dcd3b58ab510dbd575674f987d361829d3c7d20932339ea9b4d082",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Europa011.swift": "43352d7ab88fa2ca84a77fbbedafe7567a25eb376ccfa12cd2ece87b39c2c376",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Ganymede000.swift": "3445edb6a3e33a75ebaa4430ea290c6575bb810adddb750004ad00732f735407",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Ganymede001.swift": "6a15566820ccd75343e7b0e19cd8ccd18cbf6e9151dbda5331c7dd03245fd8c0",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Ganymede002.swift": "eece461dcc28219c5f7a0195124d00b00b131bd4a495d916f9fcbbe1f7820e61",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Ganymede003.swift": "41561807ca09f830173bc8b8a8406689e7013c0362f1acf4a5ecde2fd81a4337",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Ganymede004.swift": "601934988a1b7130a022de4cb39b5c03f1d73e980a646c9da45e689b8cb259f6",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Ganymede005.swift": "97e15aff53d354ef8b12faa796d333a13e439815fb5cd34eb7439e45ee0547aa",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Ganymede006.swift": "91569b851db7945c566d93bf1c70404044d36a1b2aebbfc922bb2d9426da1a7a",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Ganymede007.swift": "519beafde4c5e9df03a3ddc765516c08706d42d0ba612ef183a739e67967fb39",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Ganymede008.swift": "b521410622c3aba3e3fc3b2d1b49b986c6d2e23ceb66386de7163d94b6178b38",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Ganymede009.swift": "b349aeae677f844615cd1296e65d8fb177e45215f661c92a7f30dbe69eb1dc7f",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Ganymede010.swift": "f8e9e21a44411f5cab4335493936c19c2d4e1048b7ddbec3b0f5efddfd9d7f4b",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Ganymede011.swift": "2ef1bee624fb51781453d7e9b04ee5ebd06e2fc7097651d4ad84bdaeb3b19dfc",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Index.swift": "2ad7c4cf34ad8e2c22952c8fde95b3b57268a42f46168f598ceb509c3ac77a01",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Io000.swift": "a0bd3138029f96b138f3c46d51e9d748737e0f133895814a950f96adaeb1ee59",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Io001.swift": "4869c250e5b4755f6b7b5478681e9cd4b18387afb0d45e5525ab7e3934a869ec",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Io002.swift": "e9570225ff30e673b0eb290ccca72358a37cbdc2451bbbf0e63bb125b6e163ed",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Io003.swift": "bc634005ee2051d1b274bdd5d015124e9de72b5514b6ef736f183c9431face96",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Io004.swift": "00e509527dd452a6cf3e413f7f4567fee7cd40440677a96aaf29adbbeadabfe2",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Io005.swift": "de69317aaa089fda6e543d63b88b6176cb7f96ca1fad53b060dd49f8bca1e740",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Io006.swift": "3946c94365a5204d9caef9984d9842d3a59cf9dea4c4932f1ebf94657a5cf3b5",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Io007.swift": "ab2b30f27204db6b43348beb2291ba4a1dddac61958fa2af7e2ba0418b96977d",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Io008.swift": "0f7c0a2416f4033471d01f23d2cd5d2d05d28baa90cd0462febc715fed3dcd2e",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Io009.swift": "e1a5fb53909a9efafd926bfcc09c8eaf0b1e6b1f28dd37c43673f77c22ea0c9e",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Io010.swift": "b15f3a9c0ab2eec797eca5846bc63ee602d94e211da6471981ba9b62b6f970ff",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Io011.swift": "f011b406b90075a50c0b8b00e3b4aaea9efa11aad17e5e6c413895730dce3288",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Jupiter000.swift": "507a2ab38c1040bf77d1b8ea569a9317e7fbea9f017e20fd37921548bce58ab7",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Jupiter001.swift": "988cb517c00ddc0ec224d9e1d45e1a67876f39689534258e8be3dca4b74ba248",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Jupiter002.swift": "fc1780019b6aabec3b866d894275147dddc4bed67f36c62cf839f85db0066522",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Jupiter003.swift": "59260524c62bad2e1799c5ce151fc0ed1723a7170183b92aade63c7bbee322b8",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Jupiter004.swift": "eaa65bd51dde391a5caf77c4af4109f659610170b1afefa3bf096ec689aaaebe",
+    "Sources/AstronomyKit/Engine/Bodies/Generated/Jup365/Jup365Jupiter005.swift": "b8540b2ada56a49b2dd7f2e819a4124b23e9bdd9e6feec23cbd1097f819e0278",
     "Sources/AstronomyKit/Engine/Bodies/Generated/JupiterMoonSeries.swift": "6560608bab9aa8f5b067afad1a2a421d0e3b678fdb0753246345d1a8ca4c8e57",
     "Sources/AstronomyKit/Engine/Eclipses/EngineEclipseEvents.swift": "174c20221253b75db8eb50ba2eeb6381461b810731fcb75df93d0054ffcf5b25",
     "Sources/AstronomyKit/Engine/Eclipses/EngineGeoidIntersection.swift": "9f683e17c1565460a0dc2ab5788b6524c0eed2e5137295d28122c4476d9423bb",
@@ -3485,7 +3651,7 @@
     "Sources/AstronomyKit/Transit.swift": "983f8382095c09633884766f861a26707ed9f6022ea6ec937a90683034c4e854",
     "Sources/AstronomyKit/UTCOffsetTable.swift": "1aeecd498507255293aa63fde986cea402fd2b8840c2e385b12d879628d3def5",
     "Sources/CLibAstronomy/astronomy.c": "f0194784d44e0e0083277b00ccbe8b08a5244a6b3f161e07af93e1a6fdf71d81",
-    "Tests/AstronomyKitTests/Engine/Bodies/EngineGalileanResidualCaptureTests.swift": "3c0eb3ae72f7fffd86836781e2877c789c24f651ecc59fecbafa6aa64502dd98",
+    "Tests/AstronomyKitTests/Engine/Bodies/EngineGalileanResidualCaptureTests.swift": "7700f2774199d2ddd192702513ace7393b639ba144e6315626363518857b8459",
     "Tests/AstronomyKitTests/Engine/Planets/PlanetTestSupport.swift": "3f99fd4c06526d3cf49ffcbcde4e39dc4dba92f72b327b24b1dd209520082d97",
     "Tests/AstronomyKitTests/Fixtures/IndependentReferences/reference-fixtures.json": "a9fe5925fc0c556d088147d78fc5f6b053f32a839e13250f7589e47dfc9a12ab",
     "Tests/AstronomyKitTests/IndependentReferenceFixtures.swift": "520a4b9c5dad0d9431212a10e807ccca9f9c2ede196b4599e4e02cd19c83f86c"

@@ -22,28 +22,33 @@ class GalileanResidualTests(unittest.TestCase):
         for reference in self.tool.references():
             tt, offset, rate = self.tool.clock(reference['julianDateTDB'])
             position = self.tool.eqj(reference['positionAU'])
-            position[0] += 1 / self.tool.AU_KM
+            position[0] += .1 / self.tool.AU_KM
             velocity = [v * rate for v in self.tool.eqj(reference['velocityAUPerDay'])]
             velocity[1] += 2 / self.tool.AU_KM
             rows.append(dict(body=reference['body'], target=self.tool.MOONS[reference['body']], center=599,
                              frame='EQJ', epochScale='TDB', julianDateTDB=reference['julianDateTDB'],
                              ttDays=tt, tdbMinusTTSeconds=offset, tdbPerTTRate=rate,
-                             positionAU=position, keplerianVelocityAUPerTTDay=velocity))
-        return dict(schemaVersion=1, rows=rows)
+                             positionAU=position, velocityAUPerTTDay=velocity))
+        transitions = [
+            dict(body=body, side=side, sampleCount=4097, maximumPositionCorrectionKm=.1,
+                 maximumVelocityCorrectionKmPerTTDay=2)
+            for side in ('beforeStart', 'afterEnd') for body in self.tool.MOONS
+        ]
+        return dict(schemaVersion=3, rows=rows, transitions=transitions)
 
     def test_all_rows_have_separate_absolute_metrics_and_exact_worst_epochs(self):
         report = self.tool.analyze(self.candidate())
         self.assertEqual(len(report['rows']), 104)
         self.assertEqual(set(report['moons']), set(self.tool.MOONS))
         for row in report['rows']:
-            self.assertAlmostEqual(row['positionErrorKm'], 1, places=7)
-            self.assertAlmostEqual(row['keplerianVelocityErrorKmPerTTDay'], 2, places=7)
+            self.assertAlmostEqual(row['positionErrorKm'], .1, places=7)
+            self.assertAlmostEqual(row['velocityErrorKmPerTTDay'], 2, places=7)
         for body, maxima in report['moons'].items():
             self.assertEqual(maxima['all']['count'], 26)
             self.assertEqual(maxima['bounded']['count'], 22)
             for subset in ('all', 'bounded'):
                 eligible = [r for r in report['rows'] if r['body'] == body and (subset == 'all' or r['relativeTolerance'] is not None)]
-                for field in ('positionErrorKm', 'keplerianVelocityErrorKmPerTTDay'):
+                for field in ('positionErrorKm', 'velocityErrorKmPerTTDay'):
                     expected = max(eligible, key=lambda r: r[field])
                     self.assertEqual(maxima[subset][field], dict(value=expected[field], julianDateTDB=expected['julianDateTDB']))
 
@@ -74,10 +79,22 @@ class GalileanResidualTests(unittest.TestCase):
 
     def test_nonfinite_and_wrong_shape_fail(self):
         for key, value in [('positionAU', [math.nan, 0, 0]), ('positionAU', [0, 0]),
-                           ('keplerianVelocityAUPerTTDay', [0, math.inf, 0])]:
+                           ('velocityAUPerTTDay', [0, math.inf, 0])]:
             candidate = self.candidate()
             candidate['rows'][0][key] = value
             with self.assertRaises(ValueError): self.tool.analyze(candidate)
+
+    def test_transition_inventory_identity_and_metrics_are_strict(self):
+        mutations = [lambda rows: rows.pop(), lambda rows: rows.append(copy.deepcopy(rows[0])),
+                     lambda rows: rows.__setitem__(1, copy.deepcopy(rows[0])),
+                     lambda rows: rows[0].update(sampleCount=4096),
+                     lambda rows: rows[0].update(maximumPositionCorrectionKm=math.nan),
+                     lambda rows: rows[0].update(maximumVelocityCorrectionKmPerTTDay=-1)]
+        for mutation in mutations:
+            candidate = self.candidate()
+            mutation(candidate['transitions'])
+            with self.subTest(mutation=mutation), self.assertRaises(ValueError):
+                self.tool.analyze(candidate)
 
     def test_archive_recipe_header_epoch_and_fixture_mutations_fail(self):
         root = self.tool.ROOT
@@ -165,7 +182,7 @@ class GalileanResidualTests(unittest.TestCase):
                        lambda d: d.update(captureSHA256='0' * 64),
                        lambda d: d['sourceSHA256'].pop(next(iter(d['sourceSHA256']))),
                        lambda d: d['sourceSHA256'].__setitem__('Package.swift', '0' * 64),
-                       lambda d: d.update(schemaVersion=2)]:
+                       lambda d: d.update(schemaVersion=3)]:
             changed = copy.deepcopy(data); mutate(changed)
             with self.assertRaises(ValueError): self.tool.validate_record(changed)
 
