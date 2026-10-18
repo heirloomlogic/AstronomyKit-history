@@ -6,8 +6,10 @@ import apparent_bounds
 import selected_earth_bounds
 import argparse
 import ast
+import base64
 import json
 import re
+import struct
 
 from intervals import Interval as I, DeltaT, expression, year_start
 from certify_light_time import constants as convergence_constants, C
@@ -105,6 +107,85 @@ def frame_rates():
             'siderealTT':sidereal+longitude+amplitude*obliquity*pi/180+complement_rate}
 
 
+def observed_model_bounds():
+    """Rate, magnitude, and arithmetic guards from the observed model's sources."""
+    path = ROOT/(ENGINE+'Foundation/Generated/DeltaTObservedTable.swift')
+    text = path.read_text()
+    first_mjd = int(re.search(r'static let firstMJD = ([0-9_]+)', text)[1].replace('_', ''))
+    rows_block = text.split('static let rows: Rows = {', 1)[1]
+    payload = base64.b64decode(''.join(rows_block.split('"""', 2)[1].split()), validate=True)
+    count = int(re.search(r'count: ([0-9_]+)', rows_block)[1].replace('_', ''))
+    packed = struct.unpack(f'<{count}d', payload)
+    if count % 3 or len(packed) != count:
+        raise ValueError('Observed Delta T row layout changed')
+    first_ut = Q(first_mjd) - Q('51544.5')
+    delta_t, row_ut = [], []
+    for index in range(count // 3):
+        dt = packed[3*index] / 1.0e7
+        dut = packed[3*index+1] / 1.0e7
+        ut = float(first_ut + index) + dut / 86400.0
+        delta_t.append(Q(dt))
+        row_ut.append(Q(ut))
+    daily_rate = max(abs((after-before)/(stop-start)) for before,after,start,stop in
+                     zip(delta_t,delta_t[1:],row_ut,row_ut[1:]))
+
+    segments = []
+    for row in re.findall(r'Segment\(start: ([^,]+), end: ([^,]+), a0: ([^,]+), a1: ([^,]+), a2: ([^,]+), a3: ([^)]+)\)', text):
+        segments.append(tuple(Q(float(value.replace('_', ''))) for value in row))
+    if not segments or segments[-1][1] < 1961:
+        raise ValueError('Observed Delta T spline layout changed')
+    domain_years = [Q(2000)+Q(value)/Q('365.25') for value in [-37000, 37000]]
+    historical_rates = []
+    historical_magnitudes = []
+    for start,end,a0,a1,a2,a3 in segments:
+        if end < domain_years[0] or start > domain_years[1]:
+            continue
+        candidates = [Q(0), Q(1)]
+        if a3:
+            vertex = -a2/(3*a3)
+            if 0 < vertex < 1:
+                candidates.append(vertex)
+        historical_rates.append(max(abs(a1+2*a2*t+3*a3*t*t) for t in candidates)/(end-start)/Q('365.25'))
+        historical_magnitudes.append(abs(a0)+abs(a1)+abs(a2)+abs(a3))
+
+    constants = {}
+    for name in ['lodRate', 'lodAmplitude', 'lodPeriod', 'lodPhase', 'lodEpoch']:
+        constants[name] = Q(float(re.search(rf'static let {name} = (\S+)', text)[1].replace('_', '')))
+    t_max = max(abs((year-constants['lodEpoch'])/100) for year in domain_years)
+    extrapolated_rate = (abs(constants['lodRate'])*t_max+abs(constants['lodAmplitude']))/1000
+    integral_magnitude = Q('36.525')*(Q(1,2)*abs(constants['lodRate'])*t_max*t_max+
+                                             abs(constants['lodAmplitude'])*constants['lodPeriod']/(2*pi_interval().lo))
+    magnitude = max(max(delta_t), -min(delta_t), max(historical_magnitudes),
+                    max(abs(delta_t[-1]-2*integral_magnitude), abs(delta_t[-1]+2*integral_magnitude)))
+    rate = max(daily_rate, max(historical_rates), extrapolated_rate)
+    source = (ROOT/(ENGINE+'Foundation/EngineDeltaTObserved.swift')).read_text()
+    expressions = [
+        'before + f * (after - before)',
+        'segment.a0 + t * (segment.a1 + t * (segment.a2 + t * segment.a3))',
+        '36.525 * (tidal + fluctuation)',
+    ]
+    if any(value not in source for value in expressions):
+        raise ValueError('Observed Delta T evaluation graph changed')
+    # The largest native branch has fewer than 64 basic operations. This
+    # majorant covers its time arguments, values, coefficients, and the two
+    # long-term integrals. The cos result is bounded by one here; libm
+    # evaluation error remains an explicit exclusion of the altitude budget.
+    epsilon = Q(1, 2**53)
+    gamma64 = 64*epsilon/(1-64*epsilon)
+    arithmetic_majorant = Q(37000)+magnitude+max(historical_magnitudes)+max(abs(value) for value in delta_t)+2*integral_magnitude
+    arithmetic_error = gamma64*arithmetic_majorant
+    forward_error = arithmetic_error/86400+epsilon*abs(magnitude/86400)+epsilon*(Q(37000)+abs(magnitude/86400))
+    if rate >= 2 or magnitude >= 25000:
+        raise ValueError(f'Observed Delta T source bounds changed: rate={rate}, magnitude={magnitude}')
+    if arithmetic_error >= Q('1e-8') or forward_error >= Q('1e-10'):
+        raise ValueError('Observed Delta T arithmetic guard assumptions changed')
+    return {'dailyRateSecondsPerDay':daily_rate, 'historicalRateSecondsPerDay':max(historical_rates),
+            'extrapolatedRateSecondsPerDay':extrapolated_rate, 'rateSecondsPerDay':rate,
+            'magnitudeSeconds':magnitude, 'arithmeticErrorSeconds':arithmetic_error,
+            'derivedForwardArithmeticErrorDays':forward_error, 'roundingFactors':64,
+            'rowCount':count//3, 'splineSegmentCount':len(segments)}
+
+
 def classification_guard():
     delta = DeltaT()
     bounds = [1898,1900,1920,1941,1961,1986,2005,2050,2102]
@@ -163,10 +244,15 @@ def derive():
     light = json.loads((ROOT/'Scripts/solar-numerics/derived-light-convergence.json').read_text())
     check_hashes(ROOT, light['sourceSHA256'])
     guard = classification_guard()
+    observed = observed_model_bounds()
+    if observed['derivedForwardArithmeticErrorDays'] >= guard['guardDays']:
+        raise ValueError('Observed Delta T forward error exceeds the classification guard')
     earth = selected_earth_bounds.derive()
     rmin = earth['radiusMinimumAU']
     v, p = earth['speedAUPerTTDay'], earth['joinMaximumAU']
     a, m = 1+convergence['deltaTSlopeSecondsPerDay']/86400, 1-convergence['deltaTSlopeSecondsPerDay']/86400
+    observed_a = 1+observed['rateSecondsPerDay']/86400
+    observed_m = 1-observed['rateSecondsPerDay']/86400
     k = convergence['k']
     delta = DeltaT()
     magnitude = max(delta.at_year(I(year,year+1),year).abs_upper() for year in range(1898,2102))
@@ -221,9 +307,11 @@ def derive():
     gamma = lambda n: n*u/(1-n*u)
     domain = Q(37000)
     forward = gamma(2)*(domain+magnitude/86400)
+    observed_forward = gamma(2)*(domain+observed['magnitudeSeconds']/86400)
     tolerance = 4*u*domain
     inverse_residual = tolerance/(1-u)+forward
     inverse_days = inverse_residual/m
+    observed_inverse_days = (tolerance/(1-u)+observed_forward)/observed_m
     inverse_jump_days = convergence['D']/m
     # Foundation adds its epoch offset, then civilDays subtracts J2000 and divides.
     civil = gamma(3)*(domain+Q(978307200+946728000,86400))
@@ -262,11 +350,23 @@ def derive():
         'backdateMaxDays':convergence['T'],
         'utSensitivityDegreesPerDay':ut_sensitivity,
         'ttSensitivityDegreesPerDay':tt_sensitivity,
+        'observedCivilToTTDegrees':(ut_sensitivity/observed_m+tt_sensitivity)*civil_tt,
+        'observedCivilToUTDegrees':(ut_sensitivity+tt_sensitivity*observed_a)*civil,
+        'observedForwardTTDegrees':tt_sensitivity*observed_forward,
+        'observedTTInverseDegrees':ut_sensitivity*observed_inverse_days,
+        'observedArrivalUncertaintyDays':observed_inverse_days+civil+civil_tt/observed_m,
+        'observedClassificationInverseGuardDays':guard['guardDays']/observed_m,
+        'observedTTImageSlope':observed_a,
+        'observedDeltaTRateSecondsPerDay':observed['rateSecondsPerDay'],
+        'observedForwardUncertaintyDegreesPerSecond':tt_sensitivity/86400,
+        'observedInverseUncertaintyDegreesPerSecond':ut_sensitivity/(86400*observed_m),
     }
     max_earth_perturbation = light_au+light_jump_au+v*a/(1-k)*values['arrivalUncertaintyDays']
-    if max_earth_perturbation >= Q('.00001') or values['arrivalUncertaintyDays'] >= Q('.00001'):
+    observed_max_earth_perturbation = light_au+v*observed_a/(1-k)*values['observedArrivalUncertaintyDays']
+    if max(max_earth_perturbation, observed_max_earth_perturbation) >= Q('.00001') or max(
+        values['arrivalUncertaintyDays'], values['observedArrivalUncertaintyDays']) >= Q('.00001'):
         raise ValueError('The denominator or classification margin is insufficient')
-    if 2*values['arrivalUncertaintyDays']+convergence['T'] >= 1:
+    if 2*max(values['arrivalUncertaintyDays'], values['observedArrivalUncertaintyDays'])+convergence['T'] >= 1:
         raise ValueError('Time hull can span multiple selected source joins in one component')
     paths = sorted(set(BINDINGS + precession_bounds.PATHS + apparent_bounds.PATHS + [
         'Scripts/solar-numerics/derive_altitude.py', 'Scripts/solar-numerics/intervals.py',
@@ -274,6 +374,7 @@ def derive():
         'Scripts/solar-numerics/derived-light-convergence.json',
         'Sources/AstronomyKit/Time.swift', 'Sources/AstronomyKit/Observer.swift',
         'Sources/AstronomyKit/Position.swift', 'Sources/AstronomyKit/SolarAltitudeObservation.swift',
+        ENGINE+'Foundation/EngineDeltaTObserved.swift', ENGINE+'Foundation/Generated/DeltaTObservedTable.swift',
         *[ENGINE+path for path in [
             'Positions/EngineGeocentric.swift', 'Positions/EngineEquatorial.swift',
             'Orientation/EngineObserver.swift', 'Orientation/EngineFrameRotations.swift',
@@ -283,15 +384,18 @@ def derive():
     ]))
     return {'kind':'native-partial-altitude-derivation', 'schemaVersion':1, 'sourceSHA256':source_hashes(ROOT,paths),
             'dependency':'Selected Earth majorants are reconstructed; the finite convergence artifact must also pass its full check command',
-            'excludedAltitudeErrors':['polynomial evaluation and fit','frame and sidereal arithmetic','horizon transform and libm','DeltaT polynomial evaluation and decimal-year arithmetic','solar interpolation, TT/TDB and relativistic-map arithmetic','source ephemeris and physical-model errors'],
+            'excludedAltitudeErrors':['polynomial evaluation and fit','frame and sidereal arithmetic','horizon transform and libm','DeltaT evaluation and time-coordinate arithmetic','solar interpolation, TT/TDB and relativistic-map arithmetic','source ephemeris and physical-model errors'],
             'terms':{key:record(value) for key,value in values.items()},
             'classificationGuard':{key:str(value) for key,value in guard.items()},
             'selectedEarth':{**{key:str(value) for key,value in earth.items() if key not in ['components', 'clock']},
                 'components':{path:{key:str(value) for key,value in component.items()}
                               for path,component in zip(selected_earth_bounds.PATHS,earth['components'])},
                 'clock':{key:str(value) for key,value in earth['clock'].items()}},
-            'intermediate': {'deltaTMagnitudeSeconds':str(magnitude), 'topocentricRadiusMarginAU':str(rho),
+            'intermediate': {'deltaTMagnitudeSeconds':str(magnitude),
+                             'observedDeltaT':{key:str(value) for key,value in observed.items()},
+                             'topocentricRadiusMarginAU':str(rho),
                              'maxEarthPerturbationAU':str(max_earth_perturbation),
+                             'observedMaxEarthPerturbationAU':str(observed_max_earth_perturbation),
                              'ratesDegreesPerDay':{key:str(value) for key,value in rates.items()},
                              'apparentComposition':{key:str(value) for key,value in {'betaUpper':beta_upper,'betaRate':beta_rate,
                                 'directionLipschitz':p_lipschitz,'betaLipschitz':beta_lipschitz,

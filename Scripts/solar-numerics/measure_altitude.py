@@ -23,6 +23,7 @@ PATHS = sorted(set(BINDINGS + measure.TOOLS + precession_bounds.PATHS + apparent
     'Tests/AstronomyKitTests/Engine/Numerics/NativeAltitudeProbe.swift',
     'Sources/AstronomyKit/SolarAltitudeObservation.swift', 'Sources/AstronomyKit/SolarAltitudeBounds.swift',
     'Sources/AstronomyKit/Position.swift', 'Sources/AstronomyKit/Time.swift', 'Sources/AstronomyKit/Observer.swift',
+    ENGINE + 'Foundation/EngineDeltaTObserved.swift', ENGINE + 'Foundation/Generated/DeltaTObservedTable.swift',
     *[ENGINE + path for path in [
         'Positions/EngineGeocentric.swift', 'Positions/EngineEquatorial.swift',
         'Orientation/EngineObserver.swift', 'Orientation/EngineFrameRotations.swift',
@@ -36,6 +37,10 @@ OBSERVERS = [[0.0, 0.0, 0.0], [51.5, -0.12, 46.0], [89.999, 180.0, 0.0],
 
 def grid():
     epochs = measure.grid()
+    epochs += [
+        {**epoch, 'id': epoch['id'].replace('-espenakMeeus', '-iersObserved'), 'model': 'iersObserved'}
+        for epoch in epochs if epoch['model'] == 'espenakMeeus'
+    ]
     # Retain the historical backdating-discontinuity neighborhoods as regression samples; the TDB solver has no emission Delta T branch.
     for year, center in [(1941, -21549.494320910424), (2005, 1826.5056790659519), (2050, 18262.505679351943)]:
         for offset in range(-3, 4):
@@ -44,8 +49,19 @@ def grid():
                 value = math.nextafter(value, math.inf if offset > 0 else -math.inf)
             for model in ['espenakMeeus', 'jplHorizons']:
                 epochs.append({'id': f'backdate-{year}-{offset}-{model}', 'days': value, 'scale': 'ut', 'model': model})
+    observed_data = solar.ref.observed_delta_t_data()
+    observed_rows, first_predicted = observed_data[0], observed_data[4]
+    for label, center in [
+        ('historical-observed', observed_rows[0]),
+        ('observed-predicted', observed_rows[first_predicted - 1]),
+        ('table-extrapolated', observed_rows[-1]),
+    ]:
+        center = float(center)
+        for offset, value in [('below', math.nextafter(center, -math.inf)), ('at', center),
+                              ('above', math.nextafter(center, math.inf))]:
+            epochs.append({'id': f'observed-{label}-{offset}', 'days': value, 'scale': 'ut', 'model': 'iersObserved'})
     for index, civil_day in enumerate([-18262.5, -14244.5-1e-8, -14244.5, -14244.5+1e-8, -0.5, 1826.5056790659519, 6209.5, 36000.25]):
-        for model in ['espenakMeeus', 'jplHorizons']:
+        for model in ['iersObserved', 'espenakMeeus', 'jplHorizons']:
             epochs.append({'id': f'civil-{index}-{model}', 'days': (civil_day-365.5)*86400, 'scale': 'date', 'model': model})
     return [{'id': epoch['id'] + f'-observer-{index}', 'value': epoch['days'], 'scale': epoch['scale'],
              'model': epoch['model'], 'observer': observer[:]} for epoch in epochs for index, observer in enumerate(OBSERVERS)]
@@ -131,7 +147,7 @@ def validate_public_outcomes(records, requests, native_records):
     for label, rows in [('saved', records), ('fresh', native_records)]:
         if len(rows) != len(requests) or [row['request'] for row in rows] != requests:
             raise ValueError(f'{label} public outcome request coverage differs')
-    def outcome(row):
+    def outcome(row, request):
         supported, rejected = 'observation' in row, 'unsupported' in row
         if supported == rejected:
             raise ValueError('A public outcome must contain exactly one observation or rejection')
@@ -140,13 +156,16 @@ def validate_public_outcomes(records, requests, native_records):
                 raise ValueError('Invalid public outcome rejection')
             return ('unsupported', row['unsupported'])
         observed = row['observation']
-        if not isinstance(observed, dict) or set(observed) != {'altitude','civil','scale','light','era','total'}:
+        fields = {'altitude','civil','scale','light','era','total'}
+        stated = {'statedDeltaT','statedAltitude'}
+        expected = fields | stated if request['model'] == 'iersObserved' else fields
+        if not isinstance(observed, dict) or set(observed) != expected:
             raise ValueError('Invalid public outcome budget fields')
         if observed['altitude'] != row['values']['altitude']:
             raise ValueError('Public outcome altitude differs from its native calculation')
         return ('observation', {key:value for key,value in observed.items() if key != 'altitude'})
-    for saved, fresh in zip(records, native_records):
-        if outcome(saved) != outcome(fresh):
+    for saved, fresh, request in zip(records, native_records, requests):
+        if outcome(saved, request) != outcome(fresh, request):
             raise ValueError(f"Recorded public outcome differs from fresh Swift replay: {saved['request']['id']}")
 
 

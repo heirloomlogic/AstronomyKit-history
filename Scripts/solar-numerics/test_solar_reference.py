@@ -6,13 +6,26 @@ import solar_reference as solar
 class SolarDefinitionTests(unittest.TestCase):
     def test_exact_public_scalar_and_civil_epoch(self):
         mp = solar.mp
-        for model in ['espenakMeeus', 'jplHorizons']:
+        for model in ['iersObserved', 'espenakMeeus', 'jplHorizons']:
             ut, tt = solar.input_pair(0.1, 'ut', model, 0.1)
             self.assertEqual(ut, solar.ref.exact(0.1))
             self.assertEqual(tt, ut+solar.ref.delta_t(ut,model)/86400)
             civil_ut, civil_tt = solar.input_pair(0.0, 'date', model, 365.5)
             self.assertEqual(civil_tt, mp.mpf('365.5')+mp.mpf('64.184')/86400)
             self.assertLess(abs(civil_ut+solar.ref.delta_t(civil_ut,model)/86400-civil_tt), mp.mpf('1e-65'))
+
+    def test_observed_reference_is_continuous_at_its_runtime_joins(self):
+        mp = solar.mp
+        observed_data = solar.ref.observed_delta_t_data()
+        rows, first_predicted = observed_data[0], observed_data[4]
+        # The first source-decimal Hermite endpoint and its packed binary64 row differ by 6.08e-14 seconds.
+        for join, tolerance in [(rows[0], mp.mpf('1e-12')), (rows[first_predicted], mp.mpf('1e-20')), (rows[-1], mp.mpf('1e-20'))]:
+            epsilon = mp.mpf('1e-30')
+            before = solar.ref.delta_t(join-epsilon, 'iersObserved')
+            at = solar.ref.delta_t(join, 'iersObserved')
+            after = solar.ref.delta_t(join+epsilon, 'iersObserved')
+            self.assertLess(abs(before-at), tolerance)
+            self.assertLess(abs(after-at), tolerance)
 
     def test_positive_gap_has_no_mathematical_inverse(self):
         mp = solar.mp

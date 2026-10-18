@@ -30,6 +30,16 @@ enum SolarAltitudeBounds {
     static let backdateMaxDays = 0.006
     static let utSensitivityDegreesPerDay = 361.01980374822716
     static let ttSensitivityDegreesPerDay = 2.4130453913816767
+    static let observedCivilToTTDegrees = 1.9119105688952152e-08
+    static let observedCivilToUTDegrees = 7.1757536669603716e-09
+    static let observedForwardTTDegrees = 1.9824744229342395e-11
+    static let observedTTInverseDegrees = 8.898039353751532e-09
+    static let observedArrivalUncertaintyDays = 9.699831213713531e-11
+    static let observedClassificationInverseGuardDays = 1.0000000955135304e-09
+    static let observedTTImageSlope = 1.0000000955135213
+    static let observedDeltaTRateSecondsPerDay = 0.00825236824093087
+    static let observedForwardUncertaintyDegreesPerSecond = 2.792876610395459e-05
+    static let observedInverseUncertaintyDegreesPerSecond = 0.004178470349890083
     static let modelStepUTs: [Double] = [-36524.5, -29220.5, -21549.5, -14244.5, -5113.5, 1826.5, 18262.5]
     struct Gap {
         let lower: Double
