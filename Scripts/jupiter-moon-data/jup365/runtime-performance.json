@@ -1,10 +1,10 @@
 {
   "build": {
-    "command": "/usr/bin/time -lp swift build -c release -j 2 --scratch-path .context/issue-258/jup-runtime-2d80-quiet",
-    "maximumResidentSetBytes": 9225764864,
-    "peakMemoryFootprintBytes": 836258048,
-    "swiftPMSeconds": 38.07,
-    "wallSeconds": 47.53
+    "command": "/usr/bin/time -lp swift build -c release -j 2 --scratch-path /Users/sessions/conductor/workspaces/AstronomyKit/boise/.context/issue-258/qualification-e68/jup-runtime-release",
+    "maximumResidentSetBytes": 9141846016,
+    "peakMemoryFootprintBytes": 840927440,
+    "swiftPMSeconds": 54.42,
+    "wallSeconds": 66.97
   },
   "host": {
     "machine": "arm64",
@@ -13,30 +13,30 @@
   },
   "publicAPI": {
     "firstChecksum": 0.0029811362274096984,
-    "firstPublicCallMilliseconds": 1.553333,
+    "firstPublicCallMilliseconds": 2.105042,
     "iterations": 100000,
-    "processLaunchAndFirstCallMedianMilliseconds": 282.420625,
+    "processLaunchAndFirstCallMedianMilliseconds": 290.882709,
     "processLaunchAndFirstCallMilliseconds": [
-      282.420625,
-      283.757833,
-      281.969042,
-      286.015625,
-      285.658,
-      21.816291,
-      24.117125
+      290.882709,
+      287.517084,
+      392.313708,
+      378.34075,
+      379.884583,
+      28.649625,
+      38.199208
     ],
     "sameEpochChecksum": 298.11362274099224,
-    "sameEpochMicrosecondsPerCall": 7.82509375,
+    "sameEpochMicrosecondsPerCall": 14.97839834,
     "spanningChecksum": -0.596481031312171,
-    "spanningMicrosecondsPerCall": 15.26959125
+    "spanningMicrosecondsPerCall": 34.70537625
   },
   "schemaVersion": 1,
   "sizes": {
-    "astronomyKitObjectBytes": 552902816,
-    "astronomyKitSourcesBytes": 552789082,
+    "astronomyKitObjectBytes": 552921664,
+    "astronomyKitSourcesBytes": 552809242,
     "generatedSwiftBytes": 81067832,
-    "probeExecutableBytes": 556937592,
-    "staticLibraryBytes": 552970824
+    "probeExecutableBytes": 556947992,
+    "staticLibraryBytes": 552991352
   },
   "sourceSHA256": {
     "Package.swift": "f09138b379aebee7f80817802440177a09c754b962ad1d212f265a708ef5714d",
@@ -304,9 +304,10 @@
     "Sources/AstronomyKit/Engine/Positions/EngineHeliocentric.swift": "900cf42846d48f1582a94996365a0228a72ba9b38f56e2a0d71f04bf8a722769",
     "Sources/AstronomyKit/Engine/Positions/EngineIllumination.swift": "7caf847bc8937b91cc57dcbc9e191ee05a67143ce83af837678679acced8b6bf",
     "Sources/AstronomyKit/Engine/Stars/EngineConstellations.swift": "adf34b0ecda66e7413d80cde5e556acd307d004915457aa251bde7f39083eef7",
-    "Sources/AstronomyKit/Engine/Stars/EngineStar.swift": "58c35f4991c4f394c6efecefc13e3f1a03dec0fb3319707ea4c66c554e80d230",
+    "Sources/AstronomyKit/Engine/Stars/EngineStar.swift": "75e2ad31b3ce7c9461b16d204f39a50bbd26121c85791fd482543727244ebafb",
+    "Sources/AstronomyKit/Engine/Stars/EngineStarCatalogPropagation.swift": "314a7c8aa4b08a93a8d6977232fde2c6a446e805fb239588e537a68050dda561",
     "Sources/AstronomyKit/Engine/Stars/Generated/ConstellationData.swift": "ed4a8ed46f46a48741e854c7ca7c5e4f3ddde56b4016dd92e2d9cbb570b684f8",
-    "Sources/AstronomyKit/FixedStar.swift": "18b81d22e848e3a46685632e2cd6721bca5603f5688db3ebdc81bbb5d460daf5",
+    "Sources/AstronomyKit/FixedStar.swift": "9895956f26b49655cc8bf87f70c336a3b4f612625b87cb1d34c04c58184cc366",
     "Sources/AstronomyKit/GravitySimulation.swift": "e0e1eb3bd99ce5303c1504d78f49dd27c48390a296e4a52e65f793ff69df0245",
     "Sources/AstronomyKit/Illumination.swift": "8e3221912b34611cd9582c6e33ac02604c7ec7b75a756d3b856f9fd133c4d76b",
     "Sources/AstronomyKit/JupiterMoons.swift": "62407361fc4046129f1959a78f46e0beffb7a8ee4e0122d99da73dd9246959a3",
@@ -325,6 +326,7 @@
     "Sources/AstronomyKit/Seasons.swift": "83a81c7a5d7fd0a9a88954032b07de4c0b8aef8216c43b7ae5b03eab456676eb",
     "Sources/AstronomyKit/SolarAltitudeBounds.swift": "5aea5d48a2f7171b9811c8cfd2ceb848fa3ec487ed0c3356e3bde469ef3e0457",
     "Sources/AstronomyKit/SolarAltitudeObservation.swift": "9a6c4dd12391f17e540f6fa255e83f94bc63275824bc2a26e8667a1da9dfc24b",
+    "Sources/AstronomyKit/StarCatalogMotion.swift": "589ad988057b1ad633721d3779962dd642923771eb5a9ccf65afed9a10b15bf7",
     "Sources/AstronomyKit/Time.swift": "3d38636da7ca64c91633896cc9494b03383055a5db951539c849c6c71fa449dd",
     "Sources/AstronomyKit/Transit.swift": "983f8382095c09633884766f861a26707ed9f6022ea6ec937a90683034c4e854",
     "Sources/AstronomyKit/UTCOffsetTable.swift": "1aeecd498507255293aa63fde986cea402fd2b8840c2e385b12d879628d3def5"
