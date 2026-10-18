@@ -171,7 +171,7 @@
     "Sources/AstronomyKit/Engine/Positions/EngineApparentKinematics.swift": "d2954f95cb6d7495a9716e577dd27ed1e46522fa281c0a13bbd0315380fe02e9",
     "Sources/AstronomyKit/Engine/Positions/EngineApparentObserver.swift": "2fb567e7041fd99ea51b8580db0b814b21e97d8c173fb4d6b4c50a7c2e8917b4",
     "Sources/AstronomyKit/Engine/Positions/EngineApparentPlace.swift": "2507bab7eaad11ef108db797811764c89af786fd92df9b8ac08af38377978ff1",
-    "Sources/AstronomyKit/SolarAltitudeObservation.swift": "085b83315c9368ab198b70d7f792a40ff1351966f92c79fba03a4fe4a26e2131",
+    "Sources/AstronomyKit/SolarAltitudeObservation.swift": "9a6c4dd12391f17e540f6fa255e83f94bc63275824bc2a26e8667a1da9dfc24b",
     "Sources/AstronomyKit/Time.swift": "3d38636da7ca64c91633896cc9494b03383055a5db951539c849c6c71fa449dd",
     "Sources/AstronomyKit/UTCOffsetTable.swift": "1aeecd498507255293aa63fde986cea402fd2b8840c2e385b12d879628d3def5"
   }

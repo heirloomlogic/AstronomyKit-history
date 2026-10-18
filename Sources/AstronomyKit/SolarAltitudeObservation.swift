@@ -24,7 +24,7 @@ import Foundation
 /// ``errorBound`` sums the terms of the article's budget that apply to how
 /// the time was built. It covers only what the article derives. The terms the
 /// article measures (polynomial evaluation, frame rotation, sidereal time, the
-/// horizon transform, the math library, and the Delta T polynomial) are
+/// horizon transform, the math library, and Delta T evaluation) are
 /// excluded from this bound. The article distinguishes their sampled
 /// differences from the coarse guards used only to classify supported inputs.
 ///
@@ -83,6 +83,18 @@ public struct SolarAltitudeObservation: Sendable, Equatable, Hashable {
         }
     }
 
+    /// The observed Delta T model's published physical uncertainty and its
+    /// propagated effect on altitude. These figures are about one standard
+    /// error, not proved bounds, and are not part of ``ErrorBound/total``.
+    public struct StatedUncertainty: Sendable, Equatable, Hashable {
+        /// The model's stated Delta T uncertainty at the recorded UT, in seconds.
+        public let deltaTSeconds: Double
+
+        /// The stated Delta T uncertainty propagated through the applicable
+        /// UT or TT altitude sensitivity, in degrees.
+        public let altitudeDegrees: Double
+    }
+
     /// A case <doc:SolarAltitudeNumerics> excludes from the budget.
     public enum Unsupported: Error, Sendable, Equatable, Hashable {
         /// The input TT, or its conservative reception-time enclosure, is outside ``SolarAltitudeObservation/polynomialCoverage``.
@@ -102,13 +114,6 @@ public struct SolarAltitudeObservation: Sendable, Equatable, Hashable {
         /// ``SolarAltitudeObservation/maximumObserverHeight`` from the
         /// ellipsoid.
         case observerHeightOutsideBudget
-
-        /// The model is ``DeltaTModel/iersObserved``. <doc:SolarAltitudeNumerics>
-        /// derives the budget's slope, rounding, gap and step terms from the
-        /// Espenak-Meeus polynomials, which ``DeltaTModel/espenakMeeus`` and
-        /// ``DeltaTModel/jplHorizons`` evaluate; it has no derivation for the
-        /// observed table, spline and long-term model.
-        case deltaTModelOutsideBudget
     }
 
     /// The time the altitude was evaluated at, with both scales and the model.
@@ -128,6 +133,11 @@ public struct SolarAltitudeObservation: Sendable, Equatable, Hashable {
 
     /// The derived numerical error bound.
     public let errorBound: ErrorBound
+
+    /// The observed model's published physical uncertainty, kept separate
+    /// from the proved arithmetic terms in ``errorBound``. `nil` for the two
+    /// comparison models, which publish no corresponding estimate.
+    public let statedUncertainty: StatedUncertainty?
 
     /// The reception TT domain of this partial budget: 1900-01-01 through the end of 2100. The entire admitted uncertainty hull lies inside the selected DE Earth's full-weight window.
     public static let polynomialCoverage: Range<Double> =
@@ -153,10 +163,10 @@ public struct SolarAltitudeObservation: Sendable, Equatable, Hashable {
         guard abs(observer.height) <= SolarAltitudeBounds.observerHeightMeters else {
             throw Unsupported.observerHeightOutsideBudget
         }
-        guard deltaTModel != .iersObserved else { throw Unsupported.deltaTModelOutsideBudget }
         let ut = time.universalTime
         let tt = time.terrestrialTime
         guard ut.isFinite, tt.isFinite else { throw AstronomyError.badTime }
+        let modelBudget = ModelBudget(deltaTModel)
 
         // The TT the model gives for `ut`. A time built from `ut` has exactly it.
         let forwardTT: Double
@@ -170,15 +180,15 @@ public struct SolarAltitudeObservation: Sendable, Equatable, Hashable {
             guard abs(tt - forwardTT) <= Self.inverseTolerance(terrestrialTime: tt) else {
                 throw Unsupported.terrestrialTimeInDeltaTGap
             }
-            civilConversion = reference == .civilUTC ? SolarAltitudeBounds.civilToTTDegrees : 0
-            scaleConversion = SolarAltitudeBounds.ttInverseDegrees
+            civilConversion = reference == .civilUTC ? modelBudget.civilToTTDegrees : 0
+            scaleConversion = modelBudget.ttInverseDegrees
         case .universalTime, .civilUT1:
             forwardTT = tt
-            civilConversion = reference == .civilUT1 ? SolarAltitudeBounds.civilToUTDegrees : 0
-            scaleConversion = SolarAltitudeBounds.forwardTTDegrees
+            civilConversion = reference == .civilUT1 ? modelBudget.civilToUTDegrees : 0
+            scaleConversion = modelBudget.forwardTTDegrees
         }
 
-        if reference == .terrestrialTime || reference == .civilUTC {
+        if deltaTModel != .iersObserved && (reference == .terrestrialTime || reference == .civilUTC) {
             for gap in SolarAltitudeBounds.positiveGaps {
                 let intersects: Bool
                 if reference == .terrestrialTime {
@@ -198,13 +208,13 @@ public struct SolarAltitudeObservation: Sendable, Equatable, Hashable {
         }
         let classificationGuard = SolarAltitudeBounds.classificationGuardDays
         let globalUncertainty =
-            (SolarAltitudeBounds.arrivalUncertaintyDays + SolarAltitudeBounds.classificationInverseGuardDays).nextUp
+            (modelBudget.arrivalUncertaintyDays + modelBudget.classificationInverseGuardDays).nextUp
         let arrivalStep = Self.crossesModelStep(
             lower: (ut - globalUncertainty).nextDown, upper: (ut + globalUncertainty).nextUp, model: deltaTModel)
         let uncertainty =
             arrivalStep
             ? globalUncertainty
-            : (SolarAltitudeBounds.arrivalUncertaintyBaseDays + SolarAltitudeBounds.classificationInverseGuardDays)
+            : (modelBudget.arrivalUncertaintyBaseDays + modelBudget.classificationInverseGuardDays)
                 .nextUp
         let earliestUT = (ut - uncertainty).nextDown
         let latestUT = (ut + uncertainty).nextUp
@@ -237,10 +247,22 @@ public struct SolarAltitudeObservation: Sendable, Equatable, Hashable {
             lightTimeTermination: SolarAltitudeBounds.lightTimeDegrees,
             earthRotationAngle: SolarAltitudeBounds.eraDegrees
         )
+        if deltaTModel == .iersObserved {
+            let seconds = Engine.DeltaT.Observed.uncertainty(ut: ut)
+            let degreesPerSecond =
+                inverseReference
+                ? SolarAltitudeBounds.observedInverseUncertaintyDegreesPerSecond
+                : SolarAltitudeBounds.observedForwardUncertaintyDegreesPerSecond
+            self.statedUncertainty = StatedUncertainty(
+                deltaTSeconds: seconds, altitudeDegrees: (seconds * degreesPerSecond).nextUp)
+        } else {
+            self.statedUncertainty = nil
+        }
     }
 
     private static func crossesModelStep(lower: Double, upper: Double, model: DeltaTModel) -> Bool {
-        SolarAltitudeBounds.modelStepUTs.contains { boundary in
+        if model == .iersObserved { return false }
+        return SolarAltitudeBounds.modelStepUTs.contains { boundary in
             if model == .jplHorizons && boundary > 17 * Engine.DeltaT.daysPerTropicalYear { return false }
             return lower <= boundary && boundary <= upper
         }
@@ -254,6 +276,36 @@ public struct SolarAltitudeObservation: Sendable, Equatable, Hashable {
     /// converged, as it writes the expression.
     static func inverseTolerance(terrestrialTime tt: Double) -> Double {
         max(SolarAltitudeBounds.inverseToleranceFloorDays, SolarAltitudeBounds.inverseTolerancePerDay * abs(tt))
+    }
+
+    private struct ModelBudget {
+        let civilToTTDegrees: Double
+        let civilToUTDegrees: Double
+        let forwardTTDegrees: Double
+        let ttInverseDegrees: Double
+        let arrivalUncertaintyBaseDays: Double
+        let arrivalUncertaintyDays: Double
+        let classificationInverseGuardDays: Double
+
+        init(_ model: DeltaTModel) {
+            if model == .iersObserved {
+                civilToTTDegrees = SolarAltitudeBounds.observedCivilToTTDegrees
+                civilToUTDegrees = SolarAltitudeBounds.observedCivilToUTDegrees
+                forwardTTDegrees = SolarAltitudeBounds.observedForwardTTDegrees
+                ttInverseDegrees = SolarAltitudeBounds.observedTTInverseDegrees
+                arrivalUncertaintyBaseDays = SolarAltitudeBounds.observedArrivalUncertaintyDays
+                arrivalUncertaintyDays = SolarAltitudeBounds.observedArrivalUncertaintyDays
+                classificationInverseGuardDays = SolarAltitudeBounds.observedClassificationInverseGuardDays
+            } else {
+                civilToTTDegrees = SolarAltitudeBounds.civilToTTDegrees
+                civilToUTDegrees = SolarAltitudeBounds.civilToUTDegrees
+                forwardTTDegrees = SolarAltitudeBounds.forwardTTDegrees
+                ttInverseDegrees = SolarAltitudeBounds.ttInverseDegrees
+                arrivalUncertaintyBaseDays = SolarAltitudeBounds.arrivalUncertaintyBaseDays
+                arrivalUncertaintyDays = SolarAltitudeBounds.arrivalUncertaintyDays
+                classificationInverseGuardDays = SolarAltitudeBounds.classificationInverseGuardDays
+            }
+        }
     }
 }
 

@@ -1,6 +1,8 @@
 """Independent high-precision definitions; values are measurements, never interval bounds."""
 from functools import lru_cache
+import base64
 import re
+import struct
 import mpmath as mp
 
 from numerics import ROOT, ENGINE, earth_model, unpack
@@ -27,8 +29,67 @@ def decimal_year(ut):
     return year + (ut - year_start(year)) / (year_start(year + 1) - year_start(year))
 
 
+@lru_cache(maxsize=1)
+def observed_delta_t_data():
+    """The generated observed-model values, promoted to extended precision."""
+    text = (ROOT / (ENGINE + "Foundation/Generated/DeltaTObservedTable.swift")).read_text()
+    first_mjd = int(re.search(r"static let firstMJD = ([0-9_]+)", text)[1].replace("_", ""))
+    first_predicted = int(re.search(r"static let firstPredictedRow = ([0-9_]+)", text)[1].replace("_", ""))
+    block = text.split("static let rows: Rows = {", 1)[1]
+    count = int(re.search(r"count: ([0-9_]+)", block)[1].replace("_", ""))
+    payload = base64.b64decode("".join(block.split('"""', 2)[1].split()), validate=True)
+    packed = struct.unpack(f"<{count}d", payload)
+    if count % 3 or len(packed) != count:
+        raise ValueError("Observed Delta T row layout changed")
+    first_ut = mp.mpf(first_mjd) - mp.mpf("51544.5")
+    delta_t = [mp.mpf(int(packed[index])) / 1e7 for index in range(0, count, 3)]
+    dut = [mp.mpf(int(packed[index])) / 1e7 for index in range(1, count, 3)]
+    row_ut = [first_ut + index + value / 86400 for index, value in enumerate(dut)]
+    segments = [[mp.mpf(value.replace("_", "")) for value in row] for row in re.findall(
+        r"Segment\(start: ([^,]+), end: ([^,]+), a0: ([^,]+), a1: ([^,]+), a2: ([^,]+), a3: ([^)]+)\)", text
+    )]
+    names = ["lodRate", "lodAmplitude", "lodPeriod", "lodPhase", "lodEpoch"]
+    constants = {name: mp.mpf(re.search(rf"static let {name} = (\S+)", text)[1].replace("_", "")) for name in names}
+    return row_ut, delta_t, segments, constants, first_predicted
+
+
+def observed_delta_t(ut):
+    """IERS/Table S15/HMNAO model evaluated independently at high precision."""
+    row_ut, delta_t, segments, constants, _ = observed_delta_t_data()
+
+    def lod_integral(year):
+        t = (year - constants["lodEpoch"]) / 100
+        phase = 2 * mp.pi * (t + constants["lodPhase"]) / constants["lodPeriod"]
+        return mp.mpf("36.525") * (
+            constants["lodRate"] * t * t / 2
+            + constants["lodAmplitude"] * constants["lodPeriod"] / (2 * mp.pi) * mp.cos(phase)
+        )
+
+    year = 2000 + ut / mp.mpf("365.25")
+    if ut < row_ut[0]:
+        if year < segments[0][0]:
+            return segments[0][2] + lod_integral(year) - lod_integral(segments[0][0])
+        segment = next(row for row in reversed(segments) if row[0] <= year)
+        start, end, a0, a1, a2, a3 = segment
+        t = (year - start) / (end - start)
+        return a0 + t * (a1 + t * (a2 + t * a3))
+    if ut > row_ut[-1]:
+        return delta_t[-1] + lod_integral(year) - lod_integral(2000 + row_ut[-1] / mp.mpf("365.25"))
+    low, high = 0, len(row_ut) - 1
+    while high - low > 1:
+        middle = (low + high) // 2
+        if row_ut[middle] <= ut:
+            low = middle
+        else:
+            high = middle
+    fraction = (ut - row_ut[low]) / (row_ut[low + 1] - row_ut[low])
+    return delta_t[low] + fraction * (delta_t[low + 1] - delta_t[low])
+
+
 def delta_t(ut, model="espenakMeeus"):
-    """NASA/TP-2006-214141 polynomials, 1800 <= year < 2201; native Gregorian interpolation."""
+    """The selected native Delta T definition at extended precision."""
+    if model == "iersObserved":
+        return observed_delta_t(ut)
     if model == "jplHorizons":
         ut = min(ut, 17 * mp.mpf("365.24217"))
     elif model != "espenakMeeus":

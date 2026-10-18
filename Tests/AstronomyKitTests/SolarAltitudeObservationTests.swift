@@ -285,17 +285,88 @@ struct SolarAltitudeObservationTests {
         }
     }
 
-    @Test("The observed model has no derived budget and is refused at every entry point")
-    func observedModelIsRefused() {
-        let date = Date(timeIntervalSince1970: 1_750_000_000)
-        let refused = Unsupported.deltaTModelOutsideBudget
-        #expect(throws: refused) { try Self.observe(date, deltaTModel: .iersObserved) }
-        #expect(throws: refused) { try Self.observe(tt: 9_000.25, deltaTModel: .iersObserved) }
-        #expect(throws: refused) { try Self.observe(ut: 9_000.25, deltaTModel: .iersObserved) }
-        // An invalid observer is still an invalid parameter, whatever the model.
+    @Test("The observed model covers every time reference and keeps the existing exclusions")
+    func observedModelReferencesAndExclusions() throws {
+        let modernDate = try Self.date("2026-07-24T06:30:00Z")
+        let historicalDate = try Self.date("1950-06-01T12:00:00Z")
+        let observations = [
+            try Self.observe(modernDate, deltaTModel: .iersObserved),
+            try Self.observe(historicalDate, deltaTModel: .iersObserved),
+            try Self.observe(tt: 9_000.25, deltaTModel: .iersObserved),
+            try Self.observe(ut: 9_000.25, deltaTModel: .iersObserved),
+        ]
+        #expect(Set(observations.map(\.reference)) == [.civilUTC, .civilUT1, .terrestrialTime, .universalTime])
+        for observation in observations {
+            #expect(observation.deltaTModel == .iersObserved)
+            #expect(observation.time.deltaTModel == .iersObserved)
+            #expect(observation.altitude == (try Self.geometricAltitude(observation.time)))
+            #expect(observation.errorBound.total > 0)
+        }
+
+        #expect(throws: Unsupported.outsidePolynomialCoverage) {
+            try Self.observe(try Self.date("1899-12-31T12:00:00Z"), deltaTModel: .iersObserved)
+        }
+        #expect(throws: Unsupported.civilDateAtSegmentStart) {
+            try Self.observe(Self.date(civilDays: CivilTime.segments[0].start), deltaTModel: .iersObserved)
+        }
+        #expect(throws: Unsupported.observerHeightOutsideBudget) {
+            try Self.observe(
+                tt: 9_000.25, from: Observer(latitude: 40, longitude: 0, height: 10_000.nextUp),
+                deltaTModel: .iersObserved)
+        }
         #expect(throws: AstronomyError.invalidParameter) {
             try Self.observe(tt: 9_000.25, from: Observer(latitude: 91, longitude: 0), deltaTModel: .iersObserved)
         }
+    }
+
+    @Test("Observed regimes and their joins return arithmetic bounds")
+    func observedModelRegimesAndJoins() throws {
+        let rows = Engine.DeltaT.Observed.rows
+        let first = rows.ut[0]
+        let prediction = rows.ut[Engine.DeltaT.Observed.firstPredictedRow]
+        let last = try #require(rows.ut.last)
+        let samples = [
+            first.nextDown, first, first.nextUp,
+            prediction.nextDown, prediction, prediction.nextUp,
+            last.nextDown, last, last.nextUp,
+        ]
+        #expect(Engine.DeltaT.Observed.regime(ut: first.nextDown) == .historical)
+        #expect(Engine.DeltaT.Observed.regime(ut: first) == .observed)
+        #expect(Engine.DeltaT.Observed.regime(ut: prediction) == .predicted)
+        #expect(Engine.DeltaT.Observed.regime(ut: last.nextUp) == .extrapolatedFuture)
+        let pastJoin = (Engine.DeltaT.Observed.spline[0].start - 2_000) * 365.25
+        #expect(Engine.DeltaT.Observed.regime(ut: pastJoin.nextDown) == .extrapolatedPast)
+        #expect(Engine.DeltaT.Observed.regime(ut: pastJoin) == .historical)
+        for ut in [pastJoin.nextDown, pastJoin, pastJoin.nextUp] {
+            #expect(throws: Unsupported.outsidePolynomialCoverage) {
+                try Self.observe(ut: ut, deltaTModel: .iersObserved)
+            }
+        }
+        for ut in samples {
+            let observation = try Self.observe(ut: ut, deltaTModel: .iersObserved)
+            #expect(observation.errorBound.scaleConversion == Bounds.observedForwardTTDegrees)
+            #expect(observation.altitude == (try Self.geometricAltitude(observation.time)))
+        }
+    }
+
+    @Test("Observed physical uncertainty stays separate from the arithmetic total")
+    func observedStatedUncertainty() throws {
+        let ut = 9_000.25
+        let fromUT = try Self.observe(ut: ut, deltaTModel: .iersObserved)
+        let fromTT = try Self.observe(tt: fromUT.time.terrestrialTime, deltaTModel: .iersObserved)
+        let forward = try #require(fromUT.statedUncertainty)
+        let inverse = try #require(fromTT.statedUncertainty)
+        #expect(forward.deltaTSeconds == AstronomyConfig.deltaTIersObservedUncertainty(universalTime: ut))
+        #expect(
+            inverse.deltaTSeconds
+                == AstronomyConfig.deltaTIersObservedUncertainty(
+                    universalTime: fromTT.time.universalTime))
+        #expect(forward.altitudeDegrees > 0)
+        #expect(inverse.altitudeDegrees > 100 * forward.altitudeDegrees)
+        #expect(fromUT.errorBound.total < forward.altitudeDegrees)
+        #expect(fromTT.errorBound.total < inverse.altitudeDegrees)
+        #expect(try Self.observe(ut: ut, deltaTModel: .espenakMeeus).statedUncertainty == nil)
+        #expect(try Self.observe(ut: ut, deltaTModel: .jplHorizons).statedUncertainty == nil)
     }
 
     @Test("Non-finite times throw badTime")

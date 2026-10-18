@@ -27,7 +27,7 @@ struct NativeSolarAltitudeObservationTests {
     }
     @Test(
         "Every reference construction and named model repeats the ordinary geometric altitude",
-        arguments: [DeltaTModel.espenakMeeus, .jplHorizons])
+        arguments: [DeltaTModel.iersObserved, .espenakMeeus, .jplHorizons])
     func referenceIdentity(model: DeltaTModel) throws {
         let observer = Observer(latitude: 89.999, longitude: 180, height: 10000)
         let observations = [

@@ -10,6 +10,16 @@ import measure_altitude as measure
 
 
 class AltitudeMeasurementProvenanceTests(unittest.TestCase):
+    def test_grid_covers_the_observed_model_and_its_joins(self):
+        rows = measure.grid()
+        self.assertEqual(len(rows), 1908)
+        models = {row['model'] for row in rows}
+        self.assertEqual(models, {'iersObserved', 'espenakMeeus', 'jplHorizons'})
+        ids = {row['id'] for row in rows}
+        for join in ['historical-observed', 'observed-predicted', 'table-extrapolated']:
+            for offset in ['below', 'at', 'above']:
+                self.assertTrue(any(f'observed-{join}-{offset}-observer-' in identifier for identifier in ids))
+
     def test_cli_recheck_rejects_altered_public_outcomes(self):
         pristine = json.loads(Path(__file__).with_name('evidence').joinpath('altitude-macos-arm64-debug.json').read_text())
         # Bind the mutation to current checker bytes so stale hashes cannot

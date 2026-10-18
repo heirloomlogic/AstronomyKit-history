@@ -28,6 +28,7 @@ struct NativeAltitudeProbe {
         guard request.value.isFinite else { throw InvalidRequest.time }
         let model: DeltaTModel
         switch request.model {
+        case "iersObserved": model = .iersObserved
         case "espenakMeeus": model = .espenakMeeus
         case "jplHorizons": model = .jplHorizons
         default: throw InvalidRequest.model
@@ -95,6 +96,10 @@ struct NativeAltitudeProbe {
                 "era": budget.earthRotationAngle, "total": budget.total,
             ]
             .mapValues { String($0.bitPattern, radix: 16) }
+            if let stated = observation.statedUncertainty {
+                observed?["statedDeltaT"] = String(stated.deltaTSeconds.bitPattern, radix: 16)
+                observed?["statedAltitude"] = String(stated.altitudeDegrees.bitPattern, radix: 16)
+            }
         } catch let error as SolarAltitudeObservation.Unsupported {
             unsupported = String(describing: error)
         }
