@@ -338,15 +338,15 @@
     ],
     "measurement-release": {
       "checksum": -0.015608830476035283,
-      "coldSeconds": 0.0001310110092163086,
+      "coldSeconds": 0.0006120204925537109,
       "evaluationsPerWorkload": 20000,
       "host": "Version 27.0.1 (Build 26A434)",
-      "peakBytesAfterCold": 47742976,
-      "peakBytesAfterLoops": 365740032,
-      "peakBytesBefore": 47448064,
+      "peakBytesAfterCold": 48316416,
+      "peakBytesAfterLoops": 366297088,
+      "peakBytesBefore": 48021504,
       "seconds": {
-        "central": 0.33413100242614746,
-        "outer": 0.7326569557189941
+        "central": 0.3600369691848755,
+        "outer": 1.4212340116500854
       }
     }
   },
@@ -357,9 +357,9 @@
     "differential-release": "9e716f8dfbef93ac385908c55cf89df9529a8bae17e14c66d4da779fc829fbe6",
     "horizons-debug": "8b435341c0438879092a7280ecbea22ee6b419845dc3cc889e285e26674363a8",
     "horizons-release": "8b435341c0438879092a7280ecbea22ee6b419845dc3cc889e285e26674363a8",
-    "measurement-release": "8584fa4b302f3fea4e3c08c214561b2cbe00c0e4d38d0a798052dfad56f6bc09"
+    "measurement-release": "b751b56c59b0d285b4f16b9c4874fef9e8a33d4f552e87cc3e8731f718e10962"
   },
-  "runtimeBaseRevision": "8dc39629933b14bd11fd573928dd2c3f13a80b9f",
+  "runtimeBaseRevision": "2d80b1216046edf12269205b212997adfe7dec12",
   "schemaVersion": 1,
   "scope": "Complete derived binary64 coefficients; sampled independent state and Horizons checks; exhaustive source-seam jumps. Numerical source agreement is distinct from physical accuracy. Resource observations are single-host measurements.",
   "sourceSHA256": {
@@ -380,7 +380,7 @@
     "Scripts/test_record_moon_full_integration.py": "d14cdc45d1ac3884ab78815b67c59ecebec6991b64a0e0bdfb9be352b3c81c8f",
     "Sources/AstronomyKit/AstronomyError.swift": "7122525f8f8796baaef9e6a3baff8c2332d0a0f817927af6c98d83b4a81c7746",
     "Sources/AstronomyKit/CelestialBody.swift": "7c94d629be89ce9c7e2d2a4de616e3f526fd2d0034d8750e60e8d400f159aa61",
-    "Sources/AstronomyKit/Coordinates.swift": "f09e2f8820bc0c2e13a7b2e0ea746c08a4a48b7ee168a628ec06ac905bfb273d",
+    "Sources/AstronomyKit/Coordinates.swift": "9b1ae70052f416252af118b50cc61bf2c900918cd76ccea021017c28f793d60a",
     "Sources/AstronomyKit/Engine/Bodies/EngineJupiterMoons.swift": "c450d38bedf50e91869d0d2df81870ce332d5fb8bdab2a846fb9bcce398434fd",
     "Sources/AstronomyKit/Engine/Bodies/EngineJupiterMoonsJup365.swift": "721df90c823fa464649815cbd39e54dbfc5ca7926a1e984517e99bcb89efeeab",
     "Sources/AstronomyKit/Engine/Bodies/EngineLagrange.swift": "5884b92dc6b643ba6481499527467f7cb367b4e8afe2f318bb9d3a40b0b003f6",
@@ -583,7 +583,7 @@
     "Sources/AstronomyKit/Engine/Orientation/EngineNutation.swift": "9af68143f6b73976a6324f074b8058dd3fabffc9b4e4245c7a4b99ebac5e3af2",
     "Sources/AstronomyKit/Engine/Orientation/EngineObserver.swift": "7e81d70a64fe3ee4709e72350017c233a458d30ce56b2c17038219ac90cbd0d5",
     "Sources/AstronomyKit/Engine/Orientation/EnginePrecession.swift": "a2f809b985707e6c5baac20f6ed59e0a751490b2acce383849f764ed7bda3f64",
-    "Sources/AstronomyKit/Engine/Orientation/EngineRefraction.swift": "3f87c416dfd82c881f8fc922ba1fb021ec55c09ec256abcdf16820a97b2d0fa2",
+    "Sources/AstronomyKit/Engine/Orientation/EngineRefraction.swift": "1b48e0292d81588953bdec2332c2cf132807a94bf4d661e209c77e95ae81bc4d",
     "Sources/AstronomyKit/Engine/Orientation/EngineRotations.swift": "a4bd8212ebbbb13354545f55b065cb321a91c20558eb4be61aa8b569f633bf7c",
     "Sources/AstronomyKit/Engine/Orientation/Generated/EquinoxComplementaryTerms.swift": "b29f74663243f82267dc2e3f11d7851d5a0fb9d12cdb35c6eafba67f6e3ed509",
     "Sources/AstronomyKit/Engine/Orientation/Generated/IAU2000ATerms.swift": "dac21ba0daa90636de35bcfd533873ad3525ec3a9664a393152b8d4c3c76daad",

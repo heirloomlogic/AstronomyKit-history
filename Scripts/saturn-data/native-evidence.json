@@ -14,8 +14,8 @@
     ]
   ],
   "buildSeconds": {
-    "debug": 62.45,
-    "release": 1.14
+    "debug": 55.99,
+    "release": 195.25
   },
   "debug": {
     "coefficients": {
@@ -536,23 +536,23 @@
       }
     ]
   },
-  "releaseExecutableBytes": 576899376,
+  "releaseExecutableBytes": 577024752,
   "resourceScope": "macOS arm64 Release test executable; first retained evaluation then first center evaluation in a new process, followed by 2000 states per model and 100 repeated Saturn apsis searches. RSS is process high-water, not isolated object ownership. Baseline executable predates Saturn integration; binary delta also includes tests.",
   "resources": {
-    "centerColdSeconds": 0.026498913764953613,
+    "centerColdSeconds": 0.025717973709106445,
     "checksum": -443.8575980663537,
     "evaluationsPerModel": 2000,
     "eventCount": 100,
-    "eventSeconds": 0.03150296211242676,
+    "eventSeconds": 0.03024601936340332,
     "host": "Version 27.0.1 (Build 26A434)",
-    "peakAfterCenterBytes": 97320960,
-    "peakAfterRetainedBytes": 53182464,
-    "peakAfterWorkloadsBytes": 97959936,
-    "peakBeforeBytes": 48119808,
-    "retainedColdSeconds": 0.0026628971099853516,
+    "peakAfterCenterBytes": 97222656,
+    "peakAfterRetainedBytes": 53051392,
+    "peakAfterWorkloadsBytes": 97861632,
+    "peakBeforeBytes": 47972352,
+    "retainedColdSeconds": 0.002606987953186035,
     "seconds": {
-      "center": 0.019349098205566406,
-      "retained": 0.012742042541503906
+      "center": 0.019006967544555664,
+      "retained": 0.012447953224182129
     }
   },
   "schemaVersion": 2,
@@ -601,7 +601,7 @@
     "Scripts/saturn-data/barycenter-reference.json": "218c6a9cda702a969c6eecb4cb6927aa735f5d6af9f7c81a5d41f180104c9041",
     "Scripts/saturn-data/barycenter-reference.query.json": "a12f1e6346ba1016f68c4d9eabf51ba11a71896b8122381f70151c6a02c1ab78",
     "Scripts/saturn-data/direct-fixtures.json": "09fc0c61567cb69fd7953712827029c8fe10399b8db5ed0fea8885676a0a0524",
-    "Scripts/saturn-data/native-captures.json": "3df942f7b1c53cdbf52e76252f02ebea29c8580924980d37d076392a191629f9",
+    "Scripts/saturn-data/native-captures.json": "651c9691852e83fb550d1f4a9e1fdcc1f5a09a412174fb38fb45da50c6ae9d87",
     "Scripts/test_planet_cycle_census.py": "32b568f1279c9e737d01d63f35c024c0f103e5e7ada902a5b48ddce2048ac73a",
     "Scripts/test_saturn_ephemeris.py": "e1820ecdf6d02a323a0e884604f34df96317f8c544aecfa557da62e46fc149e0",
     "Sources/AstronomyKit/Apsis.swift": "846e96c10636302634649bb827e843e3b6debf9b1d3f948f0b412f8e26dcece6",
@@ -808,7 +808,7 @@
     "Sources/AstronomyKit/Engine/Orientation/EngineNutation.swift": "9af68143f6b73976a6324f074b8058dd3fabffc9b4e4245c7a4b99ebac5e3af2",
     "Sources/AstronomyKit/Engine/Orientation/EngineObserver.swift": "7e81d70a64fe3ee4709e72350017c233a458d30ce56b2c17038219ac90cbd0d5",
     "Sources/AstronomyKit/Engine/Orientation/EnginePrecession.swift": "a2f809b985707e6c5baac20f6ed59e0a751490b2acce383849f764ed7bda3f64",
-    "Sources/AstronomyKit/Engine/Orientation/EngineRefraction.swift": "3f87c416dfd82c881f8fc922ba1fb021ec55c09ec256abcdf16820a97b2d0fa2",
+    "Sources/AstronomyKit/Engine/Orientation/EngineRefraction.swift": "1b48e0292d81588953bdec2332c2cf132807a94bf4d661e209c77e95ae81bc4d",
     "Sources/AstronomyKit/Engine/Orientation/EngineRotations.swift": "a4bd8212ebbbb13354545f55b065cb321a91c20558eb4be61aa8b569f633bf7c",
     "Sources/AstronomyKit/Engine/Orientation/Generated/EquinoxComplementaryTerms.swift": "b29f74663243f82267dc2e3f11d7851d5a0fb9d12cdb35c6eafba67f6e3ed509",
     "Sources/AstronomyKit/Engine/Orientation/Generated/IAU2000ATerms.swift": "dac21ba0daa90636de35bcfd533873ad3525ec3a9664a393152b8d4c3c76daad",
