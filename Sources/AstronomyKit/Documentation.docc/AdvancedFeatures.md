@@ -214,6 +214,31 @@ J2000 coordinates can be found from:
 - Hipparcos Catalog
 - Yale Bright Star Catalog
 
+### Catalog Proper Motion
+
+The original initializer keeps the coordinates fixed on the J2000 mean equator. To propagate a Hipparcos or Gaia catalog entry, pass ``StarCatalogMotion``. This is an explicit frame change: coordinates with catalog motion are barycentric ICRS at the supplied TCB epoch, even when all three rates are zero.
+
+```swift
+let motion = try StarCatalogMotion(
+    epochJulianYear: 2016.0,
+    rightAscensionCosDeclinationMilliarcsecondsPerJulianYear: -801.5509783684709,
+    declinationMilliarcsecondsPerJulianYear: 10362.394206546573,
+    radialVelocityKilometersPerSecond: -110.46822
+)
+let barnardsStar = FixedStar(
+    name: "Barnard's Star",
+    rightAscension: 269.44850252543836 / 15,
+    declination: 4.739420051112412,
+    distance: 5.962901729416676,
+    catalogMotion: motion
+)
+let future = try barnardsStar.equatorial(at: AstroTime(year: 2050, month: 1, day: 1))
+```
+
+The right-ascension rate is the catalog quantity `mu_alpha*cos(declination)`, in milliarcseconds per Julian year; do not divide it by cosine before constructing the value. Declination motion uses the same unit. Radial velocity is barycentric kilometers per second, positive when receding. Distance remains the geometric-parallax input, so do not apply catalog parallax a second time.
+
+The epoch is a TCB Julian year. AstronomyKit converts each observation's TDB coordinate to TCB with the IAU 2006 linear relation before applying the rates. Apparent observer routes adjust that interval for the observer-dependent reception time, rotate the propagated barycentric ICRS direction to EQJ, and then apply the existing geometric-parallax and apparent-place corrections. A nonzero right-ascension motion at either exact pole is undefined and throws ``AstronomyError/invalidParameter`` during calculation. The calculation also rejects a definition for which SOFA `pmsafe` would replace the supplied distance, a speed above half the speed of light, or a failed relativistic iteration.
+
 
 ## Chiron
 

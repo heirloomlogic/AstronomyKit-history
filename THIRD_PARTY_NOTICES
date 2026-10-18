@@ -50,7 +50,7 @@ Sources: https://iauarchive.eso.org/public/themes/constellations/ and https://cd
 
 IAU Standards of Fundamental Astronomy (SOFA)
 
-AstronomyKit includes the unchanged official SOFA 2023-10-11 C source archive and astrometry example under Scripts/reference-data/sources/sofa. Scripts/reference-data/sofa-fixed-star-reference.c is AstronomyKit-authored integration code that calls the official routines with FixedStar's no-proper-motion contract. The archived fixed-star fixture records output from that recipe. AstronomyKit and its fixture do not constitute software provided by or endorsed by SOFA.
+AstronomyKit includes the unchanged official SOFA 2023-10-11 C source archive and astrometry example under Scripts/reference-data/sources/sofa. Scripts/reference-data/sofa-fixed-star-reference.c is AstronomyKit-authored integration code that calls the official routines for the legacy no-proper-motion fixture. Scripts/sofa-star-motion-reference.c calls unchanged SOFA pmsafe, starpm, pmpx and tdbtcb routines for independent catalog-motion qualification. Sources/AstronomyKit/Engine/Stars/EngineStarCatalogPropagation.swift is a specialized Swift adaptation of the same pmsafe, starpm, starpv, pmpx and tdbtcb computations: it returns a propagated position instead of updated catalog rates, includes the observer-dependent reception-time term, and rejects every SOFA warning instead of returning a status. Its routine and type names do not use SOFA's reserved prefix. AstronomyKit and these derived works do not constitute software provided by or endorsed by SOFA.
 
 copyr.lis                                                    2023 April 17
 

@@ -5,11 +5,9 @@
 //  Position calculations for user-defined fixed stars.
 //
 
-/// A fixed star defined by its J2000 equatorial coordinates.
+/// A star defined by equatorial catalog coordinates and an optional space motion.
 ///
-/// Fixed stars are celestial objects whose positions are essentially constant
-/// on the celestial sphere. This struct stores catalog coordinates and provides
-/// position calculations at any time.
+/// The original initializer stores fixed J2000 mean-equator coordinates. The catalog-motion initializer accepts barycentric ICRS coordinates at its explicit TCB epoch and propagates proper motion and radial velocity.
 ///
 /// Unlike solar system bodies (which require orbital calculations), fixed stars
 /// are defined by their J2000 mean equator coordinates and distance. The library
@@ -46,14 +44,17 @@ public struct FixedStar: Sendable, Hashable {
     /// The star's display name.
     public let name: String
 
-    /// J2000 right ascension in sidereal hours (0-24).
+    /// Right ascension in sidereal hours (0-24), at J2000 for a legacy value or at ``catalogMotion``'s epoch for an opt-in catalog value.
     public let rightAscension: Double
 
-    /// J2000 declination in degrees (-90 to +90).
+    /// Declination in degrees (-90 to +90), at J2000 for a legacy value or at ``catalogMotion``'s epoch for an opt-in catalog value.
     public let declination: Double
 
-    /// Distance from Earth in light-years.
+    /// Catalog distance in light-years. This supplies geometric parallax.
     public let distance: Double
+
+    /// Optional catalog epoch and space motion. `nil` retains the fixed J2000 behavior.
+    public let catalogMotion: StarCatalogMotion?
 
     // MARK: - Initialization
 
@@ -69,17 +70,41 @@ public struct FixedStar: Sendable, Hashable {
         self.rightAscension = rightAscension
         self.declination = declination
         self.distance = distance
+        self.catalogMotion = nil
+    }
+
+    /// Creates a star with opt-in catalog space motion.
+    ///
+    /// - Parameters:
+    ///   - name: A display name for the star.
+    ///   - rightAscension: Barycentric ICRS right ascension in sidereal hours (0-24) at `catalogMotion`'s epoch.
+    ///   - declination: Barycentric ICRS declination in degrees (-90 to +90) at `catalogMotion`'s epoch.
+    ///   - distance: Barycentric catalog distance in light-years (minimum 1.0). This remains the geometric-parallax input.
+    ///   - catalogMotion: Catalog epoch, proper motion, and radial velocity.
+    public init(
+        name: String,
+        rightAscension: Double,
+        declination: Double,
+        distance: Double,
+        catalogMotion: StarCatalogMotion
+    ) {
+        self.name = name
+        self.rightAscension = rightAscension
+        self.declination = declination
+        self.distance = distance
+        self.catalogMotion = catalogMotion
     }
 
     private var native: Engine.Star {
-        Engine.Star(rightAscension: rightAscension, declination: declination, distance: distance)
+        Engine.Star(
+            rightAscension: rightAscension, declination: declination, distance: distance, catalogMotion: catalogMotion)
     }
 
     // MARK: - Position Calculations
 
     /// Calculates the star's equatorial coordinates at a given time.
     ///
-    /// Returns apparent coordinates with observer parallax, solar deflection and relativistic annual and diurnal aberration. Catalog light time is implicit in the fixed-star definition; proper motion and radial motion are not modeled. The `.ofDate` frame also includes precession and nutation.
+    /// Returns apparent coordinates with observer parallax, solar deflection and relativistic annual and diurnal aberration. Catalog light time is implicit in the fixed-star definition. When ``catalogMotion`` is present, its proper and radial motion are propagated before those corrections. The `.ofDate` frame also includes precession and nutation.
     ///
     /// - Parameters:
     ///   - time: The time at which to calculate the position.

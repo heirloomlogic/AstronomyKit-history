@@ -7,8 +7,8 @@
     "sha256": "f6a2b408dcb32a3ad1e8f57dcc16767f055d3f4bd93c675728a4a351bc9c5d6e"
   },
   "buildSeconds": {
-    "debug": 55.99,
-    "release": 195.25
+    "debug": 105.44,
+    "release": 1.27
   },
   "criteria": "All 5909 archived USNO rows retain their source-specific allowance, including 70.8 TT seconds at line 2923. Sixteen sampled altitude/hour-angle points retain one arcminute. Three printed USNO semidiameters discriminate the optical convention at 0.000001 degree; this is not an asserted physical solar-radius accuracy.",
   "debug": {
@@ -38,10 +38,10 @@
   "debugUSNOProvenance": {
     "kind": "fresh",
     "rowsSHA256": "5fad9c1291c0dc8f85757d4c4a9288a28cfdcc7cfbaa5b83467d2338e102eb75",
-    "runtimeRevision": "2d80b1216046edf12269205b212997adfe7dec12"
+    "runtimeRevision": "e68b00977c71256b1e28a49da5a7525feb6fe71d"
   },
   "limitations": "USNO navigation output supports the chosen optical limb; the rise/set service implementation is unavailable. Horizon refraction remains a conventional atmosphere, not a prediction of weather. The public observer APIs run on these searches since the #96 cutover. Existing planetary apsis source gaps remain in #92. Resource values are host observations, not portable ceilings.",
-  "observerObjectBytes": 100600,
+  "observerObjectBytes": 99576,
   "release": {
     "maximumAltitudeErrorArcminutes": 0.004687803544172198,
     "maximumHourAngleErrorArcminutes": 0.008029473282267219,
@@ -66,20 +66,20 @@
       "sourceLine": 2923
     }
   },
-  "releaseExecutableBytes": 577024752,
+  "releaseExecutableBytes": 577339520,
   "resources": {
     "checksum": 3257705.9472739175,
-    "coldSunRiseSeconds": 0.014691948890686035,
+    "coldSunRiseSeconds": 0.014773011207580566,
     "eventsPerWorkload": 100,
     "host": "Version 27.0.1 (Build 26A434)",
-    "peakAfterColdBytes": 82952192,
+    "peakAfterColdBytes": 82984960,
     "peakAfterWorkloadsBytes": 105185280,
-    "peakBeforeBytes": 48103424,
+    "peakBeforeBytes": 48136192,
     "seconds": {
-      "moonRise": 0.5239959955215454,
-      "publicCSunRise": 0.5337560176849365,
-      "sunHourAngle": 0.1361769437789917,
-      "sunRise": 0.5335739850997925
+      "moonRise": 0.800663948059082,
+      "publicCSunRise": 0.9206149578094482,
+      "sunHourAngle": 0.2794250249862671,
+      "sunRise": 0.9194129705429077
     }
   },
   "schemaVersion": 2,
@@ -88,7 +88,7 @@
     "Fuzzing/corpus/fixed-riseset-stall": "ca78b6218e4c663f595a10afa5cb38a76a73ba5d15e81f3923c133d3454305c8",
     "Scripts/capture-observer-events.py": "7bd88e87e94c1baa4972970fbccc96426ed3a3d925b7c1c8dc8317e0edbc0875",
     "Scripts/observer-event-data/README.md": "8bae1b269771e63cf7ce9b40bc4fc30ab466e2f1fb37f769550083bb6d9c0c4b",
-    "Scripts/observer-event-data/native-captures.json": "86d4297b92a8a5c295cbfa926a0f4a9b063001db8184c49e69aa619a5c908f40",
+    "Scripts/observer-event-data/native-captures.json": "fbe547215b76c6961dac192dc335e8764a11a6c4eaed11333e701a1ad220e55c",
     "Scripts/observer-event-data/reference-fixtures.json": "7f0fdbf7b72e6cd828f4301bacfd75a6505b4ba01bc594c4431e2a8fd116b638",
     "Scripts/observer-event-data/sources/horizons/horizons-sd-2000-01-03.json": "b1805e417fbcc5c4a63ae541b5946f87af4aa3aff905dc1c9e9f9b65f6885077",
     "Scripts/observer-event-data/sources/horizons/horizons-sd-2000-01-03.query.json": "aa5dca2f03c8552562289c7d799ab3512fc955dc14760511a74dea342ae0dbd6",
@@ -370,7 +370,8 @@
     "Sources/AstronomyKit/Engine/Positions/EngineHeliocentric.swift": "900cf42846d48f1582a94996365a0228a72ba9b38f56e2a0d71f04bf8a722769",
     "Sources/AstronomyKit/Engine/Positions/EngineIllumination.swift": "7caf847bc8937b91cc57dcbc9e191ee05a67143ce83af837678679acced8b6bf",
     "Sources/AstronomyKit/Engine/Stars/EngineConstellations.swift": "adf34b0ecda66e7413d80cde5e556acd307d004915457aa251bde7f39083eef7",
-    "Sources/AstronomyKit/Engine/Stars/EngineStar.swift": "58c35f4991c4f394c6efecefc13e3f1a03dec0fb3319707ea4c66c554e80d230",
+    "Sources/AstronomyKit/Engine/Stars/EngineStar.swift": "75e2ad31b3ce7c9461b16d204f39a50bbd26121c85791fd482543727244ebafb",
+    "Sources/AstronomyKit/Engine/Stars/EngineStarCatalogPropagation.swift": "314a7c8aa4b08a93a8d6977232fde2c6a446e805fb239588e537a68050dda561",
     "Sources/AstronomyKit/Engine/Stars/Generated/ConstellationData.swift": "ed4a8ed46f46a48741e854c7ca7c5e4f3ddde56b4016dd92e2d9cbb570b684f8",
     "Sources/AstronomyKit/Observer.swift": "5bd1ff1f613cec548aabdf724cd3167186568c84583b6eb350112c8891946677",
     "Sources/AstronomyKit/RiseSet.swift": "11c9e976e3854642769c8a98abad85b751074cd74a718b4e4eeff81200e5cc39",
