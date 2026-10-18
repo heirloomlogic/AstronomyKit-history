@@ -160,11 +160,14 @@
   "schemaVersion": 1,
   "selection": "First, middle and last records of the first, middle and last pinned 8192-record source batches; phases -1,-0.5,0,0.5,1.",
   "sourceHashes": {
-    "Scripts/generate-moon-de441-full.py": "2b93214153dfb616f4c0a77aba455f9c408b43122fdd2c521528846791049a3b",
-    "Scripts/moon-data/de441-full-evidence.json": "5a52f1f1972cd4ccf7e95e3214ebc8c4d9fe55812da556232aa4af620943eb49",
-    "Scripts/qualify-moon-de441-full.py": "d3d1c620aeb9ee2be0bde8d508ad6038cd92240f67dd1855348f7edd37383e14",
-    "Scripts/solar-numerics/apparent_bounds.py": "6b8adf65c48efac5c3a54982402708cf8bc515ea2db1394e003f4ed706f298b2",
+    "Scripts/generate-moon-de441-full.py": "18e9a9dd3a4f934ff1a716012ed1711b938d76bb70a46c2e2f3bdec9cd604351",
+    "Scripts/model_resource.py": "0ce1b48bd570c3c10768e309453e1294ffe3bf924b2a8c7945fa197798e07b71",
+    "Scripts/moon-data/de441-full-evidence.json": "63ba084b12f20d3e64cb341dbd2ca3f34f01ae6d3a9a6f16f4c0b3b651d7da8c",
+    "Scripts/qualify-moon-de441-full.py": "80c2b607021a652da1488c865325a82ef7e137339083116a0f5ac01d42a4f25e",
+    "Scripts/solar-numerics/apparent_bounds.py": "63bfd6b60bcf65346108dab752f69f4aa6d51ea9f5e865ef76794f59ae051a90",
+    "Sources/AstronomyKit/Engine/Gravity/Generated/DE441/PlutoDE441SunData.swift": "64af764d0554a625b0f6d6ff01dd6c4dde00c2a81412c02139bf173dc720baba",
     "Sources/AstronomyKit/Engine/Moon/EngineTDB.swift": "5c77325fb41d76fd9c6e23f08f2ba580924166e0fa2681913a815c1f32b6ad8e",
-    "Sources/AstronomyKit/Engine/Moon/Generated/TDBTerms.swift": "e117834cde595413631dd655605ae97a0fd85b20829476472f1eacba1fdb2ef2"
+    "Sources/AstronomyKit/Engine/Moon/Generated/TDBTerms.swift": "e117834cde595413631dd655605ae97a0fd85b20829476472f1eacba1fdb2ef2",
+    "Sources/AstronomyKit/Resources/ModelTables/pluto-de441-sun.bin": "1138dc5c9a6c6f796c81ad92f97d8f9af0d580e6fba3c303fd3998674d303b1a"
   }
 }
