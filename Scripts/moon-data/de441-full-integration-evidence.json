@@ -338,15 +338,15 @@
     ],
     "measurement-release": {
       "checksum": -0.015608830476035283,
-      "coldSeconds": 0.021596074104309082,
+      "coldSeconds": 0.02150595188140869,
       "evaluationsPerWorkload": 20000,
       "host": "Version 27.0.1 (Build 26A434)",
-      "peakBytesAfterCold": 53379072,
-      "peakBytesAfterLoops": 280313856,
-      "peakBytesBefore": 48283648,
+      "peakBytesAfterCold": 53575680,
+      "peakBytesAfterLoops": 280510464,
+      "peakBytesBefore": 48414720,
       "seconds": {
-        "central": 0.32990598678588867,
-        "outer": 1.7566980123519897
+        "central": 0.34018898010253906,
+        "outer": 1.7704800367355347
       }
     }
   },
@@ -357,9 +357,9 @@
     "differential-release": "9e716f8dfbef93ac385908c55cf89df9529a8bae17e14c66d4da779fc829fbe6",
     "horizons-debug": "8b435341c0438879092a7280ecbea22ee6b419845dc3cc889e285e26674363a8",
     "horizons-release": "8b435341c0438879092a7280ecbea22ee6b419845dc3cc889e285e26674363a8",
-    "measurement-release": "59991f25c3f82d789b169fa21e860c2085ac84162a99fbf93308a4804b5b9497"
+    "measurement-release": "374e5f4627cc91381562d50da118a865cac39603668e21bfd8ae37afb71cb2a2"
   },
-  "runtimeBaseRevision": "8d1687ae46d6ad6a8aabcf6430e294ff3ad887a3",
+  "runtimeBaseRevision": "60116cf31a42bfae040ff6a0a7d904a43288e5c3",
   "schemaVersion": 1,
   "scope": "Complete derived binary64 coefficients; sampled independent state and Horizons checks; exhaustive source-seam jumps. Numerical source agreement is distinct from physical accuracy. Resource observations are single-host measurements.",
   "sourceSHA256": {
@@ -381,7 +381,7 @@
     "Scripts/record-moon-full-integration.py": "daa5c0afb6c851ae2ff81f5de5381d2478298b1ae1fb604699be4c9b051bc31b",
     "Scripts/test_evidence_dependencies.py": "d3ef9d9db5fc44390ac9f38b078fe80d2e75c997673367e2f37e5ab03db5c951",
     "Scripts/test_generate_moon_events.py": "fd8e7638d795ea23571870c320fb58db624090cb011fd8271814e25d58c0a6d6",
-    "Scripts/test_generate_moon_source_fixtures.py": "6e3000fa11d134220abf8245fb68983d2e4ecb8103302723d63b3c61e7beb184",
+    "Scripts/test_generate_moon_source_fixtures.py": "1fca5e8b84980da4e831ee3408344a21defa257ce4bc1877627d9c89ba0d2173",
     "Scripts/test_generated_binary_resource.py": "1cdec7ad832b240bcb1ac277ddf3a917417f9d19d729c9afeb5751a1d8ca4177",
     "Scripts/test_record_moon_full_integration.py": "d14cdc45d1ac3884ab78815b67c59ecebec6991b64a0e0bdfb9be352b3c81c8f",
     "Sources/AstronomyKit/Apsis.swift": "846e96c10636302634649bb827e843e3b6debf9b1d3f948f0b412f8e26dcece6",
