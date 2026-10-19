@@ -396,17 +396,17 @@
   "centerExtensionBase": "128ac0a4728206f887027f5674371030faad4b5c",
   "centerNativeRelease": {
     "checksum": 44301.65643972756,
-    "coldSeconds": 0.14976096153259277,
+    "coldSeconds": 0.12675702571868896,
     "coldTT": -72000,
     "evaluationsPerWorkload": 2000,
     "host": "Version 27.0.1 (Build 26A434)",
-    "peakBytesAfterCold": 72171520,
-    "peakBytesAfterLoops": 85409792,
-    "peakBytesBefore": 47906816,
+    "peakBytesAfterCold": 72105984,
+    "peakBytesAfterLoops": 85344256,
+    "peakBytesBefore": 47792128,
     "seconds": {
-      "central": 0.2124500274658203,
-      "engineRange": 0.2157120704650879,
-      "outer": 0.17285394668579102
+      "central": 0.03661692142486572,
+      "engineRange": 0.03716599941253662,
+      "outer": 0.1120990514755249
     }
   },
   "directSourceDebug": {
@@ -463,17 +463,17 @@
   },
   "nativeRelease": {
     "checksum": 44287.76723921855,
-    "coldSeconds": 0.08874499797821045,
+    "coldSeconds": 0.08099699020385742,
     "coldTT": -766524.75,
     "evaluationsPerWorkload": 2000,
     "host": "Version 27.0.1 (Build 26A434)",
-    "peakBytesAfterCold": 63520768,
-    "peakBytesAfterLoops": 85393408,
-    "peakBytesBefore": 47808512,
+    "peakBytesAfterCold": 63979520,
+    "peakBytesAfterLoops": 85852160,
+    "peakBytesBefore": 48349184,
     "seconds": {
-      "central": 0.08826100826263428,
-      "engineRange": 0.09114599227905273,
-      "outer": 0.24466395378112793
+      "central": 0.036936044692993164,
+      "engineRange": 0.036373019218444824,
+      "outer": 0.1627880334854126
     }
   },
   "nativeStorage": {
@@ -529,7 +529,7 @@
     "Scripts/pluto-data/de441-evidence.json": "86a3f3c8c37973ec0e77062d178e686acda18d59c1d4827ecf9bdc9fd5a1968f",
     "Scripts/pluto-data/de441-native-fixtures.json": "38dc2a6406d22db61b06f7910bbc54dead4b2f6630fe54b34e06a5f4ebf9e425",
     "Scripts/pluto-data/plu060-evidence.json": "a4a28fffac897770297061056037ebfd5ca4b2d68269d81912a08a522e1b9252",
-    "Scripts/pluto-data/plu060-qualification.json": "0685d7edc61e572f23d039957c6a5b644b74809204816884df76015dd1e441fe",
+    "Scripts/pluto-data/plu060-qualification.json": "428a0f39dfdd064e75eb4b2539a250dbc26634a52b0b5634a7ca5d7793db5bda",
     "Scripts/qualify-pluto-center.py": "4478cb59a138dbb9e574adcd3cb70c3f476dc09f12bd341e873c11405ce1ccb9",
     "Scripts/record-pluto-de441-evidence.py": "d394a92e0cf0b7768255641bd7a679212512dbb1f8b377ea525d8612c03ce501",
     "Scripts/test_evidence_dependencies.py": "d3ef9d9db5fc44390ac9f38b078fe80d2e75c997673367e2f37e5ab03db5c951",
