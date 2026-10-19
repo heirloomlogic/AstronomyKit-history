@@ -36,7 +36,7 @@ class MoonSourceFixtureTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             manifest = json.loads((self.tool.ROOT / "Scripts/moon-data/manifest.json").read_bytes())
-            for relative in ["Scripts/generate-moon-tables.py", "Scripts/moon-data/manifest.json", *manifest["files"]]:
+            for relative in ["Scripts/generate-moon-tables.py", "Scripts/generated-binary-resource.py", "Scripts/moon-data/manifest.json", *manifest["files"]]:
                 destination = root / relative
                 destination.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copyfile(self.tool.ROOT / relative, destination)
