@@ -1,11 +1,10 @@
 """Exact coefficient majorants for the full-weight selected Earth trajectory."""
-import base64
 from fractions import Fraction as Q
 from functools import lru_cache
 import re
 import struct
 
-from numerics import ROOT, ENGINE, BINDINGS, source_hashes, sqrt_interval
+from numerics import ROOT, ENGINE, BINDINGS, source_hashes, sqrt_interval, table_payload
 
 START, STOP = Q('-36524.5'), Q('36889.5')
 AU = Q('149597870.700')
@@ -67,7 +66,7 @@ def table(path, lower, upper):
     start, days, count, size = re.search(
         r'start: ([^,]+), days: ([^,]+),\s*recordCount: ([^,]+),\s*coefficientCount: ([^,]+),', text).groups()
     start, days, count, size = Q(start), Q(days), int(count.replace('_', '')), int(size.replace('_', ''))
-    payload = base64.b64decode(''.join(text.split('"""')[1].split()), validate=True)
+    payload = table_payload(path, text)
     if len(payload) != count*3*size*8:
         raise ValueError('Selected Earth coefficient payload shape changed')
     first, last = (lower-start)//days, (upper-start)//days

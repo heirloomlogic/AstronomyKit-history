@@ -75,8 +75,9 @@ class MeasurementProvenanceTests(unittest.TestCase):
 
     def test_selected_reference_dependencies_invalidate_reports(self):
         import measure_altitude
-        paths = ["Scripts/solar-numerics/solar_reference.py", "Scripts/solar-numerics/apparent_reference.py",
-                 "Scripts/apparent-place-data/dtdb.c", *measure.BINDINGS]
+        paths = ["Scripts/model_resource.py", "Scripts/solar-numerics/solar_reference.py", "Scripts/solar-numerics/apparent_reference.py",
+                 "Scripts/apparent-place-data/dtdb.c", "Sources/AstronomyKit/Resources/ModelTables/planet-polynomial-earth.bin",
+                 "Sources/AstronomyKit/Resources/ModelTables/pluto-de441-sun.bin", "Sources/AstronomyKit/Resources/ModelTables/saturn-sun.bin", *measure.BINDINGS]
         for path in paths:
             self.assertIn(path, measure.BINDINGS + measure.TOOLS)
             self.assertIn(path, measure_altitude.PATHS)

@@ -1,0 +1,90 @@
+Fetching https://github.com/apple/swift-docc-plugin from cache
+Fetching https://github.com/swiftlang/swift-docc-symbolkit from cache
+Fetching https://github.com/heirloomlogic/Persnicket from cache
+Fetched https://github.com/heirloomlogic/Persnicket from cache (0.52s)
+Fetched https://github.com/apple/swift-docc-plugin from cache (0.64s)
+Computing version for https://github.com/heirloomlogic/Persnicket
+Fetched https://github.com/swiftlang/swift-docc-symbolkit from cache (0.65s)
+Computed https://github.com/heirloomlogic/Persnicket at 2.3.0 (1.36s)
+Computing version for https://github.com/apple/swift-docc-plugin
+Computed https://github.com/apple/swift-docc-plugin at 1.5.0 (0.96s)
+Computing version for https://github.com/swiftlang/swift-docc-symbolkit
+Computed https://github.com/swiftlang/swift-docc-symbolkit at 1.0.0 (0.81s)
+Creating working copy for https://github.com/heirloomlogic/Persnicket
+Working copy of https://github.com/heirloomlogic/Persnicket resolved at 2.3.0
+Creating working copy for https://github.com/apple/swift-docc-plugin
+Working copy of https://github.com/apple/swift-docc-plugin resolved at 1.5.0
+Creating working copy for https://github.com/swiftlang/swift-docc-symbolkit
+Working copy of https://github.com/swiftlang/swift-docc-symbolkit resolved at 1.0.0
+Building for production...
+[Constructing description]
+[Planning deferred tasks]
+[39 / 89] AstronomyKit_AstronomyKit
+[42 / 89] AstronomyKit
+[43 / 89]
+[57 / 93]
+[66 / 93] CLibAstronomy
+[68 / 94]
+[69 / 94] CLibAstronomy
+[74 / 103]
+[78 / 103]
+[79 / 103] AstronomyKit
+[80 / 104] CLibAstronomy
+[90 / 139] CLibAstronomy
+[91 / 139] CLibAstronomy
+[91 / 139]
+[92 / 139]
+[94 / 139]
+[97 / 139]
+[99 / 139]
+[101 / 139]
+[105 / 139]
+[107 / 139]
+[110 / 139]
+[113 / 139]
+[115 / 139]
+[116 / 139]
+[117 / 139] AstronomyKit
+[123 / 139] AstronomyKit
+[127 / 139] AstronomyKitTests-product
+[128 / 139] AstronomyKitTests-product
+[129 / 139] AstronomyKitTests-product
+[130 / 140] AstronomyKitTests-product
+[132 / 143]
+[133 / 143]
+[134 / 143] AstronomyKitTests-product
+[139 / 143] AstronomyKitTests-product
+[141 / 143] AstronomyKitTests-product
+Build complete! (200.54 sec)
+􀟈  Test run started.
+􀄵  Testing Library Version: 2084
+􀄵  Target Platform: arm64e-apple-macos14.0
+􀟈  Suite "Native engine contract" started.
+􀟈  Test "The shipping target declares no dependency on the C target" started.
+􀟈  Test "No shipping source imports the C engine or calls a C entry point" started.
+􀟈  Test "Literal prefilters retain every contract guard" started.
+􀟈  Test "Engine sources do not use Mutex" started.
+􁁛  Test "The shipping target declares no dependency on the C target" passed after 0.001 seconds.
+􁁛  Test "Literal prefilters retain every contract guard" passed after 0.005 seconds.
+􁁛  Test "Engine sources do not use Mutex" passed after 0.561 seconds.
+􁁛  Test "No shipping source imports the C engine or calls a C entry point" passed after 0.562 seconds.
+􁁛  Suite "Native engine contract" passed after 0.563 seconds.
+􁁛  Test run with 4 tests in 1 suite passed after 0.563 seconds.
+      215.86 real       223.23 user        14.35 sys
+          5388713984  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+             1965526  page reclaims
+               61517  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  46  messages sent
+                 367  messages received
+                   0  signals received
+                3445  voluntary context switches
+              284163  involuntary context switches
+         50648568315  instructions retired
+         15847164248  cycles elapsed
+           513082904  peak memory footprint

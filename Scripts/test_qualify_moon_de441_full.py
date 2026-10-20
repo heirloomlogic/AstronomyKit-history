@@ -5,8 +5,10 @@ import importlib.util
 import json
 import hashlib
 import io
+import shutil
 import struct
 import sys
+import tempfile
 from contextlib import redirect_stdout
 from types import SimpleNamespace
 from unittest import mock
@@ -24,6 +26,50 @@ class ComponentTests(unittest.TestCase):
     def test_saved_measurements_replay(self):
         self.assertEqual(q.calculate(self.evidence['rows']),self.evidence['measurements'])
 
+    def test_storage_document_records_verified_mapped_resources_without_relabelling_measurements(self):
+        previous=json.loads(q.STORAGE.read_text())
+        result=q.storage_document(previous)
+        q.check_storage_sources(result)
+        self.assertEqual(2,result['schemaVersion'])
+        self.assertEqual(q.full.COUNT*312,result['resourcePayloadBytes'])
+        self.assertNotIn('derivedPayloadBytes',result)
+        for key in ['captureBaseRevision','finalDebug','finalRelease','releaseMeasurement','releaseMeasurementProcess']:
+            self.assertEqual(previous[key],result[key])
+
+    def test_storage_snapshot_rejects_corrupt_mapped_chunk(self):
+        with tempfile.TemporaryDirectory() as directory:
+            resources=Path(directory)
+            names=[f'{q.full.RESOURCE_PREFIX}{index:03}.bin' for index in range((q.full.COUNT+q.full.CHUNK-1)//q.full.CHUNK)]
+            for name in names:
+                (resources/name).symlink_to(q.RESOURCE_DIRECTORY/name)
+            target=resources/names[0]
+            target.unlink()
+            shutil.copyfile(q.RESOURCE_DIRECTORY/names[0],target)
+            data=bytearray(target.read_bytes());data[0]^=1;target.write_bytes(data)
+            with self.assertRaisesRegex(ValueError,'digest differs'):
+                q.storage_snapshot(resources)
+
+    def test_storage_snapshot_rejects_extra_mapped_chunk(self):
+        with tempfile.TemporaryDirectory() as directory:
+            resources=Path(directory)
+            for index in range((q.full.COUNT+q.full.CHUNK-1)//q.full.CHUNK):
+                name=f'{q.full.RESOURCE_PREFIX}{index:03}.bin'
+                (resources/name).symlink_to(q.RESOURCE_DIRECTORY/name)
+            (resources/f'{q.full.RESOURCE_PREFIX}extra.bin').write_bytes(b'extra')
+            with self.assertRaisesRegex(ValueError,'inventory differs'):
+                q.storage_snapshot(resources)
+
+    def test_storage_guard_binds_package_and_runtime_loader(self):
+        candidate=q.storage_document(json.loads(q.STORAGE.read_text()))
+        original=Path.read_bytes
+        for target in [q.ROOT/'Package.swift',q.ROOT/'Sources/AstronomyKit/Engine/Foundation/EngineMappedResource.swift']:
+            with self.subTest(path=target):
+                def changed(path,*args,**kwargs):
+                    data=original(path,*args,**kwargs)
+                    return data+b'\n' if path==target else data
+                with mock.patch.object(Path,'read_bytes',changed),self.assertRaisesRegex(ValueError,'source bindings'):
+                    q.check_storage_sources(candidate)
+
     def test_original_component_mutation_rejected(self):
         rows=copy.deepcopy(self.evidence['rows']);raw=bytearray(base64.b64decode(rows[0]['moonRecordBase64']));raw[23]^=1
         rows[0]['moonRecordBase64']=base64.b64encode(raw).decode()
@@ -37,7 +83,7 @@ class ComponentTests(unittest.TestCase):
     def run_source_verification(self, candidate):
         # Rebind the ordinary arithmetic/source receipt so the control reaches source verification.
         candidate['measurements']=q.calculate(candidate['rows'])
-        candidate['sourceHashes']={p:hashlib.sha256((q.ROOT/p).read_bytes()).hexdigest() for p in candidate['sourceHashes']}
+        candidate['sourceHashes']={p:hashlib.sha256((q.ROOT/p).read_bytes()).hexdigest() for p in q.COMPONENT_BINDINGS}
         original_read=Path.read_text
         def read_text(path,*args,**kwargs):
             return json.dumps(candidate) if path==q.OUTPUT else original_read(path,*args,**kwargs)

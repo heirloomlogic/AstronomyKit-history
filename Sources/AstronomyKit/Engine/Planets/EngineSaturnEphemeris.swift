@@ -13,18 +13,21 @@ extension Engine.SaturnEphemeris {
         let recordCount: Int
         let coefficientCount: Int
         let scalarBytes: Int
-        let data: Data
+        let data: Engine.MappedBytes
 
-        init(start: Double, days: Double, recordCount: Int, coefficientCount: Int, scalarBytes: Int, data: Data) {
+        init(
+            start: Double, days: Double, recordCount: Int, coefficientCount: Int, scalarBytes: Int,
+            resource: Engine.TableResource
+        ) {
             precondition(days > 0 && recordCount > 0 && coefficientCount > 0)
             precondition(scalarBytes == 4 || scalarBytes == 8)
-            precondition(data.count == recordCount * 3 * coefficientCount * scalarBytes)
+            precondition(resource.byteCount == recordCount * 3 * coefficientCount * scalarBytes)
             self.start = start
             self.days = days
             self.recordCount = recordCount
             self.coefficientCount = coefficientCount
             self.scalarBytes = scalarBytes
-            self.data = data
+            self.data = Engine.MappedBytes.bundled(resource)
         }
 
         func evaluate(tdb: Double) -> (position: SIMD3<Double>, velocity: SIMD3<Double>)? {

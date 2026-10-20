@@ -24,7 +24,7 @@ class PlutoDE441EvidenceRecorderTests(unittest.TestCase):
     def test_source_inventory_is_explicit_and_keeps_conservative_runtime_owners(self):
         paths = self.tool.source_paths()
         self.assertEqual(list(self.tool.dependencies.paths("pluto-native")), paths)
-        for path in ["Scripts/record-pluto-de441-evidence.py", "Scripts/test_record_pluto_de441_evidence.py", "Sources/AstronomyKit/Engine/Gravity/EnginePlutoDE441.swift", "Sources/AstronomyKit/Engine/Moon/EngineMoonEphemeris.swift"]:
+        for path in ["Scripts/model_resource.py", "Scripts/record-pluto-de441-evidence.py", "Scripts/test_record_pluto_de441_evidence.py", "Sources/AstronomyKit/Engine/Gravity/EnginePlutoDE441.swift", "Sources/AstronomyKit/Engine/Moon/EngineMoonEphemeris.swift", "Sources/AstronomyKit/Resources/ModelTables/pluto-de441-sun.bin"]:
             self.assertIn(path, paths)
         self.assertNotIn("Sources/AstronomyKit/Engine/NewUnrelatedEngineFile.swift", paths)
 

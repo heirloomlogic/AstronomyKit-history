@@ -24,13 +24,22 @@ extension Engine {
             let width: Double
             /// For each segment, for each of x, y and z, the coefficients of
             /// the Chebyshev polynomials T₀ to T_degree, in AU.
-            let coefficients: [Double]
+            let coefficients: Engine.Binary64Table
             /// Whether each segment has a usable polynomial.
             let included: [Bool]
 
             /// Traps unless the coefficients fill whole segments that reach
             /// ``PlanetPolynomial/stop``.
             init(degree: Int, width: Double, excludedSegments: [Int], coefficients: [Double]) {
+                self.init(
+                    degree: degree, width: width, excludedSegments: excludedSegments,
+                    coefficients: Engine.Binary64Table(coefficients))
+            }
+
+            init(
+                degree: Int, width: Double, excludedSegments: [Int],
+                coefficients: Engine.Binary64Table
+            ) {
                 let count = coefficients.count / (3 * (degree + 1))
                 precondition(count * 3 * (degree + 1) == coefficients.count, "Partial polynomial segment")
                 precondition(

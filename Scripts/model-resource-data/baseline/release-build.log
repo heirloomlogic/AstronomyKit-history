@@ -1,0 +1,79 @@
+Fetching https://github.com/apple/swift-docc-plugin from cache
+Fetching https://github.com/swiftlang/swift-docc-symbolkit from cache
+Fetching https://github.com/heirloomlogic/Persnicket from cache
+Fetched https://github.com/heirloomlogic/Persnicket from cache (0.03s)
+Fetched https://github.com/apple/swift-docc-plugin from cache (0.03s)
+Fetched https://github.com/swiftlang/swift-docc-symbolkit from cache (0.04s)
+Creating working copy for https://github.com/swiftlang/swift-docc-symbolkit
+Creating working copy for https://github.com/apple/swift-docc-plugin
+Creating working copy for https://github.com/heirloomlogic/Persnicket
+Working copy of https://github.com/swiftlang/swift-docc-symbolkit resolved at 1.0.0
+Working copy of https://github.com/heirloomlogic/Persnicket resolved at 2.3.0
+Working copy of https://github.com/apple/swift-docc-plugin resolved at 1.5.0
+Building for production...
+[Constructing description]
+[Planning deferred tasks]
+[32 / 78] AstronomyKit
+[33 / 78]
+[47 / 82]
+[56 / 82] CLibAstronomy
+[57 / 82] CLibAstronomy
+[59 / 83] CLibAstronomy
+[63 / 92]
+[67 / 92]
+[68 / 92]
+[69 / 92] CLibAstronomy
+[70 / 92]
+[70 / 92] AstronomyKit
+[71 / 93] AstronomyKit
+[81 / 128]
+[82 / 128]
+[84 / 128]
+[89 / 128]
+[91 / 128]
+[94 / 128]
+[96 / 128]
+[98 / 128]
+[100 / 128]
+[103 / 128]
+[105 / 128]
+[106 / 128]
+[107 / 128] AstronomyKit
+[113 / 128] AstronomyKit
+[117 / 128] AstronomyKitTests-product
+[118 / 128] AstronomyKit-product
+[118 / 128] AstronomyKitTests-product
+[119 / 129] AstronomyKitTests-product
+[121 / 132]
+[122 / 132]
+[123 / 132] AstronomyKitTests-product
+[128 / 132] AstronomyKitTests-product
+[130 / 132] AstronomyKitTests-product
+Build complete! (327.31 sec)
+􀟈  Test run started.
+􀄵  Testing Library Version: 2084
+􀄵  Target Platform: arm64e-apple-macos14.0
+􀟈  Suite "Native Moon measurements" started.
+􀙟  Test measure() skipped.
+􁁛  Suite "Native Moon measurements" passed after 0.001 seconds.
+􁁛  Test run with 1 test in 1 suite passed after 0.001 seconds.
+real 344.17
+user 278.82
+sys 22.12
+          9202417664  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+             2924228  page reclaims
+               90810  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+               15682  voluntary context switches
+              739998  involuntary context switches
+         90867055663  instructions retired
+         22403158387  cycles elapsed
+          1506887960  peak memory footprint

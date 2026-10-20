@@ -1,0 +1,74 @@
+Building for production...
+[Pre-planning 1 / 183]
+[Planning deferred tasks]
+[3 / 6] AstronomyKit
+[6 / 6] AstronomyKitTests-product
+Build complete! (0.96 sec)
+􀟈  Test run started.
+􀄵  Testing Library Version: 2084
+􀄵  Target Platform: arm64e-apple-macos14.0
+􀟈  Suite "Engine.PlanetPolynomial" started.
+􀟈  Test "Outside the span, including input that is not finite, nothing applies" started.
+􀟈  Test "A NaN at any seam fails the continuity check" started.
+􀟈  Test "Velocity is the derivative of the position" started.
+􀟈  Test "Each Chebyshev polynomial and its derivative" started.
+􀟈  Test "Excluded segments give nothing from their first double to their last; every other segment gives a value" started.
+􀟈  Test "Heliocentric distance against JPL Horizons, within the held-out allowances" started.
+􀟈  Test "The distance check fails for the wrong planet or a day's error" started.
+􀟈  Test "Adjacent segments meet at every shared boundary" started.
+􀟈  Test "A state's position is the position, double for double" started.
+􀟈  Test case passing 1 argument tt → -36524.50000000001 to "Outside the span, including input that is not finite, nothing applies" started.
+􀟈  Test case passing 1 argument tt → -1e+300 to "Outside the span, including input that is not finite, nothing applies" started.
+􀟈  Test case passing 1 argument tt → 36889.50000000001 to "Outside the span, including input that is not finite, nothing applies" started.
+􀟈  Test case passing 1 argument tt → 36889.5 to "Outside the span, including input that is not finite, nothing applies" started.
+􀟈  Test case passing 1 argument position → 1 to "A NaN at any seam fails the continuity check" started.
+􀟈  Test case passing 1 argument position → 0 to "A NaN at any seam fails the continuity check" started.
+􀟈  Test case passing 1 argument tt → 1e+300 to "Outside the span, including input that is not finite, nothing applies" started.
+􀟈  Test "Every boundary starts its segment, and the double below it stays in the segment below" started.
+􀟈  Test case passing 1 argument k → 0 to "Each Chebyshev polynomial and its derivative" started.
+􀟈  Test case passing 1 argument position → 2 to "A NaN at any seam fails the continuity check" started.
+􀟈  Test case passing 1 argument k → 1 to "Each Chebyshev polynomial and its derivative" started.
+􀟈  Test case passing 1 argument k → 2 to "Each Chebyshev polynomial and its derivative" started.
+􀟈  Test case passing 1 argument k → 3 to "Each Chebyshev polynomial and its derivative" started.
+􀟈  Test case passing 1 argument k → 4 to "Each Chebyshev polynomial and its derivative" started.
+􀟈  Test case passing 1 argument k → 5 to "Each Chebyshev polynomial and its derivative" started.
+􀟈  Test case passing 1 argument k → 6 to "Each Chebyshev polynomial and its derivative" started.
+􀟈  Test case passing 1 argument k → 7 to "Each Chebyshev polynomial and its derivative" started.
+􀟈  Test case passing 1 argument k → 8 to "Each Chebyshev polynomial and its derivative" started.
+􀟈  Test case passing 1 argument k → 9 to "Each Chebyshev polynomial and its derivative" started.
+􀟈  Test case passing 1 argument k → 10 to "Each Chebyshev polynomial and its derivative" started.
+􀟈  Test case passing 1 argument tt → nan to "Outside the span, including input that is not finite, nothing applies" started.
+􀟈  Test case passing 1 argument tt → inf to "Outside the span, including input that is not finite, nothing applies" started.
+􀟈  Test case passing 1 argument k → 11 to "Each Chebyshev polynomial and its derivative" started.
+􀟈  Test case passing 1 argument tt → -inf to "Outside the span, including input that is not finite, nothing applies" started.
+􀟈  Test case passing 1 argument k → 12 to "Each Chebyshev polynomial and its derivative" started.
+􁁛  Test "A NaN at any seam fails the continuity check" with 3 test cases passed after 0.080 seconds.
+􁁛  Test "The distance check fails for the wrong planet or a day's error" passed after 0.080 seconds.
+􁁛  Test "Heliocentric distance against JPL Horizons, within the held-out allowances" passed after 0.080 seconds.
+􁁛  Test "Every boundary starts its segment, and the double below it stays in the segment below" passed after 0.080 seconds.
+􁁛  Test "Outside the span, including input that is not finite, nothing applies" with 8 test cases passed after 0.080 seconds.
+􁁛  Test "Velocity is the derivative of the position" passed after 0.081 seconds.
+􁁛  Test "Excluded segments give nothing from their first double to their last; every other segment gives a value" passed after 0.081 seconds.
+􁁛  Test "Each Chebyshev polynomial and its derivative" with 13 test cases passed after 0.081 seconds.
+􁁛  Test "A state's position is the position, double for double" passed after 0.083 seconds.
+􁁛  Test "Adjacent segments meet at every shared boundary" passed after 0.137 seconds.
+􁁛  Suite "Engine.PlanetPolynomial" passed after 0.137 seconds.
+􁁛  Test run with 10 tests in 1 suite passed after 0.137 seconds.
+        6.67 real         9.79 user         4.63 sys
+           513900544  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              627879  page reclaims
+               12703  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                 381  voluntary context switches
+               17940  involuntary context switches
+         13913322435  instructions retired
+          4823923196  cycles elapsed
+           448546064  peak memory footprint

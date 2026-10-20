@@ -1,0 +1,553 @@
+{
+  "fileCount": 109,
+  "files": [
+    {
+      "bytes": 5890201,
+      "path": "Sources/AstronomyKit/Engine/Gravity/Generated/DE441/PlutoDE441PlutoData.swift",
+      "sha256": "2264d1c762f688282a1d07fb8386dbb490e21f9e54f77e6ad6333c16144921b4"
+    },
+    {
+      "bytes": 11779888,
+      "path": "Sources/AstronomyKit/Engine/Gravity/Generated/DE441/PlutoDE441SunData.swift",
+      "sha256": "b8b0fd48631ad87985be734207575b63e41705ec62a3c6488c3a8be3242ad370"
+    },
+    {
+      "bytes": 884069,
+      "path": "Sources/AstronomyKit/Engine/Gravity/Generated/PlutoBarycenterCoefficients.swift",
+      "sha256": "c554ed8e4bd597fd85d68175238594795201fedd62146a89eb6db27632017a29"
+    },
+    {
+      "bytes": 25128716,
+      "path": "Sources/AstronomyKit/Engine/Gravity/Generated/PlutoCenterCoefficients.swift",
+      "sha256": "c0f0ec73511009f9afea25a120972987a48babca94fb1ca48f450a79bfc88216"
+    },
+    {
+      "bytes": 3239780,
+      "path": "Sources/AstronomyKit/Engine/Gravity/Generated/PlutoSunCoefficients.swift",
+      "sha256": "6a31ab43f325c9d84c265c4f32c702c2754a8de1d2a858850f160c4bb74e159b"
+    },
+    {
+      "bytes": 3416499,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full000.swift",
+      "sha256": "7f0346af2faec1ff9f995b1227e06afc1e3eac91fb22ba555e3ad4b0a78ebcb6"
+    },
+    {
+      "bytes": 3416499,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full001.swift",
+      "sha256": "69ae9682a827744ece637a72df6be518b796e6d979aed2fc9d8f4139a9a1d06b"
+    },
+    {
+      "bytes": 3416499,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full002.swift",
+      "sha256": "5fbbc6a8d939975a2ddd12627de65d80d3f9cc97a38e04fb44bcca7840129449"
+    },
+    {
+      "bytes": 3416499,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full003.swift",
+      "sha256": "70b9507ab1b7b6cc0548165bcf34a2639b9f90add881a7e6dc3fd7f2bf5000a8"
+    },
+    {
+      "bytes": 3416499,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full004.swift",
+      "sha256": "b3ea6853ee258b950ecab6abcc452dc1cd3b36a03e3bf051e93e2ecd75c5b60e"
+    },
+    {
+      "bytes": 3416499,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full005.swift",
+      "sha256": "c4f5fa13c31439d9d8ff9be67d9d39f615f404937802ff16fcdb9ed52bf302c2"
+    },
+    {
+      "bytes": 3416499,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full006.swift",
+      "sha256": "1bb72423f8b370cf68f2e33c83a86ecc9cbf809044ae2f4d4647f15c0af31eb4"
+    },
+    {
+      "bytes": 3416499,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full007.swift",
+      "sha256": "968919c61fb496ce07e9a2e170ba330d57120daefb4ebc545d05d7e681f7e62e"
+    },
+    {
+      "bytes": 3416499,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full008.swift",
+      "sha256": "e8a63b68c64f8a60e2ee1d3059e4dee9e69030c50c2b3f5f761b0baa33d1f780"
+    },
+    {
+      "bytes": 3416499,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full009.swift",
+      "sha256": "1d2243b721607e017e36eaf20c5651ce791340214ee03ab88e4c8f48aa8514c4"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full010.swift",
+      "sha256": "6bf96b5aca47b34ec3f1ed2abdf3f39befaa82f5d74f4894725d1236821a7ff4"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full011.swift",
+      "sha256": "dd725689dec172b45365d0b8f2a88ba1af974b2bb7a7a5820b700b5414521c9e"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full012.swift",
+      "sha256": "445adcfc4b1177bdf105aa6044952fbf1d4a235f71e4ed8bd77b064a1e94270c"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full013.swift",
+      "sha256": "db845e40df81fbaabfd565ca41d0abe49b51927e66b1bfc031f5b3ceb94d9c25"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full014.swift",
+      "sha256": "1ad112440b4850750659b859ef06362aac845389c4ad0b4dbf00ecfcb99f8198"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full015.swift",
+      "sha256": "6a70f58eb5b42d10da136c7d8c7e21af9e4eb9599008860b8b2d7b8ef8199d4c"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full016.swift",
+      "sha256": "f4990168a4d10f0696ae89b4ea5b6463058a8505bfe642c2a2b9ad810ef9ef34"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full017.swift",
+      "sha256": "98cf25a81bd1b8d2d1574de93e583d9694e8e7ccb02b8ad2aee87c5459b7974e"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full018.swift",
+      "sha256": "2e9e5342dec5af64e09acf14032218da6fb88a9e5f36c29b031d8a311fe0e1c6"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full019.swift",
+      "sha256": "e6a4087a8cb0706718b1d04384b0e66c2238c2b50e00a320b206040bad62cfff"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full020.swift",
+      "sha256": "a5ab87d67dd05c0b65886e8e611fa9fdf3b89934f61c98e6e4c01e8ebbe27f51"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full021.swift",
+      "sha256": "e1af3c96fac4c5942919f412b32dc03349258bbcb8a3c87014c0eaeec357d212"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full022.swift",
+      "sha256": "69ddf82a538e13f81c73e342676ce099759b32c485e4583093bb056ab0ab8d86"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full023.swift",
+      "sha256": "609fb292a53c07b1ea2e6992c498ffee73ab3f7b7f16813837ec51a17ad4f102"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full024.swift",
+      "sha256": "6e95afecedd8100205b6f05fdb4b0e8e0ee165868af2b3aa2aa438faa550a468"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full025.swift",
+      "sha256": "f2a7304565c0a69adc861aca9f90ef8423b03356f36462e855bb45d9cbfd033b"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full026.swift",
+      "sha256": "bdee091cde4f5ba8f621f47a926e90c18e059d9bfd74b4984e3680e84a03e610"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full027.swift",
+      "sha256": "d45aeed4ef55c5669282943621e2e1f545fe2d2d2144055e4f248c43e440b937"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full028.swift",
+      "sha256": "4fb246b0a0ee6ebe5573fe8ec69019476c9f80d0e5d30104a5c048dc0b8b5e66"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full029.swift",
+      "sha256": "dab6c75f7aa7016be82a38a9369f579b5dd3ff1d29efdf264aaebd70253ec77b"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full030.swift",
+      "sha256": "25c728bdc39b43c386f84133330a6c129d83ed3f5685971cd420ecdffab633d0"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full031.swift",
+      "sha256": "e88d26b2458d4c2d4998b4668bd850371c5e6f24f274d71bf38092ea605c5274"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full032.swift",
+      "sha256": "4adc08ce8c9c9f53053ac83fd13f489b5e77a612483b135a5002d0cd9b11d5b6"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full033.swift",
+      "sha256": "bd425d0687f164622c8d41d601890bc945b887aeeb1380326aa78eb55421263b"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full034.swift",
+      "sha256": "9bb6e596ae3d0f94b11a54aded758b2f19933168cc046825a5ce543a502d9747"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full035.swift",
+      "sha256": "394ba3cc8f0110dddef082d39e21a05d2127a54f3cc71a1e687a9ec18d41af8f"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full036.swift",
+      "sha256": "9b1ba2c983ccee2b16f71615dcdc2eb79a3e711991e51a2446ffc174d5c56aa3"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full037.swift",
+      "sha256": "585a2b28679132292c9a835e2b591d80c01585b2df47a6d17f40983633b066e5"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full038.swift",
+      "sha256": "14a63608c41c913dd6a93c7840662db56b9296a0ee53e13ad81cc0837ddafc3d"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full039.swift",
+      "sha256": "ae3c9595bce3078bb05b12421f04c6e9bb337b08bfd88958c8a84a49b16fc2f2"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full040.swift",
+      "sha256": "7960191aadf742d863e2d0fd0015b3ce5bf7474e9d4b1aa3c50a24f2d541156b"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full041.swift",
+      "sha256": "2fed0ac6b2ac37b80b8630bc0663ba6a8a5e333de75d64a9b697782f6f260bad"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full042.swift",
+      "sha256": "91993ba6825341079f286876b096d692e921851b8182ea7ae88ca77efb76e580"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full043.swift",
+      "sha256": "4c20865503a9fc08382bdaf086fb8a103b399e77b71a002188f6fb4a646a20fd"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full044.swift",
+      "sha256": "aa7ed3ee877353604f51703550122132397de928a37b7bebac19132c13d82a74"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full045.swift",
+      "sha256": "16b8631ba68b3950b6b989ee225319f9349bc3fc7e026d127bb43cbd56d58322"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full046.swift",
+      "sha256": "51ae9513e9d7713e0a720f6349a7d52fe96883ce6a77641a0cd5cb3139e64f2e"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full047.swift",
+      "sha256": "1af755f95b010ca1f7fe46f8b5f0421e05965023258855538da5fa8e41f0a331"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full048.swift",
+      "sha256": "4be383a4bd61162f4071472d369c30f1e6390b467cca9ade16c88fd854a20960"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full049.swift",
+      "sha256": "de408b125d43ff6684d25df9fa448c10403842f9ada9467995f7ef6347759ade"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full050.swift",
+      "sha256": "0a1a62ff2b22bf67f92dd3e712b76abab2b1ef996aee126a8ffb96b0752610ed"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full051.swift",
+      "sha256": "2731cdc1407eecef3970b0b2a5352d6466136a01c820877958673d82616e39c7"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full052.swift",
+      "sha256": "9f952f7b0374918ac3b20e72f5fb3d5f21096c703fa8de84ab688364c85e885b"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full053.swift",
+      "sha256": "dbad089e000a4be56003486e71161752bfb8176b15008da32e707932c13e6a9f"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full054.swift",
+      "sha256": "1b9a82807020b5134315d9f62710ae099563678a9375027b7172a6fe859a1455"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full055.swift",
+      "sha256": "468d218e1598af110dc3b545b616716ddcefc282993c4c5ee13bba1e9863c075"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full056.swift",
+      "sha256": "368bf0ede1cebf74ab58209b903da23a2452d181c0f3285d554c78f95717e070"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full057.swift",
+      "sha256": "a0867317e8828b20d59ba2315685b0eba53e6fe36bdd280e64b150c56d274cc2"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full058.swift",
+      "sha256": "bc755eae33ad6c24af2ecabe0ab2f47f1daf8bde267053dbcd3a0755d5b620b0"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full059.swift",
+      "sha256": "eff833923dccaff5569b9e9d4ea5250fde3633e2c5f4da4b848dff88c035a610"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full060.swift",
+      "sha256": "dbd11d38b3ac07006315a6add6075aeaf92418c580dfe020c98451704b9a1be2"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full061.swift",
+      "sha256": "2b677273e75731c8d012acb388f4a301e0b6006ad45ac9aefd0a08e3cd2dbf20"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full062.swift",
+      "sha256": "778cfb78f93c659ec3e4f76eb3eb87df01ea1d7aa91c3638c80ec95525bc4913"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full063.swift",
+      "sha256": "8f65672eab7afe32df7df79e30879d852a3055e95a5b744c296e734b5c107e02"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full064.swift",
+      "sha256": "a506861135e1e4eb96328842f8653489d6c0786fcaa1c9f6245a986402525394"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full065.swift",
+      "sha256": "50ea344f18a1e3ec6371f3a041a982fc28c7b1c45a4201751bd2fb4283e01c2f"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full066.swift",
+      "sha256": "f7f3aeabe35bddf4e8d8bdae818ca79d85245bfc132e395d82bf736a25003254"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full067.swift",
+      "sha256": "38e98cb64d6472ef09926f0fb985c31ceaf58af99991ab7f8cbb313e3251a56d"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full068.swift",
+      "sha256": "8654a4ccfefdb2b1fc36cb38895ee6bb5910c1dc5a358d58d037b9562c357511"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full069.swift",
+      "sha256": "2b59345184c44bf5f652752f5bf817767d52789dfa71c13229853087dddef4fc"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full070.swift",
+      "sha256": "abfbfdf138d99b86300c74f5e167d563eab80bec89894598afd88efd02d50b5a"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full071.swift",
+      "sha256": "6e276f3b04f7ecf59dcae63e12578bab29be950bff6cbe9deb2986c726e62ee7"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full072.swift",
+      "sha256": "463285d25f0d8f969843f8ed95718cb054c249ded63d34de25d61740a284b43e"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full073.swift",
+      "sha256": "6604ad3e925ff3c6aadf23edb94f16ee93e5d6ca18d04d740c1e9d95207c910a"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full074.swift",
+      "sha256": "4d989f0e470cc764139dd581eeeee9e8cd3272f5c8c36c9da1573b466338600c"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full075.swift",
+      "sha256": "2d7f9578a3f019ba0aab501bff48741e0c7656e7b18abdc7be17878070033c2b"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full076.swift",
+      "sha256": "d1f466da8f4022761b0a21066599da6d628f5eb06b5d71e4d98ea0d6e363f069"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full077.swift",
+      "sha256": "1bff72d6c41a39907d2cfb9fcbe32061383fa7742ae3ac5b108d3e164d677964"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full078.swift",
+      "sha256": "61485afc3e62a045058cf2f0eb280ede0ba32b3ba8c39b679500b967bdbddc21"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full079.swift",
+      "sha256": "7ab1462a27b31bfdb6c99ce9345775d80a9989d3c839a4713170d3acbac10f19"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full080.swift",
+      "sha256": "66b849c334fab15bc5fc3e9d9af59b566dde67d771653311ff2cfc296d6f959b"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full081.swift",
+      "sha256": "290be6e9dbdb4c33c939be328bb16760f4f67b832bdb9fb018134e6fa6f2eb3a"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full082.swift",
+      "sha256": "521100104c74142a03f440176a0ebfe24e3af48988950a1d4596888f36228565"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full083.swift",
+      "sha256": "26681ecc691965652f4d5b60f5d74dabf8c9837ee68a2216e586fde6de0836dc"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full084.swift",
+      "sha256": "dc74e9e6de455cfbd0bc2aa64be97619d9f0bb52e254d8f4c8dd832ca1033b18"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full085.swift",
+      "sha256": "b75cff8062322b6afab2fa7ec89ea155d039ad0613bc006cf3d830e9260c8612"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full086.swift",
+      "sha256": "4eeea3108fc97f18bd34948284cba96ac3bc59dea96a7b8baa38c6a16fab7aaf"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full087.swift",
+      "sha256": "c4df130e769f8492440aa5775db2a8b60553b2af110e084e116f651c4f6f8e68"
+    },
+    {
+      "bytes": 3416502,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full088.swift",
+      "sha256": "c3a8b2afe95aeec2129d25c47cb16c369073508d01680abbfc016b610d057784"
+    },
+    {
+      "bytes": 590076,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full089.swift",
+      "sha256": "af1f037b68dbe4627af6fef8b488d3230579843d4e49447c6d3ba5432b783d8e"
+    },
+    {
+      "bytes": 1805,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441FullIndex.swift",
+      "sha256": "224cc77ff6ba3f07ef3d30c0cc95057df4adec59e6c63b98170adec9e3d7befc"
+    },
+    {
+      "bytes": 8851579,
+      "path": "Sources/AstronomyKit/Engine/Moon/Generated/MoonDE440Coefficients.swift",
+      "sha256": "690ed21578f3b89d0438deb22a88710ed31e11394cf12d69f6911d36e1d75b6b"
+    },
+    {
+      "bytes": 531,
+      "path": "Sources/AstronomyKit/Engine/Planets/Generated/PlanetPolynomialCoverage.swift",
+      "sha256": "c1c74a4ea6b29371b0b53884b7b0849d57e3830efe81aea097c8ffaa5be32133"
+    },
+    {
+      "bytes": 3847943,
+      "path": "Sources/AstronomyKit/Engine/Planets/Generated/PlanetPolynomialEarth.swift",
+      "sha256": "24a126615b194e0eaf968eb462e2c9750f8b49497ca5d681ad5e34077af29e27"
+    },
+    {
+      "bytes": 962666,
+      "path": "Sources/AstronomyKit/Engine/Planets/Generated/PlanetPolynomialJupiter.swift",
+      "sha256": "87319ed3e420bf2b5fa0b1a1e0f1985539a0ccfdb5def27eb808b3d64531f275"
+    },
+    {
+      "bytes": 962663,
+      "path": "Sources/AstronomyKit/Engine/Planets/Generated/PlanetPolynomialMars.swift",
+      "sha256": "b9c150843b00b0521fa85d79f3dac97e5e8716b555aa51c2d52c84e7cc0e547b"
+    },
+    {
+      "bytes": 3850822,
+      "path": "Sources/AstronomyKit/Engine/Planets/Generated/PlanetPolynomialMercury.swift",
+      "sha256": "68ecb99714f4471108dc4dfa71fb8e6f82903897d2bca464cf3e32ee9fbca948"
+    },
+    {
+      "bytes": 1924427,
+      "path": "Sources/AstronomyKit/Engine/Planets/Generated/PlanetPolynomialNeptune.swift",
+      "sha256": "a12e7fd7fcc700245e1b33bb3a5b98695348d44c7d09665e05d8780d09f58216"
+    },
+    {
+      "bytes": 1924426,
+      "path": "Sources/AstronomyKit/Engine/Planets/Generated/PlanetPolynomialSaturn.swift",
+      "sha256": "c685dc93fd5a86e96f29865b8bfc25a0158395e9d87c12440f3c006c8051d733"
+    },
+    {
+      "bytes": 962665,
+      "path": "Sources/AstronomyKit/Engine/Planets/Generated/PlanetPolynomialUranus.swift",
+      "sha256": "05ba88c79fcca26988c9042b4b728603bde9c197b9ab9bb73f2a389259e438e5"
+    },
+    {
+      "bytes": 962710,
+      "path": "Sources/AstronomyKit/Engine/Planets/Generated/PlanetPolynomialVenus.swift",
+      "sha256": "96463d608a7242dbc5db215b559757ca987f6115a62533d33cd630e271a55795"
+    },
+    {
+      "bytes": 596398,
+      "path": "Sources/AstronomyKit/Engine/Planets/Generated/Saturn/SaturnBarycenterData.swift",
+      "sha256": "4085bb1543aa6aa682b57cee1dbf6671aeed42b3cc5355e266a184c5f59dca98"
+    },
+    {
+      "bytes": 23600839,
+      "path": "Sources/AstronomyKit/Engine/Planets/Generated/Saturn/SaturnOffsetData.swift",
+      "sha256": "5492b492d50278368a2edf289f8e1d8aa591d8dd7f934c7f726f402f23409306"
+    },
+    {
+      "bytes": 1872784,
+      "path": "Sources/AstronomyKit/Engine/Planets/Generated/Saturn/SaturnSunData.swift",
+      "sha256": "c9e76733e3e58577669e66f67d9bc4308bbfc351d36ded6451671a1d94b2d727"
+    }
+  ],
+  "revision": "667bc909b7025f434e822a353cd7e7fe4baf32c8",
+  "schemaVersion": 1,
+  "sourceBytes": 401903636
+}

@@ -1,0 +1,44 @@
+Building for production...
+[Pre-planning 1 / 154]
+[Planning deferred tasks]
+[1 / 3]
+[2 / 5] AstronomyKit
+[3 / 8] AstronomyKitTests-product
+[4 / 4] AstronomyKitTests-product
+Build complete! (2.27 sec)
+􀟈  Test run started.
+􀄵  Testing Library Version: 2084
+􀄵  Target Platform: arm64e-apple-macos14.0
+􀟈  Suite "Engine planet tables" started.
+􀟈  Test "Each planet maps from its body, and no other body maps" started.
+􀟈  Test "The VSOP87B tables hold every published series" started.
+􀟈  Test "The polynomial tables cover 1900 through 2100 TT in whole segments" started.
+􀟈  Test "Doubles decode bit for bit, skipping line breaks" started.
+􀟈  Test "Published VSOP87B terms" started.
+􁁛  Test "Each planet maps from its body, and no other body maps" passed after 0.001 seconds.
+􁁛  Test "Doubles decode bit for bit, skipping line breaks" passed after 0.001 seconds.
+􁁛  Test "Published VSOP87B terms" passed after 0.001 seconds.
+􁁛  Test "The VSOP87B tables hold every published series" passed after 0.002 seconds.
+􁁛  Test "The polynomial tables cover 1900 through 2100 TT in whole segments" passed after 0.021 seconds.
+􁁛  Suite "Engine planet tables" passed after 0.022 seconds.
+􁁛  Test run with 5 tests in 1 suite passed after 0.022 seconds.
+real 9.01
+user 9.96
+sys 5.04
+          1525989376  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              688261  page reclaims
+               12333  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                 383  voluntary context switches
+               36392  involuntary context switches
+         15203980537  instructions retired
+          5505327235  cycles elapsed
+          1461847960  peak memory footprint

@@ -1,0 +1,17 @@
+{
+  "centerColdSeconds" : 0.02921295166015625,
+  "checksum" : -443.85759806635372,
+  "evaluationsPerModel" : 2000,
+  "eventCount" : 100,
+  "eventSeconds" : 0.031638026237487793,
+  "host" : "Version 27.0.1 (Build 26A434)",
+  "peakAfterCenterBytes" : 98566144,
+  "peakAfterRetainedBytes" : 52936704,
+  "peakAfterWorkloadsBytes" : 99041280,
+  "peakBeforeBytes" : 47906816,
+  "retainedColdSeconds" : 0.0027830600738525391,
+  "seconds" : {
+    "center" : 0.01987910270690918,
+    "retained" : 0.012894988059997559
+  }
+}

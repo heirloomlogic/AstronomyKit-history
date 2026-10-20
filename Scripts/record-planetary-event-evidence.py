@@ -14,6 +14,14 @@ CAPTURES = ROOT/'Scripts/saturn-data/native-captures.json'
 dependency_spec = importlib.util.spec_from_file_location('planetary_dependencies', ROOT/'Scripts/evidence_dependencies.py')
 dependencies = importlib.util.module_from_spec(dependency_spec)
 dependency_spec.loader.exec_module(dependencies)
+resource_spec = importlib.util.spec_from_file_location('model_resource', ROOT/'Scripts/model_resource.py')
+model_resource = importlib.util.module_from_spec(resource_spec)
+resource_spec.loader.exec_module(model_resource)
+SATURN_RESOURCE_SOURCES = [
+    'Sources/AstronomyKit/Engine/Planets/Generated/Saturn/SaturnBarycenterData.swift',
+    'Sources/AstronomyKit/Engine/Planets/Generated/Saturn/SaturnOffsetData.swift',
+    'Sources/AstronomyKit/Engine/Planets/Generated/Saturn/SaturnSunData.swift',
+]
 
 
 def source_hashes(capture_bytes=None):
@@ -118,7 +126,7 @@ def validate_recording(result, captures=None):
         raise ValueError('resource workload differs')
     if not resource['host'] or not result['toolchain'] or result['releaseExecutableBytes'] <= 0:
         raise ValueError('resource host or executable differs')
-    if result['schemaVersion'] != 2 or any(result.get(key) != value for key, value in metadata().items()):
+    if result['schemaVersion'] != 3 or any(result.get(key) != value for key, value in metadata().items()):
         raise ValueError('representation metadata differs')
 
 
@@ -142,8 +150,13 @@ def encoding_boundary_limits():
                 scope='Binary64 position-encoding contribution only, using the Lipschitz property of vector norm. Evaluator roundoff and the physical source are separate. This does not bound event-time error near shallow roots; the six qualified roots do not test join-adjacent events.')
 
 
+def mapped_resource_bytes(root=ROOT, resource_directory=None):
+    resources = resource_directory or root/'Sources/AstronomyKit/Resources/ModelTables'
+    return sum(len(model_resource.payload((root/path).read_text(), resources)) for path in SATURN_RESOURCE_SOURCES)
+
+
 def metadata():
-    return dict(decodedPayloadBytes=19400016,
+    return dict(resourcePayloadBytes=mapped_resource_bytes(),
                 resourceScope='macOS arm64 Release test executable; first retained evaluation then first center evaluation in a new process, followed by 2000 states per model and 100 repeated Saturn apsis searches. RSS is process high-water, not isolated object ownership. Baseline executable predates Saturn integration; binary delta also includes tests.',
                 fullWeightTT=[-36524.5,47846.5], blendTT=[[-36556.5,-36524.5],[47846.5,47878.5]],
                 limitations=['The Jupiter, Uranus and Neptune qualification preserves every direct-source physical-center crossing over one nominal orbital cycle, selects principal candidates from the source system-center extrema, and tests those six native events; it is not a continuous event-time bound.', 'The eight 2025 diagnostic windows remain local checks for all planets and Pluto.', 'The public searches run on these native searches since the #96 cutover; the parity rows record the facade conversion, not a comparison with the former C searches.', 'Outside the selected source window the retained model remains; global physical-center and event accuracy are not established.'])
@@ -173,7 +186,7 @@ def main():
                         releaseExecutableBytes=executable.stat().st_size,
                         baseline=json.loads((args.capture/'saturn-assessment/baseline-binary.json').read_bytes()))
         capture_bytes = (json.dumps(captures, indent=2, sort_keys=True)+'\n').encode()
-        result = dict(schemaVersion=2, sourceSHA256=source_hashes(capture_bytes), debug=measurements(args.capture, 'debug'), release=measurements(args.capture, 'release'),
+        result = dict(schemaVersion=3, sourceSHA256=source_hashes(capture_bytes), debug=measurements(args.capture, 'debug'), release=measurements(args.capture, 'release'),
                       resources=json.loads(release.read_bytes()), encodingBoundaryLimits=encoding_boundary_limits(),
                       buildSeconds={c:float(re.search(r'Build complete! \(([^ ]+) sec\)', (args.capture/f'link3-full-{c}.log').read_text()).group(1)) for c in ['debug','release']},
                       toolchain=subprocess.check_output(['swift', '--version'], text=True).strip(),

@@ -18,6 +18,12 @@ full=importlib.util.module_from_spec(SPEC);SPEC.loader.exec_module(full)
 mp.mp.dps=80
 sys.path.insert(0,str(ROOT/'Scripts/solar-numerics'))
 from apparent_bounds import clock_bounds
+sys.path.insert(0,str(ROOT/'Scripts'))
+import model_resource
+
+STORAGE=ROOT/'Scripts/moon-data/de441-full-storage-evidence.json'
+RESOURCE_DIRECTORY=ROOT/'Sources/AstronomyKit/Resources/ModelTables'
+INDEX=full.OUTPUT/'MoonDE441FullIndex.swift'
 
 # Frozen source recipe: first, middle and last batches in the verified DE441 layout.
 # Each tuple records (first source record, count, first midpoint TDB seconds, Moon byte start, Earth byte start).
@@ -27,6 +33,7 @@ SAMPLE_BATCHES=(
     (360448,7581,123610881600,2225231648,1769345728),
 )
 COMPONENT_FIELDS=('moonRecordBase64','earthRecordBase64')
+COMPONENT_BINDINGS=['Scripts/qualify-moon-de441-full.py','Scripts/generate-moon-de441-full.py','Scripts/moon-data/de441-full-evidence.json','Scripts/solar-numerics/apparent_bounds.py','Scripts/model_resource.py','Sources/AstronomyKit/Engine/Gravity/Generated/DE441/PlutoDE441SunData.swift','Sources/AstronomyKit/Resources/ModelTables/pluto-de441-sun.bin','Sources/AstronomyKit/Engine/Moon/EngineTDB.swift','Sources/AstronomyKit/Engine/Moon/Generated/TDBTerms.swift']
 
 
 def sample_inventory(batches,pins):
@@ -87,19 +94,51 @@ def calculate(rows):
 
 
 
-def check_storage_sources():
-    storage=json.loads((ROOT/'Scripts/moon-data/de441-full-storage-evidence.json').read_text())
-    paths=[*sorted(full.OUTPUT.glob('*.swift')),ROOT/'Sources/AstronomyKit/Engine/Moon/EngineMoonDE441Full.swift',ROOT/'Tests/AstronomyKitTests/Engine/Moon/EngineMoonDE441FullTests.swift',ROOT/'Scripts/generate-moon-de441-full.py',ROOT/'Scripts/qualify-moon-de441-full.py',full.MANIFEST,OUTPUT]
-    expected={str(path.relative_to(ROOT)):hashlib.sha256(path.read_bytes()).hexdigest() for path in paths}
-    if storage['sourceHashes']!=expected:raise ValueError('storage capture source bindings differ')
-    if storage['derivedPayloadBytes']!=full.COUNT*312 or storage['generatedSourceBytes']!=sum(p.stat().st_size for p in full.OUTPUT.glob('*.swift')):
-        raise ValueError('storage payload size differs')
+def storage_paths():
+    return [ROOT/'Package.swift',ROOT/'Scripts/generated-binary-resource.py',ROOT/'Scripts/model_resource.py',ROOT/'Sources/AstronomyKit/Engine/Foundation/EngineMappedResource.swift',*sorted(full.OUTPUT.glob('*.swift')),*sorted(RESOURCE_DIRECTORY.glob(full.RESOURCE_PREFIX+'*.bin')),ROOT/'Sources/AstronomyKit/Engine/Moon/EngineMoonDE441Full.swift',ROOT/'Tests/AstronomyKitTests/Engine/Moon/EngineMoonDE441FullTests.swift',ROOT/'Scripts/generate-moon-de441-full.py',ROOT/'Scripts/qualify-moon-de441-full.py',full.MANIFEST,OUTPUT]
+
+
+def storage_snapshot(resource_directory=RESOURCE_DIRECTORY):
+    resources=model_resource.payloads(INDEX.read_text(),resource_directory)
+    expected={f'{full.RESOURCE_PREFIX}{index:03}' for index in range((full.COUNT+full.CHUNK-1)//full.CHUNK)}
+    actual={path.stem for path in Path(resource_directory).glob(full.RESOURCE_PREFIX+'*.bin')}
+    if set(resources)!=expected or actual!=expected:
+        raise ValueError('storage mapped resource inventory differs')
+    paths=storage_paths()
+    return {'sourceHashes':{str(path.relative_to(ROOT)):hashlib.sha256(path.read_bytes()).hexdigest() for path in paths},'resourcePayloadBytes':sum(map(len,resources.values())),'generatedSourceBytes':sum(path.stat().st_size for path in full.OUTPUT.glob('*.swift'))}
+
+
+def storage_document(previous):
+    result=dict(previous)
+    result.pop('derivedPayloadBytes',None)
+    result.update(storage_snapshot())
+    result['schemaVersion']=2
+    result['representation']='Verified read-only mapped binary resources described by generated Swift metadata and copied by SwiftPM.'
+    result['captureState']='Historical compiler and runtime observations are preserved at their recorded revisions. The schema 2 representation fields bind the current generated descriptors, verified mapped resources, loader, and package manifest; no historical workload was relabelled or rerun.'
+    limitation='The mapped-resource representation fields were recorded without rerunning the historical compiler or runtime workloads; their original receipts and revisions remain unchanged.'
+    if limitation not in result['limitations']:
+        result['limitations']=[*result['limitations'],limitation]
+    return result
+
+
+def check_storage_sources(storage=None):
+    storage=json.loads(STORAGE.read_text()) if storage is None else storage
+    if storage.get('schemaVersion')!=2 or 'derivedPayloadBytes' in storage or storage.get('representation')!='Verified read-only mapped binary resources described by generated Swift metadata and copied by SwiftPM.':
+        raise ValueError('storage evidence representation schema differs')
+    expected=storage_snapshot()
+    if any(storage.get(key)!=value for key,value in expected.items()):
+        raise ValueError('storage capture source bindings or payload size differ')
 
 
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--check',action='store_true');parser.add_argument('--verify-source',action='store_true');parser.add_argument('--cache',type=Path,default=ROOT/'.context/issue-251/ranges');args=parser.parse_args()
+    parser=argparse.ArgumentParser(description=__doc__);modes=parser.add_mutually_exclusive_group();modes.add_argument('--check',action='store_true');modes.add_argument('--verify-source',action='store_true');modes.add_argument('--record-storage',action='store_true');parser.add_argument('--cache',type=Path,default=ROOT/'.context/issue-251/ranges');args=parser.parse_args()
+    if args.record_storage:
+        result=storage_document(json.loads(STORAGE.read_text()))
+        check_storage_sources(result)
+        STORAGE.write_text(json.dumps(result,indent=2,sort_keys=True)+'\n')
+        print('Recorded mapped Moon storage evidence');return
     manifest=json.loads(full.MANIFEST.read_text())
-    bindings={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in ['Scripts/qualify-moon-de441-full.py','Scripts/generate-moon-de441-full.py','Scripts/moon-data/de441-full-evidence.json','Scripts/solar-numerics/apparent_bounds.py','Sources/AstronomyKit/Engine/Moon/EngineTDB.swift','Sources/AstronomyKit/Engine/Moon/Generated/TDBTerms.swift']}
+    bindings={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in COMPONENT_BINDINGS}
     if args.check or args.verify_source:
         check_storage_sources()
         result=json.loads(OUTPUT.read_text())

@@ -8,10 +8,15 @@ import math
 from pathlib import Path
 import re
 import struct
+import sys
 
 ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT / "Scripts"))
+import model_resource
 ENGINE = "Sources/AstronomyKit/Engine/"
 EARTH = ENGINE + "Planets/Generated/PlanetPolynomialEarth.swift"
+EARTH_RESOURCE = "Sources/AstronomyKit/Resources/ModelTables/planet-polynomial-earth.bin"
+MODEL_RESOURCE_READER = "Scripts/model_resource.py"
 COVERAGE = ENGINE + "Planets/Generated/PlanetPolynomialCoverage.swift"
 SELECTED_EARTH_BINDINGS = [
     ENGINE + "Foundation/EngineDirectChebyshevTable.swift",
@@ -21,11 +26,13 @@ SELECTED_EARTH_BINDINGS = [
     ENGINE + "Planets/Generated/DE441/PlanetDE441EarthBarycenterData.swift",
     ENGINE + "Planets/Generated/DE441/PlanetDE441EarthOffsetData.swift",
     ENGINE + "Planets/Generated/Saturn/SaturnSunData.swift",
+    "Sources/AstronomyKit/Resources/ModelTables/saturn-sun.bin",
 ]
 BINDINGS = [
     ENGINE + "Foundation/EngineTime.swift", ENGINE + "Foundation/EngineDeltaT.swift",
     ENGINE + "Foundation/EngineCalendar.swift", ENGINE + "Foundation/EngineConstants.swift",
     ENGINE + "Foundation/EngineSearch.swift", ENGINE + "Foundation/EngineTables.swift",
+    ENGINE + "Foundation/EngineMappedResource.swift",
     ENGINE + "Foundation/EngineCache.swift", ENGINE + "Foundation/EngineChebyshev.swift",
     ENGINE + "Foundation/EngineVector.swift", ENGINE + "Orientation/EngineCoordinates.swift",
     "Sources/AstronomyKit/AstronomyKit.swift", "Package.swift",
@@ -35,7 +42,7 @@ BINDINGS = [
     ENGINE + "Orientation/EngineEarthRotation.swift", ENGINE + "Orientation/EngineNutation.swift",
     ENGINE + "Orientation/Generated/IAU2000ATerms.swift",
     "Sources/AstronomyKit/CivilTime.swift", "Sources/AstronomyKit/UTCOffsetTable.swift",
-    "Scripts/solar-numerics/numerics.py", *SELECTED_EARTH_BINDINGS,
+    "Scripts/solar-numerics/numerics.py", MODEL_RESOURCE_READER, EARTH_RESOURCE, *SELECTED_EARTH_BINDINGS,
 ]
 
 
@@ -98,6 +105,16 @@ def unpack(text):
     return values
 
 
+def table_payload(path, text=None, root=ROOT):
+    source = (root / path).read_text() if text is None else text
+    if "Engine.TableResource(" in source:
+        return model_resource.payload(source, root / "Sources/AstronomyKit/Resources/ModelTables")
+    parts = source.split('"""', 2)
+    if len(parts) != 3:
+        raise ValueError(f"Missing coefficient payload: {path}")
+    return base64.b64decode("".join(parts[1].split()), validate=True)
+
+
 def earth_model(root=ROOT):
     text = (root / EARTH).read_text()
     degree = int(re.search(r"degree:\s*(\d+)", text)[1])
@@ -105,7 +122,11 @@ def earth_model(root=ROOT):
     excluded = re.search(r"excludedSegments:\s*\[(.*?)\]", text, re.S)[1].strip()
     if excluded:
         raise ValueError("Earth exclusions require a separate domain derivation")
-    values = unpack(text)
+    data = table_payload(EARTH, text, root)
+    if len(data) % 8:
+        raise ValueError("Generated coefficient count differs from payload")
+    count = len(data) // 8
+    values = struct.unpack(f"<{count}d", data)
     if len(values) % (3 * (degree + 1)):
         raise ValueError("Partial Earth segment")
     coverage = (root / COVERAGE).read_text()

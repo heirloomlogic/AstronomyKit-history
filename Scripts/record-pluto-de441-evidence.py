@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Capture and replay the current native Pluto DE441 evidence."""
 import argparse
-import base64
 import importlib.util
 import json
 import math
@@ -16,6 +15,9 @@ ROOT = Path(__file__).resolve().parents[1]
 DEPENDENCY_SPEC = importlib.util.spec_from_file_location("pluto_native_dependencies", ROOT / "Scripts/evidence_dependencies.py")
 dependencies = importlib.util.module_from_spec(DEPENDENCY_SPEC)
 DEPENDENCY_SPEC.loader.exec_module(dependencies)
+RESOURCE_SPEC = importlib.util.spec_from_file_location("model_resource", ROOT / "Scripts/model_resource.py")
+model_resource = importlib.util.module_from_spec(RESOURCE_SPEC)
+RESOURCE_SPEC.loader.exec_module(model_resource)
 OUTPUT = ROOT / "Scripts/pluto-data/de441-native-evidence.json"
 REPLAY_OWNERS = {"Scripts/record-pluto-de441-evidence.py", "Scripts/test_record_pluto_de441_evidence.py"}
 PRESERVED_KEYS = {
@@ -120,14 +122,6 @@ def cstring_bytes(output):
     return int(match.group(1))
 
 
-def packed_bytes(path):
-    text = path.read_text()
-    parts = text.split('"""', 2)
-    if len(parts) != 3:
-        raise ValueError(f"Packed table literal missing: {path}")
-    return base64.b64decode("".join(parts[1].split()), validate=True)
-
-
 def release_object(stem, root=ROOT):
     candidates = [path for path in (root / ".build").rglob(f"{stem}.o") if "Release" in path.parts or "release" in path.parts]
     if len(candidates) != 1:
@@ -147,18 +141,20 @@ def release_executable(root=ROOT):
 
 def storage(root=ROOT):
     result = {}
-    decoded = {}
+    resource_bytes = {}
+    resource_directory = root / "Sources/AstronomyKit/Resources/ModelTables"
     for section, tables in TABLES.items():
         result[section] = {}
-        decoded[section] = 0
+        resource_bytes[section] = 0
         for name, relative in tables.items():
             source = root / relative
             object_path = release_object(name, root)
             size_output = subprocess.check_output(["/usr/bin/size", "-m", str(object_path)], text=True)
-            result[section][name] = {"cstringSectionBytes": cstring_bytes(size_output), "generatedSourceBytes": source.stat().st_size, "releaseObjectBytes": object_path.stat().st_size}
-            decoded[section] += len(packed_bytes(source))
-    result["decodedPayloadBytes"] = decoded["generatedTables"]
-    result["centerDecodedPayloadBytes"] = decoded["centerGeneratedTables"]
+            mapped = model_resource.payload(source.read_text(), resource_directory)
+            result[section][name] = {"cstringSectionBytes": cstring_bytes(size_output), "generatedSourceBytes": source.stat().st_size, "mappedResourceBytes": len(mapped), "releaseObjectBytes": object_path.stat().st_size}
+            resource_bytes[section] += len(mapped)
+    result["resourcePayloadBytes"] = resource_bytes["generatedTables"]
+    result["centerResourcePayloadBytes"] = resource_bytes["centerGeneratedTables"]
     result["testExecutableBytes"] = release_executable(root).stat().st_size
     return result
 
@@ -172,7 +168,7 @@ def check_sources(recorded, current):
 def validate_evidence(value):
     expected = PRESERVED_KEYS | {"archivedReferenceSummary", "archivedReferences", "centerNativeRelease", "directSourceDebug", "directSourceRelease", "everyBoundaryDebug", "everyBoundaryRelease", "nativeRelease", "nativeStorage", "schemaVersion", "sourceSHA256", "swiftVersion"}
     validate_keys(value, expected, "Pluto evidence")
-    if value["schemaVersion"] != 3 or not value["swiftVersion"]:
+    if value["schemaVersion"] != 4 or not value["swiftVersion"]:
         raise ValueError("Pluto evidence schema or toolchain differs")
     check_sources(value["sourceSHA256"], source_hashes())
     validate_capture_pair(value["everyBoundaryDebug"], value["everyBoundaryRelease"], value["directSourceDebug"], value["directSourceRelease"], {"rows": value["archivedReferences"]}, {"rows": value["archivedReferences"]})
@@ -180,10 +176,12 @@ def validate_evidence(value):
         raise ValueError("Archived Pluto reference summary differs")
     validate_measurement(value["nativeRelease"], -766524.75)
     validate_measurement(value["centerNativeRelease"], -72000.0)
-    if value["nativeStorage"]["decodedPayloadBytes"] != 13149264 or value["nativeStorage"]["centerDecodedPayloadBytes"] != 21768120 or value["nativeStorage"]["testExecutableBytes"] <= 0:
+    if value["nativeStorage"]["resourcePayloadBytes"] != 13149264 or value["nativeStorage"]["centerResourcePayloadBytes"] != 21768120 or value["nativeStorage"]["testExecutableBytes"] <= 0:
         raise ValueError("Pluto storage evidence differs")
     for section in ("generatedTables", "centerGeneratedTables"):
-        if set(value["nativeStorage"].get(section, {})) != set(TABLES[section]) or any(metric <= 0 for row in value["nativeStorage"][section].values() for metric in row.values()):
+        rows = value["nativeStorage"].get(section, {})
+        fields = {"cstringSectionBytes", "generatedSourceBytes", "mappedResourceBytes", "releaseObjectBytes"}
+        if set(rows) != set(TABLES[section]) or any(set(row) != fields or any(metric <= 0 for metric in row.values()) for row in rows.values()):
             raise ValueError("Pluto table storage evidence differs")
 
 
@@ -237,7 +235,7 @@ def capture():
     validate_measurement(center, -72000.0)
     rows = release_references["rows"]
     result = {key: prior[key] for key in PRESERVED_KEYS}
-    result.update(schemaVersion=3, sourceSHA256=after, swiftVersion=subprocess.check_output(["swift", "--version"], cwd=ROOT, text=True), everyBoundaryDebug=debug_boundary, everyBoundaryRelease=release_boundary, directSourceDebug=debug_direct, directSourceRelease=release_direct, archivedReferences=rows, archivedReferenceSummary=reference_summary(rows), nativeRelease=outer, centerNativeRelease=center, nativeStorage=storage())
+    result.update(schemaVersion=4, sourceSHA256=after, swiftVersion=subprocess.check_output(["swift", "--version"], cwd=ROOT, text=True), everyBoundaryDebug=debug_boundary, everyBoundaryRelease=release_boundary, directSourceDebug=debug_direct, directSourceRelease=release_direct, archivedReferences=rows, archivedReferenceSummary=reference_summary(rows), nativeRelease=outer, centerNativeRelease=center, nativeStorage=storage())
     validate_evidence(result)
     publish(OUTPUT, result)
     print("Recorded Pluto-native evidence")

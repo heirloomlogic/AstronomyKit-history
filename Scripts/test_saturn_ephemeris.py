@@ -24,13 +24,13 @@ g = module('saturn_generator', 'generate-saturn-tables.py')
 
 
 class SaturnEphemerisTests(unittest.TestCase):
-    def test_generated_payload_escapes_credential_like_base64_without_changing_bytes(self):
+    def test_generated_source_identifies_the_binary_without_embedding_it(self):
         body = dict(startJDTDB=2451545, recordDays=1, recordCount=1, coefficientCount=1, encoding='float64')
         data = base64.b64decode('ABSK')
-        source = g.render(data, 'offset', body)
-        self.assertIn('AB#SK', source)
-        self.assertNotIn('\nABSK', source)
-        self.assertEqual(g.common.extract(source), data)
+        source, name = g.render(data, 'offset', body)
+        self.assertEqual('saturn-offset.bin', name)
+        self.assertIn(hashlib.sha256(data).hexdigest(), source)
+        self.assertNotIn('"""', source)
 
     def test_both_packed_generators_check_without_retired_moon_generator(self):
         for filename in ('generate-saturn-tables.py', 'generate-pluto-de441.py'):
@@ -106,7 +106,7 @@ class SaturnEphemerisTests(unittest.TestCase):
         recorder = module('planetary_recorder_integrity', 'record-planetary-event-evidence.py')
         original = json.loads(recorder.OUTPUT.read_bytes())
         recorder.validate_recording(original)
-        for path in [('debug', 'parity', 'maximumElongationParitySeconds'), ('release', 'parity', 'apsisEvents', 0, 'jdtt'), ('debug', 'coefficients', 'maximumPositionKm'), ('resources', 'seconds', 'center'), ('resources', 'checksum'), ('buildSeconds', 'debug'), ('releaseExecutableBytes',), ('decodedPayloadBytes',)]:
+        for path in [('debug', 'parity', 'maximumElongationParitySeconds'), ('release', 'parity', 'apsisEvents', 0, 'jdtt'), ('debug', 'coefficients', 'maximumPositionKm'), ('resources', 'seconds', 'center'), ('resources', 'checksum'), ('buildSeconds', 'debug'), ('releaseExecutableBytes',), ('resourcePayloadBytes',)]:
             changed = copy.deepcopy(original)
             cursor = changed
             for key in path[:-1]:
@@ -114,6 +114,22 @@ class SaturnEphemerisTests(unittest.TestCase):
             cursor[path[-1]] += 0.01
             with self.assertRaises(ValueError, msg=str(path)):
                 recorder.validate_recording(changed)
+
+    def test_saturn_storage_uses_verified_mapped_resources(self):
+        recorder = module('planetary_recorder_storage', 'record-planetary-event-evidence.py')
+        expected = sum(len(recorder.model_resource.payload((recorder.ROOT/path).read_text())) for path in recorder.SATURN_RESOURCE_SOURCES)
+        self.assertEqual(expected, recorder.mapped_resource_bytes())
+        with tempfile.TemporaryDirectory() as directory:
+            resources = Path(directory)
+            names = []
+            for source in recorder.SATURN_RESOURCE_SOURCES:
+                match = recorder.model_resource.DESCRIPTOR.search((recorder.ROOT/source).read_text())
+                names.append(match[1]+'.bin')
+            for name in names:
+                shutil.copyfile(recorder.model_resource.RESOURCE_DIRECTORY/name, resources/name)
+            data = bytearray((resources/names[0]).read_bytes());data[0] ^= 1;(resources/names[0]).write_bytes(data)
+            with self.assertRaisesRegex(ValueError, 'digest differs'):
+                recorder.mapped_resource_bytes(resource_directory=resources)
 
     def test_check_command_rejects_corrupt_parity_and_resource_json(self):
         recorder = module('planetary_recorder_cli', 'record-planetary-event-evidence.py')
@@ -136,9 +152,11 @@ class SaturnEphemerisTests(unittest.TestCase):
             root = Path(directory)
             manifest = json.loads((g.ROOT/'Scripts/planet-data/manifest.json').read_bytes())
             generated = Path('Sources/AstronomyKit/Engine/Planets/Generated')
-            paths = ['Scripts/generate-planet-tables.py', 'Scripts/generate-saturn-tables.py', 'Scripts/packed-table-payload.py', 'Scripts/planet-data/manifest.json', 'Scripts/saturn-data/assessment.json']
+            paths = ['Scripts/generate-planet-tables.py', 'Scripts/generate-saturn-tables.py', 'Scripts/generated-binary-resource.py', 'Scripts/packed-table-payload.py', 'Scripts/planet-data/manifest.json', 'Scripts/saturn-data/assessment.json']
             paths += list(manifest['files'])
             paths += [str(p.relative_to(g.ROOT)) for p in (g.ROOT/generated).rglob('*.swift')]
+            paths += [str(p.relative_to(g.ROOT)) for p in g.binary.RESOURCE_DIRECTORY.glob('planet-polynomial-*.bin')]
+            paths += [str(p.relative_to(g.ROOT)) for p in g.binary.RESOURCE_DIRECTORY.glob('saturn-*.bin')]
             for relative in paths:
                 target = root/relative
                 target.parent.mkdir(parents=True, exist_ok=True)
@@ -148,12 +166,14 @@ class SaturnEphemerisTests(unittest.TestCase):
             candidate = json.loads(g.MANIFEST.read_bytes())['candidates']['float64']
             for target, name in g.BODIES.items():
                 body = candidate['bodies'][str(target)]
-                data = g.common.extract((g.OUTPUT/f'Saturn{name.title()}Data.swift').read_text())
+                data = (g.binary.RESOURCE_DIRECTORY/f'saturn-{name}.bin').read_bytes()
                 g.common.validate(data, body)
                 with self.assertRaisesRegex(ValueError, 'digest'):
                     g.common.validate(bytes([data[0] ^ 1]) + data[1:], body)
                 (binaries/f'float64-{target}.bin').write_bytes(data)
-            expected = {p.relative_to(root): hashlib.sha256(p.read_bytes()).hexdigest() for p in (root/generated).rglob('*.swift')}
+            resource_root = root/g.binary.RESOURCE_DIRECTORY.relative_to(g.ROOT)
+            tracked = list((root/generated).rglob('*.swift')) + list(resource_root.glob('planet-polynomial-*.bin')) + list(resource_root.glob('saturn-*.bin'))
+            expected = {p.relative_to(root): hashlib.sha256(p.read_bytes()).hexdigest() for p in tracked}
             stale = root/generated/'Saturn/Retired.swift'
             stale.write_text('// obsolete owned output\n')
             nested_stale = stale.parent/'Retired/Nested.swift'
@@ -170,7 +190,8 @@ class SaturnEphemerisTests(unittest.TestCase):
                     shutil.rmtree(root/generated/'Saturn')
                 result = subprocess.run([sys.executable, str(root/'Scripts'/command[0]), *command[1:]], capture_output=True, text=True)
                 self.assertEqual(0, result.returncode, result.stdout+result.stderr)
-                actual = {p.relative_to(root): hashlib.sha256(p.read_bytes()).hexdigest() for p in (root/generated).rglob('*.swift')}
+                tracked = list((root/generated).rglob('*.swift')) + list(resource_root.glob('planet-polynomial-*.bin')) + list(resource_root.glob('saturn-*.bin'))
+                actual = {p.relative_to(root): hashlib.sha256(p.read_bytes()).hexdigest() for p in tracked}
                 self.assertEqual(expected, actual)
 
 

@@ -1,0 +1,69 @@
+{
+  "moon": {
+    "commandPeakRSSBytes": 1524891648,
+    "commandRealSeconds": 15.94,
+    "measurement": {
+      "checksum": -0.015608830476035283,
+      "coldSeconds": 0.00027692317962646484,
+      "evaluationsPerWorkload": 20000,
+      "host": "Version 27.0.1 (Build 26A434)",
+      "peakBytesAfterCold": 48070656,
+      "peakBytesAfterLoops": 366100480,
+      "peakBytesBefore": 47792128,
+      "seconds": {
+        "central": 0.3669610023498535,
+        "outer": 0.7595239877700806
+      }
+    }
+  },
+  "planetPolynomial": {
+    "commandPeakRSSBytes": 1525989376,
+    "commandRealSeconds": 9.01
+  },
+  "pluto": {
+    "commandPeakRSSBytes": 1525481472,
+    "commandRealSeconds": 26.69,
+    "measurement": {
+      "checksum": 44287.76723921855,
+      "coldSeconds": 0.02189505100250244,
+      "coldTT": -766524.75,
+      "evaluationsPerWorkload": 2000,
+      "host": "Version 27.0.1 (Build 26A434)",
+      "peakBytesAfterCold": 78954496,
+      "peakBytesAfterLoops": 151945216,
+      "peakBytesBefore": 47841280,
+      "seconds": {
+        "central": 0.050286054611206055,
+        "engineRange": 0.04887402057647705,
+        "outer": 0.11535704135894775
+      }
+    }
+  },
+  "releaseBuild": {
+    "libraryBytes": 554031304,
+    "peakRSSBytes": 9202417664,
+    "realSeconds": 344.17,
+    "testExecutableBytes": 577452304
+  },
+  "saturn": {
+    "commandPeakRSSBytes": 166150144,
+    "commandRealSeconds": 13.74,
+    "measurement": {
+      "centerColdSeconds": 0.02921295166015625,
+      "checksum": -443.8575980663537,
+      "evaluationsPerModel": 2000,
+      "eventCount": 100,
+      "eventSeconds": 0.03163802623748779,
+      "host": "Version 27.0.1 (Build 26A434)",
+      "peakAfterCenterBytes": 98566144,
+      "peakAfterRetainedBytes": 52936704,
+      "peakAfterWorkloadsBytes": 99041280,
+      "peakBeforeBytes": 47906816,
+      "retainedColdSeconds": 0.002783060073852539,
+      "seconds": {
+        "center": 0.01987910270690918,
+        "retained": 0.012894988059997559
+      }
+    }
+  }
+}

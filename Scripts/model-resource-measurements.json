@@ -1,0 +1,294 @@
+{
+  "baselineRevision": "667bc909b7025f434e822a353cd7e7fe4baf32c8",
+  "candidateBindingRevision": "f92d49f6fe1b22b1d17a81a8e3c959bed17d67b7",
+  "candidateRuntimeRevision": "d8d8360845fb96f94fb5aa275e5dce49c560bf4e",
+  "capturedAtUTC": "2026-10-18T19:38:38.646461Z",
+  "commands": {
+    "candidateMoon": "MOON_MEASUREMENT_OUTPUT=.context/issue-245/candidate/moon.json swift test -c release --scratch-path .context/issue-245/candidate/release-build --filter 'EngineMoonMeasurementTests/measure'",
+    "candidatePlanetPolynomial": "swift test -c release --scratch-path .context/issue-245/candidate/release-build --filter 'EnginePlanetPolynomialTests'",
+    "candidatePluto": "PLUTO_MEASUREMENT_OUTPUT=.context/issue-245/candidate/pluto.json swift test -c release --scratch-path .context/issue-245/candidate/release-build --filter 'EnginePlutoMeasurementTests/measure'",
+    "candidateReleaseBuild": "/usr/bin/time -l swift test -c release --scratch-path .context/issue-245/candidate/release-build --filter 'EngineContractTests'",
+    "candidateSaturn": "SATURN_MEASUREMENT_OUTPUT=.context/issue-245/candidate/saturn.json swift test -c release --scratch-path .context/issue-245/candidate/release-build --filter 'EngineSaturnMeasurementTests/measure'"
+  },
+  "generatedRepresentation": {
+    "baseline": {
+      "resourceBytes": 0,
+      "resourceFiles": 0,
+      "scopedSwiftFiles": 109,
+      "swiftSourceBytes": 401903636
+    },
+    "candidate": {
+      "resourceBytes": 300274800,
+      "resourceFiles": 107,
+      "scopedSwiftMetadataFiles": 19,
+      "swiftSourceBytes": 27847
+    }
+  },
+  "host": "Version 27.0.1 (Build 26A434)",
+  "limitations": [
+    "Each latency and resource measurement is one local process run; values describe this host and are not performance gates.",
+    "The fresh Release builds compile the same package and test graph from separate scratch directories, but their terminal filtered tests differ: the baseline selected one Moon measurement test that was skipped because its output environment variable was absent, while the candidate ran four contract tests.",
+    "The candidate runtime measurements precede the inventory-only binding commit; candidateRuntimeRevision records the measured executable source exactly."
+  ],
+  "rawArtifacts": {
+    "baseline": [
+      {
+        "bytes": 23347,
+        "path": "Scripts/model-resource-data/baseline/generated-source.json",
+        "sha256": "a7fcfd8a50d4419b335e4d406ab516050bc549ac72f6452dca1234b4935920fe"
+      },
+      {
+        "bytes": 358,
+        "path": "Scripts/model-resource-data/baseline/moon.json",
+        "sha256": "468739c04996ae1789ebeb5dd2d0f0b3e6395b9da7630a8ab8c5081dcca95316"
+      },
+      {
+        "bytes": 1316,
+        "path": "Scripts/model-resource-data/baseline/moon.log",
+        "sha256": "8e15259d7587525abebe952af469d090336ae6e6caada510df7862c7183655a6"
+      },
+      {
+        "bytes": 2052,
+        "path": "Scripts/model-resource-data/baseline/planet-polynomial.log",
+        "sha256": "e4720e0905bddfbaf5dd6a0ae744cbc1335094b19c2d0cd1f2544ba8200f3c76"
+      },
+      {
+        "bytes": 420,
+        "path": "Scripts/model-resource-data/baseline/pluto.json",
+        "sha256": "51c8277c865071670bc6ade0ac467fa9b195fb6ca81159a4019f8049530e6afd"
+      },
+      {
+        "bytes": 1305,
+        "path": "Scripts/model-resource-data/baseline/pluto.log",
+        "sha256": "f74607d9dd0e2dd847a91bd1221577ca2f467cf5901b3d1976869128b9b27d49"
+      },
+      {
+        "bytes": 2893,
+        "path": "Scripts/model-resource-data/baseline/release-build.log",
+        "sha256": "4acb141c39922a17ef122ed6e6e637897dde3ed532e1f72a3f9c0e606ddb6051"
+      },
+      {
+        "bytes": 514,
+        "path": "Scripts/model-resource-data/baseline/saturn.json",
+        "sha256": "8fc743a163c7ee4719b2e99856a38d5d07143a67b98d91efec09f6bfb6a7cc21"
+      },
+      {
+        "bytes": 1273,
+        "path": "Scripts/model-resource-data/baseline/saturn.log",
+        "sha256": "8b31bff5c6a30d273a590e17ff49a21f1cee55dba890be8aea33cf7dc98d2f60"
+      },
+      {
+        "bytes": 1999,
+        "path": "Scripts/model-resource-data/baseline/summary.json",
+        "sha256": "97ec073e6830ea7788463a32d1b8b47c02537c08537299a758f3355f89358b1a"
+      }
+    ],
+    "candidate": [
+      {
+        "bytes": 355,
+        "path": "Scripts/model-resource-data/candidate/moon.json",
+        "sha256": "8e7e88af2400b3af87af00aebab965777f34e652572c94528ddedd30dcf63a80"
+      },
+      {
+        "bytes": 1346,
+        "path": "Scripts/model-resource-data/candidate/moon.log",
+        "sha256": "8664af6832747c945909731944d0445ba1d625157da9d570fd4f00213e848478"
+      },
+      {
+        "bytes": 5922,
+        "path": "Scripts/model-resource-data/candidate/planet-polynomial.log",
+        "sha256": "a26b898456c7cedb4253424effab80ffdf9f9269213a199eca1771fd4ba79d95"
+      },
+      {
+        "bytes": 419,
+        "path": "Scripts/model-resource-data/candidate/pluto.json",
+        "sha256": "dde03ce41b36fc33eab08d114267d020493fdf899f9e4b583c6aa1adbb1aca3a"
+      },
+      {
+        "bytes": 1302,
+        "path": "Scripts/model-resource-data/candidate/pluto.log",
+        "sha256": "0071c4cb067a99d27fe0603c5ceabe035e4fbc2570276a2606d89d81a9f2cb3a"
+      },
+      {
+        "bytes": 3996,
+        "path": "Scripts/model-resource-data/candidate/release-build.log",
+        "sha256": "90bea4f10218db4d9ceaf98b4da996abafa2a8995eec9f62f66b30b62401e2ec"
+      },
+      {
+        "bytes": 513,
+        "path": "Scripts/model-resource-data/candidate/saturn.json",
+        "sha256": "8b1dfde66221c8ea07932337b1dbbeb92b60a817228f71d6c4a458570435840a"
+      },
+      {
+        "bytes": 1321,
+        "path": "Scripts/model-resource-data/candidate/saturn.log",
+        "sha256": "76cd78a0c943848a42e81b2a913151eb8d3d32b5a2c6ce52cce03aeaa29f11da"
+      }
+    ]
+  },
+  "releaseBuild": {
+    "baseline": {
+      "libraryBytes": 554031304,
+      "peakRSSBytes": 9202417664,
+      "realSeconds": 344.17,
+      "testExecutableBytes": 577452304
+    },
+    "candidate": {
+      "libraryBytes": 152164232,
+      "libraryPlusResourcesBytes": 452439032,
+      "peakRSSBytes": 5388713984,
+      "realSeconds": 215.86,
+      "resourceBytes": 300274800,
+      "resourceCount": 107,
+      "testExecutableBytes": 172492112,
+      "testExecutablePlusResourcesBytes": 472766912
+    },
+    "changePercent": {
+      "libraryBytes": -72.53508404644225,
+      "libraryPlusResourcesVsBaselineLibraryBytes": -18.336919099430524,
+      "peakRSSBytes": -41.44241023659758,
+      "realSeconds": -37.28099485719266,
+      "testExecutableBytes": -70.12876893811821,
+      "testExecutablePlusResourcesVsBaselineTestExecutableBytes": -18.128837875413517
+    }
+  },
+  "schemaVersion": 1,
+  "workloads": {
+    "moon": {
+      "baseline": {
+        "checksum": -0.015608830476035283,
+        "coldSeconds": 0.00027692317962646484,
+        "evaluationsPerWorkload": 20000,
+        "host": "Version 27.0.1 (Build 26A434)",
+        "peakBytesAfterCold": 48070656,
+        "peakBytesAfterLoops": 366100480,
+        "peakBytesBefore": 47792128,
+        "seconds": {
+          "central": 0.3669610023498535,
+          "outer": 0.7595239877700806
+        }
+      },
+      "baselineCommand": {
+        "peakRSSBytes": 1524891648,
+        "realSeconds": 15.94
+      },
+      "candidate": {
+        "checksum": -0.015608830476035283,
+        "coldSeconds": 0.023725032806396484,
+        "evaluationsPerWorkload": 20000,
+        "host": "Version 27.0.1 (Build 26A434)",
+        "peakBytesAfterCold": 52903936,
+        "peakBytesAfterLoops": 279855104,
+        "peakBytesBefore": 47742976,
+        "seconds": {
+          "central": 0.37238895893096924,
+          "outer": 1.9130690097808838
+        }
+      },
+      "candidateCommand": {
+        "peakRSSBytes": 517455872,
+        "realSeconds": 14.98
+      },
+      "checksumUnchanged": true
+    },
+    "planetPolynomial": {
+      "baselineCommand": {
+        "peakRSSBytes": 1525989376,
+        "realSeconds": 9.01
+      },
+      "baselineTestsPassed": 5,
+      "candidateCommand": {
+        "peakRSSBytes": 513900544,
+        "realSeconds": 6.67
+      },
+      "candidateTestsPassed": 10,
+      "comparison": "Not directly comparable: the baseline filter ran five EnginePlanetTablesTests table tests, while the candidate filter ran ten EnginePlanetPolynomialTests polynomial tests."
+    },
+    "pluto": {
+      "baseline": {
+        "checksum": 44287.76723921855,
+        "coldSeconds": 0.02189505100250244,
+        "coldTT": -766524.75,
+        "evaluationsPerWorkload": 2000,
+        "host": "Version 27.0.1 (Build 26A434)",
+        "peakBytesAfterCold": 78954496,
+        "peakBytesAfterLoops": 151945216,
+        "peakBytesBefore": 47841280,
+        "seconds": {
+          "central": 0.050286054611206055,
+          "engineRange": 0.04887402057647705,
+          "outer": 0.11535704135894775
+        }
+      },
+      "baselineCommand": {
+        "peakRSSBytes": 1525481472,
+        "realSeconds": 26.69
+      },
+      "candidate": {
+        "checksum": 44287.76723921855,
+        "coldSeconds": 0.0824199914932251,
+        "coldTT": -766524.75,
+        "evaluationsPerWorkload": 2000,
+        "host": "Version 27.0.1 (Build 26A434)",
+        "peakBytesAfterCold": 63569920,
+        "peakBytesAfterLoops": 85442560,
+        "peakBytesBefore": 47890432,
+        "seconds": {
+          "central": 0.03859305381774902,
+          "engineRange": 0.03826797008514404,
+          "outer": 0.16535496711730957
+        }
+      },
+      "candidateCommand": {
+        "peakRSSBytes": 165445632,
+        "realSeconds": 9.56
+      },
+      "checksumUnchanged": true
+    },
+    "saturn": {
+      "baseline": {
+        "centerColdSeconds": 0.02921295166015625,
+        "checksum": -443.8575980663537,
+        "evaluationsPerModel": 2000,
+        "eventCount": 100,
+        "eventSeconds": 0.03163802623748779,
+        "host": "Version 27.0.1 (Build 26A434)",
+        "peakAfterCenterBytes": 98566144,
+        "peakAfterRetainedBytes": 52936704,
+        "peakAfterWorkloadsBytes": 99041280,
+        "peakBeforeBytes": 47906816,
+        "retainedColdSeconds": 0.002783060073852539,
+        "seconds": {
+          "center": 0.01987910270690918,
+          "retained": 0.012894988059997559
+        }
+      },
+      "baselineCommand": {
+        "peakRSSBytes": 166150144,
+        "realSeconds": 13.74
+      },
+      "candidate": {
+        "centerColdSeconds": 0.11309194564819336,
+        "checksum": -443.8575980663537,
+        "evaluationsPerModel": 2000,
+        "eventCount": 100,
+        "eventSeconds": 0.032649993896484375,
+        "host": "Version 27.0.1 (Build 26A434)",
+        "peakAfterCenterBytes": 71761920,
+        "peakAfterRetainedBytes": 52248576,
+        "peakAfterWorkloadsBytes": 72220672,
+        "peakBeforeBytes": 48283648,
+        "retainedColdSeconds": 0.013925909996032715,
+        "seconds": {
+          "center": 0.020082950592041016,
+          "retained": 0.01338803768157959
+        }
+      },
+      "candidateCommand": {
+        "peakRSSBytes": 517488640,
+        "realSeconds": 8.61
+      },
+      "checksumUnchanged": true
+    }
+  }
+}

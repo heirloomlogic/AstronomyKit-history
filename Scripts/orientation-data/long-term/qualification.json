@@ -112,7 +112,7 @@
     "Scripts/orientation-data/long-term/manifest.json": "6cd3c210cccd6fd9142931527ce496f6fd477da9a3e522923a305127a95dc75e",
     "Scripts/qualify-long-term-precession.py": "a9656ab3aca5eefb74fe5dfed535f317561d7aa0916f0525d2ed037c38182e8e",
     "Scripts/solar-numerics/intervals.py": "f311ffea878782dd46cb55a79486615626bbf8d8fb351c4186f9c22dfff297c1",
-    "Scripts/solar-numerics/numerics.py": "f84b2d8af3b0703c548135db51b820c9e39e16362b352ca924add0eb730d608e",
+    "Scripts/solar-numerics/numerics.py": "37cd9fd4a07cda4ee6932a53570990f74ff88d4344056984c7faf1da44055cc6",
     "Scripts/solar-numerics/precession_bounds.py": "3f3bc8f2a40ac890d2383f019d52ccaece4bf7922085f6fa352f922066cf9c0a",
     "Sources/AstronomyKit/Engine/Orientation/EnginePrecession.swift": "a2f809b985707e6c5baac20f6ed59e0a751490b2acce383849f764ed7bda3f64",
     "Sources/AstronomyKit/Engine/Orientation/Generated/Vondrak2011Terms.swift": "a63d635e4d1780328b88489cc8a5c23777257d9c43b67d485d48d1fe231ebaba"

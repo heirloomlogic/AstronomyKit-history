@@ -37,7 +37,8 @@
       ],
       "paths": [
         "Sources/AstronomyKit/Engine/Gravity/EnginePlutoDE441.swift",
-        "Sources/AstronomyKit/Engine/Gravity/Generated/DE441/PlutoDE441SunData.swift"
+        "Sources/AstronomyKit/Engine/Gravity/Generated/DE441/PlutoDE441SunData.swift",
+        "Sources/AstronomyKit/Resources/ModelTables/pluto-de441-sun.bin"
       ]
     },
     "engine-conservative-extra": {
@@ -148,6 +149,7 @@
         "Sources/AstronomyKit/Engine/Foundation/EngineDeltaTObserved.swift",
         "Sources/AstronomyKit/Engine/Foundation/EngineDirectChebyshevTable.swift",
         "Sources/AstronomyKit/Engine/Foundation/EngineEclipticState.swift",
+        "Sources/AstronomyKit/Engine/Foundation/EngineMappedResource.swift",
         "Sources/AstronomyKit/Engine/Foundation/EnginePackedBytes.swift",
         "Sources/AstronomyKit/Engine/Foundation/EngineSearch.swift",
         "Sources/AstronomyKit/Engine/Foundation/EngineTables.swift",
@@ -239,7 +241,11 @@
         "Sources/AstronomyKit/Engine/Gravity/Generated/PlutoBarycenterCoefficients.swift",
         "Sources/AstronomyKit/Engine/Gravity/Generated/PlutoCenterCoefficients.swift",
         "Sources/AstronomyKit/Engine/Gravity/Generated/PlutoStateTable.swift",
-        "Sources/AstronomyKit/Engine/Gravity/Generated/PlutoSunCoefficients.swift"
+        "Sources/AstronomyKit/Engine/Gravity/Generated/PlutoSunCoefficients.swift",
+        "Sources/AstronomyKit/Resources/ModelTables/pluto-compact-barycenter.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/pluto-compact-center.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/pluto-compact-sun.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/pluto-de441-pluto.bin"
       ]
     },
     "engine-moon-clock-frame": {
@@ -281,98 +287,99 @@
         "Sources/AstronomyKit/Engine/Moon/EngineMoon.swift",
         "Sources/AstronomyKit/Engine/Moon/EngineMoonDE441Full.swift",
         "Sources/AstronomyKit/Engine/Moon/EngineMoonStates.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full000.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full001.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full002.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full003.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full004.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full005.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full006.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full007.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full008.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full009.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full010.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full011.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full012.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full013.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full014.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full015.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full016.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full017.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full018.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full019.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full020.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full021.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full022.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full023.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full024.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full025.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full026.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full027.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full028.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full029.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full030.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full031.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full032.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full033.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full034.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full035.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full036.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full037.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full038.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full039.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full040.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full041.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full042.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full043.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full044.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full045.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full046.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full047.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full048.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full049.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full050.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full051.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full052.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full053.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full054.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full055.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full056.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full057.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full058.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full059.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full060.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full061.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full062.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full063.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full064.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full065.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full066.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full067.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full068.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full069.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full070.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full071.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full072.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full073.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full074.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full075.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full076.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full077.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full078.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full079.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full080.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full081.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full082.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full083.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full084.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full085.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full086.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full087.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full088.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441Full089.swift",
         "Sources/AstronomyKit/Engine/Moon/Generated/DE441Full/MoonDE441FullIndex.swift",
-        "Sources/AstronomyKit/Engine/Moon/Generated/MoonDE440Coefficients.swift"
+        "Sources/AstronomyKit/Engine/Moon/Generated/MoonDE440Coefficients.swift",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de440.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-000.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-001.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-002.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-003.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-004.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-005.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-006.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-007.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-008.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-009.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-010.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-011.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-012.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-013.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-014.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-015.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-016.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-017.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-018.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-019.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-020.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-021.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-022.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-023.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-024.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-025.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-026.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-027.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-028.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-029.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-030.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-031.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-032.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-033.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-034.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-035.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-036.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-037.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-038.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-039.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-040.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-041.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-042.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-043.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-044.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-045.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-046.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-047.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-048.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-049.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-050.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-051.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-052.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-053.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-054.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-055.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-056.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-057.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-058.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-059.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-060.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-061.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-062.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-063.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-064.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-065.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-066.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-067.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-068.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-069.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-070.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-071.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-072.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-073.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-074.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-075.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-076.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-077.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-078.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-079.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-080.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-081.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-082.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-083.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-084.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-085.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-086.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-087.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-088.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/moon-de441-full-089.bin"
       ]
     },
     "engine-orientation": {
@@ -468,7 +475,18 @@
         "Sources/AstronomyKit/Engine/Planets/Generated/Saturn/SaturnBarycenterData.swift",
         "Sources/AstronomyKit/Engine/Planets/Generated/Saturn/SaturnOffsetData.swift",
         "Sources/AstronomyKit/Engine/Planets/Generated/Saturn/SaturnSunData.swift",
-        "Sources/AstronomyKit/Engine/Planets/Generated/VSOP87BTerms.swift"
+        "Sources/AstronomyKit/Engine/Planets/Generated/VSOP87BTerms.swift",
+        "Sources/AstronomyKit/Resources/ModelTables/planet-polynomial-earth.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/planet-polynomial-jupiter.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/planet-polynomial-mars.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/planet-polynomial-mercury.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/planet-polynomial-neptune.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/planet-polynomial-saturn.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/planet-polynomial-uranus.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/planet-polynomial-venus.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/saturn-barycenter.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/saturn-offset.bin",
+        "Sources/AstronomyKit/Resources/ModelTables/saturn-sun.bin"
       ]
     },
     "engine-position-checking": {
@@ -515,13 +533,44 @@
         "Sources/AstronomyKit/Engine/Positions/EngineIllumination.swift"
       ]
     },
+    "galilean-runtime-source-footprint": {
+      "owners": [
+        "galilean-runtime"
+      ],
+      "paths": [
+        "Sources/AstronomyKit/Documentation.docc/AdvancedFeatures.md",
+        "Sources/AstronomyKit/Documentation.docc/CelestialPositions.md",
+        "Sources/AstronomyKit/Documentation.docc/CoordinateSystems.md",
+        "Sources/AstronomyKit/Documentation.docc/Documentation.md",
+        "Sources/AstronomyKit/Documentation.docc/Eclipses.md",
+        "Sources/AstronomyKit/Documentation.docc/GettingStarted.md",
+        "Sources/AstronomyKit/Documentation.docc/MoonPhases.md",
+        "Sources/AstronomyKit/Documentation.docc/Resources/AstronomyKit-logo.png",
+        "Sources/AstronomyKit/Documentation.docc/Resources/AstronomyKit-logo@2x.png",
+        "Sources/AstronomyKit/Documentation.docc/RiseSetTimes.md",
+        "Sources/AstronomyKit/Documentation.docc/SeasonsAndEvents.md",
+        "Sources/AstronomyKit/Documentation.docc/SolarAltitudeNumerics.md",
+        "Sources/AstronomyKit/Documentation.docc/TimeAndObservers.md"
+      ]
+    },
+    "generated-binary-resource-tooling": {
+      "owners": [
+        "moon-full-integration",
+        "planetary-events",
+        "pluto-native"
+      ],
+      "paths": [
+        "Scripts/generated-binary-resource.py",
+        "Scripts/test_generated_binary_resource.py"
+      ]
+    },
     "package-public-snapshot": {
       "owners": [
         "eclipse-native",
+        "galilean-runtime",
         "moon-events",
         "moon-full-integration",
-        "pluto-native",
-        "galilean-runtime"
+        "pluto-native"
       ],
       "paths": [
         "Package.swift",
@@ -559,6 +608,19 @@
         "Sources/AstronomyKit/Time.swift",
         "Sources/AstronomyKit/Transit.swift",
         "Sources/AstronomyKit/UTCOffsetTable.swift"
+      ]
+    },
+    "test-fixture-snapshot": {
+      "owners": [
+        "eclipse-native",
+        "moon-events",
+        "moon-full-integration",
+        "pluto-native"
+      ],
+      "paths": [
+        "Tests/AstronomyKitTests/Fixtures/IndependentReferences/distance-fixtures.json",
+        "Tests/AstronomyKitTests/Fixtures/IndependentReferences/reference-fixtures.json",
+        "Tests/AstronomyKitTests/Fixtures/SeasonalRoots/seasonal-roots.txt"
       ]
     },
     "test-swift-snapshot": {
@@ -613,6 +675,7 @@
         "Tests/AstronomyKitTests/Engine/Foundation/EngineContractTests.swift",
         "Tests/AstronomyKitTests/Engine/Foundation/EngineDeltaTTests.swift",
         "Tests/AstronomyKitTests/Engine/Foundation/EngineLightTravelTests.swift",
+        "Tests/AstronomyKitTests/Engine/Foundation/EngineMappedResourceTests.swift",
         "Tests/AstronomyKitTests/Engine/Foundation/EngineRotationTests.swift",
         "Tests/AstronomyKitTests/Engine/Foundation/EngineSearchTests.swift",
         "Tests/AstronomyKitTests/Engine/Foundation/EngineStateOwnershipTests.swift",
@@ -726,39 +789,6 @@
         "Tests/AstronomyKitTests/StateVectorExtensionTests.swift",
         "Tests/AstronomyKitTests/TransitTests.swift",
         "Tests/AstronomyKitTests/WeatherRefractionTests.swift"
-      ]
-    },
-    "test-fixture-snapshot": {
-      "owners": [
-        "eclipse-native",
-        "moon-events",
-        "moon-full-integration",
-        "pluto-native"
-      ],
-      "paths": [
-        "Tests/AstronomyKitTests/Fixtures/IndependentReferences/distance-fixtures.json",
-        "Tests/AstronomyKitTests/Fixtures/IndependentReferences/reference-fixtures.json",
-        "Tests/AstronomyKitTests/Fixtures/SeasonalRoots/seasonal-roots.txt"
-      ]
-    },
-    "galilean-runtime-source-footprint": {
-      "owners": [
-        "galilean-runtime"
-      ],
-      "paths": [
-        "Sources/AstronomyKit/Documentation.docc/AdvancedFeatures.md",
-        "Sources/AstronomyKit/Documentation.docc/CelestialPositions.md",
-        "Sources/AstronomyKit/Documentation.docc/CoordinateSystems.md",
-        "Sources/AstronomyKit/Documentation.docc/Documentation.md",
-        "Sources/AstronomyKit/Documentation.docc/Eclipses.md",
-        "Sources/AstronomyKit/Documentation.docc/GettingStarted.md",
-        "Sources/AstronomyKit/Documentation.docc/MoonPhases.md",
-        "Sources/AstronomyKit/Documentation.docc/Resources/AstronomyKit-logo.png",
-        "Sources/AstronomyKit/Documentation.docc/Resources/AstronomyKit-logo@2x.png",
-        "Sources/AstronomyKit/Documentation.docc/RiseSetTimes.md",
-        "Sources/AstronomyKit/Documentation.docc/SeasonsAndEvents.md",
-        "Sources/AstronomyKit/Documentation.docc/SolarAltitudeNumerics.md",
-        "Sources/AstronomyKit/Documentation.docc/TimeAndObservers.md"
       ]
     }
   },
@@ -919,6 +949,7 @@
         "engine-positions"
       ],
       "paths": [
+        "Package.swift",
         "Scripts/assess-global-solar-radii.py",
         "Scripts/assess-rp1301-g0.py",
         "Scripts/capture-global-solar.py",
@@ -971,6 +1002,7 @@
         "engine-positions"
       ],
       "paths": [
+        "Package.swift",
         "Scripts/capture-global-solar.py",
         "Scripts/capture-local-solar.py",
         "Scripts/eclipse-data/local-captures.json",
@@ -1078,6 +1110,7 @@
         "engine-planets",
         "engine-position-checking",
         "engine-positions",
+        "generated-binary-resource-tooling",
         "package-public-snapshot",
         "test-fixture-snapshot",
         "test-swift-snapshot"
@@ -1117,6 +1150,7 @@
       "paths": [
         "Fuzzing/corpus/fixed-riseset-infinite-limit",
         "Fuzzing/corpus/fixed-riseset-stall",
+        "Package.swift",
         "Scripts/capture-observer-events.py",
         "Scripts/observer-event-data/README.md",
         "Scripts/observer-event-data/native-captures.json",
@@ -1177,15 +1211,18 @@
         "engine-planet-blend",
         "engine-planets",
         "engine-position-checking",
-        "engine-positions"
+        "engine-positions",
+        "generated-binary-resource-tooling"
       ],
       "paths": [
+        "Package.swift",
         "Scripts/assess-moon-de441.py",
         "Scripts/assess-pluto-de441.py",
         "Scripts/assess-saturn-apsides.py",
         "Scripts/generate-moon-tables.py",
         "Scripts/generate-planet-cycle-census.py",
         "Scripts/generate-saturn-tables.py",
+        "Scripts/model_resource.py",
         "Scripts/packed-table-payload.py",
         "Scripts/planet-data/de441-cycle-census.json",
         "Scripts/qualify-moon-de441.py",
@@ -1261,6 +1298,7 @@
         "engine-planets",
         "engine-position-checking",
         "engine-positions",
+        "generated-binary-resource-tooling",
         "package-public-snapshot",
         "test-fixture-snapshot",
         "test-swift-snapshot"
@@ -1268,6 +1306,7 @@
       "paths": [
         "Scripts/generate-pluto-de441.py",
         "Scripts/generate-pluto-tables.py",
+        "Scripts/model_resource.py",
         "Scripts/packed-table-payload.py",
         "Scripts/pluto-data/de441-evidence.json",
         "Scripts/pluto-data/de441-native-fixtures.json",
@@ -1276,6 +1315,8 @@
         "Scripts/qualify-pluto-center.py",
         "Scripts/record-pluto-de441-evidence.py",
         "Scripts/test_generate_pluto_de441.py",
+        "Scripts/test_model_resource.py",
+        "Scripts/test_qualify_pluto_center.py",
         "Scripts/test_record_pluto_de441_evidence.py"
       ]
     },
@@ -1293,6 +1334,7 @@
         "engine-positions"
       ],
       "paths": [
+        "Package.swift",
         "Scripts/capture-pluto-observers.py",
         "Scripts/pluto-data/observer-fixtures.json",
         "Scripts/reference-data/build-fixtures.py",
@@ -1324,6 +1366,7 @@
         "engine-positions"
       ],
       "paths": [
+        "Package.swift",
         "Scripts/capture-global-solar.py",
         "Scripts/capture-transit-references.py",
         "Scripts/eclipse-data/transit-captures.json",

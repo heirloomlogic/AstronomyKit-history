@@ -4,15 +4,16 @@ These values measure agreement with the selected model; they are not physical
 accuracy bounds. Cubics are evaluated in Hermite form, independently of native
 Chebyshev reconstruction, with archived binary64 endpoint values exact.
 """
-import base64
 from functools import lru_cache
 import re
 import struct
 import mpmath as mp
-from numerics import ROOT, ENGINE
+from numerics import ROOT, ENGINE, table_payload
 from reference import exact
 
 SUN_PATH = ENGINE + 'Gravity/Generated/DE441/PlutoDE441SunData.swift'
+SUN_RESOURCE_PATH = 'Sources/AstronomyKit/Resources/ModelTables/pluto-de441-sun.bin'
+PATHS = [SUN_PATH, SUN_RESOURCE_PATH, 'Scripts/model_resource.py']
 TDB_PATH = 'Scripts/apparent-place-data/dtdb.c'
 
 
@@ -20,7 +21,7 @@ TDB_PATH = 'Scripts/apparent-place-data/dtdb.c'
 def sun_table():
     text = (ROOT / SUN_PATH).read_text()
     start, width, count = re.search(r'start: ([^,]+), days: ([^,]+), recordCount: ([^,]+),', text).groups()
-    payload = base64.b64decode(''.join(text.split('"""')[1].split()), validate=True)
+    payload = table_payload(SUN_PATH, text)
     count = int(count.replace('_', ''))
     if len(payload) != 48 * (count + 1):
         raise ValueError('Solar endpoint table shape changed')

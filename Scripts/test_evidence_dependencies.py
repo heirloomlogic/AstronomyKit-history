@@ -39,6 +39,25 @@ class EvidenceDependencyTests(unittest.TestCase):
                 self.assertTrue(test_sources <= owned)
                 self.assertTrue(fixtures <= owned)
 
+    def test_every_capture_owner_binds_resource_packaging_manifest(self):
+        inventory = dependencies.load_inventory()
+        owners = sorted(dependencies.OWNER_FILES)
+        all_owned = {path for paths in inventory.values() for path in paths}
+        with tempfile.TemporaryDirectory() as directory:
+            shadow = Path(directory)
+            for relative in all_owned:
+                destination = shadow / relative
+                destination.parent.mkdir(parents=True, exist_ok=True)
+                destination.symlink_to(ROOT / relative)
+            before = {owner: dependencies.source_hashes(owner, root=shadow) for owner in owners}
+            manifest = shadow / 'Package.swift'
+            manifest.unlink()
+            manifest.write_bytes((ROOT / 'Package.swift').read_bytes().replace(b'.copy("Resources/ModelTables")', b'.copy("Resources/ModelTables/moon-de440.bin")'))
+            for owner in owners:
+                with self.subTest(owner=owner):
+                    self.assertIn('Package.swift', inventory[owner])
+                    self.assertNotEqual(dependencies.source_hashes(owner, root=shadow)['Package.swift'], before[owner]['Package.swift'])
+
     def test_direct_and_transitive_edits_invalidate_but_unrelated_engine_addition_does_not(self):
         owner = 'global-solar'
         all_owned = {path for paths in dependencies.load_inventory().values() for path in paths}
